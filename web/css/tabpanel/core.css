@@ -1,0 +1,59 @@
+@CHARSET "UTF-8";
+/*html,body{width:100%;height:100%;overflow:hidden;}*/
+/*iframe{width:100%;height:100%;padding:0;margin:0;}*/
+img,body,html{border:0;}
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,th,td{margin:0;padding:0;}
+*{font-family:Verdana, Geneva, sans-serif;font-size:12px;}
+img{vertical-align:middle;}
+/*新建*/
+.new {
+  background: transparent url(../../images/tabpanel/new.gif) no-repeat 0 2px;
+  padding-left:18px;
+}
+/*修改*/
+.edit {
+  background: transparent url(../../images/tabpanel/edit.gif) no-repeat 0 2px;
+  padding-left:20px;
+}
+/*保存*/
+.save {
+  background: transparent url(../../images/tabpanel/save.gif) no-repeat 0 2px;
+  padding-left:20px;
+}
+/*删除*/
+.delete {
+  background: transparent url(../../images/tabpanel/delete.gif) no-repeat 0 2px;
+  padding-left:20px;
+}
+/*查找*/
+.search {
+  background:transparent url(../../images/tabpanel/search.gif) no-repeat 0 2px;
+  padding-left:20px;
+}
+/*权限设置*/
+.role-setup {
+  background:transparent url(../../images/tabpanel/role-setup.gif) no-repeat 0 2px;
+  padding-left:20px;
+}
+/*已关联*/
+.linked {
+  background:transparent url(../../images/tabpanel/linked.gif) no-repeat 0 3px;
+  padding-left:20px;
+}
+/*下面是过滤组件用到的样式*/
+.filter-read-y {
+  background:transparent url(../../images/tabpanel/read-y.gif) no-repeat 2px 2px;
+	width:20px;
+}
+.filter-read-n {
+  background:transparent url(../../images/tabpanel/read-n.gif) no-repeat 2px 2px;
+	width:20px;
+}
+.filter-sended {
+  background:transparent url(../../images/tabpanel/sended.gif) no-repeat 2px 2px;
+	width:20px;
+}
+.btn-all {
+  background:transparent url(../../images/tabpanel/all.gif) no-repeat 2px 2px;
+	width:20px;
+}

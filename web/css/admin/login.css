@@ -1,0 +1,113 @@
+@charset "utf-8";
+/* CSS Document */
+body,table,th,td,p{
+	padding:0px;
+	margin:0px;
+}
+body{
+	background:#0592c3;
+	width:100%;
+	height:100%;
+}
+#OutBox{
+	height:367px;
+	width:652px;
+	position:absolute;
+	left:50%;
+	margin-top:-183px;
+	margin-left:-326px;
+	top:50%;
+}
+#OutBox .Top{
+	background:url(../../images/top.gif) center top no-repeat;
+	height:65px;
+}
+#OutBox .Mid{
+	background:url(../../images/mid.gif) center top no-repeat;
+	height:263px;
+}
+#OutBox .Mid .Left{
+	width:158px;
+	height:163px;
+	float:left;
+	padding:50px;
+	line-height:163px;
+}
+#OutBox .Mid .Right{
+	padding:80px 70px 0px 50px;
+	float:right;
+	width:274px;
+	float:right;
+	height:183px;
+}
+#OutBox .Mid .Right table{
+	width:100%;
+	padding:0px;
+	margin:0px;
+	border:0px;
+	border-collapse:collapse;
+}
+#OutBox .Mid .Right table th{
+	color:#333333;
+	text-align:right;
+	font-size:12px;
+	padding:5px;
+	line-height:22px;
+	font-weight:normal;
+	vertical-align:middle;
+}
+#OutBox .Mid .Right table td{
+	color:#333333;
+	text-align:left;
+	font-size:12px;
+	color:#333333;
+	line-height:22px;
+	padding:5px;
+	vertical-align:middle;
+}
+#OutBox .Mid .Right table td img{
+	vertical-align:middle;
+}
+#OutBox .Mid .Right table td .longTextBox{
+	border:1px solid #90a9bc;
+	line-height:22px;
+	background:#ffffff;
+	width:180px;
+	height:22px;
+	font-size:12px;
+	vertical-align:middle;
+	outline:0px;
+}
+#OutBox .Mid .Right table td .longTextBox:focus{
+	border:1px solid #666666;
+}
+#OutBox .Mid .Right table td .shortTextBox{
+	border:1px solid #90a9bc;
+	line-height:22px;
+	background:#ffffff;
+	width:90px;
+	height:22px;
+	font-size:12px;
+	vertical-align:middle;
+	outline:0px;
+}
+#OutBox .Mid .Right table td .shortTextBox:focus{
+	border:1px solid #666666;
+}
+#OutBox .Mid .Right table td .btnSubmit{
+	background:url(../../images/btnSubmit.gif) center center no-repeat;
+	width:112px;
+	height:35px;
+	border:0px;
+	vertical-align:middle;
+	cursor:hand;
+}
+
+#OutBox .Bot{
+	background:url(../../images/bot.gif) center top no-repeat;
+	height:38px;
+	line-height:38px;
+	text-align:center;
+	color:#afe6f9;
+	font-size:12px;
+}

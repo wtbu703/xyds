@@ -1,0 +1,81 @@
+.DynarchCalendar-topCont {
+	BORDER-RIGHT: #b3cbe4 1px solid; BORDER-TOP: #b3cbe4 1px solid; BACKGROUND: #f1f8fc 0px 0px; BORDER-LEFT: #b3cbe4 1px solid; BORDER-BOTTOM: #b3cbe4 1px solid
+}
+.DynarchCalendar-topCont .DynarchCalendar {
+	BORDER-RIGHT: #ffffff 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; BORDER-BOTTOM: #ffffff 1px solid
+}
+.DynarchCalendar {
+	BACKGROUND-COLOR: #f1f8fc
+}
+.DynarchCalendar-focused {
+	BACKGROUND-COLOR: #f1f8fc
+}
+.DynarchCalendar-topBar {
+	COLOR: #369; BACKGROUND-COLOR: #d5e5f6
+}
+.DynarchCalendar-bottomBar {
+	COLOR: #369; BACKGROUND-COLOR: #d5e5f6
+}
+.DynarchCalendar-focused .DynarchCalendar-topBar {
+	COLOR: #369; BACKGROUND-COLOR: #d5e5f6
+}
+.DynarchCalendar-focused .DynarchCalendar-bottomBar {
+	COLOR: #369; BACKGROUND-COLOR: #d5e5f6
+}
+.DynarchCalendar-title DIV {
+	COLOR: #369
+}
+.DynarchCalendar-dayNames {
+	BORDER-BOTTOM: #b3cbe4 1px solid; BACKGROUND-COLOR: #d5e5f6
+}
+.DynarchCalendar-hover-navBtn DIV {
+	BORDER-LEFT-COLOR: #ddeeff; BORDER-BOTTOM-COLOR: #84acd7; COLOR: #000; BORDER-TOP-COLOR: #ddeeff; BACKGROUND-COLOR: #93b9e2; BORDER-RIGHT-COLOR: #84acd7
+}
+.DynarchCalendar-hover-title DIV {
+	BORDER-LEFT-COLOR: #ddeeff; BORDER-BOTTOM-COLOR: #84acd7; COLOR: #000; BORDER-TOP-COLOR: #ddeeff; BACKGROUND-COLOR: #93b9e2; BORDER-RIGHT-COLOR: #84acd7
+}
+.DynarchCalendar-hover-bottomBar-today {
+	BORDER-LEFT-COLOR: #ddeeff; BORDER-BOTTOM-COLOR: #84acd7; COLOR: #000; BORDER-TOP-COLOR: #ddeeff; BACKGROUND-COLOR: #93b9e2; BORDER-RIGHT-COLOR: #84acd7
+}
+.DynarchCalendar-menu TABLE TD DIV.DynarchCalendar-hover-navBtn {
+	BORDER-LEFT-COLOR: #93b9e2; BORDER-BOTTOM-COLOR: #93b9e2; COLOR: #366699; BORDER-TOP-COLOR: #93b9e2; BACKGROUND-COLOR: #93b9e2; BORDER-RIGHT-COLOR: #93b9e2
+}
+.DynarchCalendar-pressed-navBtn DIV {
+	BORDER-LEFT-COLOR: #bfd7f2; BORDER-BOTTOM-COLOR: #7faad7; COLOR: #369; BORDER-TOP-COLOR: #bfd7f2; BACKGROUND-COLOR: #93b9e2; BORDER-RIGHT-COLOR: #7faad7
+}
+.DynarchCalendar-pressed-title DIV {
+	BORDER-LEFT-COLOR: #bfd7f2; BORDER-BOTTOM-COLOR: #7faad7; COLOR: #369; BORDER-TOP-COLOR: #bfd7f2; BACKGROUND-COLOR: #93b9e2; BORDER-RIGHT-COLOR: #7faad7
+}
+.DynarchCalendar-pressed-bottomBar-today {
+	BORDER-LEFT-COLOR: #bfd7f2; BORDER-BOTTOM-COLOR: #7faad7; COLOR: #369; BORDER-TOP-COLOR: #bfd7f2; BACKGROUND-COLOR: #93b9e2; BORDER-RIGHT-COLOR: #7faad7
+}
+.DynarchCalendar-menu TABLE TD DIV.DynarchCalendar-pressed-navBtn {
+	BORDER-LEFT-COLOR: #bfd7f2; BORDER-BOTTOM-COLOR: #7faad7; COLOR: #369; BORDER-TOP-COLOR: #bfd7f2; BACKGROUND-COLOR: #93b9e2; BORDER-RIGHT-COLOR: #7faad7
+}
+.DynarchCalendar-hover-date {
+	BORDER-LEFT-COLOR: #93b9e2; BORDER-BOTTOM-COLOR: #93b9e2; BORDER-TOP-COLOR: #93b9e2; BACKGROUND-COLOR: #93b9e2; BORDER-RIGHT-COLOR: #93b9e2
+}
+.DynarchCalendar-day {
+	moz-border-radius: 0; webkit-border-radius: 0; border-radius: 0
+}
+.DynarchCalendar-day-disabled {
+	BACKGROUND: #c4c0b8
+}
+.DynarchCalendar-hover-week {
+	BACKGROUND-COLOR: #ddeeff! important
+}
+.DynarchCalendar-day-selected {
+	BORDER-RIGHT: #ff7200 1px solid; BORDER-TOP: #ff7200 1px solid; FONT-WEIGHT: 700; MARGIN: 0px; BORDER-LEFT: #ff7200 1px solid; COLOR: #fff; BORDER-BOTTOM: #ff7200 1px solid; BACKGROUND-COLOR: #ff7200
+}
+.DynarchCalendar-day-selected {
+	BACKGROUND-COLOR: #ff7200
+}
+.DynarchCalendar-menu {
+	BACKGROUND-COLOR: #ddeeff
+}
+.DynarchCalendar-dayNames DIV {
+	FONT-SIZE: 12px; text-shadow: none
+}
+.DynarchCalendar TABLE {
+	FONT-SIZE: 12px; COLOR: #366699
+}

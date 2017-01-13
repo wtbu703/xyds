@@ -1,0 +1,38 @@
+/* artDialog facebook.css
+ * Date: 2010-10-13
+ */
+
+.aui_facebook .aui_td_title, .aui_facebook .aui_td_buttons button { font:12px 'Microsoft Yahei', Arial; }
+.aui_facebook .aui_content_table { min-width:9em; background:#FFF; border:1px solid #000!important; }
+.aui_facebook .aui_border { filter:alpha(opacity=30); opacity:0.3; }
+.aui_facebook .art_focus .aui_border { filter:alpha(opacity=50); opacity:0.5; }
+.aui_facebook .art_move .aui_border { filter:alpha(opacity=40); opacity:0.4; }
+.aui_facebook .aui_close, .aui_facebook .aui_left_top, .aui_facebook .aui_right_top, .aui_facebook .aui_left_bottom, .aui_facebook .aui_right_bottom { width:9px; height:9px; background-image:url(facebook/dialog.png); background-repeat:no-repeat; }
+.aui_facebook .aui_title_wrap { height:100%; position:relative; }
+.aui_facebook .art_focus .aui_content_table, .aui_facebook .aui_title_wrap, .aui_facebook .aui_close:hover { -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.7); -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.7); box-shadow: 0 0 3px rgba(0, 0, 0, 0.7); }
+.aui_facebook .aui_title { height:30px; line-height:30px; padding:0 30px 0 10px; background-color:#3A6EA5; font-weight:700; color:#EBEBEB; border-style:solid; border-width:1px; border-color:#4E84C0 #4E84C0 #0D1D3C #4E84C0; text-shadow:0 1px 0 #000; }
+.aui_facebook .art_move .aui_title { color:#FFF; }
+.aui_facebook .art_focus .aui_title { background-color:#214FA3; }
+.aui_facebook .aui_close { width:13px; height:13px; _font-size:0; *line-height:0; border:1px solid #3A6EA5; top:8px; right:8px; text-align:left; text-indent:-9999em; overflow:hidden; background-position:center center; }
+.aui_facebook .art_focus .aui_close { border-color:#214FA3; }
+.aui_facebook .aui_close:hover { background-color:#771C35; border-color:#000; cursor:default; }
+.aui_facebook .aui_close:active { background-color:#A80000; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
+.aui_facebook .aui_buttons_wrap { background-color:#F6F6F6; border-top:1px solid #EBEBEB; border-bottom:1px solid #CCC; -moz-box-shadow: inset 0 -2px 2px rgba(204, 204, 204, 0.3); -webkit-box-shadow: inset 0 -2px 2px rgba(204, 204, 204, 0.3); box-shadow: inset 0 -2px 2px rgba(204, 204, 204, 0.3); }
+.aui_facebook .aui_buttons_wrap button { margin:0; height:2em; line-height:2em; padding:0 5px; border-color:#FFF #848484 #848484 #FFF; border-style:solid; border-width:1px; color:#000; text-align:center; letter-spacing:2px; background-color:#F8F8F8; }
+.aui_facebook .aui_buttons_wrap .aui_yes button { background-color:#3A6EA5; color:#FFF; border-color:#84A6E6 #122B58 #122B58 #84A6E6; cursor:pointer; }
+.aui_facebook .aui_buttons_wrap .aui_yes:hover button { background-color:#2251A8; }
+.aui_facebook .aui_left_top { background-position:left top; }
+.aui_facebook .aui_right_top { background-position:right top; }
+.aui_facebook .aui_right_bottom { background-position:right bottom; }
+.aui_facebook .aui_left_bottom { background-position:left bottom; }
+.aui_facebook .aui_top, .aui_facebook .aui_right, .aui_facebook .aui_bottom, .aui_facebook .aui_left { background-color:#000; }
+.aui_facebook .aui_buttons_wrap span { border:1px solid #666; }
+.aui_facebook .art_focus .aui_content_table { -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.7); -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.7); box-shadow: 0 0 3px rgba(0, 0, 0, 0.7); }
+.aui_facebook .art_focus .aui_bottom { -moz-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2); -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2); box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2); }
+.aui_facebook .art_move .aui_bottom { -moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none; }
+
+.aui_facebook .aui_icon { width:48px; height:48px; margin:10px 0 10px 10px; background-image:url(aero/icons.png); background-repeat:no-repeat; }
+.aui_facebook .art_alert { background-position:0 -96px; }
+.aui_facebook .art_succeed { background-position:0 0;}
+.aui_facebook .art_error { background-position:0 -48px; }
+.aui_facebook .art_confirm { margin-right:10px; width:48px; height:48px; background-position:0 -144px; }
