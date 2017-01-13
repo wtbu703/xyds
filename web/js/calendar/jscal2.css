@@ -1,0 +1,230 @@
+.DynarchCalendar {
+	BORDER-RIGHT: #aaa 1px solid; BORDER-TOP: #aaa 1px solid; BACKGROUND: #e8e8e8; FONT: 11px/14px "lucida grande",tahoma,verdana,sans-serif; BORDER-LEFT: #aaa 1px solid; CURSOR: default; BORDER-BOTTOM: #aaa 1px solid; POSITION: relative; moz-user-select: none; webkit-user-select: none; user-select: none
+}
+.DynarchCalendar TABLE {
+	FONT: 11px/14px "lucida grande",tahoma,verdana,sans-serif; BORDER-COLLAPSE: collapse
+}
+.DynarchCalendar-topBar {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: #ddd; PADDING-BOTTOM: 0px; PADDING-TOP: 5px; BORDER-BOTTOM: #aaa 1px solid
+}
+TABLE.DynarchCalendar-titleCont {
+	MARGIN-TOP: -6px; FONT-WEIGHT: bold; FONT-SIZE: 130%; Z-INDEX: 9; COLOR: #444; POSITION: relative; TEXT-ALIGN: center
+}
+.DynarchCalendar-title DIV {
+	PADDING-RIGHT: 17px; PADDING-LEFT: 17px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
+}
+.DynarchCalendar-hover-title DIV {
+	BORDER-RIGHT: #000 1px solid; PADDING-RIGHT: 16px; BACKGROUND-POSITION: 100% 50%; BORDER-TOP: #000 1px solid; PADDING-LEFT: 16px; BACKGROUND-IMAGE: url(img/drop-down.gif); PADDING-BOTTOM: 4px; BORDER-LEFT: #000 1px solid; PADDING-TOP: 4px; BORDER-BOTTOM: #000 1px solid; BACKGROUND-REPEAT: no-repeat; BACKGROUND-COLOR: #fff
+}
+.DynarchCalendar-pressed-title DIV {
+	BORDER-RIGHT: #000 1px solid; PADDING-RIGHT: 16px; BACKGROUND-POSITION: 100% 50%; BORDER-TOP: #000 1px solid; PADDING-LEFT: 16px; BACKGROUND-IMAGE: url(img/drop-up.gif); PADDING-BOTTOM: 4px; BORDER-LEFT: #000 1px solid; COLOR: #fff; PADDING-TOP: 4px; BORDER-BOTTOM: #000 1px solid; BACKGROUND-REPEAT: no-repeat; BACKGROUND-COLOR: #777
+}
+.DynarchCalendar-bottomBar {
+	PADDING-RIGHT: 2px; BORDER-TOP: #aaa 1px solid; PADDING-LEFT: 2px; BACKGROUND: #ddd; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; POSITION: relative; TEXT-ALIGN: center
+}
+.DynarchCalendar-bottomBar-today {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px
+}
+.DynarchCalendar-hover-bottomBar-today {
+	BORDER-RIGHT: #000 1px solid; PADDING-RIGHT: 14px; BORDER-TOP: #000 1px solid; PADDING-LEFT: 14px; PADDING-BOTTOM: 1px; BORDER-LEFT: #000 1px solid; PADDING-TOP: 1px; BORDER-BOTTOM: #000 1px solid; BACKGROUND-COLOR: #fff
+}
+.DynarchCalendar-pressed-bottomBar-today {
+	BORDER-RIGHT: #000 1px solid; PADDING-RIGHT: 14px; BORDER-TOP: #000 1px solid; PADDING-LEFT: 14px; PADDING-BOTTOM: 1px; BORDER-LEFT: #000 1px solid; COLOR: #fff; PADDING-TOP: 1px; BORDER-BOTTOM: #000 1px solid; BACKGROUND-COLOR: #777
+}
+.DynarchCalendar-body {
+	PADDING-BOTTOM: 5px; OVERFLOW: hidden; PADDING-TOP: 5px; POSITION: relative
+}
+.DynarchCalendar-first-col {
+	PADDING-LEFT: 5px
+}
+.DynarchCalendar-last-col {
+	PADDING-RIGHT: 5px
+}
+.DynarchCalendar-animBody-backYear {
+	LEFT: 0px; POSITION: absolute; TOP: -100%
+}
+.DynarchCalendar-animBody-back {
+	LEFT: -100%; POSITION: absolute; TOP: 5px
+}
+.DynarchCalendar-animBody-fwd {
+	LEFT: 100%; POSITION: absolute; TOP: 5px
+}
+.DynarchCalendar-animBody-now {
+	LEFT: 0px; POSITION: absolute; TOP: 5px
+}
+.DynarchCalendar-animBody-fwdYear {
+	LEFT: 0px; POSITION: absolute; TOP: 100%
+}
+.DynarchCalendar-dayNames {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px
+}
+.DynarchCalendar-dayNames DIV {
+	FONT-WEIGHT: bold; COLOR: #444; text-shadow: 1px 1px 1px #777
+}
+.DynarchCalendar-navBtn {
+	Z-INDEX: 10; POSITION: absolute; TOP: 5px
+}
+.DynarchCalendar-navBtn DIV {
+	PADDING-RIGHT: 1px; BACKGROUND-POSITION: 50% 50%; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; WIDTH: 16px; PADDING-TOP: 1px; BACKGROUND-REPEAT: no-repeat; HEIGHT: 15px
+}
+.DynarchCalendar-hover-navBtn DIV {
+	BORDER-RIGHT: #000 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #000 1px solid; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; BORDER-LEFT: #000 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #000 1px solid; BACKGROUND-COLOR: #fff
+}
+.DynarchCalendar-navDisabled {
+	FILTER: alpha(opacity=30); opacity: 0.3
+}
+.DynarchCalendar-pressed-navBtn DIV {
+	BORDER-RIGHT: #000 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #000 1px solid; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; BORDER-LEFT: #000 1px solid; COLOR: #fff; PADDING-TOP: 0px; BORDER-BOTTOM: #000 1px solid; BACKGROUND-COLOR: #777
+}
+.DynarchCalendar-prevMonth {
+	LEFT: 25px
+}
+.DynarchCalendar-nextMonth {
+	LEFT: 100%; MARGIN-LEFT: -43px
+}
+.DynarchCalendar-prevYear {
+	LEFT: 5px
+}
+.DynarchCalendar-nextYear {
+	LEFT: 100%; MARGIN-LEFT: -23px
+}
+.DynarchCalendar-prevMonth DIV {
+	BACKGROUND-IMAGE: url(img/nav-left.gif)
+}
+.DynarchCalendar-nextMonth DIV {
+	BACKGROUND-IMAGE: url(img/nav-right.gif)
+}
+.DynarchCalendar-prevYear DIV {
+	BACKGROUND-IMAGE: url(img/nav-left-x2.gif)
+}
+.DynarchCalendar-nextYear DIV {
+	BACKGROUND-IMAGE: url(img/nav-right-x2.gif)
+}
+.DynarchCalendar-menu {
+	FILTER: alpha(opacity=85); LEFT: 0px; OVERFLOW: hidden; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; BACKGROUND-COLOR: #ddd; opacity: 0.85
+}
+.DynarchCalendar-menu TABLE TD DIV {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; PADDING-BOTTOM: 3px; PADDING-TOP: 3px; TEXT-ALIGN: center
+}
+.DynarchCalendar-menu TABLE TD DIV.DynarchCalendar-menu-month {
+	WIDTH: 4em; TEXT-ALIGN: center
+}
+.DynarchCalendar-menu TABLE TD DIV.DynarchCalendar-hover-navBtn {
+	BORDER-RIGHT: #000 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #000 1px solid; PADDING-LEFT: 4px; PADDING-BOTTOM: 2px; BORDER-LEFT: #000 1px solid; COLOR: #000; PADDING-TOP: 2px; BORDER-BOTTOM: #000 1px solid; BACKGROUND-COLOR: #fff
+}
+.DynarchCalendar-menu TABLE TD DIV.DynarchCalendar-pressed-navBtn {
+	BORDER-RIGHT: #000 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #000 1px solid; PADDING-LEFT: 4px; PADDING-BOTTOM: 2px; BORDER-LEFT: #000 1px solid; COLOR: #fff! important; PADDING-TOP: 2px; BORDER-BOTTOM: #000 1px solid; BACKGROUND-COLOR: #777
+}
+.DynarchCalendar-menu-year {
+	FONT: bold 16px "lucida grande",tahoma,verdana,sans-serif; TEXT-ALIGN: center
+}
+.DynarchCalendar-menu-sep {
+	BORDER-TOP: #888 1px solid; MARGIN-TOP: 4px; FONT-SIZE: 1px; BACKGROUND: #fff; MARGIN-BOTTOM: 3px; OVERFLOW: hidden; LINE-HEIGHT: 1px; HEIGHT: 1px
+}
+.DynarchCalendar-time TD {
+	FONT-WEIGHT: bold; FONT-SIZE: 120%
+}
+.DynarchCalendar-time-hour {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px
+}
+.DynarchCalendar-time-minute {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px
+}
+.DynarchCalendar-time-down {
+	BACKGROUND: url(img/time-down.png) no-repeat 50% 50%; WIDTH: 11px; HEIGHT: 8px; opacity: 0.5
+}
+.DynarchCalendar-time-up {
+	BACKGROUND: url(img/time-up.png) no-repeat 50% 50%; WIDTH: 11px; HEIGHT: 8px; opacity: 0.5
+}
+.DynarchCalendar-time-sep {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.DynarchCalendar-hover-time {
+	COLOR: #fff; BACKGROUND-COLOR: #93b9e2; opacity: 1
+}
+.DynarchCalendar-pressed-time {
+	COLOR: #fff; BACKGROUND-COLOR: #7da7d5; opacity: 1
+}
+.DynarchCalendar-time-am {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; WIDTH: 2.5em; PADDING-TOP: 1px; TEXT-ALIGN: center
+}
+.DynarchCalendar-hover-week {
+	BACKGROUND-COLOR: #ddd
+}
+.DynarchCalendar-dayNames DIV {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; PADDING-BOTTOM: 3px; WIDTH: 1.7em; PADDING-TOP: 3px; TEXT-ALIGN: center
+}
+.DynarchCalendar-day {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; PADDING-BOTTOM: 3px; WIDTH: 1.7em; PADDING-TOP: 3px; TEXT-ALIGN: center
+}
+.DynarchCalendar-weekNumber {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; PADDING-BOTTOM: 3px; WIDTH: 1.7em; PADDING-TOP: 3px; TEXT-ALIGN: center
+}
+.DynarchCalendar-weekNumber {
+	BORDER-RIGHT: #aaa 1px solid; PADDING-RIGHT: 8px! important; WIDTH: 2em! important; MARGIN-RIGHT: 4px
+}
+.DynarchCalendar-day {
+	COLOR: #222; TEXT-ALIGN: right
+}
+.DynarchCalendar-day-othermonth {
+	COLOR: #888
+}
+.DynarchCalendar-weekend {
+	COLOR: #c22
+}
+.DynarchCalendar-day-today {
+	FONT-WEIGHT: bold; COLOR: #00f
+}
+.DynarchCalendar-day-disabled {
+	text-shadow: 2px 1px 1px #fff; opacity: 0.5
+}
+.DynarchCalendar-hover-date {
+	BORDER-RIGHT: #88c 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #88c 1px solid; PADDING-LEFT: 3px; PADDING-BOTTOM: 2px; MARGIN: 0px; BORDER-LEFT: #88c 1px solid; COLOR: #000; PADDING-TOP: 2px; BORDER-BOTTOM: #88c 1px solid; BACKGROUND-COLOR: #eef
+}
+.DynarchCalendar-hover-date {
+	BORDER-LEFT-COLOR: #aaa; BORDER-BOTTOM-COLOR: #aaa; COLOR: #888; BORDER-TOP-COLOR: #aaa; BORDER-RIGHT-COLOR: #aaa
+}
+.DynarchCalendar-dayNames .DynarchCalendar-weekend {
+	COLOR: #c22
+}
+.DynarchCalendar-weekend {
+	COLOR: #d88
+}
+.DynarchCalendar-day-selected {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 2px; MARGIN: 1px; COLOR: #000! important; PADDING-TOP: 2px; BACKGROUND-COLOR: #aaa
+}
+.DynarchCalendar-day-selected {
+	BACKGROUND-COLOR: #999
+}
+.DynarchCalendar-focusLink {
+	FILTER: alpha(opacity=0); POSITION: absolute; opacity: 0
+}
+.DynarchCalendar-focused {
+	BORDER-LEFT-COLOR: #000; BORDER-BOTTOM-COLOR: #000; BORDER-TOP-COLOR: #000; BORDER-RIGHT-COLOR: #000
+}
+.DynarchCalendar-focused .DynarchCalendar-topBar {
+	BORDER-LEFT-COLOR: #336; BORDER-BOTTOM-COLOR: #336; BORDER-TOP-COLOR: #336; BACKGROUND-COLOR: #ccc; BORDER-RIGHT-COLOR: #336
+}
+.DynarchCalendar-focused .DynarchCalendar-bottomBar {
+	BORDER-LEFT-COLOR: #336; BORDER-BOTTOM-COLOR: #336; BORDER-TOP-COLOR: #336; BACKGROUND-COLOR: #ccc; BORDER-RIGHT-COLOR: #336
+}
+.DynarchCalendar-focused .DynarchCalendar-hover-week {
+	BACKGROUND-COLOR: #ccc
+}
+.DynarchCalendar-tooltip {
+	WIDTH: 100%; POSITION: absolute; TOP: 100%
+}
+.DynarchCalendar-tooltipCont {
+	BORDER-RIGHT: #aaa 1px solid; PADDING-RIGHT: 6px; BORDER-TOP: #aaa 0px solid; PADDING-LEFT: 6px; BACKGROUND: #ddd; PADDING-BOTTOM: 3px; MARGIN: 0px 5px; BORDER-LEFT: #aaa 1px solid; PADDING-TOP: 3px; BORDER-BOTTOM: #aaa 1px solid
+}
+.DynarchCalendar-focused .DynarchCalendar-tooltipCont {
+	BORDER-LEFT-COLOR: #000; BACKGROUND: #ccc; BORDER-BOTTOM-COLOR: #000; BORDER-TOP-COLOR: #000; BORDER-RIGHT-COLOR: #000
+}
+
+@media Print    
+{
+.DynarchCalendar-day-selected {
+	BORDER-RIGHT: #000 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #000 1px solid; PADDING-LEFT: 3px; PADDING-BOTTOM: 2px; MARGIN: 0px; BORDER-LEFT: #000 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #000 1px solid
+}
+
+}

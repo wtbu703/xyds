@@ -1,0 +1,37 @@
+/* artDialog default.css
+ * Date: 2010-10-13
+ */
+
+.aui_default .aui_td_title, .aui_default .aui_td_buttons button { font:12px 'Microsoft Yahei', Arial; }
+.aui_default .aui_content_table { min-width:9em; background:#FFF; }
+.aui_default .aui_dialog, .aui_default .aui_content_table { border:1px solid #000!important; }
+.aui_default .aui_left_top, .aui_default .aui_right_top, .aui_default .aui_left_bottom, .aui_default .aui_right_bottom { width:8px; height:8px; }
+.aui_default .aui_border { background:#000; _filter:alpha(opacity=30); opacity:0.3; }
+html>body .aui_default .aui_border,
+html>body .aui_default .art_move .aui_border{ background:url(default/30.png)\9; }
+.aui_default .art_focus .aui_border { _filter:alpha(opacity=50); opacity:0.5; }
+html>body .aui_default .aui_border { background:url(default/50.png)\9; }
+.aui_default .art_move .aui_border { _filter:alpha(opacity=30); opacity:0.3; }
+.aui_default .art_focus .aui_content_table, .aui_default .aui_title_wrap, .aui_default .aui_close:hover { -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.7); -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.7); box-shadow: 0 0 3px rgba(0, 0, 0, 0.7); }
+.aui_default .art_focus .aui_bottom { -moz-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3); -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3); box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3); }
+.aui_default .art_move .aui_bottom { -moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none; }
+.aui_default .aui_title_wrap { position:relative; height:100%; }
+.aui_default .aui_title { height:30px; line-height:30px; padding:0 30px 0 10px; background-color:#3A6EA5; font-weight:700; color:#EBEBEB; border-style:solid; border-width:1px; border-color:#4E84C0 #4780BE #0D1D3C #4780BE; text-shadow:0 1px 0 #000; }
+.aui_default .art_move .aui_title { color:#FFF; }
+.aui_default .art_focus .aui_title { background-color:#214FA3; }
+.aui_default .aui_close { padding:0; top:6px; right:6px; width:13px; height:13px; line-height:13px; text-align:center; color:#FFF!important; text-decoration:none; border:1px solid #3A6EA5; }
+.aui_default .art_focus .aui_close { border:1px solid #214FA3; }
+.aui_default .aui_close:hover, .aui_default .aui_close:active, .aui_default .aui_close:focus { text-decoration:none; background-color:#771C35; border:1px solid #000; }
+.aui_default .aui_close:active { -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
+.aui_default .aui_content { color:#666; }
+.aui_default .art_focus .aui_content { color:#000; }
+.aui_default .aui_loading_tip { color:#808080; }
+.aui_default .aui_buttons_wrap { background-color:#F6F6F6; border-top:1px solid #EBEBEB; border-bottom:1px solid #CCC; -moz-box-shadow: inset 0 -2px 2px rgba(204, 204, 204, 0.3); -webkit-box-shadow: inset 0 -2px 2px rgba(204, 204, 204, 0.3); box-shadow: inset 0 -2px 2px rgba(204, 204, 204, 0.3); }
+.aui_default .aui_buttons_wrap button { padding:2px 4px; letter-spacing:2px; }
+* html .aui_ie6_select_mask { left:-1px!important; top:-1px!important; }
+
+.aui_default .aui_icon { width:48px; height:48px; margin:10px 0 10px 10px; background-image:url(aero/icons.png); background-repeat:no-repeat; }
+.aui_default .art_alert { background-position:0 -96px; }
+.aui_default .art_succeed { background-position:0 0;}
+.aui_default .art_error { background-position:0 -48px; }
+.aui_default .art_confirm { margin-right:10px; width:48px; height:48px; background-position:0 -144px; }

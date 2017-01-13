@@ -1,0 +1,194 @@
+@charset "utf-8";
+/*
+ * artDialog layout.css
+ * Date: 2010-09-08
+ * http://code.google.com/p/artdialog/
+ * (c) 2009-2010 TangBin, http://www.planeArt.cn
+ *
+ * This is licensed under the GNU LGPL, version 2.1 or later.
+ * For details, see: http://creativecommons.org/licenses/LGPL/2.1/
+ */
+
+
+/*	
+ * 'aui'为固定结构，皮肤文件依赖此
+ * 'art'为动态样式钩子，artDialog尽可能把兼容与DOM操作移交给CSS处理
+ *
+ * 动态样式钩子			依附元素					说明
+ * -------------------------------------------------------------------------
+ * art_focus			[.aui_dialog]				最高层的对话框
+ * art_page_ie6_fixed	[html]						IE6永久伪静止定位标记
+ * art_fixed			[.aui_wrap, #temp_wrap]		静止定位
+ * art_page_full		[html]						隐藏滚动条
+ * art_full				[.aui_content]				内容满屏
+ * art_opacity			[#aui_overlay, .aui.dialog]	完全透明
+ * art_page_lock		[html]						锁屏
+ * art_loading			[.aui_dialog]				加载状态
+ * art_move				[.aui_dialog]				移动中
+ * art_page_move		[html]						有对话框移动中
+ * art_no_border		[.aui_dialog]				无边框
+ * art_no_title			[.aui_dialog]				无标题栏
+ * art_no_drag			[.aui_dialog]				禁止拖动
+ * art_alert			[.aui_icon]					警告消息
+ * art_succeed			[.aui_icon]					成功消息
+ * art_error			[.aui_icon]					错误消息
+ * art_confirm			[.aui_icon]					询问消息
+  * art_tips			[.aui_icon]					短暂提示
+ * -------------------------------------------------------------------------
+ *
+ * 本CSS只为了便于阅读，实际部署应用的时候建议手工压缩该文档
+ * 对IE使用滤镜最好在固定类上，而不是js动态添加类，防止显示异常
+ * 尽可能不使用滤镜，因为每次使用会让IE增加4MB内存，且无法恢复
+ * IE对于非活动的滤镜元素应该用 display:none 隐藏，减少内存消耗
+ * firefox下，大面积元素显/隐示切换用 visibility 比 display 效率更高
+ *
+ */
+
+/*--------------------跨浏览器布局统一*/
+
+body { _margin:0; _height:100%; }
+.aui_dialog_wrap { visibility:hidden; }
+.aui_dialog { text-align:left; position:absolute; top:0; left:0; }/*2010-10-02: top:0; left:0;*/
+.aui_table { border:0; margin:0; border-collapse:collapse; }
+.aui_table td { padding:0; }
+
+/*支持inline-block*/
+.aui_title_icon,
+.aui_content,
+.aui_dialog_icon,
+.aui_buttons_wrap span { display:inline-block; *zoom:1; *display:inline }
+
+/*标题栏*/
+.aui_title_icon,
+.aui_dialog_icon { vertical-align:middle; _font-size:0; }
+.aui_title { overflow:hidden; cursor:move; }
+.art_no_drag .aui_title { cursor:default; }
+.aui_close { display:block; position:absolute; outline:none; }
+
+/*内容区域*/
+.aui_td_content { text-align:center; }
+.aui_content { margin:10px; text-align:left; border:none 0; }
+.art_full { display:block; width:100%; margin:0; height:100%; }
+.aui_noContent { width:5em; height:1.2em; }
+.aui_content_wrap { margin:0; *padding:0; display:block; height:100%; position:relative; }
+.aui_td_icon { vertical-align: top; }
+
+/*底部按钮区*/
+.aui_buttons_wrap { text-align:right; white-space:nowrap; }
+.aui_buttons_wrap span { margin:5px 10px; }
+.aui_buttons_wrap button { cursor:pointer; }
+
+
+
+/*--------------------loading状态*/
+
+.art_loading .aui_content,
+.art_loading .aui_buttons_wrap {
+	visibility:hidden;
+	*visibility:visible;
+}
+.art_loading .aui_td_icon { display:none; }
+/*加载提示*/
+.aui_loading_tip {
+	visibility:hidden; width:5em; height:1.2em; text-align:center;
+	line-height:1.2em; position:absolute; top:50%; left:50%; margin:-0.6em 0 0 -2.5em;
+}
+.art_loading .aui_loading_tip { visibility:visible; }
+
+
+
+/*--------------------各种透明遮罩*/
+
+/*公用iframe覆盖遮罩*/
+#aui_iframe_mask {
+	visibility:hidden; display:none\9;
+	width:100%; height:100%;
+	background:url(transparent.gif)\9; opacity:0;
+}
+.art_page_lock #aui_iframe_mask,
+.art_page_move #aui_iframe_mask { 
+	visibility:visible; display:block\9;
+}
+
+/*公用锁屏遮罩*/
+#aui_overlay {
+	visibility:hidden; display:none\9;
+	width:100%; height:100%;
+}
+.art_page_lock #aui_overlay {
+	visibility:visible; display:block\9;
+}
+#aui_overlay div { 
+	height:100%;
+	background:#000; opacity:0.7;
+	/*IE滤镜太耗内存且调用后无法释放，用图片代替*/
+	background:url(shadow.png)\9; _filter:alpha(opacity=70); _background:#000; /*_background:url(shadow.gif);*/
+}
+#aui_overlay iframe {/*IE6 select*/
+	width:100%; height:100%; position:absolute; top:0; left:0; z-index:-1;
+	filter:alpha(opacity=0);
+}
+
+/*公用拖动替身*/
+#aui_temp_wrap { _display:none; }
+#aui_temp {
+	display:none;
+	position:absolute;
+	background-color:#214FA3; border:1px solid #000; cursor:move;
+	_filter:alpha(opacity=40); opacity:0.4;
+}
+html>body #aui_temp { background:url(temp.png)\9; }
+.art_page_move #aui_temp_wrap { _display:block; }
+#aui_temp iframe {/*IE6 select*/
+	width:100%; height:100%; position:absolute; top:0; left:0; z-index:-1;
+	filter:alpha(opacity=0);
+}
+
+/*私有内容遮罩*/
+.aui_content_mask {
+	visibility:hidden; display:none\9;
+	width:100%; height:100%; position:absolute; top:0; left:0;
+	background:url(transparent.gif)\9; opacity:0;
+}
+.art_loading .aui_content_mask,
+.art_page_move .aui_content_mask { 
+	visibility:visible; display:block\9;
+}
+
+* html .aui_ie6_select_mask {/*IE6 select*/
+	width:100%; height:100%; position:absolute; top:0; left:0; z-index:-1;
+	filter:alpha(opacity=0);
+}
+
+
+
+/*--------------------跨浏览器Fixed支持*/
+
+/*现代浏览器*/
+html>body #aui_iframe_mask,
+html>body #aui_overlay,
+html>body .art_fixed #aui_temp,
+html>body .art_fixed .aui_dialog {
+	position:fixed; top:0; left:0;
+}
+
+/*IE6老大爷*/
+* .art_page_ie6_fixed { background:url(about:blank) fixed; }
+* html #aui_iframe_mask,
+* html #aui_overlay,
+* html .art_fixed {
+	width:100%; height:100%; position:absolute; overflow:hidden;
+	left:expression(documentElement.scrollLeft+documentElement.clientWidth-this.offsetWidth);
+	top:expression(documentElement.scrollTop+documentElement.clientHeight-this.offsetHeight);
+}
+
+
+
+/*--------------------针对现代浏览器优雅的隐藏滚动条*/
+.art_page_full { *overflow:hidden; _overflow:; }
+.art_page_full>body { overflow:hidden; padding-right:17px; }
+
+
+
+/*--------------------其他表现样式*/
+.art_opacity { opacity:0; }

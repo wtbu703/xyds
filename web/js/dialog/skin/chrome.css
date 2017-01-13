@@ -1,0 +1,35 @@
+/* artDialog chrome.css
+ * Date: 2010-10-13
+ */
+
+.aui_chrome .aui_td_title, .aui_chrome .aui_td_buttons button { font:12px 'Microsoft Yahei', Arial; }
+.aui_chrome .aui_content_table { min-width:9em; background:#FFF; }
+.aui_chrome .aui_loading_tip { width:16px; height:16px; margin:-8px 0 0 -8px; text-indent:-9999em; background:url(chrome/loading.gif) no-repeat center center; }
+.aui_chrome .aui_center { background:#FFF; }
+.aui_chrome .aui_title_wrap { width:100%; height:26px; position:absolute; top:0; left:0; _left:auto; }
+.aui_chrome .aui_title { height:26px; line-height:25px; padding:0 60px 0 12px; _padding:0 0 0 6px; color:#FFF; font-weight:700; text-shadow:0 1px 0 #000; }
+.aui_chrome .aui_left_top, .aui_chrome .aui_right_top, .aui_chrome .aui_left, .aui_chrome .aui_right, .aui_chrome .aui_left_bottom, .aui_chrome .aui_right_bottom, .aui_chrome .aui_close { background-image:url(chrome/chrome_s.png); background-repeat:no-repeat; }
+.aui_chrome .aui_left_top { width:5px; height:26px; background-position: -46px -8px; }
+.aui_chrome .aui_right_top { width:5px; height:26px; background-position: -53px -8px; }
+.aui_chrome .aui_left { background-position:-60px 0; background-repeat:repeat-y; }
+.aui_chrome .aui_right { background-position:-65px 0; background-repeat:repeat-y; }
+.aui_chrome .aui_left_bottom { width:5px; height:5px; background-position: -46px -2px;}
+.aui_chrome .aui_right_bottom { width:5px; height:5px; background-position: -53px -2px;}
+.aui_chrome .aui_close { top:1px; right:12px; _right:6px; width:44px; height:17px; background-position:0 0; _font-size:0; _line-height:0; text-indent:-9999em; }
+.aui_chrome .aui_close:hover { background-position:0 -18px; }
+.aui_chrome .aui_top, .aui_chrome .aui_bottom { background-image:url(chrome/border.png); background-repeat:repeat-x; }
+.aui_chrome .aui_top { background-position:0 top; }
+.aui_chrome .aui_bottom { background-position: 0 bottom; }
+.aui_chrome .aui_buttons_wrap { background-color:#F6F6F6; border-top:solid 1px #DADEE5; }
+.aui_chrome .aui_buttons_wrap span, .aui_chrome .aui_buttons_wrap button { background-color:transparent; background-image:url(chrome/btns.png); background-repeat:no-repeat; }
+.aui_chrome .aui_buttons_wrap span { padding:0 0 0 5px; overflow:hidden; background-position:left -42px; }
+.aui_chrome .aui_buttons_wrap button { height:21px; line-height:21px; padding:0 10px 0 5px; max-width:200px; border:none 0; background-position:right 0; }
+.aui_chrome .aui_buttons_wrap span:hover { background-position:left -63px; }
+.aui_chrome .aui_buttons_wrap span:hover button { background-position:right -21px; }
+html:hover .aui_chrome .aui_buttons_wrap button:focus { outline:none 0; }
+
+.aui_chrome .aui_icon { width:48px; height:48px; margin:10px 0 10px 10px; background-image:url(aero/icons.png); background-repeat:no-repeat; }
+.aui_chrome .art_alert { background-position:0 -96px; }
+.aui_chrome .art_succeed { background-position:0 0;}
+.aui_chrome .art_error { background-position:0 -48px; }
+.aui_chrome .art_confirm { margin-right:10px; width:48px; height:48px; background-position:0 -144px; }
