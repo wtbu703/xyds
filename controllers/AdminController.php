@@ -10,6 +10,9 @@ use app\common\Common;
 use yii\helpers\Json;
 use app\models\AdminRole;
 
+/**
+ * @property array|\yii\db\ActiveRecord[] backendMenus
+ */
 class AdminController extends Controller{
 
     public $layout = false;
@@ -64,11 +67,17 @@ class AdminController extends Controller{
             }else{
 
                 Yii::$app->session['username'] = $username;
-                Yii::$app->session['userId'] = $admin->id;
-                Yii::$app->session['truename'] = $admin->truename;
+	            if (!empty($admin->id)) {
+		            Yii::$app->session['userId'] = $admin->id;
+	            }
+	            if (!empty($admin->truename)) {
+		            Yii::$app->session['truename'] = $admin->truename;
+	            }
 
                 $admin_role = AdminRole::find()->where('userId = :userId',[":userId"=>$admin->id])->one();
-                Yii::$app->session['roleId'] = $admin_role->roleId;
+	            if (!empty($admin_role->roleId)) {
+		            Yii::$app->session['roleId'] = $admin_role->roleId;
+	            }
                 Yii::$app->session->remove('checkCode');
                 return 'success';
 
@@ -80,7 +89,10 @@ class AdminController extends Controller{
 
     }
 
-    public function actionBackend(){
+	/**
+	 * @return string
+	 */
+	public function actionBackend(){
 
         $models = Menu::find()
             ->where(['state' => '1', 'menuLevel' => '1'])
@@ -93,16 +105,22 @@ class AdminController extends Controller{
 
     }
 
-    public function actionMain(){
+	/**
+	 * @return string
+	 */
+	public function actionMain(){
 
         return $this->renderPartial("main");
 
     }
 
-    public function actionMenu(){
+	/**
+	 * @return string
+	 */
+	public function actionMenu(){
 
         if(Yii::$app->request->isAjax){//是否ajax请求
-            $menuId = Yii::$app->request->post('id');
+            //$menuId = Yii::$app->request->post('id');
             $menus = Menu::find()
                 ->where("menuLevel>'1'")
                 ->where("state='1'")
@@ -164,8 +182,12 @@ class AdminController extends Controller{
             return 'failure';
         }else{
             Yii::$app->session['username'] = $username;
-            Yii::$app->session['userId'] = $user->id;
-            Yii::$app->session['truename'] = $user->truename;
+	        if (!empty($user->id)) {
+		        Yii::$app->session['userId'] = $user->id;
+	        }
+	        if (!empty($user->truename)) {
+		        Yii::$app->session['truename'] = $user->truename;
+	        }
             Yii::$app->session->remove('times');
             return '1';
         }
@@ -189,7 +211,7 @@ class AdminController extends Controller{
         if(is_null($user)){
             return "fail";
         }else{
-            $user->password = Common::hashMD5($newPWD);
+	        $user->password = Common::hashMD5($newPWD);
             $user->save();
             return "success";
         }
@@ -205,7 +227,10 @@ class AdminController extends Controller{
 
     }
 
-    public function actionTree(){
+	/**
+	 * @return string
+	 */
+	public function actionTree(){
 
         $menus = Menu::find()
             ->where("state = '1' ")
@@ -230,7 +255,7 @@ class AdminController extends Controller{
         }else{
             $menuId = Yii::$app->request->get('uplevelMenu');
             $menu = Menu::findOne($menuId);
-            $level = $menu->menuLevel+1;
+            $level = intval($menu->menuLevel)+1;
         }
         return $this->render("add",[
             'menu' => $menu,
@@ -304,7 +329,7 @@ class AdminController extends Controller{
      */
     public function actionDeleteone(){
 
-        $menuId = YII::$app->request->post('menuId');
+        $menuId = Yii::$app->request->post('menuId');
         $backendMenuOne = Menu::findOne($menuId);
         if($backendMenuOne->menuLevel == "1"){
             $this->backendMenus =  Menu::find()
