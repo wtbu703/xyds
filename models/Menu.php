@@ -14,6 +14,7 @@ use Yii;
  * @property integer $olderBy
  * @property string $upLevelMenu
  * @property string $menuLevel
+ * @property array|mixed orderBy
  */
 class Menu extends \yii\db\ActiveRecord
 {
