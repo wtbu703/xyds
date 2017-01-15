@@ -8,6 +8,10 @@ use app\models\Video;
 use app\common\Common;
 use yii\data\Pagination;
 
+/**
+ * Class VideoController
+ * @package app\controllers
+ */
 class VideoController extends Controller
 {
     public $layout = false;
@@ -35,7 +39,7 @@ class VideoController extends Controller
         $sign = Yii::$app->request->get('sign');
         $state = Yii::$app->request->get('state');
 
-        $para = array();
+        $para = [];
         $para['name'] = $name;
         $para['source'] = $source;
         $para['sign'] = $sign;

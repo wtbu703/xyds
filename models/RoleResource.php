@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use Yii;
+use Yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "role_resource".
@@ -11,7 +11,7 @@ use Yii;
  * @property string $resourceId
  * @property string $roleId
  */
-class RoleResource extends \yii\db\ActiveRecord
+class RoleResource extends ActiveRecord
 {
     /**
      * @inheritdoc

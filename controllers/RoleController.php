@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\models\Resource;
+//use app\models\Resource;
 use yii;
 use yii\web\Controller;
 use app\models\Role;
@@ -11,24 +11,34 @@ use app\models\Dictitem;
 use yii\data\Pagination;
 use app\models\Menu;
 use app\models\MenuRole;
-use app\models\Admin;
+//use app\models\Admin;
 use app\models\AdminRole;
 use yii\db\Query;
 use app\models\RoleResource;
 
+/**
+ * Class RoleController
+ * @package app\controllers
+ */
 class RoleController extends Controller{
 
     public $layout = false;
     public $enableCsrfValidation = false;
 
-    public function actionList(){
+	/**
+	 * @return string
+	 */
+	public function actionList(){
         $add = Common::resource('ROLE','ADD');
         return $this->render('list',[
             'add' => $add
         ]);
     }
 
-    public function actionAdd(){
+	/**
+	 * @return string
+	 */
+	public function actionAdd(){
 
         return $this->render('add');
     }
@@ -189,8 +199,12 @@ class RoleController extends Controller{
                 ->all();
             $menuIds ='';
             foreach($rolemenus as $key => $data){
-                $menuId = $data->menuId;
-                $menuIds .= ','.$menuId;
+
+	            if (!empty($data->menuId)) {
+		            $menuId = $data->menuId;
+		            $menuIds .= ','.$menuId;
+	            }
+
             }
         }else{
             $menuIds ='';
@@ -295,7 +309,7 @@ class RoleController extends Controller{
         $roleId = Yii::$app->request->post("roleId");
         $ids_array = explode('-',$ids);
         foreach($ids_array as $key => $data){
-            AdminRole::deleteAll('userId = :id and roleId = :roleId',[':id'=>$id,':roleId'=>$roleId]);
+            AdminRole::deleteAll('userId = :id and roleId = :roleId',[':id'=>$data,':roleId'=>$roleId]);
         }
         return 'success';
     }

@@ -8,17 +8,27 @@ use app\common\Common;
 use app\models\Dictitem;
 use yii\data\Pagination;
 
+/**
+ * Class UserController
+ * @package app\controllers
+ */
 class UserController extends Controller{
 
     public $layout = false;
     public $enableCsrfValidation = false;
 
-    public function actionList(){
+	/**
+	 * @return string
+	 */
+	public function actionList(){
 
         return $this->render('list');
     }
 
-    public function actionAdd(){
+	/**
+	 * @return string
+	 */
+	public function actionAdd(){
 
         return $this->render('add');
     }
@@ -32,7 +42,7 @@ class UserController extends Controller{
         $username = Yii::$app->request->get('username');
         $truename = Yii::$app->request->get('truename');
         $state = Yii::$app->request->get('state');
-        $para=array();
+        $para= [];
         $para['username'] = $username;
         $para['truename'] = $truename;
         $para['state'] = $state;
