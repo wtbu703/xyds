@@ -6,45 +6,57 @@ namespace app\common;
 use yii\phpexcel\Yiiexcel;
 use yii\phpexcel\YiiexcelIOFactory;
 use yii\phpexcel\YiiexcelPHPExcelWriterExcel5;
-class Phpexcel 
+
+/**
+ * Class Phpexcel
+ * @package app\common
+ */
+class Phpexcel
 {
-    private $columnExcle;
+    private $columnExcel;
     private $formModel;
-    /**
-     * 构造函数
-     */
+
+	/**
+	 * 构造函数
+	 * @param $formModel
+	 */
     public function __construct($formModel)
     {
         //excl列转换数组
-        $columnExcle = array();
+        $columnExcel = [];
         for($i='A';$i<='Z';$i++)
         {
-            $columnExcle[] = $i;
-            if(count($columnExcle)>=52)
+	        $columnExcel[] = $i;
+            if(count($columnExcel)>=52)
             {
                 break;
             }
         }
-        $this->columnExcle = $columnExcle;
+        $this->columnExcel = $columnExcel;
         $this->formModel = $formModel;
         
     }
-    /**
-     * 导出excel
-     * $title 标题数组
-     * $models 数据数组
-     * $outputFileName  输出的文件名
-     */
+
+	/**
+	 * 导出excel
+	 * $title 标题数组
+	 * $models 数据数组
+	 * $outputFileName  输出的文件名
+	 * @param $title
+	 * @param $models
+	 * @param string $outputFileName
+	 * @throws \PHPExcel_Exception
+	 */
     public function Exportexcel($title,$models,$outputFileName = 'statistics.xls')
     {
-        $columnExcle = $this->columnExcle;
+        $columnExcel = $this->columnExcel;
         $phpExcel = new Yiiexcel();
         $phpExcel->setActiveSheetIndex(0);
         $flag = 1;
         $j = 0;
         foreach ($title as $a=>$b)
         {
-            $phpExcel->getActiveSheet()->setCellValue($columnExcle[$j].$flag,$b);
+            $phpExcel->getActiveSheet()->setCellValue($columnExcel[$j].$flag,$b);
             $j++;
         }
         $flag++;
@@ -53,7 +65,7 @@ class Phpexcel
             $j = 0;
             foreach ($val as $k=>$v)
             {
-                $phpExcel->getActiveSheet()->setCellValue($columnExcle[$j].$flag,$v);
+                $phpExcel->getActiveSheet()->setCellValue($columnExcel[$j].$flag,$v);
                 $j++;
             }
             $flag++;
@@ -76,8 +88,12 @@ class Phpexcel
     }
 
     // 读取excel
-    public function ReadExcel($filename){        
-        $phpExcel = new Yiiexcel();
+	/**
+	 * @param $filename
+	 * @return array
+	 */
+	public function ReadExcel($filename){
+        //$phpExcel = new Yiiexcel();
         $objPHPExcel = YiiexcelIOFactory::load($filename);
         $sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
         return $sheetData;

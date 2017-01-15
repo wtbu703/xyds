@@ -73,9 +73,27 @@ define('MAX_FILE_SIZE', 600000000);
 // -----------------------------------------------------------------------------
 // get html dom from file
 // $maxlen is defined in the code as PHP_STREAM_COPY_ALL which is defined as -1.
+/**
+ * Class HtmlDom
+ * @package app\common
+ */
 class HtmlDom{
 
-    public static function file_get_html($url, $use_include_path = false, $context=null, $offset = -1, $maxLen=-1, $lowercase = true, $forceTagsClosed=true, $target_charset = DEFAULT_TARGET_CHARSET, $stripRN=true, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT)
+	/** @noinspection PhpTooManyParametersInspection
+	 * @param $url
+	 * @param bool $use_include_path
+	 * @param null $context
+	 * @param int $offset
+	 * @param int $maxLen
+	 * @param bool $lowercase
+	 * @param bool $forceTagsClosed
+	 * @param string $target_charset
+	 * @param bool $stripRN
+	 * @param string $defaultBRText
+	 * @param string $defaultSpanText
+	 * @return \app\common\simple_html_dom|bool
+	 */
+	public static function file_get_html($url, $use_include_path = false, $context=null, $offset = -1, $maxLen=-1, $lowercase = true, $forceTagsClosed=true, $target_charset = DEFAULT_TARGET_CHARSET, $stripRN=true, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT)
     {
         // We DO force the tags to be terminated.
         $dom = new simple_html_dom(null, $lowercase, $forceTagsClosed, $target_charset, $stripRN, $defaultBRText, $defaultSpanText);
@@ -93,7 +111,17 @@ class HtmlDom{
     }
 
 // get html dom from string
-    public static function str_get_html($str, $lowercase=true, $forceTagsClosed=true, $target_charset = DEFAULT_TARGET_CHARSET, $stripRN=true, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT)
+	/** @noinspection PhpTooManyParametersInspection
+	 * @param $str
+	 * @param bool $lowercase
+	 * @param bool $forceTagsClosed
+	 * @param string $target_charset
+	 * @param bool $stripRN
+	 * @param string $defaultBRText
+	 * @param string $defaultSpanText
+	 * @return \app\common\simple_html_dom|bool
+	 */
+	public static function str_get_html($str, $lowercase=true, $forceTagsClosed=true, $target_charset = DEFAULT_TARGET_CHARSET, $stripRN=true, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT)
     {
         $dom = new simple_html_dom(null, $lowercase, $forceTagsClosed, $target_charset, $stripRN, $defaultBRText, $defaultSpanText);
         if (empty($str) || strlen($str) > MAX_FILE_SIZE)
@@ -106,7 +134,12 @@ class HtmlDom{
     }
 
 // dump html dom tree
-    function dump_html_tree($node, $show_attr=true, $deep=0)
+	/**
+	 * @param $node
+	 * @param bool|true $show_attr
+	 * @param int $deep
+	 */
+	function dump_html_tree($node, $show_attr=true, $deep=0)
     {
         $node->dump($node);
     }
