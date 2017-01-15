@@ -2,15 +2,19 @@
 
 namespace app\controllers;
 
-use app\models\Role;
+//use app\models\Role;
 use Yii;
 use yii\web\Controller;
 use app\models\Resource;
 use app\models\RoleResource;
-use yii\db\Query;
+//use yii\db\Query;
 use yii\data\Pagination;
 use app\common\Common;
 
+/**
+ * Class ResourceController
+ * @package app\controllers
+ */
 class ResourceController extends Controller{
 
     public $layout = false;
@@ -84,7 +88,7 @@ class ResourceController extends Controller{
         $tableName = Yii::$app->request->post('tableName');
 
         if(is_null($tableName)){
-            return;
+            //return;
         }else{
             $tableOpreate = Yii::$app->request->post('tableOpreate');
             $note = Yii::$app->request->post('note');
@@ -141,9 +145,15 @@ class ResourceController extends Controller{
         return 'success';
     }
 
-    public static function findBy($controllerID,$actionID,$roleId){
+	/**
+	 * @param $controllerID
+	 * @param $actionID
+	 * @param $roleId
+	 * @return bool
+	 */
+	public static function findBy($controllerID, $actionID, $roleId){
 
-        $result = yii::$app->cache->get($controllerID.'_'.$actionID.'_'.$roleId);
+        $result = Yii::$app->cache->get($controllerID.'_'.$actionID.'_'.$roleId);
         if($result){
             return true;
         }else{
@@ -152,12 +162,16 @@ class ResourceController extends Controller{
             $controller_array = '';
             $action_array = '';
             foreach($role_resources as $key => $value){
-                $resources = Resource::findOne($value->resourceId);
-                $controller_array .= $resources->tableName;
-                $action_array .= $resources->tableOpreate;
+
+	            if (!empty($value->resourceId)) {
+		            $resources = Resource::findOne($value->resourceId);
+		            $controller_array .= $resources->tableName;
+		            $action_array .= $resources->tableOpreate;
+	            }
+
             }
             if(strstr($controller_array,$controllerID)&&strstr($action_array,$actionID)){
-                yii::$app->cache->set($controllerID.'_'.$actionID.'_'.$roleId,true,300);
+                Yii::$app->cache->set($controllerID.'_'.$actionID.'_'.$roleId,true,300);
                 return true;
             }else{
                 return false;
@@ -165,7 +179,7 @@ class ResourceController extends Controller{
         }
     }
 
-    public static $NoCheckArray = array(
+    public static $NoCheckArray = [
         'admin/index',
         'admin/logout',
         'admin/backend',
@@ -182,8 +196,7 @@ class ResourceController extends Controller{
         'default/index',
         'default/view',
         'dict/findall',
-        'article/test-cache'
-    );
+    ];
 
     /**
      * 导出数据库数据为excel表

@@ -21,7 +21,7 @@ use Yii;
  * @property string $truename
  * @property string $register_time
  * @property string $last_login
- *
+ * @property string $userState
  * @property Ad[] $ads
  * @property Candidate[] $candidates
  * @property Order[] $orders

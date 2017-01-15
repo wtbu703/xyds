@@ -7,32 +7,45 @@ use app\models\Userorder;
 use app\common\Common;
 use yii\data\Pagination;
 
+/**
+ * Class OrderController
+ * @package app\controllers
+ */
 class OrderController extends Controller
 {
     public $layout = false;
     public $enableCsrfValidation = false;
 
-    public function actionList()
+	/**
+	 * @return string
+	 */
+	public function actionList()
     {
         return $this->render('list');
     }
 
-    public function actionAdd(){
+	/**
+	 * @return string
+	 */
+	public function actionAdd(){
         return $this->render('add');
     }
 
-    public function actionAddOne(){
+	/**
+	 * @return string
+	 */
+	public function actionAddOne(){
 
         $Userorder = new Userorder();
         $Userorder->id = Common::generateID();
         $Userorder->orderNo = Common::generateOrderCode();
-        $Userorder->userID = yii::$app->request->post('userID');
-        $Userorder->name = yii::$app->request->post('name');
-        $Userorder->mobile = yii::$app->request->post('mobile');
-        $Userorder->postCode = yii::$app->request->post('postCode');
-        $Userorder->address = yii::$app->request->post('address');
-        $Userorder->cost = yii::$app->request->post('cost');
-        $Userorder->orderState = yii::$app->request->post('orderState');
+        $Userorder->userID = Yii::$app->request->post('userID');
+        $Userorder->name = Yii::$app->request->post('name');
+        $Userorder->mobile = Yii::$app->request->post('mobile');
+        $Userorder->postCode = Yii::$app->request->post('postCode');
+        $Userorder->address = Yii::$app->request->post('address');
+        $Userorder->cost = Yii::$app->request->post('cost');
+        $Userorder->orderState = Yii::$app->request->post('orderState');
         $Userorder->dateTime = date("Y-m-d H:i:s");
 
         if($Userorder->save()){
@@ -42,8 +55,11 @@ class OrderController extends Controller
         }
     }
 
-    public function actionFindOne(){
-        $id = yii::$app->request->get('id');
+	/**
+	 * @return string
+	 */
+	public function actionFindOne(){
+        $id = Yii::$app->request->get('id');
         $userorder = Userorder::findOne($id);
 
         return $this->render('detail',[
@@ -51,15 +67,18 @@ class OrderController extends Controller
         ]);
     }
 
-    public function actionFindByAttri(){
+	/**
+	 * @return string
+	 */
+	public function actionFindByAttri(){
 
-        $orderNo = yii::$app->request->get('orderNo');
-        $name = yii::$app->request->get('name');
-        $orderState = yii::$app->request->get('orderState');
-        $orderdateTime_1 = yii::$app->request->get('orderdateTime_1');
-        $orderdateTime_2 = yii::$app->request->get('orderdateTime_2');
+        $orderNo = Yii::$app->request->get('orderNo');
+        $name = Yii::$app->request->get('name');
+        $orderState = Yii::$app->request->get('orderState');
+        $orderdateTime_1 = Yii::$app->request->get('orderdateTime_1');
+        $orderdateTime_2 = Yii::$app->request->get('orderdateTime_2');
 
-        $para = array();
+        $para = [];
         $para['orderNo'] = $orderNo;
         $para['name'] = $name;
         $para['orderState'] = $orderState;
@@ -93,24 +112,30 @@ class OrderController extends Controller
         ]);
     }
 
-    public function actionUpdate(){
+	/**
+	 * @return string
+	 */
+	public function actionUpdate(){
 
-        $id = yii::$app->request->get('id');
+        $id = Yii::$app->request->get('id');
         $userorder = Userorder::findOne($id);
         return $this->render('edit',[
             'userorder' => $userorder,
         ]);
     }
 
-    public function actionUpdateOne(){
+	/**
+	 * @return string
+	 */
+	public function actionUpdateOne(){
 
-        $id = yii::$app->request->post('id');
+        $id = Yii::$app->request->post('id');
         $userorder = Userorder::findOne($id);
-        $userorder->orderState = yii::$app->request->post('orderState');
-        $userorder->address = yii::$app->request->post('address');
-        $userorder->postCode = yii::$app->request->post('postCode');
-        $userorder->mobile = yii::$app->request->post('mobile');
-        $userorder->cost = yii::$app->request->post('cost');
+        $userorder->orderState = Yii::$app->request->post('orderState');
+        $userorder->address = Yii::$app->request->post('address');
+        $userorder->postCode = Yii::$app->request->post('postCode');
+        $userorder->mobile = Yii::$app->request->post('mobile');
+        $userorder->cost = Yii::$app->request->post('cost');
 
         if($userorder->save()) {
             return "success";
@@ -119,7 +144,11 @@ class OrderController extends Controller
         }
     }
 
-    public function actionDeleteOne(){
+	/**
+	 * @return string
+	 * @throws \Exception
+	 */
+	public function actionDeleteOne(){
         $id = Yii::$app->request->post("id");
         $userorder = Userorder::findOne($id);
         if($userorder->delete()){
@@ -129,12 +158,15 @@ class OrderController extends Controller
         }
     }
 
-    public function actionDeleteMore(){
+	/**
+	 * @return string
+	 */
+	public function actionDeleteMore(){
 
-        $ids = yii::$app->request->post('ids');
+        $ids = Yii::$app->request->post('ids');
         $ids_array = explode('-',$ids);
         foreach($ids_array as $key => $data){
-            Userorder::deleteall('id= :id',[':id'=>$data]);
+            Userorder::deleteAll('id= :id',[':id'=>$data]);
         }
         return 'success';
     }

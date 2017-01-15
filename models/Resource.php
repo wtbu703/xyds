@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use Yii;
+use Yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "resource".
@@ -12,7 +12,7 @@ use Yii;
  * @property string $tableOpreate
  * @property string $note
  */
-class Resource extends \yii\db\ActiveRecord
+class Resource extends ActiveRecord
 {
     /**
      * @inheritdoc
