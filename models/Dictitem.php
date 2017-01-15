@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use Yii;
+use Yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "dictitem".
@@ -14,7 +14,7 @@ use Yii;
  * @property integer $orderBy
  * @property string $state
  */
-class Dictitem extends \yii\db\ActiveRecord
+class Dictitem extends ActiveRecord
 {
     /**
      * @inheritdoc
