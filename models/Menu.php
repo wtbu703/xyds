@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use Yii;
+use Yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "menu".
@@ -16,7 +16,7 @@ use Yii;
  * @property string $menuLevel
  * @property array|mixed orderBy
  */
-class Menu extends \yii\db\ActiveRecord
+class Menu extends ActiveRecord
 {
     /**
      * @inheritdoc

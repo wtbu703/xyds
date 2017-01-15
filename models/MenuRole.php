@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use Yii;
+use Yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "menu_role".
@@ -11,7 +11,7 @@ use Yii;
  * @property string $menuId
  * @property string $roleId
  */
-class MenuRole extends \yii\db\ActiveRecord
+class MenuRole extends ActiveRecord
 {
     /**
      * @inheritdoc

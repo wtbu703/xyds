@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use Yii;
+use Yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "video".
@@ -15,7 +15,7 @@ use Yii;
  * @property integer $sign
  * @property integer $state
  */
-class Video extends \yii\db\ActiveRecord
+class Video extends ActiveRecord
 {
     /**
      * @inheritdoc
