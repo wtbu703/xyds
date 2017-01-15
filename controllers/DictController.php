@@ -10,12 +10,19 @@ use yii\helpers\Json;
 use yii\data\Pagination;
 use app\common\Common;
 
+/**
+ * Class DictController
+ * @package app\controllers
+ */
 class DictController extends Controller{
 
     public $layout = false;
     public $enableCsrfValidation = false;
 
-    public function actionList(){
+	/**
+	 * @return string
+	 */
+	public function actionList(){
 
         $add = Common::resource('DICT','ADD1');
         $excel = Common::resource('DICT','EXCEL');
@@ -26,7 +33,10 @@ class DictController extends Controller{
 
     }
 
-    public function actionAdd(){
+	/**
+	 * @return string
+	 */
+	public function actionAdd(){
 
         return $this->render('add');
 
@@ -63,7 +73,7 @@ class DictController extends Controller{
         $dict->save();
         $dictItemOrders = Yii::$app->request->post('dictItemOrders');
         if(is_null($dictItemOrders)){
-            return;
+            //return;
         }else{
             $dictItemCodes = Yii::$app->request->post('dictItemCodes');
             $dictItemValues = Yii::$app->request->post('dictItemValues');
@@ -92,9 +102,9 @@ class DictController extends Controller{
      */
     public function actionFindbyattri(){
 
-        $dictName = YII::$app->request->get('dictName');
-        $state = YII::$app->request->get('state');
-        $para=array();
+        $dictName = Yii::$app->request->get('dictName');
+        $state = Yii::$app->request->get('state');
+        $para= [];
         $para['dictName'] = $dictName;
         $para['state'] = $state;
         $whereStr = "1=1";
@@ -106,7 +116,9 @@ class DictController extends Controller{
         }
         $data = Dict::find()->where($whereStr);
         $pages = new Pagination(['totalCount' =>$data->count(), 'pageSize' => Common::PAGESIZE]);
-        $model = $data->offset($pages->offset)->limit($pages->limit)->all();
+        $model = $data->offset($pages->offset)
+	        ->limit($pages->limit)
+	        ->all();
         //以下是现实对模型中的字典项进行转化
         $dictItem = Dictitem::find()
             ->where(['dictCode' => 'DICT_STATE'])
@@ -210,7 +222,7 @@ class DictController extends Controller{
         $dict->save();
         $dictItemOrders = Yii::$app->request->post('dictItemOrders');
         if(is_null($dictItemOrders)){
-            return;
+			//return;
         }else{
             $dictItemCodes = Yii::$app->request->post('dictItemCodes');
             $dictItemValues = Yii::$app->request->post('dictItemValues');
@@ -246,7 +258,7 @@ class DictController extends Controller{
      */
     public function actionDeleteoneitem(){
 
-        if(Dictitem::findOne(YII::$app->request->post('id'))->delete()){
+        if(Dictitem::findOne(Yii::$app->request->post('id'))->delete()){
             return "success";
         }else{
             return "fail";
@@ -260,7 +272,7 @@ class DictController extends Controller{
      */
     public function actionDeleteone(){
 
-        $dictCode = YII::$app->request->post('dictCode');
+        $dictCode = Yii::$app->request->post('dictCode');
         Dict::find()
             ->where(['dictCode' => $dictCode])
             ->delete();
@@ -276,9 +288,9 @@ class DictController extends Controller{
      */
     public function actionDelelemore(){
 
-        $dictCodes = YII::$app->request->post('ids');
-        $dictCodes_arry = explode('-',$dictCodes);
-        foreach($dictCodes_arry as $key=>$data){
+        $dictCodes = Yii::$app->request->post('ids');
+        $dictCodes_array = explode('-',$dictCodes);
+        foreach($dictCodes_array as $key=>$data){
             Dictitem::deleteAll('dictCode = :dictCode',[':dictCode'=>$data]);
             Dict::find()
                 ->where(['dictCode' => $data])

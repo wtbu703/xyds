@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "dict".
@@ -13,7 +14,7 @@ use Yii;
  * @property string $intro
  * @property string $state
  */
-class Dict extends \yii\db\ActiveRecord
+class Dict extends ActiveRecord
 {
     /**
      * @inheritdoc
