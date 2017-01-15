@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use Yii;
+use Yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "userorder".
@@ -15,10 +15,10 @@ use Yii;
  * @property string $mobile
  * @property string $address
  * @property string $postCode
- * @property string $time
+ * @property string $dateTime
  * @property integer $orderState
  */
-class Userorder extends \yii\db\ActiveRecord
+class Userorder extends ActiveRecord
 {
     /**
      * @inheritdoc
