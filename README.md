@@ -45,14 +45,17 @@
 ```php
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2project',
+    'dsn' => 'mysql:host=localhost;dbname=xyds',
     'username' => 'root',
     'password' => 'root',
     'charset' => 'utf8',
 ];
 ```
 
-在本地新建名为yii2project的数据库，字符集为utf8-unicode，还原项目目录里的yii2project.psc数据库备份
+在本地新建名为xyds的数据库，字符集为utf8-unicode，
+还原项目目录里的xyds.psc数据库备份
+或者导入xyds.sql文件
+
 
 ## 网站入口 ##
 前台：[http://localhost/xyds/web/index.php](http://localhost/xyds/web/index.php "http://localhost/xyds/web/index.php")
