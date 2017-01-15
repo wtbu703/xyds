@@ -6,6 +6,10 @@ use Yii;
 use yii\db\Query;
 
 
+/**
+ * Class Common
+ * @package app\common
+ */
 class Common
 {
     /**
@@ -87,7 +91,7 @@ class Common
      */
     public static function resource($tableName,$tableOpreate){
 
-        $result = yii::$app->cache->get($tableName.'_'.$tableOpreate);
+        $result = Yii::$app->cache->get($tableName.'_'.$tableOpreate);
         if($result){
             return true;
         }else{
@@ -99,7 +103,7 @@ class Common
                 ->leftJoin('role_resource b','a.id = b.resourceId')
                 ->one();
             if($resources){
-                yii::$app->cache->set($tableName.'_'.$tableOpreate,true,300);
+                Yii::$app->cache->set($tableName.'_'.$tableOpreate,true,300);
                 return true;
             }else{
                 return false;
@@ -107,30 +111,31 @@ class Common
         }
     }
 
-    /**
-     *下载
-     * @param boolean $isPic 是否是上传图片
-     * @param boolean $isDetailPic 是否是上传细节图
-     * @return array $fileArg 文件上传结果
-     * **/
+	/**
+	 *下载
+	 * @param $files
+	 * @param boolean $isPic 是否是上传图片
+	 * @param boolean $isDetailPic 是否是上传细节图
+	 * @return array $fileArg 文件上传结果
+	 */
     public static function upload($files,$isPic,$isDetailPic){
 
-        $ALL_UPLOAD_TYPE = array('image/gif','image/jpeg','image/pjpeg', 'image/png','image/x-png',
+        $ALL_UPLOAD_TYPE = ['image/gif','image/jpeg','image/pjpeg', 'image/png','image/x-png',
             'video/mp4','video/rm','video/rmvb','video/wmv','video/avi','video/3gp','video/mkv','video/flv',
             'application/octet-stream','application/octet-stream',
             'application/zip','application/x-zip-compressed','application/msword',
             'application/vnd.ms-excel','application/vnd.ms-powerpoint','application/pdf',
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document');//配置允许上传文件的类型
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];//配置允许上传文件的类型
         $ALL_UPLOAD_SIZE = 1024000 * 1024 * 2; //配置允许上传文件的大小 1G
         $SAVEURL = "upload/";//文件保存路径
-        $ALL_PIC_TYPE = array('gif','jpeg','png','jpg');//允许上传的图片后缀
-        $ALL_DOC_TYPE = array('doc','pdf','txt','ppt','xls','docx','xlsx','pptx');//允许上传的文件后缀
-        $ALL_VIDEO_TYPE = array('mp4','rm','rmvb','wmv','avi','3gp','mkv','flv ');//允许上传的视频后缀
+        $ALL_PIC_TYPE = ['gif','jpeg','png','jpg'];//允许上传的图片后缀
+        $ALL_DOC_TYPE = ['doc','pdf','txt','ppt','xls','docx','xlsx','pptx'];//允许上传的文件后缀
+        $ALL_VIDEO_TYPE = ['mp4','rm','rmvb','wmv','avi','3gp','mkv','flv '];//允许上传的视频后缀
 
-        $new_image = array('width'=>460,'heigth'=>300);//上传图片切割成符合网站的格式
-        $new_thum_image = array('width'=>160,'heigth'=>150);//上传图片切压缩符合网站的格式
+        $new_image = ['width'=>460,'heigth'=>300];//上传图片切割成符合网站的格式
+        $new_thum_image = ['width'=>160,'heigth'=>150];//上传图片切压缩符合网站的格式
 
-        $fileArg = array();
+        $fileArg = [];
         if (in_array($files["file"]["type"],$ALL_UPLOAD_TYPE) && ($files["file"]["size"] < $ALL_UPLOAD_SIZE)){
             $fileName = explode('.',$files["file"]["name"]);
             if(in_array($fileName[1],$ALL_PIC_TYPE) && $isPic){//图片处理方式
@@ -173,8 +178,11 @@ class Common
     }
 
 
-
-    public static function getImageInfo($src)
+	/**
+	 * @param $src
+	 * @return array
+	 */
+	public static function getImageInfo($src)
     {
         return getimagesize($src);
     }
@@ -198,7 +206,9 @@ class Common
                 $im=imagecreatefrompng($src);
                 break;
         }
-        return $im;
+	    if (!empty($im)) {
+		    return $im;
+	    }
     }
     /**
      * 缩略图主函数
@@ -213,7 +223,7 @@ class Common
         $temp=pathinfo($src);
         $name=$temp["basename"];//文件名
         $dir=$temp["dirname"];//文件所在的文件夹
-        $extension=$temp["extension"];//文件扩展名
+        //$extension=$temp["extension"];//文件扩展名
         $savepath="{$dir}/{$name}";//缩略图保存路径,新的文件名为*.thumb.jpg
 
         //获取图片的基本信息
@@ -228,12 +238,11 @@ class Common
         {
             //原图长宽比大于或者等于缩略图长宽比，则按照宽度优先
             $per=$w/$width;
+        }else{
+	        //原图长宽比小于缩略图长宽比，则按照高度优先
+	        $per=$h/$height;
         }
-        if($per1<$per2)
-        {
-            //原图长宽比小于缩略图长宽比，则按照高度优先
-            $per=$h/$height;
-        }
+
         $temp_w=intval($width*$per);//计算原图缩放后的宽度
         $temp_h=intval($height*$per);//计算原图缩放后的高度
         $temp_img=imagecreatetruecolor($temp_w,$temp_h);//创建画布
@@ -261,14 +270,16 @@ class Common
             //高度优先，在缩放之后宽度不足的情况下补上背景
         }
     }
-    /**
-     * 添加背景
-     * @param string $src 图片路径
-     * @param int $w 背景图像宽度
-     * @param int $h 背景图像高度
-     * @param String $first 决定图像最终位置的，w 宽度优先 h 高度优先 wh:等比
-     * @return 返回加上背景的图片
-     * **/
+
+	/**
+	 * 添加背景
+	 * @param string $src 图片路径
+	 * @param int $w 背景图像宽度
+	 * @param int $h 背景图像高度
+	 * @param string $fisrt
+	 * @return 返回加上背景的图片 *
+	 * @internal param String $first 决定图像最终位置的，w 宽度优先 h 高度优先 wh:等比
+	 */
     public static function addBg($src,$w,$h,$fisrt="w")
     {
         $bg=imagecreatetruecolor($w,$h);
@@ -280,22 +291,19 @@ class Common
         $width=$info[0];//目标图片宽度
         $height=$info[1];//目标图片高度
         $img=Common::create($src);
-        if($fisrt=="wh")
-        {
+        if($fisrt=="wh"){
             //等比缩放
             return $src;
-        }
-        else
-        {
-            if($fisrt=="w")
-            {
+        }else{
+            if($fisrt=="w"){
                 $x=0;
                 $y=($h-$height)/2;//垂直居中
-            }
-            if($fisrt=="h")
-            {
+            }elseif($fisrt=="h"){
                 $x=($w-$width)/2;//水平居中
                 $y=0;
+            }else{
+	            $x=0;
+	            $y=0;
             }
             imagecopymerge($bg,$img,$x,$y,0,0,$width,$height,100);
             imagejpeg($bg,$src,100);
@@ -307,24 +315,25 @@ class Common
     }
 
 
-    /**
-     * 生成缩略图
-     * @author yangzhiguo0903@163.com
-     * @param string     源图绝对完整地址{带文件名及后缀名}
-     * @param string     目标图绝对完整地址{带文件名及后缀名}
-     * @param int        缩略图宽{0:此时目标高度不能为0，目标宽度为源图宽*(目标高度/源图高)}
-     * @param int        缩略图高{0:此时目标宽度不能为0，目标高度为源图高*(目标宽度/源图宽)}
-     * @param int        是否裁切{宽,高必须非0}
-     * @param int/float  缩放{0:不缩放, 0<this<1:缩放到相应比例(此时宽高限制和裁切均失效)}
-     * @return boolean
-     */
-    public static function img2thumb($src_img, $dst_img, $width = 75, $height = 75, $cut = 0, $proportion = 0)
+
+	/** @noinspection PhpTooManyParametersInspection
+	 * 生成缩略图
+	 * @param $src_img string 源图绝对完整地址{带文件名及后缀名}
+	 * @param $dst_img string 目标图绝对完整地址{带文件名及后缀名}
+	 * @param int $width 缩略图宽{0:此时目标高度不能为0，目标宽度为源图宽*(目标高度/源图高)}
+	 * @param int $height 缩略图高{0:此时目标宽度不能为0，目标高度为源图高*(目标宽度/源图宽)}
+	 * @param int $cut 是否裁切{宽,高必须非0}
+	 * @param int $proportion 缩放{0:不缩放, 0<this<1:缩放到相应比例(此时宽高限制和裁切均失效)}
+	 * @return bool
+	 */
+	public static function img2thumb($src_img, $dst_img, $width = 75, $height = 75, $cut = 0, $proportion = 0)
     {
         if(!is_file($src_img))
         {
             return false;
         }
-        $ot = fileext($dst_img);
+	    $ot = pathinfo($dst_img, PATHINFO_EXTENSION);
+        //$ot = get_extension($dst_img);
         $otfunc = 'image' . ($ot == 'jpg' ? 'jpeg' : $ot);
         $srcinfo = getimagesize($src_img);
         $src_w = $srcinfo[0];
