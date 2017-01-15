@@ -9,11 +9,19 @@ use yii\data\Pagination;
 use app\common\HtmlDom;
 use app\common\Phpexcel;
 
+/**
+ * Class ArticleController
+ * 文章管理控制器
+ * @package app\controllers
+ */
 class ArticleController extends Controller{
     public $layout = false;
     public $enableCsrfValidation = false;
 
-    public function actionList()
+	/**
+	 * @return string
+	 */
+	public function actionList()
     {
         $add = Common::resource('ARTICLE','ADD');
         $excel = Common::resource('ARTICLE','EXCEL');
@@ -23,7 +31,10 @@ class ArticleController extends Controller{
         ]);
     }
 
-    public function actionAdd()
+	/**
+	 * @return string
+	 */
+	public function actionAdd()
     {
         return $this->render('add');
     }
@@ -59,7 +70,7 @@ class ArticleController extends Controller{
         $title = Yii::$app->request->get('title');
         $author = Yii::$app->request->get('author');
 
-        $para = array();
+        $para = [];
         $para['title'] = $title;
         $para['author'] = $author;
 
@@ -199,7 +210,8 @@ class ArticleController extends Controller{
      * 抓取指定网站的数据
      */
     public function actionFindWebResource(){
-        $find_url = yii::$app->request->get('web');
+	    /** @noinspection PhpMethodOrClassCallIsNotCaseSensitiveInspection */
+	    $find_url = yii::$app->request->get('web');
 
         $title_array = [];
         $url_array = [];
@@ -224,9 +236,12 @@ class ArticleController extends Controller{
                 $datetime_array[$i] = $ret2[0]->nodes[0]->_[4];//发布时间
                 $ret3 = $html2->find('div[class=art-intro tc f14] span[class=ml15 gray]');
                 $author_array[$i] = $ret3[0]->nodes[0]->_[4];//作者
-                $content_start = mb_strpos($html2->plaintext,'上一篇') + mb_strlen('上一篇');
-                $content_end = mb_strpos($html2->plaintext,'推荐新闻') - $content_start;
-                $content_array[$i] = mb_substr($html2->plaintext,$content_start,$content_end);//文章内容
+	            /** @noinspection PhpUndefinedFieldInspection */
+	            $content_start = mb_strpos($html2->plaintext,'上一篇') + mb_strlen('上一篇');
+	            /** @noinspection PhpUndefinedFieldInspection */
+	            $content_end = mb_strpos($html2->plaintext,'推荐新闻') - $content_start;
+	            /** @noinspection PhpUndefinedFieldInspection */
+	            $content_array[$i] = mb_substr($html2->plaintext,$content_start,$content_end);//文章内容
 
                 $i++;
             }while(!is_null($html->find('div[class=wrap mt20 clearfix] div[class=widget-bd clearfix] div[class=pt15 pb8 fYaHei clearfix] div[class=fl pro-ask] div[class=pl15 pr15 pb15] ul[class=pt30 ask-list] li a',$i)));
@@ -239,14 +254,22 @@ class ArticleController extends Controller{
                 $url_array[$i] = $url;//链接地址
                 $html2 = HtmlDom::file_get_html('http://www.100ec.cn'.$url);
 
+	            /** @noinspection PhpUndefinedFieldInspection */
                 $title_end = mb_strpos($html2->plaintext,'_中国电子商务研究中心');
+	            /** @noinspection PhpUndefinedFieldInspection */
                 $title_array[$i] = mb_substr($html2->plaintext,0,$title_end);
+	            /** @noinspection PhpUndefinedFieldInspection */
                 $datetime_start = mb_strpos($html2->plaintext,'http://www.100ec.cn&nbsp;&nbsp;') + mb_strlen('http://www.100ec.cn&nbsp;&nbsp;');
+	            /** @noinspection PhpUndefinedFieldInspection */
                 $datetime_end = mb_strpos($html2->plaintext,'&nbsp;&nbsp;中国电子商务研究中心')-$datetime_start;
+	            /** @noinspection PhpUndefinedFieldInspection */
                 $datetime_array[$i] = mb_substr($html2->plaintext,$datetime_start,$datetime_end);//时间
                 $author_array[$i] = 'http://www.100ec.cn';//作者
+	            /** @noinspection PhpUndefinedFieldInspection */
                 $content_start = mb_strpos($html2->plaintext,'产品服务') + mb_strlen('产品服务');
+	            /** @noinspection PhpUndefinedFieldInspection */
                 $content_end = mb_strpos($html2->plaintext,'【独家专题】') - $content_start;
+	            /** @noinspection PhpUndefinedFieldInspection */
                 $content_array[$i] = mb_substr($html2->plaintext,$content_start,$content_end);//文章内容
                 $i++;
             }while(!is_null($html->find('div[class=left] div[class=left01] div[class=mart1] div[class=cnews entry-content] ul li a',$i)) && $i<=10);
@@ -277,7 +300,8 @@ class ArticleController extends Controller{
      * @return string
      */
     public function actionView(){
-        $id = yii::$app->request->get('id');
+	    /** @noinspection PhpMethodOrClassCallIsNotCaseSensitiveInspection */
+	    $id = yii::$app->request->get('id');
         $article = Article::findOne($id);
 
         return $this->render('view',[
@@ -290,6 +314,7 @@ class ArticleController extends Controller{
      * @return string
      */
     public function actionAddMore(){
+	    /** @noinspection PhpMethodOrClassCallIsNotCaseSensitiveInspection */
         $ids = yii::$app->request->post('ids');
         $ids_array = explode('-',$ids);
         foreach($ids_array as $key => $value){
