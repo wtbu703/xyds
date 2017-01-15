@@ -10,12 +10,19 @@ use app\models\Dictitem;
 use app\common\Common;
 use yii\data\Pagination;
 
+/**
+ * Class AdminmanageController
+ * @package app\controllers
+ */
 class AdminmanageController extends Controller{
 
     public $layout = false;
     public $enableCsrfValidation = false;
 
-    public function actionList(){
+	/**
+	 * @return string
+	 */
+	public function actionList(){
 
         $add = Common::resource('ADMIN','ADD');
         $excel = Common::resource('ADMIN','EXCEL');
@@ -26,7 +33,10 @@ class AdminmanageController extends Controller{
 
     }
 
-    public function actionAdd(){
+	/**
+	 * @return string
+	 */
+	public function actionAdd(){
 
         return $this->render('add');
     }
@@ -40,7 +50,7 @@ class AdminmanageController extends Controller{
         $username = Yii::$app->request->get('username');
         $truename = Yii::$app->request->get('truename');
         $state = Yii::$app->request->get('state');
-        $para=array();
+        $para= [];
         $para['username'] = $username;
         $para['truename'] = $truename;
         $para['state'] = $state;
@@ -63,8 +73,10 @@ class AdminmanageController extends Controller{
 
         foreach($models as $key=>$data) {
             foreach ($dictItem as $index => $value) {
-                if ($data->state == $value->dictItemCode) {
-                    $models[$key]->state = $value->dictItemName;
+	            /** @noinspection PhpUndefinedFieldInspection */
+	            if ($data->state == $value->dictItemCode) {
+		            /** @noinspection PhpUndefinedFieldInspection */
+		            $models[$key]->state = $value->dictItemName;
                 }
             }
 
@@ -208,9 +220,12 @@ class AdminmanageController extends Controller{
 
 
         foreach ($dictItem as $index => $value) {
-            if ($user->state == $value->dictItemCode) {
-                $user->state = $value->dictItemName;
-            }
+	        if (!empty($value->dictItemCode)) {
+		        if ($user->state == $value->dictItemCode) {
+			        /** @noinspection PhpUndefinedFieldInspection */
+			        $user->state = $value->dictItemName;
+		        }
+	        }
         }
         //结束
         return $this->render('detail',[
