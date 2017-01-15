@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- ä¸»æœº: localhost
--- ç”Ÿæˆæ—¥æœŸ: 2017 å¹?01 æœ?15 æ—?20:55
+-- ç”Ÿæˆæ—¥æœŸ: 2017 ï¿½?01 ï¿½?15 ï¿½?20:55
 -- æœåŠ¡å™¨ç‰ˆæœ¬: 5.5.53
 -- PHP ç‰ˆæœ¬: 5.6.27
 
@@ -232,15 +232,15 @@ CREATE TABLE IF NOT EXISTS `candidate` (
 --
 
 CREATE TABLE IF NOT EXISTS `company` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `name` varchar(16) NOT NULL COMMENT 'ÆóÒµÃû',
-  `logoUrl` varchar(64) DEFAULT NULL COMMENT 'logoÂ·¾¶',
-  `introduction` text COMMENT '¼ò½é',
-  `tel` varchar(16) DEFAULT NULL COMMENT 'ÁªÏµµç»°',
-  `address` varchar(32) DEFAULT NULL COMMENT 'µØÖ·',
-  `corporate` varchar(8) DEFAULT NULL COMMENT '·¨ÈË',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `name` varchar(16) NOT NULL COMMENT 'ä¼ä¸šå',
+  `logoUrl` varchar(64) DEFAULT NULL COMMENT 'logoè·¯å¾„',
+  `introduction` text COMMENT 'ç®€ä»‹',
+  `tel` varchar(16) DEFAULT NULL COMMENT 'è”ç³»ç”µè¯',
+  `address` varchar(32) DEFAULT NULL COMMENT 'åœ°å€',
+  `corporate` varchar(8) DEFAULT NULL COMMENT 'æ³•äºº',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ÆóÒµ';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='å…¬å¸';
 
 -- --------------------------------------------------------
 
@@ -249,15 +249,15 @@ CREATE TABLE IF NOT EXISTS `company` (
 --
 
 CREATE TABLE IF NOT EXISTS `companynews` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `companyId` char(40) NOT NULL COMMENT 'ÆóÒµID£¬Íâ¼ü£¬Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `title` varchar(16) NOT NULL COMMENT 'ĞÂÎÅ±êÌâ',
-  `published` datetime DEFAULT NULL COMMENT '·¢²¼Ê±¼ä',
-  `content` text COMMENT 'ÄÚÈİ',
-  `keyword` varchar(16) DEFAULT NULL COMMENT '¹Ø¼ü´Ê£¬·ÖºÅ·Ö¸ô',
-  `attachUrl` varchar(64) DEFAULT NULL COMMENT '¸½¼şÂ·¾¶',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `companyId` char(40) NOT NULL COMMENT 'ä¼ä¸šIDï¼Œå¤–é”®ï¼Œä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `title` varchar(16) NOT NULL COMMENT 'æ–°é—»æ ‡é¢˜',
+  `published` datetime DEFAULT NULL COMMENT 'å‘å¸ƒæ—¶é—´',
+  `content` text COMMENT 'å†…å®¹',
+  `keyword` varchar(16) DEFAULT NULL COMMENT 'å…³é”®è¯ï¼Œåˆ†å·åˆ†éš”',
+  `attachUrl` varchar(64) DEFAULT NULL COMMENT 'é™„ä»¶è·¯å¾„',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ÆóÒµĞÂÎÅ';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='å…¬å¸æ–°é—»';
 
 -- --------------------------------------------------------
 
@@ -266,16 +266,16 @@ CREATE TABLE IF NOT EXISTS `companynews` (
 --
 
 CREATE TABLE IF NOT EXISTS `companyproduct` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `companyId` char(40) NOT NULL COMMENT 'ÆóÒµID£¬Íâ¼ü£¬Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `name` varchar(16) NOT NULL COMMENT '²úÆ·Ãû',
-  `introduction` text COMMENT '²úÆ·½éÉÜ',
-  `price` float unsigned DEFAULT NULL COMMENT '¼Û¸ñ',
-  `stock` int(10) unsigned DEFAULT NULL COMMENT '¿â´æ',
-  `discount` float unsigned DEFAULT NULL COMMENT 'ÕÛ¿Û',
-  `state` tinyint(3) unsigned DEFAULT NULL COMMENT '×´Ì¬£¬×Öµä',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `companyId` char(40) NOT NULL COMMENT 'ä¼ä¸šIDï¼Œå¤–é”®ï¼Œä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `name` varchar(16) NOT NULL COMMENT 'äº§å“å',
+  `introduction` text COMMENT 'äº§å“ä»‹ç»',
+  `price` float unsigned DEFAULT NULL COMMENT 'ä»·æ ¼',
+  `stock` int(10) unsigned DEFAULT NULL COMMENT 'åº“å­˜',
+  `discount` float unsigned DEFAULT NULL COMMENT 'æŠ˜æ‰£',
+  `state` tinyint(3) unsigned DEFAULT NULL COMMENT 'çŠ¶æ€ï¼Œå­—å…¸',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ÆóÒµ²úÆ·';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='å…¬å¸å•†å“';
 
 -- --------------------------------------------------------
 
@@ -284,16 +284,16 @@ CREATE TABLE IF NOT EXISTS `companyproduct` (
 --
 
 CREATE TABLE IF NOT EXISTS `companyrecruit` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `companyId` char(40) NOT NULL COMMENT 'ÆóÒµID£¬Íâ¼ü£¬Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `position` varchar(16) DEFAULT NULL COMMENT 'Ö°Î»',
-  `demand` text COMMENT 'ÒªÇó',
-  `mobile` char(11) DEFAULT NULL COMMENT '11Î»ÊÖ»úºÅ',
-  `tel` varchar(16) DEFAULT NULL COMMENT '×ù»ú',
-  `email` varchar(16) DEFAULT NULL COMMENT 'ÓÊÏä',
-  `contacts` varchar(8) DEFAULT NULL COMMENT 'ÁªÏµÈË',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `companyId` char(40) NOT NULL COMMENT 'ä¼ä¸šIDï¼Œå¤–é”®ï¼Œä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `position` varchar(16) DEFAULT NULL COMMENT 'èŒä½',
+  `demand` text COMMENT 'è¦æ±‚',
+  `mobile` char(11) DEFAULT NULL COMMENT '11ä½æ‰‹æœºå·',
+  `tel` varchar(16) DEFAULT NULL COMMENT 'åº§æœº',
+  `email` varchar(16) DEFAULT NULL COMMENT 'é‚®ç®±',
+  `contacts` varchar(8) DEFAULT NULL COMMENT 'è”ç³»äºº',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ÆóÒµÕĞÆ¸';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ä¼ä¸šæ‹›è˜';
 
 -- --------------------------------------------------------
 
@@ -302,13 +302,13 @@ CREATE TABLE IF NOT EXISTS `companyrecruit` (
 --
 
 CREATE TABLE IF NOT EXISTS `companyshoplink` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `companyId` char(40) NOT NULL COMMENT 'ÆóÒµID£¬Íâ¼ü£¬Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `shopName` varchar(16) NOT NULL COMMENT 'ÍøµêÃû',
-  `shopLink` varchar(64) DEFAULT NULL COMMENT 'ÍøµêÁ´½Ó',
-  `platform` tinyint(4) NOT NULL COMMENT 'ÍøµêËùÔÚÆ½Ì¨£¬×Öµä',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `companyId` char(40) NOT NULL COMMENT 'ä¼ä¸šIDï¼Œå¤–é”®ï¼Œä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `shopName` varchar(16) NOT NULL COMMENT 'ç½‘åº—å',
+  `shopLink` varchar(64) DEFAULT NULL COMMENT 'ç½‘åº—é“¾æ¥',
+  `platform` tinyint(4) NOT NULL COMMENT 'ç½‘åº—æ‰€åœ¨å¹³å°ï¼Œå­—å…¸',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ÆóÒµÍøµêÁ´½Ó';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ä¼ä¸šç½‘åº—é“¾æ¥';
 
 -- --------------------------------------------------------
 
@@ -329,14 +329,14 @@ CREATE TABLE IF NOT EXISTS `company_style` (
 --
 
 CREATE TABLE IF NOT EXISTS `contact` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `truename` varchar(8) NOT NULL COMMENT 'ĞÕÃû',
-  `mobile` char(11) DEFAULT NULL COMMENT '11Î»ÊÖ»úºÅ',
-  `email` varchar(16) DEFAULT NULL COMMENT 'ÓÊÏä',
-  `QQ` varchar(12) DEFAULT NULL COMMENT 'QQºÅ',
-  `content` text COMMENT 'ÄÚÈİ',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `truename` varchar(8) NOT NULL COMMENT 'å§“å',
+  `mobile` char(11) DEFAULT NULL COMMENT '11ä½æ‰‹æœºå·',
+  `email` varchar(16) DEFAULT NULL COMMENT 'é‚®ç®±',
+  `QQ` varchar(12) DEFAULT NULL COMMENT 'QQå·',
+  `content` text COMMENT 'å†…å®¹',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ÁªÏµÎÒÃÇ';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='è”ç³»æˆ‘ä»¬';
 
 -- --------------------------------------------------------
 
@@ -345,32 +345,32 @@ CREATE TABLE IF NOT EXISTS `contact` (
 --
 
 CREATE TABLE IF NOT EXISTS `countyeconomic` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `GRP` float unsigned DEFAULT NULL COMMENT 'µØÇøÉú²ú×ÜÖµ£¬µ¥Î»ÒÚÔª',
-  `socialConsumerTotal` float unsigned DEFAULT NULL COMMENT 'Éç»áÏû·ÑÆ·ÁãÊÛ×Ü¶î£¬µ¥Î»ÒÚÔª',
-  `area` float unsigned DEFAULT NULL COMMENT 'Ãæ»ı£¬µ¥Î»Æ½·½¹«Àï',
-  `townNum` int(10) unsigned DEFAULT NULL COMMENT 'ÏçÕòÊıÁ¿',
-  `villageNum` int(10) unsigned DEFAULT NULL COMMENT 'ĞĞÕş´åÊıÁ¿',
-  `permanentPopulation` float unsigned DEFAULT NULL COMMENT '³£×¡ÈË¿Ú£¬µ¥Î»ÍòÈË',
-  `urbanPopulation` float unsigned DEFAULT NULL COMMENT '³ÇÕòÈË¿Ú£¬µ¥Î»ÍòÈË',
-  `ruralPopulation` float unsigned DEFAULT NULL COMMENT 'Å©´åÈË¿Ú£¬µ¥Î»ÍòÈË',
-  `disposableIncome` float unsigned DEFAULT NULL COMMENT '¾ÓÃñÈË¾ù¿ÉÖ§ÅäÊÕÈë£¬µ¥Î»Ôª',
-  `urbanDisposableIncome` float unsigned DEFAULT NULL COMMENT '³ÇÕò¾ÓÃñÈË¾ù¿ÉÖ§ÅäÊÕÈë£¬µ¥Î»Ôª',
-  `ruralDisposableIncome` float unsigned DEFAULT NULL COMMENT 'Å©´å¾ÓÃñÈË¾ù¿ÉÖ§ÅäÊÕÈë£¬µ¥Î»Ôª',
-  `ruralRoadMileage` float unsigned DEFAULT NULL COMMENT 'Å©´å¹«Â·Àï³ÌÊı',
-  `telUser` float unsigned DEFAULT NULL COMMENT '¹Ì¶¨µç»°ÄêÄ©ÓÃ»§£¬µ¥Î»Íò»§',
-  `mobileUser` float unsigned DEFAULT NULL COMMENT 'ÒÆ¶¯µç»°ÄêÄ©ÓÃ»§£¬µ¥Î»ÍòÈË',
-  `34GUser` float unsigned DEFAULT NULL COMMENT '3G4GÒÆ¶¯µç»°ÓÃ»§£¬µ¥Î»Íò»§',
-  `internetAccess` float unsigned DEFAULT NULL COMMENT '»¥ÁªÍø¿í´ø½ÓÈëÓÃ»§£¬µ¥Î»Íò»§',
-  `individualHousehold` bigint(20) unsigned DEFAULT NULL COMMENT '¸öÌå¹¤ÉÌ»§Êı£¬µ¥Î»¼Ò',
-  `registeredCompany` bigint(20) unsigned DEFAULT NULL COMMENT '×¢²áÆóÒµÊıÁ¿£¨ÆóÒµ·¨ÈËµ¥Î»Êı£©',
-  `onlineStore` bigint(20) unsigned DEFAULT NULL COMMENT 'ÍøµêÊıÁ¿£¬µ¥Î»¸ö',
-  `mobileStore` bigint(20) unsigned DEFAULT NULL COMMENT 'ÊÖ»úÍøµê£¬Î¢µêÊıÁ¿£¬µ¥Î»¸ö',
-  `ecTurnover` float unsigned DEFAULT NULL COMMENT 'µç×ÓÉÌÎñ½»Ò×¶î£¬µ¥Î»ÍòÔª',
-  `netRetailSales` float unsigned DEFAULT NULL COMMENT 'ÍøÂçÁãÊÛ¶î£¬µ¥Î»ÍòÔª',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `GRP` float unsigned DEFAULT NULL COMMENT 'åœ°åŒºç”Ÿäº§æ€»å€¼ï¼Œå•ä½äº¿å…ƒ',
+  `socialConsumerTotal` float unsigned DEFAULT NULL COMMENT 'ç¤¾ä¼šæ¶ˆè´¹å“é›¶å”®æ€»é¢ï¼Œå•ä½äº¿å…ƒ',
+  `area` float unsigned DEFAULT NULL COMMENT 'é¢ç§¯ï¼Œå•ä½å¹³æ–¹å…¬é‡Œ',
+  `townNum` int(10) unsigned DEFAULT NULL COMMENT 'ä¹¡é•‡æ•°é‡',
+  `villageNum` int(10) unsigned DEFAULT NULL COMMENT 'è¡Œæ”¿æ‘æ•°é‡',
+  `permanentPopulation` float unsigned DEFAULT NULL COMMENT 'å¸¸ä½äººå£ï¼Œå•ä½ä¸‡äºº',
+  `urbanPopulation` float unsigned DEFAULT NULL COMMENT 'åŸé•‡äººå£ï¼Œå•ä½ä¸‡äºº',
+  `ruralPopulation` float unsigned DEFAULT NULL COMMENT 'å†œæ‘äººå£ï¼Œå•ä½ä¸‡äºº',
+  `disposableIncome` float unsigned DEFAULT NULL COMMENT 'å±…æ°‘äººå‡å¯æ”¯é…æ”¶å…¥ï¼Œå•ä½å…ƒ',
+  `urbanDisposableIncome` float unsigned DEFAULT NULL COMMENT 'åŸé•‡å±…æ°‘äººå‡å¯æ”¯é…æ”¶å…¥ï¼Œå•ä½å…ƒ',
+  `ruralDisposableIncome` float unsigned DEFAULT NULL COMMENT 'å†œæ‘å±…æ°‘äººå‡å¯æ”¯é…æ”¶å…¥ï¼Œå•ä½å…ƒ',
+  `ruralRoadMileage` float unsigned DEFAULT NULL COMMENT 'å†œæ‘å…¬è·¯é‡Œç¨‹æ•°',
+  `telUser` float unsigned DEFAULT NULL COMMENT 'å›ºå®šç”µè¯å¹´æœ«ç”¨æˆ·ï¼Œå•ä½ä¸‡æˆ·',
+  `mobileUser` float unsigned DEFAULT NULL COMMENT 'ç§»åŠ¨ç”µè¯å¹´æœ«ç”¨æˆ·ï¼Œå•ä½ä¸‡äºº',
+  `34GUser` float unsigned DEFAULT NULL COMMENT '3G4Gç§»åŠ¨ç”µè¯ç”¨æˆ·ï¼Œå•ä½ä¸‡æˆ·',
+  `internetAccess` float unsigned DEFAULT NULL COMMENT 'äº’è”ç½‘å®½å¸¦æ¥å…¥ç”¨æˆ·ï¼Œå•ä½ä¸‡æˆ·',
+  `individualHousehold` bigint(20) unsigned DEFAULT NULL COMMENT 'ä¸ªä½“å·¥å•†æˆ·æ•°ï¼Œå•ä½å®¶',
+  `registeredCompany` bigint(20) unsigned DEFAULT NULL COMMENT 'æ³¨å†Œä¼ä¸šæ•°é‡ï¼ˆä¼ä¸šæ³•äººå•ä½æ•°ï¼‰',
+  `onlineStore` bigint(20) unsigned DEFAULT NULL COMMENT 'ç½‘åº—æ•°é‡ï¼Œå•ä½ä¸ª',
+  `mobileStore` bigint(20) unsigned DEFAULT NULL COMMENT 'æ‰‹æœºç½‘åº—ï¼Œå¾®åº—æ•°é‡ï¼Œå•ä½ä¸ª',
+  `ecTurnover` float unsigned DEFAULT NULL COMMENT 'ç”µå­å•†åŠ¡äº¤æ˜“é¢ï¼Œå•ä½ä¸‡å…ƒ',
+  `netRetailSales` float unsigned DEFAULT NULL COMMENT 'ç½‘ç»œé›¶å”®é¢ï¼Œå•ä½ä¸‡å…ƒ',
   `year` year(2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ÏØÓò¾­¼Ã·¢Õ¹Çé¿ö£¨Äê¶È£©';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='å¿åŸŸç»æµå‘å±•æƒ…å†µï¼ˆå¹´åº¦ï¼‰';
 
 -- --------------------------------------------------------
 
@@ -463,18 +463,18 @@ INSERT INTO `dictitem` (`id`, `dictCode`, `dictItemCode`, `dictItemName`, `order
 --
 
 CREATE TABLE IF NOT EXISTS `ecinfo` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `category` tinyint(3) unsigned NOT NULL COMMENT 'Àà±ğ£¬µ÷ÓÃ×Öµä',
-  `title` varchar(16) NOT NULL COMMENT '±êÌâ',
-  `author` varchar(16) NOT NULL COMMENT '×÷Õß',
-  `published` datetime DEFAULT NULL COMMENT '·¢²¼Ê±¼ä',
-  `content` text COMMENT 'ÕıÎÄÄÚÈİ',
-  `attachUrl` varchar(64) DEFAULT NULL COMMENT '¸½½üÂ·¾¶',
-  `keyword` varchar(32) DEFAULT NULL COMMENT '¹Ø¼ü´Ê',
-  `sourceUrl` varchar(64) DEFAULT NULL COMMENT 'À´Ô´ÍøÖ·Á´½Ó£¬Èç¹ûÓĞ',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `category` tinyint(3) unsigned NOT NULL COMMENT 'ç±»åˆ«ï¼Œè°ƒç”¨å­—å…¸',
+  `title` varchar(16) NOT NULL COMMENT 'æ ‡é¢˜',
+  `author` varchar(16) NOT NULL COMMENT 'ä½œè€…',
+  `published` datetime DEFAULT NULL COMMENT 'å‘å¸ƒæ—¶é—´',
+  `content` text COMMENT 'æ­£æ–‡å†…å®¹',
+  `attachUrl` varchar(64) DEFAULT NULL COMMENT 'é™„è¿‘è·¯å¾„',
+  `keyword` varchar(32) DEFAULT NULL COMMENT 'å…³é”®è¯',
+  `sourceUrl` varchar(64) DEFAULT NULL COMMENT 'æ¥æºç½‘å€é“¾æ¥ï¼Œå¦‚æœæœ‰',
   PRIMARY KEY (`id`),
   KEY `infoIndex` (`category`,`title`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='µçÉÌ×ÊÑ¶';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ç”µå•†èµ„è®¯';
 
 -- --------------------------------------------------------
 
@@ -483,18 +483,18 @@ CREATE TABLE IF NOT EXISTS `ecinfo` (
 --
 
 CREATE TABLE IF NOT EXISTS `ectrain` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `name` varchar(16) NOT NULL COMMENT 'ÅàÑµÃû',
-  `category` tinyint(3) unsigned NOT NULL COMMENT 'ÅàÑµ·ÖÀà£¬×Öµä',
-  `content` text COMMENT 'ÄÚÈİ',
-  `dayNum` int(10) unsigned NOT NULL COMMENT 'ÌìÊı',
-  `period` tinyint(3) unsigned NOT NULL COMMENT 'ÆÚÊı£¬×Öµä',
-  `peopleNum` int(10) unsigned NOT NULL COMMENT 'ÈËÊı',
-  `target` tinyint(3) unsigned NOT NULL COMMENT 'ÅàÑµ¶ÔÏó£¬Õë¶ÔÈËÈº',
-  `published` datetime NOT NULL COMMENT '·¢²¼Ê±¼ä',
-  `publisher` varchar(10) DEFAULT NULL COMMENT '·¢²¼ÈË',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `name` varchar(16) NOT NULL COMMENT 'åŸ¹è®­å',
+  `category` tinyint(3) unsigned NOT NULL COMMENT 'åŸ¹è®­åˆ†ç±»ï¼Œå­—å…¸',
+  `content` text COMMENT 'å†…å®¹',
+  `dayNum` int(10) unsigned NOT NULL COMMENT 'å¤©æ•°',
+  `period` tinyint(3) unsigned NOT NULL COMMENT 'æœŸæ•°ï¼Œå­—å…¸',
+  `peopleNum` int(10) unsigned NOT NULL COMMENT 'äººæ•°',
+  `target` tinyint(3) unsigned NOT NULL COMMENT 'åŸ¹è®­å¯¹è±¡ï¼Œé’ˆå¯¹äººç¾¤',
+  `published` datetime NOT NULL COMMENT 'å‘å¸ƒæ—¶é—´',
+  `publisher` varchar(10) DEFAULT NULL COMMENT 'å‘å¸ƒäºº',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='µçÉÌÅàÑµ';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ç”µå•†åŸ¹è®­';
 
 -- --------------------------------------------------------
 
@@ -503,16 +503,16 @@ CREATE TABLE IF NOT EXISTS `ectrain` (
 --
 
 CREATE TABLE IF NOT EXISTS `ectrainenter` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `trainId` char(40) DEFAULT NULL COMMENT 'Íâ¼ü£¬ÅàÑµID£¬Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `truename` varchar(8) NOT NULL COMMENT 'ÕæÊµĞÕÃû',
-  `idCardNo` char(18) NOT NULL COMMENT '18Î»Éí·İÖ¤ºÅ',
-  `mobile` char(11) NOT NULL COMMENT '11Î»ÊÖ»úºÅÂë',
-  `address` varchar(32) DEFAULT NULL COMMENT 'µØÖ·',
-  `gender` tinyint(3) unsigned NOT NULL COMMENT 'ĞÔ±ğ£¬×Öµä',
-  `age` tinyint(3) unsigned NOT NULL COMMENT 'ÄêÁä',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `trainId` char(40) DEFAULT NULL COMMENT 'å¤–é”®ï¼ŒåŸ¹è®­IDï¼Œä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `truename` varchar(8) NOT NULL COMMENT 'çœŸå®å§“å',
+  `idCardNo` char(18) NOT NULL COMMENT '18ä½èº«ä»½è¯å·',
+  `mobile` char(11) NOT NULL COMMENT '11ä½æ‰‹æœºå·ç ',
+  `address` varchar(32) DEFAULT NULL COMMENT 'åœ°å€',
+  `gender` tinyint(3) unsigned NOT NULL COMMENT 'æ€§åˆ«ï¼Œå­—å…¸',
+  `age` tinyint(3) unsigned NOT NULL COMMENT 'å¹´é¾„',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='µçÉÌÅàÑµ±¨Ãû';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ç”µå•†åŸ¹è®­æŠ¥å';
 
 -- --------------------------------------------------------
 
@@ -521,22 +521,22 @@ CREATE TABLE IF NOT EXISTS `ectrainenter` (
 --
 
 CREATE TABLE IF NOT EXISTS `ectraininfo` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `trainId` char(40) DEFAULT NULL COMMENT 'Íâ¼ü£¬ÅàÑµID£¬Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `centralSupport` float unsigned DEFAULT NULL COMMENT 'ÖĞÑë²ÆÕş×Ê½ğÖ§³Ö×Ü½ğ¶î£¬µ¥Î»ÍòÔª',
-  `centralPaid` float unsigned DEFAULT NULL COMMENT 'ÖĞÑë²ÆÕş×Ê½ğÒÑ²¦¸¶½ğ¶î£¬½ØÖ¹ÉÏÔÂµ×£¬µ¥Î»ÍòÔª',
-  `localSupport` float unsigned DEFAULT NULL COMMENT 'µØ·½²ÆÕşÅäÌ××Ê½ğ×Ü½ğ¶î£¬µ¥Î»ÍòÔª',
-  `companyPaid` float unsigned DEFAULT NULL COMMENT 'ÆóÒµÍ¶Èë×Ê½ğ×Ü½ğ¶î£¬µ¥Î»ÍòÔª',
-  `organizer` varchar(16) DEFAULT NULL COMMENT 'ÏîÄ¿³Ğ°ìµ¥Î»',
-  `chargeName` varchar(8) DEFAULT NULL COMMENT '³Ğ°ìµ¥Î»¸ºÔğÈË',
-  `chargeMobile` char(11) DEFAULT NULL COMMENT '¸ºÔğÈËÁªÏµµç»°',
-  `centralDecisionUnit` varchar(16) DEFAULT NULL COMMENT 'ÖĞÑë²ÆÕş×Ê½ğÖ§³Ö´ËÏîÄ¿µÄÕş¸®¾ö²ßµ¥Î»»òÁìµ¼ÈË',
-  `decisionFileUrl` varchar(64) DEFAULT NULL COMMENT '¾ö²ßÎÄ¼şÉÏ´«Â·¾¶',
-  `publicInfoUrl` varchar(64) DEFAULT NULL COMMENT 'ĞÅÏ¢¹«¿ªÍøÖ·Á´½Ó',
-  `signSheetUrl` varchar(64) DEFAULT NULL COMMENT 'ÅàÑµÈËÔ±Ç©µ½±íÉÏ´«Â·¾¶',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `trainId` char(40) DEFAULT NULL COMMENT 'å¤–é”®ï¼ŒåŸ¹è®­IDï¼Œä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `centralSupport` float unsigned DEFAULT NULL COMMENT 'ä¸­å¤®è´¢æ”¿èµ„é‡‘æ”¯æŒæ€»é‡‘é¢ï¼Œå•ä½ä¸‡å…ƒ',
+  `centralPaid` float unsigned DEFAULT NULL COMMENT 'ä¸­å¤®è´¢æ”¿èµ„é‡‘å·²æ‹¨ä»˜é‡‘é¢ï¼Œæˆªæ­¢ä¸Šæœˆåº•ï¼Œå•ä½ä¸‡å…ƒ',
+  `localSupport` float unsigned DEFAULT NULL COMMENT 'åœ°æ–¹è´¢æ”¿é…å¥—èµ„é‡‘æ€»é‡‘é¢ï¼Œå•ä½ä¸‡å…ƒ',
+  `companyPaid` float unsigned DEFAULT NULL COMMENT 'ä¼ä¸šæŠ•å…¥èµ„é‡‘æ€»é‡‘é¢ï¼Œå•ä½ä¸‡å…ƒ',
+  `organizer` varchar(16) DEFAULT NULL COMMENT 'é¡¹ç›®æ‰¿åŠå•ä½',
+  `chargeName` varchar(8) DEFAULT NULL COMMENT 'æ‰¿åŠå•ä½è´Ÿè´£äºº',
+  `chargeMobile` char(11) DEFAULT NULL COMMENT 'è´Ÿè´£äººè”ç³»ç”µè¯',
+  `centralDecisionUnit` varchar(16) DEFAULT NULL COMMENT 'ä¸­å¤®è´¢æ”¿èµ„é‡‘æ”¯æŒæ­¤é¡¹ç›®çš„æ”¿åºœå†³ç­–å•ä½æˆ–é¢†å¯¼äºº',
+  `decisionFileUrl` varchar(64) DEFAULT NULL COMMENT 'å†³ç­–æ–‡ä»¶ä¸Šä¼ è·¯å¾„',
+  `publicInfoUrl` varchar(64) DEFAULT NULL COMMENT 'ä¿¡æ¯å…¬å¼€ç½‘å€é“¾æ¥',
+  `signSheetUrl` varchar(64) DEFAULT NULL COMMENT 'åŸ¹è®­äººå‘˜ç­¾åˆ°è¡¨ä¸Šä¼ è·¯å¾„',
   `published` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='µçÉÌÅàÑµÏêÇé£¬Í¨Öª';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ç”µå•†åŸ¹è®­è¯¦æƒ…ï¼Œé€šçŸ¥';
 
 -- --------------------------------------------------------
 
@@ -545,14 +545,14 @@ CREATE TABLE IF NOT EXISTS `ectraininfo` (
 --
 
 CREATE TABLE IF NOT EXISTS `logisticsbuild` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `townCover` float unsigned DEFAULT NULL COMMENT 'ÏçÕò¿ìµİ¸²¸ÇÂÊ%',
-  `villageCover` float unsigned DEFAULT NULL COMMENT 'ĞĞÕş´å¸²¸ÇÂÊ%',
-  `receiveNum` int(10) unsigned DEFAULT NULL COMMENT 'µ±ÔÂ±¾ÏØ¿ìµİÊÕ¼şÊıÁ¿£¨¼ş£©',
-  `published` date DEFAULT NULL COMMENT 'Ê±¼ä',
-  `orderBy` tinyint(3) unsigned DEFAULT NULL COMMENT 'ÅÅĞò',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `townCover` float unsigned DEFAULT NULL COMMENT 'ä¹¡é•‡å¿«é€’è¦†ç›–ç‡%',
+  `villageCover` float unsigned DEFAULT NULL COMMENT 'è¡Œæ”¿æ‘è¦†ç›–ç‡%',
+  `receiveNum` int(10) unsigned DEFAULT NULL COMMENT 'å½“æœˆæœ¬å¿å¿«é€’æ”¶ä»¶æ•°é‡ï¼ˆä»¶ï¼‰',
+  `published` date DEFAULT NULL COMMENT 'æ—¶é—´',
+  `orderBy` tinyint(3) unsigned DEFAULT NULL COMMENT 'æ’åº',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ÎïÁ÷ÅäËÍÌåÏµ½¨ÉèÇé¿ö';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ç‰©æµé…é€ä½“ç³»å»ºè®¾æƒ…å†µ';
 
 -- --------------------------------------------------------
 
@@ -649,14 +649,14 @@ INSERT INTO `menu_role` (`id`, `menuId`, `roleId`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `olvideo` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `name` varchar(32) NOT NULL COMMENT 'ÊÓÆµÃû',
-  `introduction` text COMMENT '¼ò½é',
-  `category` tinyint(4) NOT NULL COMMENT '·ÖÀà£¬×Öµä',
-  `attachUrl` varchar(64) NOT NULL COMMENT 'ÊÓÆµÁ´½Ó£¬±ØÌî',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `name` varchar(32) NOT NULL COMMENT 'è§†é¢‘å',
+  `introduction` text COMMENT 'ç®€ä»‹',
+  `category` tinyint(4) NOT NULL COMMENT 'åˆ†ç±»ï¼Œå­—å…¸',
+  `attachUrl` varchar(64) NOT NULL COMMENT 'è§†é¢‘é“¾æ¥ï¼Œå¿…å¡«',
   PRIMARY KEY (`id`),
   KEY `videoIndex` (`name`,`category`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ÔÚÏßÊÓÆµ';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='åœ¨çº¿è§†é¢‘';
 
 -- --------------------------------------------------------
 
@@ -686,15 +686,15 @@ CREATE TABLE IF NOT EXISTS `order` (
 --
 
 CREATE TABLE IF NOT EXISTS `platformrecruit` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `position` varchar(16) NOT NULL COMMENT 'Ö°Î»',
-  `demand` text COMMENT 'ÒªÇó',
-  `mobile` char(11) DEFAULT NULL COMMENT 'ÁªÏµÊÖ»úºÅ',
-  `tel` varchar(16) DEFAULT NULL COMMENT 'ÁªÏµ×ù»ú',
-  `email` varchar(16) DEFAULT NULL COMMENT 'ÁªÏµÓÊÏä',
-  `contacts` varchar(8) NOT NULL COMMENT 'ÁªÏµÈË',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `position` varchar(16) NOT NULL COMMENT 'èŒä½',
+  `demand` text COMMENT 'è¦æ±‚',
+  `mobile` char(11) DEFAULT NULL COMMENT 'è”ç³»æ‰‹æœºå·',
+  `tel` varchar(16) DEFAULT NULL COMMENT 'è”ç³»åº§æœº',
+  `email` varchar(16) DEFAULT NULL COMMENT 'è”ç³»é‚®ç®±',
+  `contacts` varchar(8) NOT NULL COMMENT 'è”ç³»äºº',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Æ½Ì¨ÕĞÆ¸';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='å¹³å°æ‹›è˜';
 
 -- --------------------------------------------------------
 
@@ -703,15 +703,15 @@ CREATE TABLE IF NOT EXISTS `platformrecruit` (
 --
 
 CREATE TABLE IF NOT EXISTS `publicinfo` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `title` varchar(16) NOT NULL COMMENT '±êÌâ',
-  `author` varchar(8) DEFAULT NULL COMMENT '×÷Õß',
-  `published` datetime DEFAULT NULL COMMENT '·¢²¼Ê±¼ä',
-  `content` text COMMENT 'ÄÚÈİ',
-  `category` tinyint(3) unsigned DEFAULT NULL COMMENT '·ÖÀà£¬×Öµä',
-  `attachUrl` varchar(64) DEFAULT NULL COMMENT '¸½½üÂ·¾¶',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `title` varchar(16) NOT NULL COMMENT 'æ ‡é¢˜',
+  `author` varchar(8) DEFAULT NULL COMMENT 'ä½œè€…',
+  `published` datetime DEFAULT NULL COMMENT 'å‘å¸ƒæ—¶é—´',
+  `content` text COMMENT 'å†…å®¹',
+  `category` tinyint(3) unsigned DEFAULT NULL COMMENT 'åˆ†ç±»ï¼Œå­—å…¸',
+  `attachUrl` varchar(64) DEFAULT NULL COMMENT 'é™„è¿‘è·¯å¾„',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ĞÅÏ¢¹«¿ª';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ä¿¡æ¯å…¬å¼€';
 
 -- --------------------------------------------------------
 
@@ -1124,12 +1124,102 @@ INSERT INTO `role_resource` (`id`, `resourceId`, `roleId`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `servicesite` (
-  `id` char(40) NOT NULL COMMENT 'Ê¹ÓÃº¯Êı´´½¨Î¨Ò»40Î»ID',
-  `code` varchar(16) NOT NULL COMMENT 'Õ¾µã±àÂë£¬¹Ì¶¨',
-  `name` varchar(16) NOT NULL COMMENT 'Õ¾µãÃû³Æ£¬²»¿É¸ü¸Ä',
-  `countyType` tinyint(4) NOT NULL COMMENT 'Õ¾µãÀàĞÍ£¬×Öµä',
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `code` varchar(16) NOT NULL COMMENT 'ç«™ç‚¹ç¼–ç ï¼Œå›ºå®š',
+  `name` varchar(16) NOT NULL COMMENT 'ç«™ç‚¹åç§°ï¼Œä¸å¯æ›´æ”¹',
+  `countyType` tinyint(4) NOT NULL COMMENT 'ç«™ç‚¹ç±»å‹ï¼Œå­—å…¸',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='·şÎñÕ¾µã';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='æœåŠ¡ç«™ç‚¹';
+
+
+-- --------------------------------------------------------
+
+--
+-- è¡¨çš„ç»“æ„ `serviceSiteInfo`
+--
+
+CREATE TABLE IF NOT EXISTS `serviceSiteInfo` (
+  `id` char(40) NOT NULL COMMENT 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `siteId` char(40) COMMENT 'å¤–é”®ï¼Œsiteè¡¨IDï¼Œå‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  `chargeName` varchar(8) COMMENT 'è´Ÿè´£äººå§“å',
+  `chargeMobile` char(11) COMMENT 'è´Ÿè´£äººæ‰‹æœº',
+  `address` varchar(32) COMMENT 'ç«™ç‚¹ä½ç½®',
+  `picUrl` varchar(64) COMMENT 'ç«™ç‚¹é¢„è§ˆå›¾è·¯å¾„',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='æœåŠ¡ç«™ç‚¹ä¿¡æ¯';
+
+-- --------------------------------------------------------
+
+--
+-- è¡¨çš„ç»“æ„ `serviceSystemBuild`
+--
+create table if NOT EXISTS 'serviceSystemBuild'
+(
+  'id'                   char(40) not null comment 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  'siteId'               char(40) comment 'ç«™ç‚¹IDï¼Œå¤–é”®ï¼Œä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  'name'                 varchar(16) comment 'é¡¹ç›®å»ºè®¾åç§°',
+  'function'             varchar(64) comment 'ä¸»è¦åŠŸèƒ½',
+  'isCountyLogistics'   tinyint unsigned comment 'æ˜¯å¦ä¸å¿çº§ç‰©æµé…é€ä¸­å¿ƒå…±äº«åœºåœ°å’Œç«™ç‚¹',
+  'isTownLogistics'      tinyint unsigned comment 'æ˜¯å¦æ‰¿æ‹…ä¹¡é•‡çº§ï¼ˆæ‘çº§ï¼‰ç‰©æµæœåŠ¡ç‚¹åŠŸèƒ½',
+  'config'               varchar(64) comment 'è®¾æ–½é…ç½®',
+  'centralSupportContent' text comment 'ä¸­å¤®è´¢æ”¿èµ„é‡‘æ”¯æŒå»ºè®¾å†…å®¹',
+  'buildProgress'        varchar(8) comment 'é¡¹ç›®å»ºè®¾è¿›åº¦',
+  'centralSupport'       float unsigned comment 'ä¸­å¤®è´¢æ”¿èµ„é‡‘æ”¯æŒæ€»é‡‘é¢ï¼Œå•ä½ä¸‡å…ƒ',
+  'centralPaid'          float unsigned comment 'ä¸­å¤®è´¢æ”¿èµ„é‡‘å·²æ‹¨ä»˜é‡‘é¢ï¼Œæˆªæ­¢ä¸Šæœˆåº•ï¼Œå•ä½ä¸‡å…ƒ',
+  'localSupport'         float unsigned comment 'åœ°æ–¹è´¢æ”¿é…å¥—èµ„é‡‘æ€»é‡‘é¢ï¼Œå•ä½ä¸‡å…ƒ',
+  'companyPaid'          float unsigned comment 'ä¼ä¸šæŠ•å…¥èµ„é‡‘æ€»é‡‘é¢ï¼Œå•ä½ä¸‡å…ƒ',
+  'organizer'            varchar(16) comment 'é¡¹ç›®æ‰¿åŠå•ä½',
+  'chargeName'           varchar(8) comment 'æ‰¿åŠå•ä½è´Ÿè´£äºº',
+  'chargeMobile'         char(11) comment 'è´Ÿè´£äººè”ç³»ç”µè¯',
+  'centralDecisionUnit'  varchar(16) comment 'ä¸­å¤®è´¢æ”¿èµ„é‡‘æ”¯æŒæ­¤é¡¹ç›®çš„æ”¿åºœå†³ç­–å•ä½æˆ–é¢†å¯¼äºº',
+  'decisionFileUrl'      varchar(64) comment 'å†³ç­–æ–‡ä»¶ä¸Šä¼ è·¯å¾„',
+  'publicInfoUrl'        varchar(64) comment 'ä¿¡æ¯å…¬å¼€ç½‘å€é“¾æ¥',
+  'published'            date,
+  primary key ('id')
+)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='å…¬å…±æœåŠ¡ä½“ç³»å»ºè®¾æƒ…å†µ';
+
+-- --------------------------------------------------------
+
+--
+-- è¡¨çš„ç»“æ„ `supportLaunch`
+--
+create table IF NOT EXISTS 'supportLaunch'
+(
+  'id'                   char(40) not null,
+  'name'                 varchar(16) comment 'é¡¹ç›®å»ºè®¾åç§°',
+  'centralSupportContent' text comment 'ä¸­å¤®è´¢æ”¿èµ„é‡‘æ”¯æŒå»ºè®¾å†…å®¹',
+  'centralSupport'       float unsigned comment 'ä¸­å¤®è´¢æ”¿èµ„é‡‘æ”¯æŒæ€»é‡‘é¢ï¼Œå•ä½ä¸‡å…ƒ',
+  'centralPaid'          float unsigned comment 'ä¸­å¤®è´¢æ”¿èµ„é‡‘å·²æ‹¨ä»˜é‡‘é¢ï¼Œæˆªæ­¢ä¸Šæœˆåº•ï¼Œå•ä½ä¸‡å…ƒ',
+  'localSupport'         float unsigned comment 'åœ°æ–¹è´¢æ”¿é…å¥—èµ„é‡‘æ€»é‡‘é¢ï¼Œå•ä½ä¸‡å…ƒ',
+  'companyPaid'          float unsigned comment 'ä¼ä¸šæŠ•å…¥èµ„é‡‘æ€»é‡‘é¢ï¼Œå•ä½ä¸‡å…ƒ',
+  'organizer'            varchar(16) comment 'é¡¹ç›®æ‰¿åŠå•ä½',
+  'chargeName'           varchar(8) comment 'æ‰¿åŠå•ä½è´Ÿè´£äºº',
+  'chargeMobile'         char(11) comment 'è´Ÿè´£äººè”ç³»ç”µè¯',
+  'centralDecisionUnit'  varchar(16) comment 'ä¸­å¤®è´¢æ”¿èµ„é‡‘æ”¯æŒæ­¤é¡¹ç›®çš„æ”¿åºœå†³ç­–å•ä½æˆ–é¢†å¯¼äºº',
+  'decisionFileUrl'      varchar(64) comment 'å†³ç­–æ–‡ä»¶ä¸Šä¼ è·¯å¾„',
+  'publicInfoUrl'        varchar(64) comment 'ä¿¡æ¯å…¬å¼€ç½‘å€é“¾æ¥',
+  'published'            date,
+  primary key ('id')
+)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='æ”¯æŒå¼€å±•å†œæ‘ç”µå­å•†åŠ¡æƒ…å†µ';
+
+-- --------------------------------------------------------
+
+--
+-- è¡¨çš„ç»“æ„ `thirdPartyService`
+--
+create table IF NOT EXISTS 'thirdPartyService'
+(
+  'id'                  char(40) not null comment 'ä½¿ç”¨å‡½æ•°åˆ›å»ºå”¯ä¸€40ä½ID',
+  'companyName'          varchar(16) not null comment 'å…¬å¸å',
+  'logoUrl'              varchar(64) comment 'logoå›¾è·¯å¾„',
+  'introduction'         text comment 'ç®€ä»‹',
+  'tel'                  varchar(16) comment 'ç”µè¯å·ç ',
+  'email'                varchar(16) comment 'ç”µå­é‚®ç®±',
+  'address'              varchar(32) comment 'åœ°å€',
+  'fax'                  varchar(16) comment 'ä¼ çœŸ',
+  'postcode'             char(6) comment 'é‚®ç¼–',
+  primary key ('id')
+)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ç¬¬ä¸‰æ–¹æœåŠ¡';
 
 -- --------------------------------------------------------
 
