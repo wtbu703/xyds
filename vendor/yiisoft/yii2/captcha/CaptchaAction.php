@@ -160,7 +160,7 @@ class CaptchaAction extends Action
      * @param boolean $regenerate whether the verification code should be regenerated.
      * @return string the verification code.
      */
-    public function getVerifyCode($regenerate = false)
+    public function getVerifyCode($regenerate = true)
     {
         if ($this->fixedVerifyCode !== null) {
             return $this->fixedVerifyCode;
@@ -173,7 +173,7 @@ class CaptchaAction extends Action
             $session[$name] = $this->generateVerifyCode();
             $session[$name . 'count'] = 1;
         }
-
+	    Yii::$app->session['captcha'] = $session[$name];
         return $session[$name];
     }
 

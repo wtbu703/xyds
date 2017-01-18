@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use Yii\db\ActiveRecord;
+use Yii;
 
 /**
  * This is the model class for table "admin".
@@ -15,7 +15,7 @@ use Yii\db\ActiveRecord;
  * @property string $telephone
  * @property string $state
  */
-class Admin extends ActiveRecord
+class Admin extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

@@ -18,7 +18,7 @@ class AdminController extends Controller{
     public $layout = false;
     public $enableCsrfValidation = false;
 
-    public function actions()
+	public function actions()
     {
         return  [
             'captcha' => [
@@ -35,7 +35,10 @@ class AdminController extends Controller{
         ];
     }
 
-    public function actionIndex(){
+	/**
+	 * @return string
+	 */
+	public function actionIndex(){
 
         return $this->render('index');
 
@@ -50,8 +53,8 @@ class AdminController extends Controller{
         $username = Yii::$app->request->post('username');
         $password = Yii::$app->request->post('password');
         $checkCode = Yii::$app->request->post('checkCode');
-
-        if(strtolower(Yii::$app->session['checkCode']) == strtolower($checkCode))
+	    $trueCode = Yii::$app->session['captcha'];
+        if(strtolower($trueCode) == strtolower($checkCode))
         {
             $model = Admin::find()
                 ->where(('username = :username and password = :password and state = 1'),[':username' => $username,':password' => Common::hashMD5($password)]);

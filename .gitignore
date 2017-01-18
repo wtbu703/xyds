@@ -22,3 +22,20 @@ composer.phar
 phpunit.phar
 # local phpunit config
 /phpunit.xml
+
+# upload 文件夹
+/web/upload/
+
+# svn文件
+.svn
+
+# 杂文件
+_config.yml
+ec_platform.pdb
+ec_platform.pdm
+PhysicalDiagram_1.pdf
+Workspace.sws
+需求分析说明书(2017-1-1)a.docx
+电商服务平台页面详解表2.xlsx
+
+runtime/
