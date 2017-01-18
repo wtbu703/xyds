@@ -29,6 +29,13 @@ class Common
         return str_replace('.','zsyj',uniqid('zsyj',true));
     }
 
+	/**
+	 * 生成40位唯一ID
+	 * @return string
+	 */
+	public static function create40ID(){
+		return sha1(uniqid(true));
+	}
     /**
      * 生成订单号
      * @return string
