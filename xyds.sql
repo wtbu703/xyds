@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2017 �?01 �?15 �?20:55
+-- 生成日期: 2017 �?01 �?18 �?17:34
 -- 服务器版本: 5.5.53
 -- PHP 版本: 5.6.27
 
@@ -1131,94 +1131,113 @@ CREATE TABLE IF NOT EXISTS `servicesite` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='服务站点';
 
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `servicesitedealtable`
+--
+
+CREATE TABLE IF NOT EXISTS `servicesitedealtable` (
+  `id` char(40) NOT NULL,
+  `siteId` char(40) NOT NULL COMMENT '站点ID，外键，使用函数创建唯一40位ID',
+  `date` date NOT NULL COMMENT '日期',
+  `buyGoodCategory` varchar(32) NOT NULL COMMENT '代买商品类别，从XML读取，分号分隔',
+  `buyMoneySum` varchar(32) NOT NULL COMMENT '代买总金额，分号分隔',
+  `buyOrderTotal` int(10) unsigned NOT NULL COMMENT '代买订单数',
+  `sellGoodCategory` varchar(32) NOT NULL COMMENT '销售商品类别，从XML读取，分号分隔',
+  `sellMoneySum` varchar(32) NOT NULL COMMENT '销售总金额，分号分隔',
+  `sellOrderTotal` int(10) unsigned NOT NULL COMMENT '销售订单数',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='服务站点每日交易信息表';
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `serviceSiteInfo`
+-- 表的结构 `servicesiteinfo`
 --
 
-CREATE TABLE IF NOT EXISTS `serviceSiteInfo` (
+CREATE TABLE IF NOT EXISTS `servicesiteinfo` (
   `id` char(40) NOT NULL COMMENT '使用函数创建唯一40位ID',
-  `siteId` char(40) COMMENT '外键，site表ID，函数创建唯一40位ID',
-  `chargeName` varchar(8) COMMENT '负责人姓名',
-  `chargeMobile` char(11) COMMENT '负责人手机',
-  `address` varchar(32) COMMENT '站点位置',
-  `picUrl` varchar(64) COMMENT '站点预览图路径',
+  `siteId` char(40) DEFAULT NULL COMMENT '外键，site表ID，函数创建唯一40位ID',
+  `chargeName` varchar(8) DEFAULT NULL COMMENT '负责人姓名',
+  `chargeMobile` char(11) DEFAULT NULL COMMENT '负责人手机',
+  `address` varchar(32) DEFAULT NULL COMMENT '站点位置',
+  `picUrl` varchar(64) DEFAULT NULL COMMENT '站点预览图路径',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='服务站点信息';
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `serviceSystemBuild`
+-- 表的结构 `servicesystembuild`
 --
-CREATE TABLE IF NOT EXISTS `serviceSystemBuild` (
+
+CREATE TABLE IF NOT EXISTS `servicesystembuild` (
   `id` char(40) NOT NULL COMMENT '使用函数创建唯一40位ID',
-  `siteId` char(40) COMMENT '站点ID，外键，使用函数创建唯一40位ID',
-  `name` varchar(16) COMMENT '项目建设名称',
-  `function` varchar(64) COMMENT '主要功能',
-  `isCountyLogistics` tinyint unsigned COMMENT '是否与县级物流配送中心共享场地和站点',
-  `isTownLogistics` tinyint unsigned COMMENT '是否承担乡镇级（村级）物流服务点功能',
-  `config` varchar(64) COMMENT '设施配置',
+  `siteId` char(40) DEFAULT NULL COMMENT '站点ID，外键，使用函数创建唯一40位ID',
+  `name` varchar(16) DEFAULT NULL COMMENT '项目建设名称',
+  `function` varchar(64) DEFAULT NULL COMMENT '主要功能',
+  `isCountyLogistics` tinyint(3) unsigned DEFAULT NULL COMMENT '是否与县级物流配送中心共享场地和站点',
+  `isTownLogistics` tinyint(3) unsigned DEFAULT NULL COMMENT '是否承担乡镇级（村级）物流服务点功能',
+  `config` varchar(64) DEFAULT NULL COMMENT '设施配置',
   `centralSupportContent` text COMMENT '中央财政资金支持建设内容',
-  `buildProgress` varchar(8) COMMENT '项目建设进度',
-  `centralSupport` float unsigned COMMENT '中央财政资金支持总金额，单位万元',
-  `centralPaid` float unsigned COMMENT '中央财政资金已拨付金额，截止上月底，单位万元',
-  `localSupport` float unsigned COMMENT '地方财政配套资金总金额，单位万元',
-  `companyPaid` float unsigned COMMENT '企业投入资金总金额，单位万元',
-  `organizer` varchar(16) COMMENT '项目承办单位',
-  `chargeName` varchar(8) COMMENT '承办单位负责人',
-  `chargeMobile`char(11) COMMENT '负责人联系电话',
-  `centralDecisionUnit` varchar(16) COMMENT '中央财政资金支持此项目的政府决策单位或领导人',
-  `decisionFileUrl` varchar(64) COMMENT '决策文件上传路径',
-  `publicInfoUrl`varchar(64) COMMENT '信息公开网址链接',
-  `published` date,
-  primary key (`id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公共服务体系建设情况';
+  `buildProgress` varchar(8) DEFAULT NULL COMMENT '项目建设进度',
+  `centralSupport` float unsigned DEFAULT NULL COMMENT '中央财政资金支持总金额，单位万元',
+  `centralPaid` float unsigned DEFAULT NULL COMMENT '中央财政资金已拨付金额，截止上月底，单位万元',
+  `localSupport` float unsigned DEFAULT NULL COMMENT '地方财政配套资金总金额，单位万元',
+  `companyPaid` float unsigned DEFAULT NULL COMMENT '企业投入资金总金额，单位万元',
+  `organizer` varchar(16) DEFAULT NULL COMMENT '项目承办单位',
+  `chargeName` varchar(8) DEFAULT NULL COMMENT '承办单位负责人',
+  `chargeMobile` char(11) DEFAULT NULL COMMENT '负责人联系电话',
+  `centralDecisionUnit` varchar(16) DEFAULT NULL COMMENT '中央财政资金支持此项目的政府决策单位或领导人',
+  `decisionFileUrl` varchar(64) DEFAULT NULL COMMENT '决策文件上传路径',
+  `publicInfoUrl` varchar(64) DEFAULT NULL COMMENT '信息公开网址链接',
+  `published` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公共服务体系建设情况';
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `supportLaunch`
+-- 表的结构 `supportlaunch`
 --
-create table IF NOT EXISTS `supportLaunch`
-(
-  `id`                   char(40) not null,
-  `name`                 varchar(16) comment '项目建设名称',
-  `centralSupportContent` text comment '中央财政资金支持建设内容',
-  `centralSupport`       float unsigned comment '中央财政资金支持总金额，单位万元',
-  `centralPaid`          float unsigned comment '中央财政资金已拨付金额，截止上月底，单位万元',
-  `localSupport`         float unsigned comment '地方财政配套资金总金额，单位万元',
-  `companyPaid`          float unsigned comment '企业投入资金总金额，单位万元',
-  `organizer`            varchar(16) comment '项目承办单位',
-  `chargeName`           varchar(8) comment '承办单位负责人',
-  `chargeMobile`         char(11) comment '负责人联系电话',
-  `centralDecisionUnit`  varchar(16) comment '中央财政资金支持此项目的政府决策单位或领导人',
-  `decisionFileUrl`      varchar(64) comment '决策文件上传路径',
-  `publicInfoUrl`        varchar(64) comment '信息公开网址链接',
-  `published`            date,
-  primary key (`id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='支持开展农村电子商务情况';
+
+CREATE TABLE IF NOT EXISTS `supportlaunch` (
+  `id` char(40) NOT NULL,
+  `name` varchar(16) DEFAULT NULL COMMENT '项目建设名称',
+  `centralSupportContent` text COMMENT '中央财政资金支持建设内容',
+  `centralSupport` float unsigned DEFAULT NULL COMMENT '中央财政资金支持总金额，单位万元',
+  `centralPaid` float unsigned DEFAULT NULL COMMENT '中央财政资金已拨付金额，截止上月底，单位万元',
+  `localSupport` float unsigned DEFAULT NULL COMMENT '地方财政配套资金总金额，单位万元',
+  `companyPaid` float unsigned DEFAULT NULL COMMENT '企业投入资金总金额，单位万元',
+  `organizer` varchar(16) DEFAULT NULL COMMENT '项目承办单位',
+  `chargeName` varchar(8) DEFAULT NULL COMMENT '承办单位负责人',
+  `chargeMobile` char(11) DEFAULT NULL COMMENT '负责人联系电话',
+  `centralDecisionUnit` varchar(16) DEFAULT NULL COMMENT '中央财政资金支持此项目的政府决策单位或领导人',
+  `decisionFileUrl` varchar(64) DEFAULT NULL COMMENT '决策文件上传路径',
+  `publicInfoUrl` varchar(64) DEFAULT NULL COMMENT '信息公开网址链接',
+  `published` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='支持开展农村电子商务情况';
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `thirdPartyService`
+-- 表的结构 `thirdpartyservice`
 --
-create table IF NOT EXISTS `thirdPartyService`
-(
-  `id`                  char(40) not null comment '使用函数创建唯一40位ID',
-  `companyName`          varchar(16) not null comment '公司名',
-  `logoUrl`              varchar(64) comment 'logo图路径',
-  `introduction`         text comment '简介',
-  `tel`                  varchar(16) comment '电话号码',
-  `email`                varchar(16) comment '电子邮箱',
-  `address`              varchar(32) comment '地址',
-  `fax`                  varchar(16) comment '传真',
-  `postcode`             char(6) comment '邮编',
-  primary key (`id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='第三方服务';
+
+CREATE TABLE IF NOT EXISTS `thirdpartyservice` (
+  `id` char(40) NOT NULL COMMENT '使用函数创建唯一40位ID',
+  `companyName` varchar(16) NOT NULL COMMENT '公司名',
+  `logoUrl` varchar(64) DEFAULT NULL COMMENT 'logo图路径',
+  `introduction` text COMMENT '简介',
+  `tel` varchar(16) DEFAULT NULL COMMENT '电话号码',
+  `email` varchar(16) DEFAULT NULL COMMENT '电子邮箱',
+  `address` varchar(32) DEFAULT NULL COMMENT '地址',
+  `fax` varchar(16) DEFAULT NULL COMMENT '传真',
+  `postcode` char(6) DEFAULT NULL COMMENT '邮编',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='第三方服务';
 
 -- --------------------------------------------------------
 
