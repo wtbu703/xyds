@@ -160,7 +160,7 @@ class CaptchaAction extends Action
      * @param boolean $regenerate whether the verification code should be regenerated.
      * @return string the verification code.
      */
-    public function getVerifyCode($regenerate = false)
+    public function getVerifyCode($regenerate = true)
     {
         if ($this->fixedVerifyCode !== null) {
             return $this->fixedVerifyCode;
