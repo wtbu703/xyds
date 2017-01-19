@@ -17,9 +17,9 @@ $this->title = '服务站点管理';
 			ifm.height = subWeb.body.scrollHeight;
 		}
 	}
-	var listdictUrl  = "<?=yii::$app->urlManager->createUrl('dict/findall')?>";
-	var addUrl = "<?=yii::$app->urlManager->createUrl('service-site/add')?>";
-	//var listallUrl  = "<?=yii::$app->urlManager->createUrl('adminmanage/findbyattri')?>";
+	var listdictUrl  = "<?=Yii::$app->urlManager->createUrl('dict/findall')?>";
+	var addUrl = "<?=Yii::$app->urlManager->createUrl('service-site/add')?>";
+	var listallUrl  = "<?=Yii::$app->urlManager->createUrl('service-site/find-by-attri')?>";
 </script>
 <script type="text/javascript" src="js/admin/service-site/index.js"></script>
 
@@ -58,6 +58,6 @@ $this->title = '服务站点管理';
 		</table>
 	</form>
 	<div class="table-list">
-		<!--<iframe id="iframeId" name="iframeId" src="<?/*=yii::$app->urlManager->createUrl('service-site/findbyattri')*/?>"  frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()"></iframe>-->
+		<iframe id="iframeId" name="iframeId" src="<?=Yii::$app->urlManager->createUrl('service-site/find-by-attri')?>"  frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()"></iframe>
 	</div>
 </div>

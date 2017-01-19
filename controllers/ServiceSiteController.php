@@ -12,6 +12,9 @@ use yii\base\Controller;
 use app\common\Common;
 use app\models\ServiceSite;
 use app\models\ServiceSiteInfo;
+use yii\data\Pagination;
+use app\models\Dictitem;
+use yii\db\Query;
 
 /**
  * Class ServiceSiteController
@@ -25,7 +28,12 @@ class ServiceSiteController extends Controller{
 	 */
 	public function actionIndex(){
 
-		return $this->render('index');
+		/*$add = Common::resource('ADMIN','ADD');
+		$excel = Common::resource('ADMIN','EXCEL');*/
+		return $this->render('index'/*,[
+			'add' => $add,
+			'excel' => $excel
+		]*/);
 	}
 
 	/**
@@ -99,15 +107,245 @@ class ServiceSiteController extends Controller{
 	public function actionCheckCode(){
 
 		$code = Yii::$app->request->get('code');
-		$serviceSite = ServiceSite::find()
-			->where(['code' => $code])
+		$oldCode = Yii::$app->request->post('oldCode');
+		if($oldCode=='null')//来自add
+		{
+			$serviceSite = ServiceSite::find()
+				->where(['code' => $code])
+				->one();
+			if(is_null($serviceSite))
+			{
+				return "success";
+			}else
+			{
+				return "exist";
+			}
+		}elseif($code==$oldCode)//来自update并且没有改变
+		{
+			return 'success';
+		}elseif($code!=$oldCode)//来自update且有改变
+		{
+			$serviceSite = ServiceSite::find()
+				->where(['code' => $code])
+				->one();
+			if(is_null($serviceSite))
+			{
+				return "success";
+			}else
+			{
+				return "exist";
+			}
+		}else{
+			return false;
+		}
+	}
+
+	/**
+	 * 按条件查询显示主列表
+	 * @return string
+	 */
+	public function actionFindByAttri(){
+		//收查询条件如果存在
+		$code = Yii::$app->request->get('code');
+		$name = Yii::$app->request->get('name');
+		$type = Yii::$app->request->get('type');
+
+		//换页时保存查询条件
+		$para= [];
+		$para['code'] = $code;
+		$para['name'] = $name;
+		$para['type'] = $type;
+
+		//组装查询语句
+		$whereStr = '1=1';
+		if($code != ''){
+			$whereStr = $whereStr." and code like '%".$code."%'";
+		}
+		if($name != ''){
+			$whereStr = $whereStr." and name like '%".$name."%'";
+		}
+		if($type != ''){
+			$whereStr = $whereStr." and countyType=".$type;
+		}
+
+		$serviceSites = ServiceSite::find()
+			->where($whereStr);
+		//分页
+		$pages = new Pagination([
+			'totalCount' =>$serviceSites->count(),
+			'pageSize' => Common::PAGESIZE
+		]);
+		$models = $serviceSites
+			->offset($pages->offset)
+			->limit($pages->limit)
+			->all();
+
+		//字典转化
+		$dictItem = Dictitem::find()
+			->where(['dictCode' => 'DICT_COUNTYTYPE'])
+			->all();
+
+		foreach($models as $key=>$data) {
+			foreach ($dictItem as $index => $value) {
+				if ($data->countyType == $value->dictItemCode) {
+					$models[$key]->countyType = $value->dictItemName;
+				}
+			}
+		}
+
+		/*$edit = Common::resource('ADMIN','EDIT1');
+		$delete = Common::resource('ADMIN','DELETE');*/
+		return $this->render('listall',[
+			'serviceSites' => $models,
+			'pages' => $pages,
+			'para' => $para,
+			/*'edit' => $edit,
+			'delete' => $delete*/
+		]);
+	}
+
+	/**
+	 * 根据ID查询一个站点的信息
+	 * @return string
+	 */
+	public function actionFindOne(){
+
+		$siteId = Yii::$app->request->get('id');
+		$action = Yii::$app->request->get('action');
+		//$serviceSite = ServiceSite::findOne($siteId);
+
+		//连接查询站点的基础信息
+		$query = new Query();
+		$serviceSite = $query->select('a.id as id,a.code as code,a.name as name,a.countyType as countyType,b.chargeName as chargeName,b.chargeMobile as chargeMobile,b.address as address,b.picUrl as picUrl')
+			->from('servicesite a')
+			->where("a.id = :id",[':id' => $siteId])
+			->leftJoin('servicesiteinfo b','a.id = b.siteId')
 			->one();
-		if(is_null($serviceSite))
+
+		//如果是详情页
+		if($action == 'detail'){
+			//字典反转
+			$dictItem = Dictitem::find()
+				->where(['dictCode' => 'DICT_COUNTYTYPE'])
+				->all();
+			foreach ($dictItem as $index => $value) {
+				if (!empty($value->dictItemCode)) {
+					if ($value->dictItemCode == $serviceSite['countyType']) {
+						if (!empty($value->dictItemName)) {
+							$serviceSite['countyType'] = $value->dictItemName;
+						}
+					}
+				}
+			}
+
+			return $this->render('detail',[
+				'serviceSite' => $serviceSite
+			]);
+		} elseif($action == 'update')//如果是修改页
 		{
+			$typeDict = Dictitem::find()
+				->where(['dictCode' => 'DICT_COUNTYTYPE'])
+				->all();
+			return $this->render('update',[
+				'serviceSite' => $serviceSite,
+				'typeDict' => $typeDict,
+			]);
+		}else{
+			return false;
+		}
+
+	}
+
+	/**
+	 * 根据ID删除一个站点
+	 * @return string
+	 * @throws \Exception
+	 */
+	public function actionDeleteOne(){
+
+		$siteId = Yii::$app->request->post('id');
+
+		$serviceSiteInfo = ServiceSiteInfo::find()
+			->where('siteId = :id',[':id' => $siteId])
+			->one();
+		$picUrl = $serviceSiteInfo['picUrl'];
+
+		//var_dump($serviceSiteInfo);
+		if(ServiceSite::findOne($siteId)->delete()&&$serviceSiteInfo->delete()&&unlink($picUrl)){
 			return "success";
-		}else
-		{
-			return "exist";
+		}else{
+			return "fail";
+		}
+	}
+
+	/**
+	 * 根据ID删除多个站点
+	 * @return string
+	 * @throws \Exception
+	 */
+	public function actionDeleteMore(){
+
+		$ids = Yii::$app->request->post("ids");
+		$id_array = explode('-',$ids);
+
+		foreach($id_array as $key => $data){
+			ServiceSite::findOne($data)->delete();
+			$serviceSiteInfo = ServiceSiteInfo::find()
+				->where('siteId = :id',[':id' => $data])
+				->one();
+			$picUrl = $serviceSiteInfo['picUrl'];
+			unlink($picUrl);
+			$serviceSiteInfo->delete();
+		}
+		return 'success';
+	}
+
+	/**
+	 * 根据ID保存修改
+	 * @return bool|string
+	 */
+	public function actionUpdateOne(){
+
+		$id = Yii::$app->request->post("id");
+		$code = Yii::$app->request->post("code");
+		$name = Yii::$app->request->post("name");
+		$type = Yii::$app->request->post("type");
+		$chargeName = Yii::$app->request->post("chargeName");
+		$chargeMobile = Yii::$app->request->post("chargeMobile");
+		$address = Yii::$app->request->post("address");
+		$attachUrls = Yii::$app->request->post("attachUrls");
+
+		$serviceSite = ServiceSite::findOne($id);
+		if($code != ''){
+			$serviceSite->code = $code;
+		}
+		if($name != ''){
+			$serviceSite->name = $name;
+		}
+		if($type != ''){
+			$serviceSite->countyType = $type;
+		}
+		$serviceSiteInfo = ServiceSiteInfo::find()
+			->where('siteId = :siteId',[":siteId" => $id])
+			->one();
+		if($chargeName != ''){
+			$serviceSiteInfo['chargeName'] = $chargeName;
+		}
+		if($chargeMobile != ''){
+			$serviceSiteInfo['chargeMobile'] = $chargeMobile;
+		}
+		if($address != ''){
+			$serviceSiteInfo['address'] = $address;
+		}
+		if($attachUrls != ''){
+			$picUrl = $serviceSiteInfo['picUrl'];
+			unlink($picUrl);
+			$serviceSiteInfo['picUrl'] = $attachUrls;
+		}
+		if($serviceSite->save()&&$serviceSiteInfo->save()){
+			return "success";
+		}else{
+			return false;
 		}
 	}
 }
