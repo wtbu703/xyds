@@ -52,7 +52,7 @@ use yii\helpers\Html;
 	<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
 	<!--公共函数-->
 	<script type="text/javascript" src="js/common.js"></script>
-
+	<script language="javascript" type="text/javascript" src="js/page.js" charset="utf-8"></script>
 </head>
 <body>
 <?php $this->beginBody() ?>

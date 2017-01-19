@@ -1,10 +1,10 @@
 // 加载字典信息
 $(document).ready(function(){
-
-	generateState();
-})
+    generateDict('DICT_COUNTYTYPE','type','类型');
+	//generateState();
+});
 //生成状态下拉框
-function generateState(){
+/*function generateState(){
 	var dictArray = new Array();
 	dictArray.push("<option value=''><--请选择类型--></option>");
 	$.ajax({
@@ -24,9 +24,7 @@ function generateState(){
 		}
 	});
 
-}
-
-
+}*/
 
 //打开添加页面
 function openadd(){
