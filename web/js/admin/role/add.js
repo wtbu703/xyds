@@ -23,28 +23,23 @@ $(function(){
 				type:"get",
 				url:checknameUrl,
 				data:{
-					'name':$("#name").val(),
+					'name':$("#name").val()
 				},
 				datatype:"text",
 				async:'true',
 				success:function(data){
-					if(data == "exist"){
-    					return false;
-    				}else{
-    					return true;
-    				}
+                    return data != "exist";
 				},
 				buttons: $("#dosubmit"),  // 页面提示----"输入正确"
 				onerror : "角色名称已存在",
 				onwait : "正在连接，请稍候。"});
 
 
-})
+});
 
 
 /**
  * 添加过滤
- * @param path
  * @return
  */
 function add(){
