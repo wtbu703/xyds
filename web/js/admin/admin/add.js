@@ -28,11 +28,7 @@ $(function(){
 				datatype:"text",
 				async:'true',
 				success:function(data){
-					if(data == "exist"){
-    					return false;
-    				}else{
-    					return true;
-    				}
+                    return data != "exist";
 				},
 				buttons: $("#dosubmit"),  // 页面提示----"输入正确"
 				onerror : "用户名已存在",

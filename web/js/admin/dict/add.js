@@ -18,15 +18,11 @@ $(function(){
 				url:findidUrl,
 				async:false,
 				data:{
-					'dictCode':$("#dictCode").val(),
+					'dictCode':$("#dictCode").val()
 				},
 				datatype:"text", //必须是html
 				success : function(data){
-					if(data == "exist"){
-    					return false;
-    				}else{
-    					return true;
-    				}
+                    return data != "exist";
 				},
 				buttons: $("#dosubmit"),  // 页面提示----"输入正确"
 				onerror : "字典标识已存在",
