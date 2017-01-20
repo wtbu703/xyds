@@ -3,7 +3,7 @@ $(document).ready(function(){
 
 	generateDict('DICT_STATE','state','状态');
 	generateDict('DICT_SIGN','sign','来源种类');
-})
+});
 //页面校验
 $(function(){
 	$.formValidator.initConfig({
@@ -25,7 +25,6 @@ $(function(){
 
 /**
  * 添加过滤
- * @param path
  * @return
  */
 function add(){

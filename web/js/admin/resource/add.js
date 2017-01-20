@@ -12,7 +12,7 @@ $(function(){
             onfocus:"控制器名称必须是英文字母！"})
         .inputValidator({                  //校验不能为空
             min:1,
-            onerror:"控制器名称不能为空！"})
+            onerror:"控制器名称不能为空！"});
         /*.ajaxValidator({					// 校验不许重复
             type:"get",
             url:checkUrl,
