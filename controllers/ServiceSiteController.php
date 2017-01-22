@@ -75,6 +75,7 @@ class ServiceSiteController extends Controller{
 	 */
 	public function actionAddOne(){
 
+		//code,name,countyType是servicesite表
 		$serviceSite = new ServiceSite();
 		$siteId = Common::create40ID();
 		$serviceSite->id = $siteId;
@@ -82,6 +83,7 @@ class ServiceSiteController extends Controller{
 		$serviceSite->name = Yii::$app->request->post('name');
 		$serviceSite->countyType = Yii::$app->request->post('type');
 
+		//chargeName,chargeMobile,address,picUrl是servicesiteinfo表
 		$serviceSiteInfo = new ServiceSiteInfo();
 		$serviceSiteInfo->id = Common::create40ID();
 		$serviceSiteInfo->siteId = $siteId;
@@ -90,7 +92,7 @@ class ServiceSiteController extends Controller{
 		$serviceSiteInfo->address = Yii::$app->request->post('address');
 		$serviceSiteInfo->picUrl = Yii::$app->request->post('attachUrls');
 
-		if($serviceSite->save() && $serviceSiteInfo->save())
+		if($serviceSite->save() && $serviceSiteInfo->save())//两个表都成功插入
 		{
 			return "success";
 		}
@@ -268,9 +270,9 @@ class ServiceSiteController extends Controller{
 		$serviceSiteInfo = ServiceSiteInfo::find()
 			->where('siteId = :id',[':id' => $siteId])
 			->one();
-		$picUrl = $serviceSiteInfo['picUrl'];
+		$picUrl = $serviceSiteInfo['picUrl'];//获取表中图片路径字段
 
-		//var_dump($serviceSiteInfo);
+		//根据ID删除site,siteinfo,并根据路径删除图片文件
 		if(ServiceSite::findOne($siteId)->delete()&&$serviceSiteInfo->delete()&&unlink($picUrl)){
 			return "success";
 		}else{
@@ -289,13 +291,13 @@ class ServiceSiteController extends Controller{
 		$id_array = explode('-',$ids);
 
 		foreach($id_array as $key => $data){
-			ServiceSite::findOne($data)->delete();
+			ServiceSite::findOne($data)->delete();//根据ID删除site
 			$serviceSiteInfo = ServiceSiteInfo::find()
 				->where('siteId = :id',[':id' => $data])
 				->one();
 			$picUrl = $serviceSiteInfo['picUrl'];
-			unlink($picUrl);
-			$serviceSiteInfo->delete();
+			unlink($picUrl);//根据路径删除图片文件
+			$serviceSiteInfo->delete();//根据ID删除siteinfo
 		}
 		return 'success';
 	}
@@ -325,6 +327,7 @@ class ServiceSiteController extends Controller{
 		if($type != ''){
 			$serviceSite->countyType = $type;
 		}
+
 		$serviceSiteInfo = ServiceSiteInfo::find()
 			->where('siteId = :siteId',[":siteId" => $id])
 			->one();
