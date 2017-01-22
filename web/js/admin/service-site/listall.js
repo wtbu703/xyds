@@ -3,7 +3,7 @@ function update(siteId,siteName) {
 	$.dialog({id:'site_update'}).close();
 	var url = findOneUrl + '&id='+siteId +'&action=update';
 	$.dialog.open(url,{
-		title: '修改服务站点信息--'+siteName,
+		title: '修改'+siteName+'信息',
 		width: 800,
 		height:600,
 		lock: true,
@@ -18,7 +18,7 @@ function detail(siteId,siteName){
     $.dialog({id:'site_detail'}).close();
     var url = findOneUrl+'&id='+siteId+'&action=detail';
     $.dialog.open(url,{
-        title: '站点信息--'+siteName,
+        title: siteName+'站点信息',
         width: 800,
         height:600,
         lock: true,
@@ -27,6 +27,21 @@ function detail(siteId,siteName){
         drag:true
     });
 }
+
+//打开填写日交易信息页面
+/*function dealTable(siteId,siteName) {
+    $.dialog({id:'site_deal'}).close();
+    var url = dealTableUrl + '&id='+siteId;
+    $.dialog.open(url,{
+        title: siteName+'日交易信息',
+        width: 800,
+        height:600,
+        lock: true,
+        border: false,
+        id: 'site_deal',
+        drag:true
+    });
+}*/
 
 /**
  * 删除一个站点
