@@ -117,4 +117,36 @@ class ServiceSiteDealTableController extends Controller{
 			'serviceSite' => $serviceSite
 		]);
 	}
+
+	/**
+	 * 保存一个日交易信息表
+	 * @return bool|string
+	 */
+	public function actionAddOne(){
+
+		$siteId = Yii::$app->request->post('id');
+		$buyCategory = Yii::$app->request->post('buyCategory');
+		$buySum = Yii::$app->request->post('buySum');
+		$buyTotal = Yii::$app->request->post('buyTotal');
+		$sellCategory = Yii::$app->request->post('sellCategory');
+		$sellSum = Yii::$app->request->post('sellSum');
+		$sellTotal = Yii::$app->request->post('sellTotal');
+
+		$dealTable = new ServiceSiteDealTable();
+		$dealTable->id = Common::create40ID();
+		$dealTable->siteId = $siteId;
+		$dealTable->date = date("Y-m-d");
+		$dealTable->buyGoodCategory = $buyCategory;
+		$dealTable->buyMoneySum = $buySum;
+		$dealTable->buyOrderTotal = $buyTotal;
+		$dealTable->sellGoodCategory = $sellCategory;
+		$dealTable->sellMoneySum = $sellSum;
+		$dealTable->sellOrderTotal = $sellTotal;
+
+		if($dealTable->save()){
+			return "success";
+		}else{
+			return false;
+		}
+	}
 }
