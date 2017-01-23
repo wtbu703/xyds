@@ -1,8 +1,8 @@
 <script type="text/javascript">
-    var listdictUrl = "<?=yii::$app->urlManager->createUrl('dict/findall')?>";
-    var checkCodeUrl = "<?=yii::$app->urlManager->createUrl('service-site/check-code')?>";
-    var saveUrl = "<?=yii::$app->urlManager->createUrl('service-site/add-one')?>";
-    var indexUrl = "<?=yii::$app->urlManager->createUrl('service-site/index')?>";
+    var listdictUrl = "<?=Yii::$app->urlManager->createUrl('dict/findall')?>";
+    var checkCodeUrl = "<?=Yii::$app->urlManager->createUrl('service-site/check-code')?>";
+    var saveUrl = "<?=Yii::$app->urlManager->createUrl('service-site/add-one')?>";
+    var indexUrl = "<?=Yii::$app->urlManager->createUrl('service-site/index')?>";
 </script>
 <script type="text/javascript" src="js/admin/service-site/add.js"></script>
 
@@ -39,7 +39,7 @@
 		                <th>站点照片：</th>
 		                <td><input type="text" style="display:none;" name="attachUrls" id="attachUrls" class="input-text"/>
 			                <input type="text" style="display:none;" name="attachNames" id="attachNames" class="input-text"/>
-			                <iframe frameborder="0" width="100%" height="20px" scrolling="no" src="<?=yii::$app->urlManager->createUrl('service-site/upload')?>"></iframe>
+			                <iframe frameborder="0" width="100%" height="20px" scrolling="no" src="<?=Yii::$app->urlManager->createUrl('service-site/upload')?>"></iframe>
 		                </td>
 	                </tr>
                 </table>
