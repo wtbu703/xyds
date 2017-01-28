@@ -66,6 +66,7 @@ class DictController extends Controller{
     public function actionAddone(){
 
         $dict = new Dict();
+	    $dict->id = Common::create40ID();
         $dict->dictCode = Yii::$app->request->post('dictCode');
         $dict->dictName = Yii::$app->request->post('dictName');
         $dict->intro = Yii::$app->request->post('intro');
