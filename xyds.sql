@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2017 �?01 �?18 �?17:34
+-- 生成日期: 2017 �?01 �?28 �?20:40
 -- 服务器版本: 5.5.53
 -- PHP 版本: 5.6.27
 
@@ -37,23 +37,6 @@ CREATE TABLE IF NOT EXISTS `actor` (
   `video_url` varchar(128) DEFAULT NULL COMMENT '视频链接',
   `click_like` int(11) DEFAULT NULL COMMENT '点赞数',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- 表的结构 `ad`
---
-
-CREATE TABLE IF NOT EXISTS `ad` (
-  `id` char(40) NOT NULL COMMENT '广告业务ID，40位唯一标识符',
-  `userId` char(40) DEFAULT NULL COMMENT '客户ID，40位唯一标识符',
-  `content` varchar(128) DEFAULT NULL COMMENT '广告内容',
-  `start_time` datetime DEFAULT NULL COMMENT '开始时间',
-  `end_time` datetime DEFAULT NULL COMMENT '结束时间',
-  `duration` int(11) DEFAULT NULL COMMENT '总时长',
-  PRIMARY KEY (`id`),
-  KEY `FK_AD_AD_USER_USER` (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -402,7 +385,7 @@ CREATE TABLE IF NOT EXISTS `dailysheet` (
 --
 
 CREATE TABLE IF NOT EXISTS `dict` (
-  `id` varchar(32) NOT NULL,
+  `id` char(40) NOT NULL,
   `dictCode` varchar(32) DEFAULT NULL,
   `dictName` varchar(32) DEFAULT NULL,
   `intro` varchar(128) DEFAULT NULL,
@@ -419,7 +402,8 @@ INSERT INTO `dict` (`id`, `dictCode`, `dictName`, `intro`, `state`) VALUES
 ('2', 'DICT_SEX', '性别', '0表示男；1表示女', '1'),
 ('3', 'DICT_SIGN', '来源', '0表示内部；1表示外部', '1'),
 ('4', 'DICT_WEB', '网页', '文章抓取来源网页', '1'),
-('5', 'DICT_ORDERSTATE', '订单状态', '0表示下单未付款；1表示付款未接单；2表示接单未发货；3表示发货未签收；4表示已签收', '1');
+('5', 'DICT_ORDERSTATE', '订单状态', '0表示下单未付款；1表示付款未接单；2表示接单未发货；3表示发货未签收；4表示已签收', '1'),
+('', 'DICT_COUNTYTYPE', '站点类型', '1乡镇级，2村级', '1');
 
 -- --------------------------------------------------------
 
@@ -454,7 +438,9 @@ INSERT INTO `dictitem` (`id`, `dictCode`, `dictItemCode`, `dictItemName`, `order
 ('zsyj5800c85f555368zsyj93318981', 'DICT_ORDERSTATE', '2', '接单未发货', 0, '1'),
 ('zsyj5800c85f5a3570zsyj46399986', 'DICT_ORDERSTATE', '3', '发货未签收', 0, '1'),
 ('zsyj5800c85f5f1788zsyj81084839', 'DICT_ORDERSTATE', '4', '已签收', 0, '1'),
-('zsyj58048207920225zsyj66452014', 'DICT_WEB', '1', 'http://www.100ec.cn/', 1, '1');
+('zsyj58048207920225zsyj66452014', 'DICT_WEB', '1', 'http://www.100ec.cn/', 1, '1'),
+('zsyj587f4fdd8238a7zsyj88434177', 'DICT_COUNTYTYPE', '1', '乡镇级', 0, '1'),
+('zsyj587f4fdd8d9728zsyj71437700', 'DICT_COUNTYTYPE', '2', '村级', 1, '1');
 
 -- --------------------------------------------------------
 
@@ -598,7 +584,11 @@ INSERT INTO `menu` (`id`, `menuName`, `menuUrl`, `upLevelMenu`, `menuLevel`, `or
 ('zsyj57fc7842c43a47zsyj75928594', '视频管理', 'index.php?r=video/list', 'zsyj57fc7825f2f1d5zsyj44999321', '3', 0, '1'),
 ('zsyj57fdfbd3496c84zsyj43959143', '文章抓取', 'index.php?r=article/catch-article', 'zsyj57fc77c2414855zsyj41416125', '3', 1, '1'),
 ('zsyj5800cd8d97b291zsyj86929477', '订单管理', '', 'zsyj56f77c4f846846zsyj72130122', '2', 2, '1'),
-('zsyj5800cdc0992467zsyj44643681', '订单管理', 'index.php?r=order/list', 'zsyj5800cd8d97b291zsyj86929477', '3', 0, '1');
+('zsyj5800cdc0992467zsyj44643681', '订单管理', 'index.php?r=order/list', 'zsyj5800cd8d97b291zsyj86929477', '3', 0, '1'),
+('zsyj587f504924d7f1zsyj51481213', '服务站点管理', '', NULL, '1', 5, '1'),
+('zsyj587f506989de17zsyj11901791', '服务站点管理', '', 'zsyj587f504924d7f1zsyj51481213', '2', 0, '1'),
+('zsyj587f507cf28309zsyj53508275', '服务站点管理', 'index.php?r=service-site/index', 'zsyj587f506989de17zsyj11901791', '3', 0, '1'),
+('zsyj5884bcf1ad8e25zsyj72558763', '日交易信息', 'index.php?r=service-site-deal-table/index', 'zsyj587f506989de17zsyj11901791', '3', 1, '1');
 
 -- --------------------------------------------------------
 
@@ -1131,6 +1121,13 @@ CREATE TABLE IF NOT EXISTS `servicesite` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='服务站点';
 
+--
+-- 转存表中的数据 `servicesite`
+--
+
+INSERT INTO `servicesite` (`id`, `code`, `name`, `countyType`) VALUES
+('16d1e8551093325d60d5db5644203dd53cf9305e', '1', 'a', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -1150,6 +1147,13 @@ CREATE TABLE IF NOT EXISTS `servicesitedealtable` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='服务站点每日交易信息表';
 
+--
+-- 转存表中的数据 `servicesitedealtable`
+--
+
+INSERT INTO `servicesitedealtable` (`id`, `siteId`, `date`, `buyGoodCategory`, `buyMoneySum`, `buyOrderTotal`, `sellGoodCategory`, `sellMoneySum`, `sellOrderTotal`) VALUES
+('01f95964b454b9e41f53d68063da81e3d84ea46a', '16d1e8551093325d60d5db5644203dd53cf9305e', '2017-01-23', '1', '1', 1, '1', '1', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -1165,6 +1169,13 @@ CREATE TABLE IF NOT EXISTS `servicesiteinfo` (
   `picUrl` varchar(64) DEFAULT NULL COMMENT '站点预览图路径',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='服务站点信息';
+
+--
+-- 转存表中的数据 `servicesiteinfo`
+--
+
+INSERT INTO `servicesiteinfo` (`id`, `siteId`, `chargeName`, `chargeMobile`, `address`, `picUrl`) VALUES
+('43d423e293151ec37a27f5fbb26736bb522b35e5', '16d1e8551093325d60d5db5644203dd53cf9305e', 'w', '13312344321', 'a', 'upload/pic/2017012221583572.jpg');
 
 -- --------------------------------------------------------
 
@@ -1345,12 +1356,6 @@ CREATE TABLE IF NOT EXISTS `wanted` (
 --
 -- 限制导出的表
 --
-
---
--- 限制表 `ad`
---
-ALTER TABLE `ad`
-  ADD CONSTRAINT `ad_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`);
 
 --
 -- 限制表 `candidate`
