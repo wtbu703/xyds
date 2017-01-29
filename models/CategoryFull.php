@@ -9,8 +9,9 @@ use Yii;
  *
  * @property string $id
  * @property string $categoryCode
- * @property string $categoryFullCode
  * @property string $categoryFullName
+ * @property string $buyCode
+ * @property string $sellCode
  * @property integer $orderBy
  * @property string $state
  */
@@ -34,7 +35,7 @@ class CategoryFull extends \yii\db\ActiveRecord
             [['orderBy'], 'integer'],
             [['id'], 'string', 'max' => 40],
             [['categoryCode', 'categoryFullName'], 'string', 'max' => 32],
-            [['categoryFullCode', 'state'], 'string', 'max' => 4],
+            [['buyCode', 'sellCode', 'state'], 'string', 'max' => 4],
         ];
     }
 
@@ -46,8 +47,9 @@ class CategoryFull extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'categoryCode' => 'Category Code',
-            'categoryFullCode' => 'Category Full Code',
             'categoryFullName' => 'Category Full Name',
+            'buyCode' => 'Buy Code',
+            'sellCode' => 'Sell Code',
             'orderBy' => 'Order By',
             'state' => 'State',
         ];
