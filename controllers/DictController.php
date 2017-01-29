@@ -234,8 +234,9 @@ class DictController extends Controller{
             $dictItemIds_arry = explode('-',$dictItemIds);
             foreach($dictItemOrders_arry as $key=>$data)
             {
-                $dictitem = new Dictitem();
+
                 if($dictItemIds_arry[$key] == '1'){
+	                $dictitem = new Dictitem();
                     $dictitem->id = Common::generateID();
                 }else{
                     $dictitem = Dictitem::findOne($dictItemIds_arry[$key]);
