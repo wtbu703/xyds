@@ -8,7 +8,7 @@ function selectall(id){
 	}
 }
 
-//生成性别下拉框
+//生成字典下拉框
 //dictCode 表示字典标识
 //selectId 表示页面需要生产字典中的select元素Id
 //name 表示该字典的中文名称
