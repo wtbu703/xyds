@@ -254,4 +254,41 @@ class CategoryController extends Controller{
 			return false;
 		}
 	}
+
+	/**
+	 * 删除一条商品大类，包括其下的具体类别
+	 * @return string
+	 * @throws \Exception
+	 */
+	public function actionDeleteOne(){
+
+		$categoryCode = Yii::$app->request->post('categoryCode');
+		Category::find()
+			->where(['categoryCode' => $categoryCode])
+			->one()
+			->delete();
+		CategoryFull::deleteAll('categoryCode = :categoryCode',[':categoryCode'=>$categoryCode]);
+		return 'success';
+
+	}
+
+	/**
+	 * 删除多条商品大类记录
+	 * @return string
+	 * @throws \Exception
+	 */
+	public function actionDeleteMore(){
+
+		$categoryCodes = Yii::$app->request->post('categoryCodes');
+		$categoryCodes_array = explode('-',$categoryCodes);
+		foreach($categoryCodes_array as $key => $data){
+			CategoryFull::deleteAll('categoryCode = :categoryCode',[':categoryCode'=>$data]);
+			Category::find()
+				->where(['categoryCode' => $data])
+				->one()
+				->delete();
+		}
+		return 'success';
+
+	}
 }

@@ -1,7 +1,7 @@
 <script type="text/javascript">
     var findOneUrl = "<?=yii::$app->urlManager->createUrl('category/find-one')?>";
-    var deldictUrl = "<?=yii::$app->urlManager->createUrl('dict/deleteone')?>";
-    var deldictallUrl = "<?=yii::$app->urlManager->createUrl('dict/delelemore')?>"
+    var deleteOneUrlUrl = "<?=yii::$app->urlManager->createUrl('category/delete-one')?>";
+    var deleteMoreUrl = "<?=yii::$app->urlManager->createUrl('category/delete-more')?>"
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/category/listall.js" charset="utf-8"></script>
 <div class="pad-lr-10">
@@ -21,14 +21,14 @@
             <?if(!is_null($categorys)){?>
 	            <?php foreach ($categorys as $index => $val){?>
 	                <tr align="center">
-		                <td align="left"><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
+		                <td align="left"><input type="checkbox" id="categoryCode" name="categoryCode" value="<?=$val->categoryCode?>"/></td>
 	                    <td><?=$index+$pages->page*$pages->pageSize+1?></td>
 	                    <td><a href="javascript:detail('<?=$val->categoryCode?>','<?=$val->categoryName?>')"><?=$val->categoryCode?></a></td>
 	                    <td><?=$val->categoryName?></td>
 	                    <td><?=$val->state?></td>
 	                    <td>
 	                        <a href="javascript:update('<?=$val->categoryCode?>','<?=$val->categoryName?>')">修改</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-		                    <a href="javascript:deleteDict('<?=$val->id?>')">删除</a>
+		                    <a href="javascript:deleteOne('<?=$val->categoryCode?>')">删除</a>
 	                    </td>
 	                </tr>
 	            <?}?>
@@ -37,7 +37,7 @@
         </table>
         <div class="btn">
             <label for="check_box"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</label>
-            <input type="button" class="buttondel" name="dosubmit" value="删除" onclick="if (confirm('您确定要删除吗？')) delopt();"/>
+            <input type="button" class="buttondel" name="dosubmit" value="删除" onclick="if (confirm('您确定要删除吗？')) deleteMore();"/>
         </div>
         <div id="pages">
             <a><?=$pages->totalCount?>条/<?=$pages->pageCount?>页</a>

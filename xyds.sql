@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2017 �?01 �?28 �?20:40
+-- 生成日期: 2017 �?01 �?30 �?20:23
 -- 服务器版本: 5.5.53
 -- PHP 版本: 5.6.27
 
@@ -207,6 +207,72 @@ CREATE TABLE IF NOT EXISTS `candidate` (
   KEY `FK_CANDIDAT_CANDIDATE_USER` (`userId`),
   KEY `FK_CANDIDAT_CANDIDATE_WANTED` (`position_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `category`
+--
+
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` char(40) NOT NULL DEFAULT '',
+  `categoryCode` varchar(32) DEFAULT NULL,
+  `categoryName` varchar(32) DEFAULT NULL,
+  `intro` varchar(128) DEFAULT NULL,
+  `state` char(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `category`
+--
+
+INSERT INTO `category` (`id`, `categoryCode`, `categoryName`, `intro`, `state`) VALUES
+('54cc3e28ac8cd59a17dfde44aeaffd647c51bc2d', 'agricultural', '农产品', '共3类', '1'),
+('05af24f065f63c391ddd9a23b095c17c1e2c266c', 'industry', '工业消费品', '共12类', '1'),
+('162330a337b00a89ff87462c951707d9c5efce07', 'means', '生产资料', '共4类', '1');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `categoryfull`
+--
+
+CREATE TABLE IF NOT EXISTS `categoryfull` (
+  `id` char(40) NOT NULL DEFAULT '',
+  `categoryCode` varchar(32) DEFAULT NULL,
+  `categoryFullName` varchar(32) DEFAULT NULL,
+  `buyCode` char(4) DEFAULT NULL,
+  `sellCode` char(4) DEFAULT NULL,
+  `orderBy` int(1) DEFAULT NULL,
+  `state` char(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `categoryfull`
+--
+
+INSERT INTO `categoryfull` (`id`, `categoryCode`, `categoryFullName`, `buyCode`, `sellCode`, `orderBy`, `state`) VALUES
+('703630a3df74ffa4d5a52e46a13292d5586eed2a', 'agricultural', '生鲜食品类', '5', '28', 2, '1'),
+('d7ff9ac10d19f219f474af51f48e4580dc925719', 'agricultural', '粮油类', '4', '27', 1, '1'),
+('f94fa320e08b3dcf755b48d782cdf522490ebf46', 'agricultural', '干货类', '6', '29', 3, '1'),
+('39e40f85dfe770ff08553d2e66f0af2fc588b2ba', 'industry', '休闲食品类', '8', '30', 1, '1'),
+('2c5765855523e89babb64c843ba3a1c4fe0b8f8a', 'industry', '烟酒类', '9', '32', 2, '1'),
+('2ea1602458dbcc8e74b0990b9b74e0b3f2568a96', 'industry', '服装、鞋帽、针纺织品类', '10', '33', 3, '1'),
+('d664b6a27adabcfe36fa4887f363c4e6ed2a1242', 'industry', '化妆品类', '11', '34', 4, '1'),
+('fa8dc990083de046e3f46ca9022e7f7ec28fe80c', 'industry', '金银珠宝类', '12', '35', 5, '1'),
+('b215b07a4b4cbe3eec57327742404678ed3bbec1', 'industry', '日用品类', '13', '36', 6, '1'),
+('827d2ce9cbb0bc9d51e4e876cac9ea00fab8921d', 'industry', '家用电器和音像器材类', '14', '37', 7, '1'),
+('5cdf9ac8deb5addb72e28d0f9d344236aff8b957', 'industry', '中西药品类', '15', '38', 8, '1'),
+('ffff89d3172add19233537f787b090cc93b51947', 'industry', '文化办公用品类', '16', '39', 9, '1'),
+('9eca649127d628aa1aaa0cf7d9a7f2c9a14cc0e6', 'industry', '家具类', '17', '40', 10, '1'),
+('1429dff01ca6fa4079a499297d66bf686b07e7bd', 'industry', '通讯器材类', '18', '41', 11, '1'),
+('ffc0985ba34ea2b5866042d15e05be2d8842c0de', 'industry', '建筑及装潢材料类', '19', '42', 12, '1'),
+('7f478fe1c2ce4baf281b752b593f1faeafb992b8', 'means', '农用生产资料类', '20', '43', 1, '1'),
+('fe2ecf17c0c4f3a6e5e8b674b1f0078c33c39452', 'means', '化工产品类', '21', '44', 2, '1'),
+('8a489d69e3da3e08e8f45df494741c107b4fef6d', 'means', '机电类', '22', '45', 3, '1'),
+('07804ef37af737138182d5a03199d7bc2c633203', 'means', '木材类', '23', '46', 4, '1');
 
 -- --------------------------------------------------------
 
@@ -588,7 +654,9 @@ INSERT INTO `menu` (`id`, `menuName`, `menuUrl`, `upLevelMenu`, `menuLevel`, `or
 ('zsyj587f504924d7f1zsyj51481213', '服务站点管理', '', NULL, '1', 5, '1'),
 ('zsyj587f506989de17zsyj11901791', '服务站点管理', '', 'zsyj587f504924d7f1zsyj51481213', '2', 0, '1'),
 ('zsyj587f507cf28309zsyj53508275', '服务站点管理', 'index.php?r=service-site/index', 'zsyj587f506989de17zsyj11901791', '3', 0, '1'),
-('zsyj5884bcf1ad8e25zsyj72558763', '日交易信息', 'index.php?r=service-site-deal-table/index', 'zsyj587f506989de17zsyj11901791', '3', 1, '1');
+('zsyj5884bcf1ad8e25zsyj72558763', '日交易信息', 'index.php?r=service-site-deal-table/index', 'zsyj587f506989de17zsyj11901791', '3', 1, '1'),
+('zsyj588dcf936ac296zsyj94277028', '商品类别管理', '', 'zsyj587f504924d7f1zsyj51481213', '2', 1, '1'),
+('zsyj588dcfa70d79d3zsyj49629846', '商品类别管理', 'index.php?r=category/index', 'zsyj588dcf936ac296zsyj94277028', '3', 0, '1');
 
 -- --------------------------------------------------------
 
