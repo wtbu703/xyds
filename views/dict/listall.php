@@ -51,7 +51,7 @@ use yii\helpers\Html;
             var getdictdetailUrl = "<?=yii::$app->urlManager->createUrl('dict/findone')?>";
             var editUrl = "<?=yii::$app->urlManager->createUrl('dict/update')?>";
             var deldictUrl = "<?=yii::$app->urlManager->createUrl('dict/deleteone')?>"
-            var deldictallUrl = "<?=yii::$app->urlManager->createUrl('dict/delelemore')?>"
+            var deldictallUrl = "<?=yii::$app->urlManager->createUrl('dict/deletemore')?>"
         </script>
         <script language="javascript" type="text/javascript" src="js/admin/dict/listall.js" charset="utf-8"></script>
         <script language="javascript" type="text/javascript" src="js/page.js" charset="utf-8"></script>

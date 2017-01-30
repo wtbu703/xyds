@@ -29,19 +29,19 @@ function detail(categoryCode,categoryName) {
 }
 
 // 单一删除
-function deleteDict(dictId){
-    var paraStr = 'dictCode='+dictId;
+function deleteOne(categoryCode){
+    var paraStr = 'categoryCode='+categoryCode;
     if (confirm('您确定要删除吗？')) {
         $.ajax({
-            url: deldictUrl,
+            url: deleteOneUrlUrl,
             type: "post",
             dataType: "text",
             data:paraStr ,
             async: "false",
-            success: function (data) {
+            success: function () {
                 $('#pageForm').submit();
             },
-            error:function(data){
+            error:function(){
                 window.top.art.dialog({
                     content: '删除失败！',
                     lock: true,
@@ -56,32 +56,40 @@ function deleteDict(dictId){
     }
 }
 
-//删除字典操作
-function delopt(){
-	var len=$("input[name='dictCode']:checked").size()-1;
-	var ids='';
-	$("input[name='dictCode']:checked").each(function(i, n){
+//多选删除操作
+function deleteMore(){
+	var len=$("input[name='categoryCode']:checked").size()-1;
+	var categoryCodes='';
+	$("input[name='categoryCode']:checked").each(function(i, n){
 		if(i<len-1){
-			ids += $(n).val() + '-';
+            categoryCodes += $(n).val() + '-';
 		}else{
-			ids += $(n).val();
+            categoryCodes += $(n).val();
 		}
 	});
-	if(ids=='') {
-		window.top.art.dialog({content:'请选择至少一条数据',lock:true,width:'200',height:'50',border: false,time:1.5},function(){});
+	if(categoryCodes=='') {
+		window.top.art.dialog({
+            content:'请选择至少一条数据',
+            lock:true,
+            width:'200',
+            height:'50',
+            border: false,
+            time:1.5
+        },function(){}
+        );
 		return false;
 	}else{
-		var paraStr = 'ids='+ids;
+		var paraStr = 'categoryCodes='+categoryCodes;
 		$.ajax({
-			url: deldictallUrl,
+			url: deleteMoreUrl,
 			type: "post",
 			dataType: "text",
 			data:paraStr ,
 			async: "false",
-			success: function (data) {
+			success: function () {
 				$('#pageForm').submit();
 			},
-			error:function(data){
+			error:function(){
 				window.top.art.dialog({
 					content: '删除失败！',
 					lock: true,

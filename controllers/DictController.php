@@ -288,7 +288,7 @@ class DictController extends Controller{
      * @return string
      * @throws \Exception
      */
-    public function actionDelelemore(){
+    public function actionDeletemore(){
 
         $dictCodes = Yii::$app->request->post('ids');
         $dictCodes_array = explode('-',$dictCodes);
