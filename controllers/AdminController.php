@@ -144,7 +144,7 @@ class AdminController extends Controller{
         Yii::$app->session->remove('truename');
         Yii::$app->session->remove('userType');
         Yii::$app->session->remove('roleId');
-        yii::$app->cache->flush();
+        Yii::$app->cache->flush();
         return $this->render('index');
 
     }

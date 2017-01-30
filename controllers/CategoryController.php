@@ -14,15 +14,26 @@ use app\models\CategoryFull;
 use yii\data\Pagination;
 use app\common\Common;
 use app\models\Dictitem;
+use yii\helpers\Json;
 
+/**
+ * Class CategoryController
+ * @package app\controllers
+ */
 class CategoryController extends Controller{
 
 	public $enableCsrfValidation = false;
 
+	/**
+	 * @return string
+	 */
 	public function actionIndex(){
 		return $this->render('index');
 	}
 
+	/**
+	 * @return string
+	 */
 	public function actionAdd(){
 		return $this->render('add');
 	}
@@ -290,5 +301,20 @@ class CategoryController extends Controller{
 		}
 		return 'success';
 
+	}
+
+	/**
+	 * 通过给的Code
+	 * 向服务站点日交易表传递具体类别
+	 * @return array|yii\db\ActiveRecord[]
+	 */
+	public function actionFindOneFull(){
+
+		$categoryCode = Yii::$app->request->post('categoryCode');
+		$categoryFulls = CategoryFull::find()
+			->where(['categoryCode' => $categoryCode])
+			->orderBy('orderBy')
+			->all();
+		return Json::encode($categoryFulls);
 	}
 }

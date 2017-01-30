@@ -1,6 +1,7 @@
 <script type="text/javascript">
 	var saveUrl = "<?=Yii::$app->urlManager->createUrl('service-site-deal-table/add-one')?>";
 	var indexUrl = "<?=Yii::$app->urlManager->createUrl('service-site-deal-table/index')?>";
+	var findFullUrl = "<?=Yii::$app->urlManager->createUrl('category/find-one-full')?>";
 </script>
 <script type="text/javascript" src="js/admin/deal-table/deal.js"></script>
 
@@ -20,7 +21,19 @@
                     </tr>
 	                <tr>
 		                <th>代买商品类别：</th>
-		                <td><input type="text" style="width:250px;height: 30px;" name="buyCategory" id="buyCategory"  class="input-text"/></td>
+		                <td>
+			                <select id="category">
+				                <option value="0">请选择商品大类</option>
+				                <?if(!is_null($categorys)){?>
+					                <?foreach($categorys as $key => $value){?>
+						                <option value="<?=$value['categoryCode']?>" name="categoryCode"><?=$value['categoryName']?></option>
+					                <?}?>
+				                <?}?>
+			                </select>
+			                <select id="categoryFullBuy">
+
+			                </select>
+		                </td>
 	                </tr>
 	                <tr>
 		                <th>代买总金额：</th>
@@ -55,3 +68,41 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+	$("#category").change(function(){
+		var selectValue="categoryCode="+$("#category").val();
+
+		var categoryFull=$('#categoryFullBuy');
+		categoryFull.children().remove();
+		var html = [];
+		html.push(" <option value='' selected>请选择具体类别</option>");
+
+		$.ajax({
+			url: findFullUrl,
+			type: "post",
+			dataType: "json",
+			data: selectValue,
+			async: false,
+			success:function(data){
+				$.each(data,function(i,n){
+					html.push(" <option value='"+ n.buyCode +"'>"+ n.categoryFullName +"</option>");
+				});
+				categoryFull.append(html.join(''));
+			},
+			error:function(){
+				window.top.art.dialog({
+					content:'加载商品类别出错！',
+					lock:true,
+					width:'250',
+					height:'50',
+					border: false,
+					time:1.5
+				},function(){});
+			}
+		});
+
+
+
+
+	});
+</script>
