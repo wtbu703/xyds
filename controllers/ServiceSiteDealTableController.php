@@ -16,6 +16,8 @@ use yii\data\Pagination;
 use app\models\Dictitem;
 use yii\db\Query;
 use app\models\ServiceSiteDealTable;
+use app\models\Category;
+use app\models\CategoryFull;
 
 /**
  * Class ServiceSiteDealTableController
@@ -113,8 +115,10 @@ class ServiceSiteDealTableController extends Controller{
 		$serviceSite['code'] = $site->code;
 		$serviceSite['name'] = $site->name;
 
+		$categorys = Category::find()->all();
 		return $this->render('deal',[
-			'serviceSite' => $serviceSite
+			'serviceSite' => $serviceSite,
+			'categorys' => $categorys
 		]);
 	}
 
@@ -125,7 +129,7 @@ class ServiceSiteDealTableController extends Controller{
 	public function actionAddOne(){
 
 		$siteId = Yii::$app->request->post('id');
-		$buyCategory = Yii::$app->request->post('buyCategory');
+		$buyCategory = Yii::$app->request->post('categoryFullBuy');
 		$buySum = Yii::$app->request->post('buySum');
 		$buyTotal = Yii::$app->request->post('buyTotal');
 		$sellCategory = Yii::$app->request->post('sellCategory');

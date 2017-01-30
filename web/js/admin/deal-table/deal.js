@@ -1,8 +1,3 @@
-// 加载字典信息
-/*$(document).ready(function(){
-    generateDict('DICT_COUNTYTYPE','type','类型');
-});*/
-
 //页面校验
 $(function() {
     $.formValidator.initConfig({
@@ -66,7 +61,7 @@ $(function() {
 function saveDealTable(){
 	if($.formValidator.pageIsValid()){ // 表单提交进行校验
 		var paraStr;
-		paraStr = "id=" + $('#id').val() + "&buyCategory=" + $('#buyCategory').val() + "&buySum=" + $('#buySum').val() + "&buyTotal=" + $('#buyTotal').val()+ "&sellCategory=" + $('#sellCategory').val()+ "&sellSum=" + $('#sellSum').val()+ "&sellTotal=" + $('#sellTotal').val();
+		paraStr = "id=" + $('#id').val() + "&categoryFullBuy=" + $('#categoryFullBuy').val() + "&buySum=" + $('#buySum').val() + "&buyTotal=" + $('#buyTotal').val()+ "&sellCategory=" + $('#sellCategory').val()+ "&sellSum=" + $('#sellSum').val()+ "&sellTotal=" + $('#sellTotal').val();
 		$.ajax({
 			url: saveUrl,
 			type: "post",
