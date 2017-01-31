@@ -11,30 +11,6 @@ $(function() {
         }
     });
     // 校验模型名称
-    $("#categoryFullBuy").formValidator({
-        onshow: "（必填）",
-        onfocus: "（必填）请选择选项",
-        oncorrect: "（正确）"
-    }).inputValidator({
-        min: 0,  //开始索引
-        onerror: "请选择站点类型!"
-    });
-    $("#categoryFullSell").formValidator({
-        onshow: "（必填）",
-        onfocus: "（必填）请选择选项",
-        oncorrect: "（正确）"
-    }).inputValidator({
-        min: 0,  //开始索引
-        onerror: "请选择站点类型!"
-    });
-    $("#buySum").formValidator({
-        onshow: "（必填）",
-        onfocus: "（必填）",
-        oncorrect: "（正确）"
-    }).inputValidator({               //校验不能为空
-        min:1,
-        onerror:"请输入总金额！"
-    });
     $("#buyTotal").formValidator({
         onshow: "（必填）",
         onfocus: "（必填）",
@@ -42,14 +18,6 @@ $(function() {
     }).inputValidator({               //校验不能为空
         min:1,
         onerror:"请输入订单数！"
-    });
-    $("#sellSum").formValidator({
-        onshow: "（必填）",
-        onfocus: "（必填）",
-        oncorrect: "（正确）"
-    }).inputValidator({               //校验不能为空
-        min:1,
-        onerror:"请输入总金额！"
     });
     $("#sellTotal").formValidator({
         onshow: "（必填）",
@@ -68,8 +36,24 @@ $(function() {
  */
 function saveDealTable(){
 	if($.formValidator.pageIsValid()){ // 表单提交进行校验
+        var buys = $("input[name='buySum']");
+        var buyCodes = $("select[name=categoryFullBuy]");
+        var sells = $("input[name='sellSum']");
+        var sellCodes = $("select[name=categoryFullSell]");
+
+        var buysStr = buys[0].value;
+        var buyCodesStr = buyCodes[0].value;
+        var sellsStr = sells[0].value;
+        var sellCodesStr = sellCodes[0].value;
+
+        for(var i=1;i<buys.length;i++){
+            buysStr += "-" + buys[i].value;
+            buyCodesStr += "-" + buyCodes[i].value;
+            sellsStr += "-" + sells[i].value;
+            sellCodesStr += "-" + sellCodes[i].value;
+        }
 		var paraStr;
-		paraStr = "id=" + $('#id').val() + "&categoryFullBuy=" + $('#categoryFullBuy').val() + "&buySum=" + $('#buySum').val() + "&buyTotal=" + $('#buyTotal').val()+ "&categoryFullSell=" + $('#categoryFullSell').val()+ "&sellSum=" + $('#sellSum').val()+ "&sellTotal=" + $('#sellTotal').val();
+		paraStr = "id=" + $('#id').val() + "&categoryFullBuy=" + buyCodesStr + "&buySum=" + buysStr + "&buyTotal=" + $('#buyTotal').val()+ "&categoryFullSell=" + sellCodesStr + "&sellSum=" + sellsStr + "&sellTotal=" + $('#sellTotal').val();
 		$.ajax({
 			url: saveUrl,
 			type: "post",
@@ -115,4 +99,14 @@ function saveDealTable(){
 		});
 
 	}
+}
+
+//删除商品大类
+function deleteRow(rowId){
+    var row=document.getElementById(rowId);
+    var index=row.rowIndex;
+    var objTable=document.getElementById('deal');
+    objTable.deleteRow(index);
+    objTable.deleteRow(index);
+    objTable.deleteRow(index);
 }
