@@ -11,7 +11,15 @@ $(function() {
         }
     });
     // 校验模型名称
-    $("#type").formValidator({
+    $("#categoryFullBuy").formValidator({
+        onshow: "（必填）",
+        onfocus: "（必填）请选择选项",
+        oncorrect: "（正确）"
+    }).inputValidator({
+        min: 0,  //开始索引
+        onerror: "请选择站点类型!"
+    });
+    $("#categoryFullSell").formValidator({
         onshow: "（必填）",
         onfocus: "（必填）请选择选项",
         oncorrect: "（正确）"
@@ -61,7 +69,7 @@ $(function() {
 function saveDealTable(){
 	if($.formValidator.pageIsValid()){ // 表单提交进行校验
 		var paraStr;
-		paraStr = "id=" + $('#id').val() + "&categoryFullBuy=" + $('#categoryFullBuy').val() + "&buySum=" + $('#buySum').val() + "&buyTotal=" + $('#buyTotal').val()+ "&sellCategory=" + $('#sellCategory').val()+ "&sellSum=" + $('#sellSum').val()+ "&sellTotal=" + $('#sellTotal').val();
+		paraStr = "id=" + $('#id').val() + "&categoryFullBuy=" + $('#categoryFullBuy').val() + "&buySum=" + $('#buySum').val() + "&buyTotal=" + $('#buyTotal').val()+ "&categoryFullSell=" + $('#categoryFullSell').val()+ "&sellSum=" + $('#sellSum').val()+ "&sellTotal=" + $('#sellTotal').val();
 		$.ajax({
 			url: saveUrl,
 			type: "post",

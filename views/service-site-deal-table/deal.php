@@ -22,7 +22,7 @@
 	                <tr>
 		                <th>代买商品类别：</th>
 		                <td>
-			                <select id="category">
+			                <select id="categoryBuy">
 				                <option value="0">请选择商品大类</option>
 				                <?if(!is_null($categorys)){?>
 					                <?foreach($categorys as $key => $value){?>
@@ -45,7 +45,19 @@
 	                </tr>
 	                <tr>
 		                <th>销售商品类别：</th>
-		                <td><input type="text" style="width:250px;height: 30px;" name="sellCategory" id="sellCategory"  class="input-text"/></td>
+		                <td>
+			                <select id="categorySell">
+				                <option value="0">请选择商品大类</option>
+				                <?if(!is_null($categorys)){?>
+					                <?foreach($categorys as $key => $value){?>
+						                <option value="<?=$value['categoryCode']?>" name="categoryCode"><?=$value['categoryName']?></option>
+					                <?}?>
+				                <?}?>
+			                </select>
+			                <select id="categoryFullSell">
+
+			                </select>
+		                </td>
 	                </tr>
 	                <tr>
 		                <th>销售总金额：</th>
@@ -63,14 +75,15 @@
     </form>
     <div class="table-list">
         <div class="rightbtn">
-            <input type="button" class="buttonsave" value="增加" name="dosubmit" onclick="saveDealTable()" />
+            <input type="button" class="buttonsave" value="提交" name="dosubmit" onclick="saveDealTable()" />
             <input type="button" class="buttonclose" value="关闭" name="dosubmit"  onclick="window.top.$.dialog.get('site_deal').close();"/>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-	$("#category").change(function(){
-		var selectValue="categoryCode="+$("#category").val();
+	//代买商品类别
+	$("#categoryBuy").change(function(){
+		var selectValue="categoryCode="+$("#categoryBuy").val();
 
 		var categoryFull=$('#categoryFullBuy');
 		categoryFull.children().remove();
@@ -100,9 +113,37 @@
 				},function(){});
 			}
 		});
+	});
+	$("#categorySell").change(function(){
+		var selectValue2="categoryCode="+$("#categorySell").val();
 
+		var categoryFull2=$('#categoryFullSell');
+		categoryFull2.children().remove();
+		var html = [];
+		html.push(" <option value='' selected>请选择具体类别</option>");
 
-
-
+		$.ajax({
+			url: findFullUrl,
+			type: "post",
+			dataType: "json",
+			data: selectValue2,
+			async: false,
+			success:function(data){
+				$.each(data,function(i,n){
+					html.push(" <option value='"+ n.sellCode +"'>"+ n.categoryFullName +"</option>");
+				});
+				categoryFull2.append(html.join(''));
+			},
+			error:function(){
+				window.top.art.dialog({
+					content:'加载商品类别出错！',
+					lock:true,
+					width:'250',
+					height:'50',
+					border: false,
+					time:1.5
+				},function(){});
+			}
+		});
 	});
 </script>

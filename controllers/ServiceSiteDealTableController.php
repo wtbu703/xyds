@@ -17,7 +17,6 @@ use app\models\Dictitem;
 use yii\db\Query;
 use app\models\ServiceSiteDealTable;
 use app\models\Category;
-use app\models\CategoryFull;
 
 /**
  * Class ServiceSiteDealTableController
@@ -132,7 +131,7 @@ class ServiceSiteDealTableController extends Controller{
 		$buyCategory = Yii::$app->request->post('categoryFullBuy');
 		$buySum = Yii::$app->request->post('buySum');
 		$buyTotal = Yii::$app->request->post('buyTotal');
-		$sellCategory = Yii::$app->request->post('sellCategory');
+		$sellCategory = Yii::$app->request->post('categoryFullSell');
 		$sellSum = Yii::$app->request->post('sellSum');
 		$sellTotal = Yii::$app->request->post('sellTotal');
 
