@@ -33,7 +33,7 @@ function deleteOne(id){
     var paraStr = 'id='+id;
     if (confirm('您确定要删除吗？')) {
         $.ajax({
-            url: deleteOneUrlUrl,
+            url: deleteOneUrl,
             type: "post",
             dataType: "text",
             data:paraStr ,
@@ -102,4 +102,32 @@ function deleteMore(){
 			}
 		});
 	}
+}
+
+//单一提交
+function submit(id){
+    var paraStr = 'id='+id;
+    if (confirm('您确定要提交吗？')) {
+        $.ajax({
+            url: submitUrl,
+            type: "post",
+            dataType: "text",
+            data:paraStr ,
+            async: "false",
+            success: function () {
+                $('#pageForm').submit();
+            },
+            error:function(){
+                window.top.art.dialog({
+                    content: '提交失败！',
+                    lock: true,
+                    width: 250,
+                    height: 80,
+                    border: false,
+                    time: 2
+                }, function () {
+                });
+            }
+        });
+    }
 }
