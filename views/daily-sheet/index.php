@@ -3,69 +3,71 @@
  * Created by PhpStorm.
  * User: liluoao
  * Date: 2017/1/31
- * Time: 17:14
+ * Time: 19:41
  */
+$this->title = '日报表管理';
 ?>
 <script type="text/javascript">
-	var findOneUrl = "<?=Yii::$app->urlManager->createUrl('service-site-deal-table/find-one')?>";
-	var dealTableUrl = "<?=Yii::$app->urlManager->createUrl('service-site-deal-table/deal-table')?>";
+	window.top.$('#display_center_id').css('display','none');
+	//iframe自适应高度
+	function iFrameHeight() {
+		var ifm= document.getElementById("iframeId");
+		var subWeb = document.frames ? document.frames["iframeId"].document : ifm.contentDocument;
+		if(ifm != null && subWeb != null) {
+			ifm.height = subWeb.body.scrollHeight;
+		}
+	}
+    var listallUrl = '<?=Yii::$app->urlManager->createUrl('daily-sheet/find-by-attri')?>';
+	var uploadExcelUrl = '<?=Yii::$app->urlManager->createUrl('daily-sheet/upload-excel')?>';
 </script>
-<script type="text/javascript" src="js/admin/deal-table/index.js"></script>
+<script language="javascript" type="text/javascript" src="js/admin/daily-sheet/index.js" charset="utf-8"></script>
 <div class="subnav" id="display" >
-	<div class="content-menu ib-a blue line-x">
-		<a class="add fb" href="javascript:;"><em>填写日交易信息</em></a>
-	</div>
+    <div class="content-menu ib-a blue line-x">
+        <a class="add fb" href="javascript:uploadExcel();"><em>上传日报表</em></a>
+    </div>
 </div>
 <div class="pad-lr-10">
-	<div class="table-list">
-		<table width="100%" cellspacing="0">
-			<thead>
-				<tr align="center">
-					<th width="30px">序号</th>
-					<th width="160px">站点编码</th>
-					<th width="160px">站点名称</th>
-					<th width="160px">站点类型</th>
-					<th>操作</th>
-				</tr>
-			</thead>
-			<tbody>
-			<?if(!is_null($serviceSites)){?>
-				<?php foreach ($serviceSites as $index => $val){?>
-					<tr align="center">
-						<td><?=$index+$pages->page*$pages->pageSize+1?></td>
-						<td><?=htmlspecialchars($val->code)?></td>
-						<td><a href="javascript:detail('<?=$val->id?>','<?=$val->name?>')"><?=htmlspecialchars($val->name)?></a></td>
-						<td><?=$val->countyType?></td>
-						<td>
-							<a href="javascript:addDealTable('<?=$val['id']?>','<?=$val->name?>')">填写日交易信息</a>
-						</td>
-					</tr>
-				<?}?>
-			<?}?>
-			</tbody>
-		</table>
-		<div id="pages">
-			<a><?=$pages->totalCount?>条/<?=$pages->pageCount?>页</a>
-			<input type="hidden" value="<?=$pages->page?>" id="curPage"/><!--当前页-->
-			<input type="hidden" value="<?=$pages->pageCount?>" id="pageCount"/><!--总页数-->
-			<input type="hidden" value="<?=$pages->pageSize?>" id="pageSize"/><!--每页显示数-->
-			<?if($pages->page>0){?>
-				<!-- 判断是否不是第一页 -->
-				<a id="firstPageid" href="javascript:page('1')">首页</a>
-				<a id="supPageId" href="javascript:page('2')">上一页</a>
-			<?}?>
-			<?=$pages->page+1?>
-			<?if($pages->page<$pages->pageCount-1){?>
-				<!-- 判断如果不是最后一页 -->
-				<a id="nextPageid" href="javascript:page('3')">下一页</a>
-				<a id="lastPageid" href="javascript:page('4')" class="a1">尾页</a>
-			<?}?>
-			<input type="text" size="2" class="input-text" value="<?=$pages->page+1?>" id="goPage"/><a href="javascript:page('0')">GO</a>
-		</div>
-	</div>
+    <form action="" method="post" id="searchForm" name="searchForm" target="iframeId">
+        <table width="100%" cellspacing="0" class="search-form">
+            <tbody>
+            <tr>
+                <td>
+	                <div class="explain-col">
+		                时间：
+		                <input id="date1" name="date1" type="text" value="" class="date">
+		                <script type="text/javascript">
+			                Calendar.setup({
+				                weekNumbers: true,
+				                inputField : "date1",
+				                trigger    : "date1",
+				                dateFormat: "%Y-%m-%d",
+				                showTime: true,
+				                minuteStep: 1,
+				                onSelect   : function() {this.hide();}
+			                });
+		                </script>
+		                &nbsp;至&nbsp;&nbsp;
+		                <input id="date2" name="date2" type="text" value="" class="date">
+		                <script type="text/javascript">
+			                Calendar.setup({
+				                weekNumbers: true,
+				                inputField : "date2",
+				                trigger    : "date2",
+				                dateFormat: "%Y-%m-%d",
+				                showTime: true,
+				                minuteStep: 1,
+				                onSelect   : function() {this.hide();}
+			                });
+		                </script>
+                        <input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询" />
+                        <div class = "checkTip" style="float:right;margin-right:65%;color:red;">
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <div class="table-list">
+        <iframe scrolling="auto" width="100%" height="450" id="iframeId" name="iframeId" frameborder="0" onLoad="iFrameHeight()" src="<?=Yii::$app->urlManager->createUrl('daily-sheet/find-by-attri')?>"></iframe>
+    </div>
 </div>
-<form action="<?=yii::$app->urlManager->createUrl('service-site-deal-table/find-by-attri')?>" method="get" id="pageForm">
-	<input type="hidden" id="page" name="page"/>
-	<input type="hidden"  name="r" value="service-site-deal-table/find-by-attri"/>
-	<input type="hidden" id="pre-page" name="pre-page" value="<?=$pages->pageSize?>"/>
-</form>

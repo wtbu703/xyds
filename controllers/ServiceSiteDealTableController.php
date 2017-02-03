@@ -145,6 +145,7 @@ class ServiceSiteDealTableController extends Controller{
 		$dealTable->sellGoodCategory = $sellCategory;
 		$dealTable->sellMoneySum = $sellSum;
 		$dealTable->sellOrderTotal = $sellTotal;
+		$dealTable->state = '0';
 
 		if($dealTable->save()){
 			return "success";

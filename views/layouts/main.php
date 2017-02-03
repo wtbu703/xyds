@@ -50,6 +50,13 @@ use yii\helpers\Html;
 	<script type="text/javascript" src="js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
 	<script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 	<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+	<!--日历-->
+	<link rel="stylesheet" type="text/css" href="js/calendar/win2k.css">
+	<link rel="stylesheet" type="text/css" href="js/calendar/jscal2.css">
+	<link rel="stylesheet" type="text/css" href="js/calendar/border-radius.css">
+	<link rel="stylesheet" type="text/css" href="js/calendar/calendar-blue.css">
+	<script type="text/javascript" src="js/calendar/calendar.js"></script>
+	<script type="text/javascript" src="js/calendar/en.js"></script>
 	<!--公共函数-->
 	<script type="text/javascript" src="js/common.js"></script>
 	<script language="javascript" type="text/javascript" src="js/page.js" charset="utf-8"></script>

@@ -12,7 +12,7 @@ use Yii;
  * @property string $dealId
  * @property string $code
  * @property string $name
- * @property integer $countyType
+ * @property string $countyType
  * @property string $buyGoodCategory
  * @property string $buyMoneySum
  * @property string $buyOrderTotal
@@ -20,6 +20,7 @@ use Yii;
  * @property string $sellMoneySum
  * @property string $sellOrderTotal
  * @property string $date
+ * @property string $state
  */
 class DailySheet extends \yii\db\ActiveRecord
 {
@@ -38,11 +39,10 @@ class DailySheet extends \yii\db\ActiveRecord
     {
         return [
             [['id'], 'required'],
-            [['countyType', 'buyOrderTotal', 'sellOrderTotal'], 'integer'],
+            [['siteId', 'dealId', 'code', 'name', 'countyType', 'buyGoodCategory', 'buyMoneySum', 'buyOrderTotal', 'sellGoodCategory', 'sellMoneySum', 'sellOrderTotal'], 'string'],
             [['date'], 'safe'],
-            [['id', 'siteId', 'dealId'], 'string', 'max' => 40],
-            [['code', 'name'], 'string', 'max' => 16],
-            [['buyGoodCategory', 'buyMoneySum', 'sellGoodCategory', 'sellMoneySum'], 'string', 'max' => 32],
+            [['id'], 'string', 'max' => 40],
+            [['state'], 'string', 'max' => 2],
         ];
     }
 
@@ -65,6 +65,7 @@ class DailySheet extends \yii\db\ActiveRecord
             'sellMoneySum' => '销售总金额，分号分隔',
             'sellOrderTotal' => '销售总订单数',
             'date' => '日期',
+            'state' => 'State',
         ];
     }
 }
