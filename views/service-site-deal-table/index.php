@@ -64,8 +64,8 @@
 		</div>
 	</div>
 </div>
-<form action="<?=yii::$app->urlManager->createUrl('service-site-deal-table/find-by-attri')?>" method="get" id="pageForm">
+<form action="<?=yii::$app->urlManager->createUrl('service-site-deal-table/index')?>" method="get" id="pageForm">
 	<input type="hidden" id="page" name="page"/>
-	<input type="hidden"  name="r" value="service-site-deal-table/find-by-attri"/>
+	<input type="hidden"  name="r" value="service-site-deal-table/index"/>
 	<input type="hidden" id="pre-page" name="pre-page" value="<?=$pages->pageSize?>"/>
 </form>

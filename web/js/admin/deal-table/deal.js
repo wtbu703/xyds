@@ -47,10 +47,10 @@ function saveDealTable(){
         var sellCodesStr = sellCodes[0].value;
 
         for(var i=1;i<buys.length;i++){
-            buysStr += "-" + buys[i].value;
-            buyCodesStr += "-" + buyCodes[i].value;
-            sellsStr += "-" + sells[i].value;
-            sellCodesStr += "-" + sellCodes[i].value;
+            buysStr += ";" + buys[i].value;
+            buyCodesStr += ";" + buyCodes[i].value;
+            sellsStr += ";" + sells[i].value;
+            sellCodesStr += ";" + sellCodes[i].value;
         }
 		var paraStr;
 		paraStr = "id=" + $('#id').val() + "&categoryFullBuy=" + buyCodesStr + "&buySum=" + buysStr + "&buyTotal=" + $('#buyTotal').val()+ "&categoryFullSell=" + sellCodesStr + "&sellSum=" + sellsStr + "&sellTotal=" + $('#sellTotal').val();

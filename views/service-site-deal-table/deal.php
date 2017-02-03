@@ -43,7 +43,7 @@
 
 		                <tr>
 			                <th></th>
-			                <td><input type="button" style="width:100px;height: 30px;" value="增加商品类别" onclick="addRow()"/></td>
+			                <td><input type="button" style="width:100px;height: 30px;color: #44ff19;" value="增加商品类别" onclick="addRow()"/></td>
 		                </tr>
 		                <tr>
 			                <th>代买总订单数：</th>
@@ -71,7 +71,7 @@
 		                </tr>
 		                <tr>
 			                <th></th>
-			                <td><input type="button" style="width:100px;height: 30px;" value="增加商品类别" onclick="addRow2()"/></td>
+			                <td><input type="button" style="width:100px;height: 30px;color: #44ff19;" value="增加商品类别" onclick="addRow2()"/></td>
 		                </tr>
 		                <tr>
 			                <th>销售总订单数：</th>
@@ -185,7 +185,7 @@
 	    html.push('</tr>');
 	    html.push('<tr id="'+rowId+'">');
 	    html.push('<th></th>');
-	    html.push('<td><input type="button" style="width:100px;height: 30px;" value="删除商品类别" onclick="deleteRow(\''+rowId+'\')"/></td>');
+	    html.push('<td><input type="button" style="width:100px;height: 30px;color: #ff1f30;" value="删除商品类别" onclick="deleteRow(\''+rowId+'\')"/></td>');
 	    html.push('</tr>');
 
 	    var addButton = categoryAdd.children('tr').eq(4);
@@ -251,7 +251,7 @@
 		html.push('</tr>');
 		html.push('<tr id="'+rowId+'">');
 		html.push('<th></th>');
-		html.push('<td><input type="button" style="width:100px;height: 30px;" value="删除商品类别" onclick="deleteRow(\''+rowId+'\')"/></td>');
+		html.push('<td><input type="button" style="width:100px;height: 30px;color: #ff1f30;" value="删除商品类别" onclick="deleteRow(\''+rowId+'\')"/></td>');
 		html.push('</tr>');
 
 		var addButton2 = categoryAdd.children('tr').eq(-2);

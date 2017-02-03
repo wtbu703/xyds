@@ -18,7 +18,7 @@ $this->title = '商品类别管理';
 		}
 	}
     var addUrl = '<?=Yii::$app->urlManager->createUrl('category/add')?>';
-    var listallUrl = '<?=yii::$app->urlManager->createUrl('category/find-by-attri')?>';
+    var listallUrl = '<?=Yii::$app->urlManager->createUrl('category/find-by-attri')?>';
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/category/index.js" charset="utf-8"></script>
 <div class="subnav" id="display" >

@@ -16,6 +16,7 @@ use Yii;
  * @property string $sellGoodCategory
  * @property string $sellMoneySum
  * @property string $sellOrderTotal
+ * @property string $state
  */
 class ServiceSiteDealTable extends \yii\db\ActiveRecord
 {
@@ -38,6 +39,7 @@ class ServiceSiteDealTable extends \yii\db\ActiveRecord
             [['buyOrderTotal', 'sellOrderTotal'], 'integer'],
             [['id', 'siteId'], 'string', 'max' => 40],
             [['buyGoodCategory', 'buyMoneySum', 'sellGoodCategory', 'sellMoneySum'], 'string', 'max' => 32],
+            [['state'], 'string', 'max' => 2],
         ];
     }
 
@@ -56,6 +58,7 @@ class ServiceSiteDealTable extends \yii\db\ActiveRecord
             'sellGoodCategory' => '销售商品类别，从XML读取，分号分隔',
             'sellMoneySum' => '销售总金额，分号分隔',
             'sellOrderTotal' => '销售订单数',
+            'state' => 'State',
         ];
     }
 }
