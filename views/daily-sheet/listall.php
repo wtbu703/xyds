@@ -1,7 +1,8 @@
 <script type="text/javascript">
     var findOneUrl = "<?=Yii::$app->urlManager->createUrl('daily-sheet/find-one')?>";
-    var deleteOneUrlUrl = "<?=Yii::$app->urlManager->createUrl('daily-sheet/delete-one')?>";
+    var deleteOneUrl = "<?=Yii::$app->urlManager->createUrl('daily-sheet/delete-one')?>";
     var deleteMoreUrl = "<?=Yii::$app->urlManager->createUrl('daily-sheet/delete-more')?>"
+    var submitUrl = "<?=Yii::$app->urlManager->createUrl('daily-sheet/submit')?>"
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/daily-sheet/listall.js" charset="utf-8"></script>
 <div class="pad-lr-10">
@@ -25,6 +26,7 @@
 	                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->date?>')"><?=$val->date?></a></td>
 	                    <td><?=$val->state?></td>
 	                    <td>
+		                    <a href="javascript:submit('<?=$val->id?>')">提交</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	                        <a href="javascript:update('<?=$val->id?>','<?=$val->date?>')">修改</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		                    <a href="javascript:deleteOne('<?=$val->id?>')">删除</a>
 	                    </td>
@@ -36,7 +38,6 @@
         <div class="btn">
             <label for="check_box"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</label>
             <input type="button" class="buttondel" name="dosubmit" value="删除" onclick="if (confirm('您确定要删除吗？')) deleteMore();"/>
-	        <input type="button" class="buttondel" name="dosubmit" value="删除" onclick="if (confirm('您确定要提交吗？')) submit();"/>
         </div>
         <div id="pages">
             <a><?=$pages->totalCount?>条/<?=$pages->pageCount?>页</a>

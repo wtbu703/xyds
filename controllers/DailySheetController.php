@@ -85,4 +85,121 @@ class DailySheetController extends Controller{
 			'pages' => $pages
 		]);
 	}
+
+	/**
+	 * @return bool|string
+	 */
+	public function actionFindOne(){
+
+		$id = Yii::$app->request->get('id');
+		$action = Yii::$app->request->get('action');
+
+		$dailySheet = DailySheet::findOne($id);
+
+		//以下是现实对模型中的字典项进行转化
+		$dictItem = Dictitem::find()
+			->where(['dictCode' => 'DICT_SHEET'])
+			->all();
+		foreach($dictItem as $index => $value){
+			if($dailySheet->state == $value->dictItemCode){
+				$dailySheet->state = $value->dictItemName;
+			}
+		}
+		//到此处截止
+		//如果是详情页
+		if($action == 'detail')
+		{
+			return $this->render('detail',[
+				'dailySheet' => $dailySheet
+			]);
+
+		} elseif($action == 'update')//如果是修改页
+		{
+			return $this->render('update',[
+				'dailySheet' => $dailySheet
+			]);
+		}else{
+			return false;
+		}
+	}
+
+	/**
+	 * @return string
+	 * @throws \Exception
+	 */
+	public function actionDeleteOne(){
+
+		$id = Yii::$app->request->post('id');
+		if(DailySheet::findOne($id)->delete()){
+			return "success";
+		}else{
+			return false;
+		}
+	}
+
+	/**
+	 * @return string
+	 * @throws \Exception
+	 */
+	public function actionDeleteMore(){
+
+		$ids = Yii::$app->request->post("ids");
+		$id_array = explode('-',$ids);
+
+		foreach($id_array as $key => $data){
+			DailySheet::findOne($data)->delete();
+		}
+		return 'success';
+	}
+
+	public function actionUploadExcel(){
+		//TODO
+	}
+
+	public function actionSubmit(){
+		//TODO
+	}
+
+	/**
+	 * @return string
+	 */
+	public function actionGenerate(){
+
+		$serviceSites = ServiceSite::find();
+		//分页
+		$pages = new Pagination([
+			'totalCount' =>$serviceSites->count(),
+			'pageSize' => Common::PAGESIZE
+		]);
+		$models = $serviceSites
+			->offset($pages->offset)
+			->limit($pages->limit)
+			->all();
+
+		//字典转化
+		$dictItem = Dictitem::find()
+			->where(['dictCode' => 'DICT_COUNTYTYPE'])
+			->all();
+
+		foreach($models as $key=>$data) {
+			foreach ($dictItem as $index => $value) {
+				if ($data->countyType == $value->dictItemCode) {
+					$models[$key]->countyType = $value->dictItemName;
+				}
+			}
+		}
+
+		return $this->render('generate',[
+			'serviceSites' => $models,
+			'pages' => $pages
+		]);
+	}
+
+	public function actionShowDealTable(){
+		//TODO
+	}
+
+	public function actionSaveOne(){
+		//TODO
+	}
 }
