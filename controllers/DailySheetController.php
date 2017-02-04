@@ -16,7 +16,7 @@ use yii\data\Pagination;
 use app\models\Dictitem;
 use yii\db\Query;
 use app\models\ServiceSiteDealTable;
-use app\models\Category;
+use app\models\CategoryFull;
 use app\models\DailySheet;
 
 /**
@@ -195,8 +195,67 @@ class DailySheetController extends Controller{
 		]);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function actionShowDealTable(){
-		//TODO
+
+		$siteId = Yii::$app->request->get('id');
+		//$date = date("Y-m-d");
+		$date = "2017-01-31";
+		$dealTable = ServiceSiteDealTable::find()
+			->where('siteId = :siteId and date = :date and state = "0"',[
+				":siteId" => $siteId,
+				":date" => $date
+			])
+			->one();
+		$categoryFulls = CategoryFull::find()->all();
+		$buyCategorys = [];
+		$buySums = [];
+		$sellCategory = [];
+		$sellSums = [];
+		$buyOrderTotal = '';
+		$sellOrderTotal = '';
+		if (!empty($dealTable->buyGoodCategory)) {
+			$buyCategorys = explode('-',$dealTable->buyGoodCategory);
+			foreach($buyCategorys as $key => $value){
+				foreach($categoryFulls as $index => $data){
+					if($value == $data->buyCode){
+						$buyCategorys[$key] = $data->categoryFullName;
+					}
+				}
+			}
+		}
+		if (!empty($dealTable->buyMoneySum)) {
+			$buySums = explode('-',$dealTable->buyMoneySum);
+		}
+		if (!empty($dealTable->sellGoodCategory)) {
+			$sellCategory = explode('-',$dealTable->sellGoodCategory);
+			foreach($sellCategory as $key => $value){
+				foreach($categoryFulls as $index => $data){
+					if($value == $data->sellCode){
+						$sellCategory[$key] = $data->categoryFullName;
+					}
+				}
+			}
+		}
+		if (!empty($dealTable->sellMoneySum)) {
+			$sellSums = explode('-',$dealTable->sellMoneySum);
+		}
+		if (!empty($dealTable->buyOrderTotal)) {
+			$buyOrderTotal = $dealTable->buyOrderTotal;
+		}
+		if (!empty($dealTable->sellOrderTotal)) {
+			$sellOrderTotal = $dealTable->sellOrderTotal;
+		}
+		return $this->render('show',[
+			'buyCategorys' => $buyCategorys,
+			'buySums' => $buySums,
+			'buyOrderTotal' => $buyOrderTotal,
+			'sellCategory' => $sellCategory,
+			'sellSums' => $sellSums,
+			'sellOrderTotal' => $sellOrderTotal
+		]);
 	}
 
 	public function actionSaveOne(){
