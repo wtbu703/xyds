@@ -11,10 +11,8 @@ use yii;
 use yii\base\Controller;
 use app\common\Common;
 use app\models\ServiceSite;
-use app\models\ServiceSiteInfo;
 use yii\data\Pagination;
 use app\models\Dictitem;
-use yii\db\Query;
 use app\models\ServiceSiteDealTable;
 use app\models\CategoryFull;
 use app\models\DailySheet;
@@ -87,6 +85,7 @@ class DailySheetController extends Controller{
 	}
 
 	/**
+	 * 查看一个日报表
 	 * @return bool|string
 	 */
 	public function actionFindOne(){
@@ -124,6 +123,7 @@ class DailySheetController extends Controller{
 	}
 
 	/**
+	 * 单个删除
 	 * @return string
 	 * @throws \Exception
 	 */
@@ -138,6 +138,7 @@ class DailySheetController extends Controller{
 	}
 
 	/**
+	 * 多选删除
 	 * @return string
 	 * @throws \Exception
 	 */
@@ -161,6 +162,7 @@ class DailySheetController extends Controller{
 	}
 
 	/**
+	 * 打开生成日报表页面
 	 * @return string
 	 */
 	public function actionGenerate(){
@@ -196,6 +198,7 @@ class DailySheetController extends Controller{
 	}
 
 	/**
+	 * 查看一个站点的交易信息
 	 * @return string
 	 */
 	public function actionShowDealTable(){
@@ -258,7 +261,69 @@ class DailySheetController extends Controller{
 		]);
 	}
 
+	/**
+	 * 多选站点生成日报表
+	 * @return bool|string
+	 */
 	public function actionSaveOne(){
-		//TODO
+
+		$ids = Yii::$app->request->post('ids');
+		$date = Yii::$app->request->post('date');
+		$ids_array = explode('-',$ids);
+
+		$dealIds = '';
+		$codes = '';
+		$names = '';
+		$countyTypes = '';
+
+		$buyGoodCategorys = '';
+		$buyMoneySums = '';
+		$buyOrderTotals = '';
+		$sellGoodCategorys = '';
+		$sellMoneySums = '';
+		$sellOrderTotals = '';
+		foreach($ids_array as $key => $value){
+
+			$serviceSite = ServiceSite::findOne($value);
+			$codes = $codes.$serviceSite->code.'-';
+			$names = $names.$serviceSite->name.'-';
+			$countyTypes = $countyTypes.$serviceSite->countyType.'-';
+
+			$dealTable = ServiceSiteDealTable::find()
+				->where('siteId = :siteId and date = :date and state = "0"',[
+					":siteId" => $value,
+					":date" => $date
+				])
+				->one();
+			$dealIds = $dealIds.$dealTable->id.'-';
+			$buyGoodCategorys = $buyGoodCategorys.$dealTable->buyGoodCategory.';';
+			$buyMoneySums = $buyMoneySums.$dealTable->buyMoneySum.';';
+			$sellGoodCategorys = $sellGoodCategorys.$dealTable->sellGoodCategory.';';
+			$sellMoneySums = $sellMoneySums.$dealTable->sellMoneySum.';';
+			$buyOrderTotals = $buyOrderTotals.$dealTable->buyOrderTotal.'-';
+			$sellOrderTotals = $sellOrderTotals.$dealTable->sellOrderTotal.'-';
+
+		}
+
+		$dailySheet = new DailySheet();
+		$dailySheet->id = Common::create40ID();
+		$dailySheet->siteId = $ids;
+		$dailySheet->dealId = $dealIds;
+		$dailySheet->code = $codes;
+		$dailySheet->name = $names;
+		$dailySheet->countyType = $countyTypes;
+		$dailySheet->buyGoodCategory = $buyGoodCategorys;
+		$dailySheet->buyMoneySum = $buyMoneySums;
+		$dailySheet->buyOrderTotal = $buyOrderTotals;
+		$dailySheet->sellGoodCategory = $sellGoodCategorys;
+		$dailySheet->sellMoneySum = $sellMoneySums;
+		$dailySheet->sellOrderTotal = $sellOrderTotals;
+		$dailySheet->date = $date;
+		$dailySheet->state = '0';
+		if($dailySheet->save()){
+			return 'success';
+		}else{
+			return false;
+		}
 	}
 }
