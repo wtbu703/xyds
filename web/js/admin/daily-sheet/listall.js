@@ -4,8 +4,8 @@ function update(id,date) {
 	var url = findOneUrl+'&id='+id+'&action=update';
 	$.dialog.open(url,{
 		title: '修改'+date+'报表',
-		width: 800,
-		height:500,
+		width: 900,
+		height:600,
 		lock: true,
 		border: false,
 		id: 'sheet_update',
@@ -19,8 +19,8 @@ function detail(id,date) {
 	var url = findOneUrl+'&id='+id+'&action=detail';
 	$.dialog.open(url,{
 		title: date+'报表详情',
-		width: 800,
-		height:500,
+		width: 900,
+		height:600,
 		lock: true,
 		border: false,
 		id: 'sheet_detail',

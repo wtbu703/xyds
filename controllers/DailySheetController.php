@@ -95,6 +95,31 @@ class DailySheetController extends Controller{
 
 		$dailySheet = DailySheet::findOne($id);
 
+		$codes = explode('-',$dailySheet->code);
+		$names = explode('-',$dailySheet->name);
+		$countyTypes = explode('-',$dailySheet->countyType);
+
+		$buyGoodCategorys_array = explode(';',$dailySheet->buyGoodCategory);
+		foreach($buyGoodCategorys_array as $key => $value){
+			$buyGoodCategorys[$key] = explode('-',$value);
+		}
+
+		$buyMoneySums_array = explode(';',$dailySheet->buyMoneySum);
+		foreach($buyMoneySums_array as $key => $value){
+			$buyMoneySums[$key] = explode('-',$value);
+		}
+
+		$buyOrderTotals = explode('-',$dailySheet->buyOrderTotal);
+		$sellGoodCategorys_array = explode(';',$dailySheet->sellGoodCategory);
+		foreach($sellGoodCategorys_array as $key => $value){
+			$sellGoodCategorys[$key] = explode('-',$value);
+		}
+		$sellMoneySums_array = explode(';',$dailySheet->sellMoneySum);
+		foreach($sellMoneySums_array as $key => $value){
+			$sellMoneySums[$key] = explode('-',$value);
+		}
+		$sellOrderTotals = explode('-',$dailySheet->sellOrderTotal);
+
 		//以下是现实对模型中的字典项进行转化
 		$dictItem = Dictitem::find()
 			->where(['dictCode' => 'DICT_SHEET'])
@@ -109,13 +134,29 @@ class DailySheetController extends Controller{
 		if($action == 'detail')
 		{
 			return $this->render('detail',[
-				'dailySheet' => $dailySheet
+				'codes' => $codes,
+				'names' => $names,
+				'countyTypes' => $countyTypes,
+				'buyGoodCategorys' => $buyGoodCategorys,
+				'buyMoneySums' => $buyMoneySums,
+				'buyOrderTotals' => $buyOrderTotals,
+				'sellGoodCategorys' => $sellGoodCategorys,
+				'sellMoneySums' => $sellMoneySums,
+				'sellOrderTotals' => $sellOrderTotals,
 			]);
 
 		} elseif($action == 'update')//如果是修改页
 		{
 			return $this->render('update',[
-				'dailySheet' => $dailySheet
+				'codes' => $codes,
+				'names' => $names,
+				'countyTypes' => $countyTypes,
+				'buyGoodCategorys' => $buyGoodCategorys,
+				'buyMoneySums' => $buyMoneySums,
+				'buyOrderTotals' => $buyOrderTotals,
+				'sellGoodCategorys' => $sellGoodCategorys,
+				'sellMoneySums' => $sellMoneySums,
+				'sellOrderTotals' => $sellOrderTotals,
 			]);
 		}else{
 			return false;
@@ -158,7 +199,66 @@ class DailySheetController extends Controller{
 	}
 
 	public function actionSubmit(){
-		//TODO
+
+		$id = Yii::$app->request->post('id');
+		//$id = 'c494a44d3b00b4da7e8ba24b4bee41a5b48cde83';
+		$dailySheet = DailySheet::findOne($id);
+		$string = /** @lang text */
+<<<XML
+<?xml version='1.0' encoding='utf-8'?>
+<items>
+</items>
+XML;
+		$xml = simplexml_load_string($string);
+
+		$codes = explode('-',$dailySheet->code);
+		$names = explode('-',$dailySheet->name);
+		$countyTypes = explode('-',$dailySheet->countyType);
+
+		$buyGoodCategorys_array = explode(';',$dailySheet->buyGoodCategory);
+		foreach($buyGoodCategorys_array as $key => $value){
+			$buyGoodCategorys[$key] = explode('-',$value);
+		}
+
+		$buyMoneySums_array = explode(';',$dailySheet->buyMoneySum);
+		foreach($buyMoneySums_array as $key => $value){
+			$buyMoneySums[$key] = explode('-',$value);
+		}
+
+		$buyOrderTotals = explode('-',$dailySheet->buyOrderTotal);
+		$sellGoodCategorys_array = explode(';',$dailySheet->sellGoodCategory);
+		foreach($sellGoodCategorys_array as $key => $value){
+			$sellGoodCategorys[$key] = explode('-',$value);
+		}
+		$sellMoneySums_array = explode(';',$dailySheet->sellMoneySum);
+		foreach($sellMoneySums_array as $key => $value){
+			$sellMoneySums[$key] = explode('-',$value);
+		}
+		$sellOrderTotals = explode('-',$dailySheet->sellOrderTotal);
+
+		$serviceStation = $xml->addChild('serviceStation');
+		$rptDate = $serviceStation->addChild('rptDate',$dailySheet->date);
+		foreach($codes as $key => $value){
+			$serviceStationReport = $serviceStation->addChild('serviceStationReport');
+			$code = $serviceStationReport->addChild('code',$value);
+			$name = $serviceStationReport->addChild('name',$names[$key]);
+			$countyType = $serviceStationReport->addChild('countyType',$countyTypes[$key]);
+			$buyOrder = $serviceStationReport->addChild('buyOrder',$buyOrderTotals[$key]);
+			$saleOrder = $serviceStationReport->addChild('saleOrder',$sellOrderTotals[$key]);
+			foreach($buyGoodCategorys[$key] as $index => $data){
+				$serviceStationCommodity = $serviceStationReport->addChild('serviceStationCommodity');
+				$commId = $serviceStationCommodity->addChild('commId',$data);
+				$money = $serviceStationCommodity->addChild('money',$buyMoneySums[$key][$index]);
+			}
+			foreach($sellGoodCategorys[$key] as $index => $data){
+				$serviceStationCommodity = $serviceStationReport->addChild('serviceStationCommodity');
+				$commId = $serviceStationCommodity->addChild('commId',$data);
+				$money = $serviceStationCommodity->addChild('money',$sellMoneySums[$key][$index]);
+			}
+		}
+		echo $xml->asXML();
+		return 'success';
+
 	}
 
 	/**
@@ -204,12 +304,12 @@ class DailySheetController extends Controller{
 	public function actionShowDealTable(){
 
 		$siteId = Yii::$app->request->get('id');
-		//$date = date("Y-m-d");
+		//$date = date("Y-m-d");//查看当天
 		$date = "2017-01-31";
 		$dealTable = ServiceSiteDealTable::find()
 			->where('siteId = :siteId and date = :date and state = "0"',[
 				":siteId" => $siteId,
-				":date" => $date
+				":date" => $date//选择当天查询
 			])
 			->one();
 		$categoryFulls = CategoryFull::find()->all();
@@ -268,7 +368,7 @@ class DailySheetController extends Controller{
 	public function actionSaveOne(){
 
 		$ids = Yii::$app->request->post('ids');
-		$date = Yii::$app->request->post('date');
+		$date = Yii::$app->request->post('date');//接收时间
 		$ids_array = explode('-',$ids);
 
 		$dealIds = '';
@@ -285,23 +385,45 @@ class DailySheetController extends Controller{
 		foreach($ids_array as $key => $value){
 
 			$serviceSite = ServiceSite::findOne($value);
-			$codes = $codes.$serviceSite->code.'-';
-			$names = $names.$serviceSite->name.'-';
-			$countyTypes = $countyTypes.$serviceSite->countyType.'-';
+			if($key == 0){
+				$codes = $codes.$serviceSite->code;
+				$names = $names.$serviceSite->name;
+				$countyTypes = $countyTypes.$serviceSite->countyType;
+			}else{
+				$codes = $codes.'-'.$serviceSite->code;
+				$names = $names.'-'.$serviceSite->name;
+				$countyTypes = $countyTypes.'-'.$serviceSite->countyType;
+			}
+
+
+
 
 			$dealTable = ServiceSiteDealTable::find()
 				->where('siteId = :siteId and date = :date and state = "0"',[
 					":siteId" => $value,
-					":date" => $date
+					":date" => $date//选择生成的时间
 				])
 				->one();
-			$dealIds = $dealIds.$dealTable->id.'-';
-			$buyGoodCategorys = $buyGoodCategorys.$dealTable->buyGoodCategory.';';
-			$buyMoneySums = $buyMoneySums.$dealTable->buyMoneySum.';';
-			$sellGoodCategorys = $sellGoodCategorys.$dealTable->sellGoodCategory.';';
-			$sellMoneySums = $sellMoneySums.$dealTable->sellMoneySum.';';
-			$buyOrderTotals = $buyOrderTotals.$dealTable->buyOrderTotal.'-';
-			$sellOrderTotals = $sellOrderTotals.$dealTable->sellOrderTotal.'-';
+			$dealTable->state = '1';
+			$dealTable->save();
+			if($key == 1){
+				$dealIds = $dealIds.$dealTable->id;
+				$buyGoodCategorys = $buyGoodCategorys.$dealTable->buyGoodCategory;
+				$buyMoneySums = $buyMoneySums.$dealTable->buyMoneySum;
+				$sellGoodCategorys = $sellGoodCategorys.$dealTable->sellGoodCategory;
+				$sellMoneySums = $sellMoneySums.$dealTable->sellMoneySum;
+				$buyOrderTotals = $buyOrderTotals.$dealTable->buyOrderTotal;
+				$sellOrderTotals = $sellOrderTotals.$dealTable->sellOrderTotal;
+			}else{
+				$dealIds = $dealIds.'-'.$dealTable->id;
+				$buyGoodCategorys = $buyGoodCategorys.';'.$dealTable->buyGoodCategory;
+				$buyMoneySums = $buyMoneySums.$dealTable->buyMoneySum.';';
+				$sellGoodCategorys = $sellGoodCategorys.';'.$dealTable->sellGoodCategory;
+				$sellMoneySums = $sellMoneySums.';'.$dealTable->sellMoneySum;
+				$buyOrderTotals = $buyOrderTotals.'-'.$dealTable->buyOrderTotal;
+				$sellOrderTotals = $sellOrderTotals.'-'.$dealTable->sellOrderTotal;
+			}
+
 
 		}
 
