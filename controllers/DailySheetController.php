@@ -194,10 +194,42 @@ class DailySheetController extends Controller{
 		return 'success';
 	}
 
+	/**
+	 * 前往上传页面
+	 * @return string
+	 */
 	public function actionUploadExcel(){
-		//TODO
+		return $this->render('excel');
 	}
 
+	/**
+	 * 上传Excel
+	 * @return string
+	 */
+	public function actionUpload(){
+
+		if (Yii::$app->request->isPost) {
+
+			$fileArg = Common::upload($_FILES,false,false);
+			return $this->render('upload',[
+				"fileArg" => $fileArg,
+				"tag" => $fileArg['tag'],
+			]);
+		}
+		return $this->render('upload',[
+			"tag" => "empty",
+			"fileArg" =>[
+				"fileName" => "",     //保存到数据库的文件名称
+				"fileSaveUrl" =>"",//上传文件保存的路径
+				"tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
+			],
+		]);
+	}
+
+	/**
+	 * 根据ID把日报表转化成XML发送到指定接口
+	 * @return string
+	 */
 	public function actionSubmit(){
 
 		$id = Yii::$app->request->post('id');
@@ -256,7 +288,7 @@ XML;
 				$money = $serviceStationCommodity->addChild('money',$sellMoneySums[$key][$index]);
 			}
 		}
-		echo $xml->asXML();
+		//echo $xml->asXML();
 		return 'success';
 
 	}
@@ -446,6 +478,27 @@ XML;
 			return 'success';
 		}else{
 			return false;
+		}
+	}
+
+	/**
+	 * 把上传的Excel转为记录
+	 * @return string
+	 */
+	public function actionSaveExcel(){
+
+		$date = Yii::$app->request->post('date');
+		$attachUrls = Yii::$app->request->post('attachUrls');
+		$attachNames = Yii::$app->request->post('attachNames');
+
+		$dailySheet = new DailySheet();
+
+
+
+		if($dailySheet->save()){
+			return "success";
+		}else{
+			return "format wrong";
 		}
 	}
 }
