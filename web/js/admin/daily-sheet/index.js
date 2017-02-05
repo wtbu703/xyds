@@ -1,10 +1,10 @@
 //打开上传页面
 function uploadExcel(){
 	$.dialog({id:'upload_excel'}).close();
-	$.dialog.open(addUrl, {
+	$.dialog.open(uploadExcelUrl, {
 		title: '上传EXCEL文件',
-		width: 800,
-		height:500,
+		width: 600,
+		height:400,
 		lock: true,
 		border: false,
 		id: 'upload_excel',
