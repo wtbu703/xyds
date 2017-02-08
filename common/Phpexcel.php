@@ -93,7 +93,7 @@ class Phpexcel
 	 * @return array
 	 */
 	public function ReadExcel($filename){
-        //$phpExcel = new Yiiexcel();
+        $phpExcel = new Yiiexcel();
         $objPHPExcel = YiiexcelIOFactory::load($filename);
         $sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
         return $sheetData;

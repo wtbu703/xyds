@@ -16,6 +16,7 @@ use app\models\Dictitem;
 use app\models\ServiceSiteDealTable;
 use app\models\CategoryFull;
 use app\models\DailySheet;
+use app\common\Phpexcel;
 
 /**
  * Class DailySheetController
@@ -493,7 +494,62 @@ XML;
 
 		$dailySheet = new DailySheet();
 
+		//使用PHPExcel读取上传的文件
+		$phpExcel = new Phpexcel($dailySheet);
+		$sheetData = $phpExcel->ReadExcel($attachUrls);
+		//var_dump($sheetData);//调试
+		//如果格式规范
+		$codes = $sheetData[2]['B'];
+		$names = $sheetData[2]['C'];
+		$countyTypes = $sheetData[2]['D'];
+		$buyOrderTotals = $sheetData[2]['G'];
+		$sellOrderTotals = $sheetData[2]['J'];
 
+		$buyGoodCategorys = $sheetData[2]['E'];
+		$buyMoneySums = $sheetData[2]['F'];
+		$sellGoodCategorys = $sheetData[2]['H'];
+		$sellMoneySums = $sheetData[2]['I'];
+		foreach($sheetData as $key => $value){
+			if(is_null($value['E'])){
+				break;//如果为空了提前结束
+			}
+			if($key>2){
+				if(!is_null($value['A'])){
+					$codes .= '-'.$value['B'];
+					$names .= '-'.$value['C'];
+					$countyTypes .= '-'.$value['D'];
+					$buyOrderTotals .= '-'.$value['G'];
+					$sellOrderTotals .= '-'.$value['J'];
+
+					$buyGoodCategorys .= ';'.$value['E'];//不同的站点间商品类别用;分隔
+					$buyMoneySums .= ';'.$value['F'];
+					$sellGoodCategorys .= ';'.$value['H'];
+					$sellMoneySums .= ';'.$value['I'];
+				}else{
+					$buyGoodCategorys .= '-'.$value['E'];//同一站点商品类别用-分隔
+					$buyMoneySums .= '-'.$value['F'];
+					$sellGoodCategorys .= '-'.$value['H'];
+					$sellMoneySums .= '-'.$value['I'];
+				}
+			}
+		}
+
+		$dailySheet->id = Common::create40ID();
+		$dailySheet->siteId = '';
+		$dailySheet->dealId = '';
+		$dailySheet->code = $codes;
+		$dailySheet->name = $names;
+		$dailySheet->countyType = $countyTypes;
+		$dailySheet->buyGoodCategory = $buyGoodCategorys;
+		$dailySheet->buyMoneySum = $buyMoneySums;
+		$dailySheet->buyOrderTotal = $buyOrderTotals;
+		$dailySheet->sellGoodCategory = $sellGoodCategorys;
+		$dailySheet->sellMoneySum = $sellMoneySums;
+		$dailySheet->sellOrderTotal = $sellOrderTotals;
+		$dailySheet->date = $date;
+		$dailySheet->state = '0';
+
+		unlink($attachUrls);//删除上传的Excel
 
 		if($dailySheet->save()){
 			return "success";
