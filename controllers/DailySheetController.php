@@ -143,12 +143,13 @@ class DailySheetController extends Controller{
 				'buyOrderTotals' => $buyOrderTotals,
 				'sellGoodCategorys' => $sellGoodCategorys,
 				'sellMoneySums' => $sellMoneySums,
-				'sellOrderTotals' => $sellOrderTotals,
+				'sellOrderTotals' => $sellOrderTotals
 			]);
 
 		} elseif($action == 'update')//如果是修改页
 		{
 			return $this->render('update',[
+				'id' => $id,
 				'codes' => $codes,
 				'names' => $names,
 				'countyTypes' => $countyTypes,
@@ -157,8 +158,27 @@ class DailySheetController extends Controller{
 				'buyOrderTotals' => $buyOrderTotals,
 				'sellGoodCategorys' => $sellGoodCategorys,
 				'sellMoneySums' => $sellMoneySums,
-				'sellOrderTotals' => $sellOrderTotals,
+				'sellOrderTotals' => $sellOrderTotals
 			]);
+		}else{
+			return false;
+		}
+	}
+
+	/**
+	 * @return bool|string
+	 */
+	public function actionUpdate(){
+
+		$id = Yii::$app->request->post('id');
+		$dailySheet = DailySheet::findOne($id);
+		$dailySheet->code = Yii::$app->request->post('codes');
+		$dailySheet->name = Yii::$app->request->post('names');
+		$dailySheet->countyType = Yii::$app->request->post('countyTypes');
+		$dailySheet->buyOrderTotal = Yii::$app->request->post('buyOrderTotals');
+		$dailySheet->sellOrderTotal = Yii::$app->request->post('sellOrderTotals');
+		if($dailySheet->save()){
+			return 'success';
 		}else{
 			return false;
 		}
