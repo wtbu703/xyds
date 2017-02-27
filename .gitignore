@@ -32,4 +32,4 @@ phpunit.phar
 # 杂文件
 _config.yml
 
-runtime/
+/runtime/
