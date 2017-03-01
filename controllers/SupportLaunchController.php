@@ -1,13 +1,19 @@
 <?php
+/**
+ * Author: luoao,li
+ * Date: 2017/2/28
+ * Time: 18:07
+ * Function:
+ */
 namespace app\controllers;
 
 use yii;
 use yii\base\Controller;
 use app\common\Common;
-use app\models\ServiceSystemBuild;
+use app\models\SupportLaunch;
 use yii\data\Pagination;
 
-class ServiceSystemBuildController extends Controller{
+class SupportLaunchController extends Controller{
 
 	public function actionIndex(){
 		return $this->render('index');
@@ -39,26 +45,17 @@ class ServiceSystemBuildController extends Controller{
 
 	public function actionAddOne(){
 
-		$serviceSystemBuild = new ServiceSystemBuild();
+		$serviceSystemBuild = new SupportLaunch();
 		$serviceSystemBuild->id = Common::create40ID();
 		$serviceSystemBuild->name = Yii::$app->request->post('name');
-		$serviceSystemBuild->address = Yii::$app->request->post('address');
-		$serviceSystemBuild->function = Yii::$app->request->post('function');
-		$serviceSystemBuild->chargeName = Yii::$app->request->post('chargeName');
-		$serviceSystemBuild->chargeMobile = Yii::$app->request->post('chargeMobile');
-		$serviceSystemBuild->code = Yii::$app->request->post('code');
-		$serviceSystemBuild->isCountyLogistics = Yii::$app->request->post('isCountyLogistics');
-		$serviceSystemBuild->isTownLogistics = Yii::$app->request->post('isTownLogistics');
-		$serviceSystemBuild->config = Yii::$app->request->post('config');
 		$serviceSystemBuild->centralSupportContent = Yii::$app->request->post('centralSupportContent');
-		$serviceSystemBuild->buildProgress = Yii::$app->request->post('buildProgress');
 		$serviceSystemBuild->centralSupport = Yii::$app->request->post('centralSupport');
 		$serviceSystemBuild->centralPaid = Yii::$app->request->post('centralPaid');
 		$serviceSystemBuild->localSupport = Yii::$app->request->post('localSupport');
 		$serviceSystemBuild->companyPaid = Yii::$app->request->post('companyPaid');
 		$serviceSystemBuild->organizer = Yii::$app->request->post('organizer');
-		$serviceSystemBuild->chargeName1 = Yii::$app->request->post('chargeName1');
-		$serviceSystemBuild->chargeMobile1 = Yii::$app->request->post('chargeMobile1');
+		$serviceSystemBuild->chargeName = Yii::$app->request->post('chargeName1');
+		$serviceSystemBuild->chargeMobile = Yii::$app->request->post('chargeMobile1');
 		$serviceSystemBuild->centralDecisionUnit = Yii::$app->request->post('centralDecisionUnit');
 		$serviceSystemBuild->decisionFileUrl = Yii::$app->request->post('decisionFileUrl');
 		$serviceSystemBuild->publicInfoUrl = Yii::$app->request->post('publicInfoUrl');
@@ -84,7 +81,7 @@ class ServiceSystemBuildController extends Controller{
 			$whereStr = $whereStr." and name like '%".$name."%'";
 		}
 
-		$serviceSystemBuilds = ServiceSystemBuild::find()
+		$serviceSystemBuilds = SupportLaunch::find()
 			->where($whereStr);
 		//分页
 		$pages = new Pagination([
@@ -96,22 +93,8 @@ class ServiceSystemBuildController extends Controller{
 			->limit($pages->limit)
 			->all();
 
-
-		foreach($models as $key=>$data) {
-			if ($data->isCountyLogistics == '0') {
-				$models[$key]->isCountyLogistics = '否';
-			}elseif($data->isCountyLogistics == '1'){
-				$models[$key]->isCountyLogistics = '是';
-			}
-			if ($data->isTownLogistics == '0') {
-				$models[$key]->isTownLogistics = '否';
-			}elseif($data->isTownLogistics == '1'){
-				$models[$key]->isTownLogistics = '是';
-			}
-		}
-
 		return $this->render('listall',[
-			'serviceSystemBuilds' => $models,
+			'supportLaunchs' => $models,
 			'pages' => $pages,
 			'para' => $para
 		]);
@@ -122,30 +105,19 @@ class ServiceSystemBuildController extends Controller{
 		$buildId = Yii::$app->request->get('id');
 		$action = Yii::$app->request->get('action');
 
-		$serviceSystemBuild = ServiceSystemBuild::findOne($buildId);
+		$serviceSystemBuild = SupportLaunch::findOne($buildId);
 
 		//如果是详情页
 		if($action == 'detail'){
 
-			if ($serviceSystemBuild->isCountyLogistics == '0') {
-				$serviceSystemBuild->isCountyLogistics = '否';
-			}elseif($serviceSystemBuild->isCountyLogistics == '1'){
-				$serviceSystemBuild->isCountyLogistics = '是';
-			}
-			if ($serviceSystemBuild->isTownLogistics == '0') {
-				$serviceSystemBuild->isTownLogistics = '否';
-			}elseif($serviceSystemBuild->isTownLogistics == '1'){
-				$serviceSystemBuild->isTownLogistics = '是';
-			}
-
 			return $this->render('detail',[
-				'serviceSystemBuild' => $serviceSystemBuild
+				'supportLaunch' => $serviceSystemBuild
 			]);
 		} elseif($action == 'update')//如果是修改页
 		{
 
 			return $this->render('update',[
-				'serviceSystemBuild' => $serviceSystemBuild
+				'supportLaunch' => $serviceSystemBuild
 			]);
 		}else{
 			return false;
@@ -155,25 +127,16 @@ class ServiceSystemBuildController extends Controller{
 
 	public function actionUpdateOne(){
 
-		$serviceSystemBuild = ServiceSystemBuild::findOne(Yii::$app->request->post('id'));
+		$serviceSystemBuild = SupportLaunch::findOne(Yii::$app->request->post('id'));
 		$serviceSystemBuild->name = Yii::$app->request->post('name');
-		$serviceSystemBuild->address = Yii::$app->request->post('address');
-		$serviceSystemBuild->function = Yii::$app->request->post('function');
-		$serviceSystemBuild->chargeName = Yii::$app->request->post('chargeName');
-		$serviceSystemBuild->chargeMobile = Yii::$app->request->post('chargeMobile');
-		$serviceSystemBuild->code = Yii::$app->request->post('code');
-		$serviceSystemBuild->isCountyLogistics = Yii::$app->request->post('isCountyLogistics');
-		$serviceSystemBuild->isTownLogistics = Yii::$app->request->post('isTownLogistics');
-		$serviceSystemBuild->config = Yii::$app->request->post('config');
 		$serviceSystemBuild->centralSupportContent = Yii::$app->request->post('centralSupportContent');
-		$serviceSystemBuild->buildProgress = Yii::$app->request->post('buildProgress');
 		$serviceSystemBuild->centralSupport = Yii::$app->request->post('centralSupport');
 		$serviceSystemBuild->centralPaid = Yii::$app->request->post('centralPaid');
 		$serviceSystemBuild->localSupport = Yii::$app->request->post('localSupport');
 		$serviceSystemBuild->companyPaid = Yii::$app->request->post('companyPaid');
 		$serviceSystemBuild->organizer = Yii::$app->request->post('organizer');
-		$serviceSystemBuild->chargeName1 = Yii::$app->request->post('chargeName1');
-		$serviceSystemBuild->chargeMobile1 = Yii::$app->request->post('chargeMobile1');
+		$serviceSystemBuild->chargeName = Yii::$app->request->post('chargeName1');
+		$serviceSystemBuild->chargeMobile = Yii::$app->request->post('chargeMobile1');
 		$serviceSystemBuild->publicInfoUrl = Yii::$app->request->post('publicInfoUrl');
 		if($serviceSystemBuild->save()){
 			return 'success';
@@ -186,7 +149,7 @@ class ServiceSystemBuildController extends Controller{
 
 		$id = Yii::$app->request->post('id');
 
-		$serviceSystemBuild = ServiceSystemBuild::findOne($id);
+		$serviceSystemBuild = SupportLaunch::findOne($id);
 		$picUrl = $serviceSystemBuild['decisionFileUrl'];//获取表中图片路径字段
 
 		//根据ID删除site,siteinfo,并根据路径删除图片文件
@@ -203,7 +166,7 @@ class ServiceSystemBuildController extends Controller{
 		$id_array = explode('-',$ids);
 
 		foreach($id_array as $key => $data){
-			$serviceSystemBuild = ServiceSystemBuild::findOne($data);
+			$serviceSystemBuild = SupportLaunch::findOne($data);
 			unlink($serviceSystemBuild['decisionFileUrl']);//根据路径删除文件
 			$serviceSystemBuild->delete();//根据ID删除
 		}
