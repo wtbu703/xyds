@@ -6,9 +6,6 @@
 <form name="myform" action="" method="post" id="myform" target="center_frame">
     <div class="pad-10">
         <div class="col-tab">
-            <ul class="tabBut cu-li">
-                <li id="tab_setting_1" class="on" onclick="">服务站点信息</li>
-            </ul>
             <div id="div_setting_1" class="contentList pad-10">
                 <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                     <table width="90%" cellspacing="0" class="table_form contentWrap">
