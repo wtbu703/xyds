@@ -50,7 +50,7 @@ class LogisticsBuildController extends Controller{
 		//组装查询语句
 		$whereStr = '1=1';
 		if($published != ''){
-			$whereStr = $whereStr." and published = '%".$published."%'";
+			$whereStr = $whereStr." and published = '".$published."'";
 		}
 
 		$serviceSystemBuilds = LogisticsBuild::find()
