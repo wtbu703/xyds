@@ -16,7 +16,7 @@
 		            <td><?=$supportLaunch['receiveNum']?></td>
 	            </tr>
 	            <tr>
-		            <th>排序：：</th>
+		            <th>排序：</th>
 		            <td><?=$supportLaunch['orderBy']?></td>
 	            </tr>
 	            <tr>
