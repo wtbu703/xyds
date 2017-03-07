@@ -130,7 +130,7 @@ class CompanyRecruitController extends Controller{
         $ids = Yii::$app->request->post('ids');
         $ids_array = explode('-',$ids);
         foreach($ids_array as $key=>$data){
-            CompanyRecruit::deleteall('id=:id',[':id'=>$data]);
+            CompanyRecruit::deleteAll('id=:id',[':id'=>$data]);
         }
     }
 
