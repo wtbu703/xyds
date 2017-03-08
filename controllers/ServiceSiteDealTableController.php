@@ -11,7 +11,6 @@ use yii;
 use yii\base\Controller;
 use app\common\Common;
 use app\models\ServiceSite;
-use app\models\ServiceSiteInfo;
 use yii\data\Pagination;
 use app\models\Dictitem;
 use yii\db\Query;
