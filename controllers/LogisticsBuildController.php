@@ -15,14 +15,26 @@ use yii\data\Pagination;
 
 class LogisticsBuildController extends Controller{
 
+	/**
+	 * 前往index页面
+	 * @return string
+	 */
 	public function actionIndex(){
 		return $this->render('index');
 	}
 
+	/**
+	 * 前往新增页面
+	 * @return string
+	 */
 	public function actionAdd(){
 		return $this->render('add');
 	}
 
+	/**
+	 * 新增一条记录到数据库
+	 * @return bool|string
+	 */
 	public function actionAddOne(){
 
 		$serviceSystemBuild = new LogisticsBuild();
@@ -39,6 +51,10 @@ class LogisticsBuildController extends Controller{
 		}
 	}
 
+	/**
+	 * 根据条件查询
+	 * @return string
+	 */
 	public function actionFindByAttri(){
 		//收查询条件如果存在
 		$published = Yii::$app->request->get('published');
@@ -72,6 +88,10 @@ class LogisticsBuildController extends Controller{
 		]);
 	}
 
+	/**
+	 * 根据ID查询一条
+	 * @return bool|string
+	 */
 	public function actionFindOne(){
 
 		$buildId = Yii::$app->request->get('id');
@@ -97,6 +117,10 @@ class LogisticsBuildController extends Controller{
 
 	}
 
+	/**
+	 * 根据ID修改一条
+	 * @return bool|string
+	 */
 	public function actionUpdateOne(){
 
 		$serviceSystemBuild = LogisticsBuild::findOne(Yii::$app->request->post('id'));
@@ -111,6 +135,11 @@ class LogisticsBuildController extends Controller{
 		}
 	}
 
+	/**
+	 * 根据ID删除一条
+	 * @return string
+	 * @throws \Exception
+	 */
 	public function actionDeleteOne(){
 
 		$id = Yii::$app->request->post('id');
@@ -123,6 +152,11 @@ class LogisticsBuildController extends Controller{
 		}
 	}
 
+	/**
+	 * 根据ID多选删除
+	 * @return string
+	 * @throws \Exception
+	 */
 	public function actionDeleteMore(){
 
 		$ids = Yii::$app->request->post("ids");

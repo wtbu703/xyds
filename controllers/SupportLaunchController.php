@@ -15,14 +15,26 @@ use yii\data\Pagination;
 
 class SupportLaunchController extends Controller{
 
+	/**
+	 * 前往首页
+	 * @return string
+	 */
 	public function actionIndex(){
 		return $this->render('index');
 	}
 
+	/**
+	 * 前往新增页
+	 * @return string
+	 */
 	public function actionAdd(){
 		return $this->render('add');
 	}
 
+	/**
+	 * 上传决策文件
+	 * @return string
+	 */
 	public function actionUpload(){
 
 		if (Yii::$app->request->isPost) {
@@ -43,6 +55,10 @@ class SupportLaunchController extends Controller{
 		]);
 	}
 
+	/**
+	 * 新增一条记录
+	 * @return bool|string
+	 */
 	public function actionAddOne(){
 
 		$serviceSystemBuild = new SupportLaunch();
@@ -67,6 +83,10 @@ class SupportLaunchController extends Controller{
 		}
 	}
 
+	/**
+	 * 根据条件查询
+	 * @return string
+	 */
 	public function actionFindByAttri(){
 		//收查询条件如果存在
 		$name = Yii::$app->request->get('name');
@@ -100,6 +120,10 @@ class SupportLaunchController extends Controller{
 		]);
 	}
 
+	/**
+	 * 根据条件查询
+	 * @return bool|string
+	 */
 	public function actionFindOne(){
 
 		$buildId = Yii::$app->request->get('id');
@@ -125,6 +149,10 @@ class SupportLaunchController extends Controller{
 
 	}
 
+	/**
+	 * 根据ID修改一条记录
+	 * @return bool|string
+	 */
 	public function actionUpdateOne(){
 
 		$serviceSystemBuild = SupportLaunch::findOne(Yii::$app->request->post('id'));
@@ -145,6 +173,11 @@ class SupportLaunchController extends Controller{
 		}
 	}
 
+	/**
+	 * 根据ID删除一条
+	 * @return string
+	 * @throws \Exception
+	 */
 	public function actionDeleteOne(){
 
 		$id = Yii::$app->request->post('id');
@@ -160,6 +193,11 @@ class SupportLaunchController extends Controller{
 		}
 	}
 
+	/**
+	 * 多选删除
+	 * @return string
+	 * @throws \Exception
+	 */
 	public function actionDeleteMore(){
 
 		$ids = Yii::$app->request->post("ids");

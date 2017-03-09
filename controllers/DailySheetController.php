@@ -33,6 +33,7 @@ class DailySheetController extends Controller{
 	}
 
 	/**
+	 * 根据条件查询
 	 * @return string
 	 */
 	public function actionFindByAttri(){
@@ -166,6 +167,7 @@ class DailySheetController extends Controller{
 	}
 
 	/**
+	 * 修改一个日报表
 	 * @return bool|string
 	 */
 	public function actionUpdate(){
