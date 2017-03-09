@@ -132,7 +132,9 @@ class Common
             'application/octet-stream','application/octet-stream',
             'application/zip','application/x-zip-compressed','application/msword',
             'application/vnd.ms-excel','application/vnd.ms-powerpoint','application/pdf',
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];//配置允许上传文件的类型
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+	        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        ];//配置允许上传文件的类型
         $ALL_UPLOAD_SIZE = 1024000 * 1024 * 2; //配置允许上传文件的大小 1G
         $SAVEURL = "upload/";//文件保存路径
         $ALL_PIC_TYPE = ['gif','jpeg','png','jpg'];//允许上传的图片后缀
