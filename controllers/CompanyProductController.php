@@ -61,13 +61,18 @@ class CompanyProductController extends Controller
     public function actionFindByAttri()
     {
         $name = Yii::$app->request->get('name');
+        $state = Yii::$app->request->get('state');
 
         $para = [];
         $para['name'] = $name;
+        $para['state'] = $state;
 
         $whereStr = '1=1';
         if ($name != '') {
             $whereStr = $whereStr . " and name like '%" . $name . "%'";
+        }
+        if ($state != '') {
+            $whereStr = $whereStr . " and state like '%" . $state . "%'";
         }
         $companyProduct = CompanyProduct::find()->where($whereStr);
         $page = new Pagination(['totalCount' => $companyProduct->count(), 'pageSize' => Common::PAGESIZE]);

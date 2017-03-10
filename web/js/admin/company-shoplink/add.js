@@ -18,8 +18,18 @@ $(function(){
 		.inputValidator({               //校验不能为空
 			min:1,
 			onerror:"请输入网店名称！"})
-
-
+	$("#shopLink").formValidator({
+				onshow:"请输入网店链接！",
+				onfocus:"请输入网店链接！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入网店链接！"})
+	$("#platform").formValidator({
+				onshow:"请输入网店平台！",
+				onfocus:"请输入网店平台！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入网店平台！"})
 })
 
 /**

@@ -14,7 +14,12 @@ $(function(){
 		.inputValidator({               //校验不能为空
 			min:1,
 			onerror:"请输入职位！"})
-
+	$("#demand").formValidator({
+				onshow:"请输入要求！",
+				onfocus:"请输入要求！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入要求！"})
 
 })
 

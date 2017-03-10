@@ -13,7 +13,7 @@ class EctrainInfoController extends Controller
     public $enableCsrfValidation = false;
 
     /**
-     * 显示培训详情页面
+     * 显示培训详情管理页面
      * @return string
      */
     public function actionList()
@@ -50,7 +50,7 @@ class EctrainInfoController extends Controller
         $ectrainInfo->decisionFileUrl = Yii::$app->request->post('attachUrls');
         $ectrainInfo->publicInfoUrl = Yii::$app->request->post('publicInfoUrl');
         $ectrainInfo->signSheetUrl = Yii::$app->request->post('signSheetUrl');
-        $ectrainInfo->published = Yii::$app->request->post('published');
+        $ectrainInfo->published = date('Y-m-d');
 
         if ($ectrainInfo->save()) {
             return "success";

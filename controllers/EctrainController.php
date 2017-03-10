@@ -42,6 +42,8 @@ class EctrainController extends Controller{
         $ectrain->peopleNum = Yii::$app->request->post('peopleNum');
         $ectrain->target = Yii::$app->request->post('target');
         $ectrain->publisher = Yii::$app->request->post('publisher');
+        $ectrain->picUrl = Yii::$app->request->post('picUrl');
+        $ectrain->thumbnailUrl = Yii::$app->request->post('thumbnailUrl');
         $ectrain->published = date("Y-m-d H:i:s");
 
         if($ectrain->save()){
@@ -57,13 +59,33 @@ class EctrainController extends Controller{
      */
     public function actionFindByAttri(){
         $name = Yii::$app->request->get('name');
+        $category = Yii::$app->request->get('category');
+        $period = Yii::$app->request->get('period');
+        $ectraindateTime_1 = Yii::$app->request->get('ectraindateTime_1');
+        $ectraindateTime_2 = Yii::$app->request->get('ectraindateTime_2');
 
         $para = [];
         $para['name'] = $name;
+        $para['category'] = $category;
+        $para['period'] = $period;
+        $para['ectraindateTime_1'] = $ectraindateTime_1;
+        $para['ectraindateTime_2'] = $ectraindateTime_2;
 
         $whereStr = '1=1';
         if($name != ''){
             $whereStr = $whereStr . " and name like '%" . $name ."%'";
+        }
+        if ($category != '') {
+            $whereStr = $whereStr . " and category like '%" . $category . "%'";
+        }
+        if ($period != '') {
+            $whereStr = $whereStr . " and period='" . $period ."'";
+        }
+        if($ectraindateTime_1 != ''){
+            $whereStr = $whereStr." and datetime >= '".$ectraindateTime_1."%'";
+        }
+        if($ectraindateTime_2 != ''){
+            $whereStr = $whereStr." and datetime <= '".$ectraindateTime_2."%'";
         }
         $ectrain = Ectrain::find()->where($whereStr);
         $page = new Pagination(['totalCount' => $ectrain->count(), 'pageSize' => Common::PAGESIZE]);
@@ -99,7 +121,19 @@ class EctrainController extends Controller{
      */
     public function actionUpdateOne(){
         $id = Yii::$app->request->post('id');
+        $picUrl = Yii::$app->request->post('picUrl');
+        $thumbnailUrl = Yii::$app->request->post('thumbnailUrl');
         $ectrain = Ectrain::findOne($id);
+        if($ectrain->picUrl != $picUrl&&$ectrain->picUrl !=''&&$picUrl !=''){
+            unlink($ectrain->picUrl);
+            $ectrain->picUrl = $picUrl;
+        }
+        if($ectrain->thumbnailUrl != $thumbnailUrl&&$ectrain->thumbnailUrl != ''&&$thumbnailUrl !=''){
+            unlink($ectrain->thumbnailUrl );
+            $ectrain->thumbnailUrl =$thumbnailUrl;
+        }
+
+        $ectrain->thumbnailUrl =$thumbnailUrl;
         $ectrain->name = Yii::$app->request->post('name');
         $ectrain->category = Yii::$app->request->post('category');
         $ectrain->content = Yii::$app->request->post('content');
@@ -123,6 +157,12 @@ class EctrainController extends Controller{
     public function actionDeleteOne(){
         $id = Yii::$app->request->post('id');
         $ectrain = Ectrain::findOne($id);
+        if(is_null($ectrain->picUrl)){
+            unlink($ectrain->picUrl);
+        }
+        if(is_null($ectrain->thumbnailUrl)){
+            unlink($ectrain->thumbnailUrl );
+        }
 
         if($ectrain->delete()){
             return "success";
@@ -139,6 +179,13 @@ class EctrainController extends Controller{
         $ids = Yii::$app->request->post('ids');
         $ids_array = explode('-',$ids);
         foreach($ids_array as $key=>$data){
+            $ectrain = Ectrain::findOne($data);
+            if($ectrain->picUrl !='') {
+                unlink($ectrain->picUrl);
+            }
+            if($ectrain->thumbnailUrl !='') {
+                unlink($ectrain->thumbnailUrl);
+            }
             Ectrain::deleteall('id=:id',[':id'=>$data]);
         }
     }
@@ -165,6 +212,83 @@ class EctrainController extends Controller{
         return $this->render('detail',[
             'ectrain'=>$ectrain
         ]);
+    }
+
+    /*
+     * 上传
+     */
+    public function actionUpload(){
+        //实现上传
+        if (Yii::$app->request->isPost) {
+            $isThumb = Yii::$app->request->get('isThumb');
+            $views = 'upload';
+            if(is_null($isThumb)){
+                $fileArg = Common::upload($_FILES,true,false);
+            }else{
+                $fileArg = Common::upload($_FILES,true,true);
+                $views = 'uploads';
+            }
+
+            return $this->render($views,[
+                "fileArg" => $fileArg,
+                "tag" => $fileArg['tag'],
+            ]);
+        }
+        $detail = Yii::$app->request->get('detail');
+        if(is_null($detail)){
+            return $this->render('upload',[
+                "tag" => "empty",
+                "fileArg" =>[
+                    "fileSaveUrl" =>"",//上传文件保存的路径
+                    "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
+                ],
+            ]);
+        }else{
+            return $this->render('uploads',[
+                "tag" => "empty",
+                "fileArg" =>[
+                    "fileSaveUrl" =>"",//上传文件保存的路径
+                    "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
+                ],
+            ]);
+        }
+    }
+
+    public function actionUploadss(){
+        //实现上传
+        if (Yii::$app->request->isPost) {
+            $isThumb = Yii::$app->request->get('isThumb');
+            $views = 'upload';
+            if(is_null($isThumb)){
+                $fileArg = Common::upload($_FILES,true,false);
+            }else{
+                $fileArg = Common::upload($_FILES,true,true);
+                $views = 'uploads';
+            }
+
+            return $this->render($views,[
+                "fileArg" => $fileArg,
+                "tag" => $fileArg['tag'],
+            ]);
+        }
+        $detail = Yii::$app->request->get('detail');
+        if(is_null($detail)){
+            return $this->render('upload',[
+                "tag" => "empty",
+                "fileArg" =>[
+                    "fileSaveUrl" =>"",//上传文件保存的路径
+                    "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
+                ],
+            ]);
+        }else{
+            return $this->render('uploads',[
+                "tag" => "empty",
+                "fileArg" =>[
+                    "fileSaveUrl" =>"",//上传文件保存的路径
+                    "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
+                ],
+            ]);
+        }
     }
 }
 

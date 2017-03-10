@@ -142,7 +142,7 @@ class Common
         $ALL_VIDEO_TYPE = ['mp4','rm','rmvb','wmv','avi','3gp','mkv','flv '];//允许上传的视频后缀
 
         $new_image = ['width'=>460,'heigth'=>300];//上传图片切割成符合网站的格式
-        $new_thum_image = ['width'=>160,'heigth'=>150];//上传图片切压缩符合网站的格式
+        $new_thum_image = ['width'=>650,'heigth'=>500];//上传图片切压缩符合网站的格式160,150
 
         $fileArg = [];
         if (in_array($files["file"]["type"],$ALL_UPLOAD_TYPE) && ($files["file"]["size"] < $ALL_UPLOAD_SIZE)){
@@ -150,10 +150,10 @@ class Common
             if(in_array($fileName[1],$ALL_PIC_TYPE) && $isPic){//图片处理方式
                 $fileNameRandom =  date("YmdHis") . mt_rand(10,99) . '.' . $fileName[1];
                 if($isDetailPic){
-                    Common::resize($files["file"]["tmp_name"],$new_thum_image['width'],$new_thum_image['heigth']);
+                    //Common::resize($files["file"]["tmp_name"],$new_thum_image['width'],$new_thum_image['heigth']);
                     $fileArg['fileSaveUrl'] = $SAVEURL . 'pic/thumb_' . $fileNameRandom;
                 }else{
-                    Common::resize($files["file"]["tmp_name"],$new_image['width'],$new_image['heigth']);
+                   // Common::resize($files["file"]["tmp_name"],$new_image['width'],$new_image['heigth']);
                     $fileArg['fileSaveUrl'] = $SAVEURL . 'pic/' . $fileNameRandom;
                 }
                 move_uploaded_file($files["file"]["tmp_name"],$fileArg['fileSaveUrl']);

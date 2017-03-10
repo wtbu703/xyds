@@ -64,6 +64,10 @@ class CompanyNewsController extends Controller
         ]);
     }
 
+    /**
+     * @return string
+     * 修改一条记录
+     */
     public function actionUpdateOne(){
         $id = Yii::$app->request->post('id');
         $attachUrl = Yii::$app->request->post('attachUrl');
@@ -136,13 +140,28 @@ class CompanyNewsController extends Controller
      */
     public function actionFindByAttri(){
         $title = Yii::$app->request->get('title');
+        $keyword = Yii::$app->request->get('keyword');
+        $newsdateTime_1 = Yii::$app->request->get('newsdateTime_1');
+        $newsdateTime_2 = Yii::$app->request->get('newsdateTime_2');
 
         $para = [];
         $para['title'] = $title;
+        $para['keyword'] = $keyword;
+        $para['newsdateTime_1'] = $newsdateTime_1;
+        $para['newsdateTime_2'] = $newsdateTime_2;
 
         $whereStr = '1=1';
         if($title != ''){
             $whereStr = $whereStr . " and title like '%" . $title . "%'" ;
+        }
+        if ($keyword != '') {
+            $whereStr = $whereStr . " and keyword '%" . $keyword ."%'";
+        }
+        if($newsdateTime_1 != ''){
+            $whereStr = $whereStr." and datetime >= '".$newsdateTime_1."%'";
+        }
+        if($newsdateTime_2 != ''){
+            $whereStr = $whereStr." and datetime <= '".$newsdateTime_2."%'";
         }
 
         $companyNews = CompanyNews::find()->where($whereStr);

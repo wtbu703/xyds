@@ -1,7 +1,9 @@
+// 加载字典信息
 $(document).ready(function(){
 
+	generateDict('DICT_PUBLICINFO_STATE','state','信息状态');
 	generateDict('DICT_CATEGORY','category','信息类别');
-})
+});
 //页面校验
 $(function(){
 	$.formValidator.initConfig({
@@ -17,6 +19,32 @@ $(function(){
 		.inputValidator({               //校验不能为空
 			min:1,
 			onerror:"请输入信息标题！"})
+	$("#author").formValidator({
+				onshow:"请输入信息作者！",
+				onfocus:"请输入信息作者！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入信息作者！"})
+	$("#content").formValidator({
+				onshow:"请输入信息内容！",
+				onfocus:"请输入信息内容！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入信息内容！"})
+	// 校验模型名称
+	$("#category").formValidator({
+				onshow:"请输入信息类别！",
+				onfocus:"请输入信息类别！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入信息类别！"})
+	// 校验模型名称
+	$("#state").formValidator({
+				onshow:"请输入信息状态！",
+				onfocus:"请输入信息状态！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入信息状态！"})
 
 
 })
@@ -32,6 +60,7 @@ function add(){
 		paraStr += "&title=" + $("#title").val();
 		paraStr += "&author=" + $("#author").val();
 		paraStr += "&content=" + $("#content").val();
+		paraStr += "&state=" + $("#state").val();
 		paraStr += "&category=" + $("#category").val();
 		paraStr += "&attachUrl=" + $("#attachUrls").val();
 

@@ -43,6 +43,7 @@ class PublicInfoController extends Controller
         $publicInfo->content = Yii::$app->request->post('content');
         $publicInfo->author = Yii::$app->request->post('author');
         $publicInfo->category = Yii::$app->request->post('category');
+        $publicInfo->state = Yii::$app->request->post('state');
         $publicInfo->attachUrl = Yii::$app->request->post('attachUrl');
         $publicInfo->published = date("Y-m-d H:i:s");
 
@@ -61,9 +62,11 @@ class PublicInfoController extends Controller
         $id = Yii::$app->request->get('id');
         $publicInfo = PublicInfo::findOne($id);
         $cateGory = Dictitem::find()->where(['dictCode' => 'DICT_CATEGORY'])->all();
+        $state = Dictitem::find()->where(['dictCode' => 'DICT_PUBLICINFO_STATE'])->all();
         return $this->render('edit',[
             'publicInfo'=>$publicInfo,
             'cateGory'=>$cateGory,
+            'state'=>$state,
         ]);
     }
 
@@ -150,13 +153,23 @@ class PublicInfoController extends Controller
      */
     public function actionFindByAttri(){
         $title = Yii::$app->request->get('title');
+        $author = Yii::$app->request->get('author');
+        $category = Yii::$app->request->get('category');
 
         $para = [];
         $para['title'] = $title;
+        $para['author'] = $author;
+        $para['category'] = $category;
 
         $whereStr = '1=1';
         if($title != ''){
             $whereStr = $whereStr . " and title like '%" . $title . "%'" ;
+        }
+        if($author != ''){
+            $whereStr = $whereStr . " and author like '%" . $author . "%'" ;
+        }
+        if($category != ''){
+            $whereStr = $whereStr . " and category like '%" . $category . "%'" ;
         }
 
         $publicInfo = PublicInfo::find()->where($whereStr);

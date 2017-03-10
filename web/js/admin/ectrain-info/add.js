@@ -14,6 +14,24 @@ $(function(){
 		.inputValidator({               //校验不能为空
 			min:1,
 			onerror:"请输入培训ID！"})
+	$("#organizer").formValidator({
+				onshow:"请输入项目承办单位！",
+				onfocus:"请输入项目承办单位！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入项目承办单位！"})
+	$("#chargeName").formValidator({
+				onshow:"请输入项目承办单位负责人！",
+				onfocus:"请输入项目承办单位负责人！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入项目承办单位负责人！"})
+	$("#chargeMobile").formValidator({
+				onshow:"请输入负责人联系电话！",
+				onfocus:"请输入负责人联系电话！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入负责人联系电话！"})
 
 
 })

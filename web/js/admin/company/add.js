@@ -14,6 +14,18 @@ $(function(){
 		.inputValidator({               //校验不能为空
 			min:1,
 			onerror:"请输入企业名称！"})
+	$("#corporate").formValidator({
+				onshow:"请输入企业法人！",
+				onfocus:"请输入企业法人！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入企业法人！"})
+	$("#picUrl").formValidator({
+				onshow:"请上传企业logo！",
+				onfocus:"请上传企业logo！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请上传企业logo！"})
 
 
 })

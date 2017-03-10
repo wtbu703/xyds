@@ -12,12 +12,13 @@
             window.parent.$('#picUrl').val("<?=$fileArg['fileSaveUrl']?>");
 
         }
+
+
     }
 </script>
-<script type="text/javascript" src="js/admin/company/upload.js"></script>
+<script type="text/javascript" src="js/admin/ectrain/upload.js"></script>
 
-<form id="uploadForm" name="form1" method="post" action="<?=yii::$app->urlManager->createUrl('company/upload')?>" enctype="multipart/form-data">
+<form id="uploadForm" name="form1" method="post" action="<?=yii::$app->urlManager->createUrl('ectrain/upload')?>" enctype="multipart/form-data">
     <input type="file" id="fileName" name="file" style="height:18px;border:1px #ff9900;width:250px;"/>
     <input type="button" class="buttonsave" onClick="uploadPic();"  value="上传"/><div id="productPWDAgainTip"></div>
 </form>
-

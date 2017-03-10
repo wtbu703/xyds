@@ -2,8 +2,6 @@
 $this->title = '培训详情';
 ?>
 
-</head>
-<body>
 <div class="pad-lr-10">
     <form id="myform" action="" method="post">
         <div class="pad_10">
@@ -45,6 +43,19 @@ $this->title = '培训详情';
                         <th>发布时间：</th>
                         <td id="published"><?=$ectrain->published?></td>
                     </tr>
+                    <tr>
+                        <th>产品大图：</th>
+                        <td id="thumbnailUrl"> <img src="<?=$ectrain->thumbnailUrl?>"></td>
+                    </tr>
+                    <tr>
+                        <th>产品缩略图：</th>
+                        <td id="picUrl">
+                            <?$picUrl_array = explode(';',$ectrain->picUrl);
+                            foreach($picUrl_array as $key=>$data){?>
+                                <img src="<?=$data?>">
+                            <?} ?>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <div class="bk10"></div>
@@ -57,5 +68,3 @@ $this->title = '培训详情';
             </div>
     </form>
 </div>
-</body>
-</html>

@@ -6,6 +6,7 @@ use yii\web\Controller;
 use app\models\CountyEconomic;
 use yii\data\Pagination;
 use app\common\Common;
+use app\common\Phpexcel;
 
 class CountyEconomicController extends Controller{
     public $enableCsrfValidation = false;
@@ -179,7 +180,119 @@ class CountyEconomicController extends Controller{
             'countyEconomic'=>$countyEconomic
         ]);
     }
+
+    /**
+     * 前往上传页面
+     * @return string
+     */
+    public function actionUploadExcel(){
+        return $this->render('excel');
+    }
+
+    /**
+     * 上传Excel
+     * @return string
+     */
+    public function actionUpload(){
+
+        if (Yii::$app->request->isPost) {
+
+            $fileArg = Common::upload($_FILES,false,false);
+            return $this->render('upload',[
+                "fileArg" => $fileArg,
+                "tag" => $fileArg['tag'],
+            ]);
+        }
+        return $this->render('upload',[
+            "tag" => "empty",
+            "fileArg" =>[
+                "fileName" => "",     //保存到数据库的文件名称
+                "fileSaveUrl" =>"",//上传文件保存的路径
+                "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
+            ],
+        ]);
+    }
+
+    /**
+     * 把上传的Excel转为记录
+     * @return string
+     */
+    public function actionSaveExcel(){
+
+        $attachUrls = Yii::$app->request->post('attachUrls');
+        $countyEconomic = new CountyEconomic();
+
+        //使用PHPExcel读取上传的文件
+        $phpExcel = new Phpexcel($countyEconomic);
+        $sheetData = $phpExcel->ReadExcel($attachUrls);
+
+
+        //var_dump($sheetData);//调试
+        //如果格式规范
+        $i= '2';
+        for($i;$i>=0;$i++) {
+            $year = $sheetData[$i]['B'];
+            $GRP = $sheetData[$i]['C'];
+            $socialConsumerTotal = $sheetData[$i]['D'];
+            $area = $sheetData[$i]['E'];
+            $townNum = $sheetData[$i]['F'];
+            $villageNum = $sheetData[$i]['G'];
+            $permanentPopulation = $sheetData[$i]['H'];
+            $urbanPopulation = $sheetData[$i]['I'];
+            $ruralPopulation = $sheetData[$i]['J'];
+            $disposableIncome = $sheetData[$i]['K'];
+            $urbanDisposableIncome = $sheetData[$i]['L'];
+            $ruralDisposableIncome = $sheetData[$i]['M'];
+            $ruralRoadMileage = $sheetData[$i]['N'];
+            $telUser = $sheetData[$i]['O'];
+            $mobileUser = $sheetData[$i]['P'];
+            $siGUser = $sheetData[$i]['Q'];
+            $internetAccess = $sheetData[$i]['R'];
+            $individualHousehold = $sheetData[$i]['S'];
+            $registeredCompany = $sheetData[$i]['T'];
+            $onlineStore = $sheetData[$i]['U'];
+            $mobileStore = $sheetData[$i]['V'];
+            $ecTurnover = $sheetData[$i]['W'];
+            $netRetailSales = $sheetData[$i]['X'];
+
+            if (is_null($year)) {
+                break;//如果为空了提前结束
+            } else {
+                $countyEconomic = new CountyEconomic();
+                $countyEconomic->id = Common::create40ID();
+                $countyEconomic->year = $year;
+                $countyEconomic->GRP = $GRP;
+                $countyEconomic->socialConsumerTotal = $socialConsumerTotal;
+                $countyEconomic->area = $area;
+                $countyEconomic->townNum = $townNum;
+                $countyEconomic->villageNum = $villageNum;
+                $countyEconomic->permanentPopulation = $permanentPopulation;
+                $countyEconomic->urbanPopulation = $urbanPopulation;
+                $countyEconomic->ruralPopulation = $ruralPopulation;
+                $countyEconomic->disposableIncome = $disposableIncome;
+                $countyEconomic->urbanDisposableIncome = $urbanDisposableIncome;
+                $countyEconomic->ruralDisposableIncome = $ruralDisposableIncome;
+                $countyEconomic->ruralRoadMileage = $ruralRoadMileage;
+                $countyEconomic->telUser = $telUser;
+                $countyEconomic->mobileUser = $mobileUser;
+                $countyEconomic->siGUser = $siGUser;
+                $countyEconomic->internetAccess = $internetAccess;
+                $countyEconomic->individualHousehold = $individualHousehold;
+                $countyEconomic->registeredCompany = $registeredCompany;
+                $countyEconomic->onlineStore = $onlineStore;
+                $countyEconomic->mobileStore = $mobileStore;
+                $countyEconomic->ecTurnover = $ecTurnover;
+                $countyEconomic->netRetailSales = $netRetailSales;
+
+                $countyEconomic->save();
+
+            }
+        }
+        unlink($attachUrls);//删除上传的Excel
+        return "success";
+    }
 }
+
 
 
 

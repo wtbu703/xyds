@@ -22,8 +22,6 @@ $this->title = '信息管理';
         <a class="add fb" href="javascript:openadd();"><em>添加信息</em></a>
     </div>
 </div>
-</head>
-<body>
 <div class="pad-lr-10">
     <form name="searchform" id="searchform" action="" method="post" target="iframeId">
         <table width="100%" cellspacing="0" class="search-form">
@@ -32,8 +30,12 @@ $this->title = '信息管理';
                 <td>
                     <div class="explain-col">
                         <div>
-                            新闻标题：
+                            标题：
                             <input id="title" name="title" type="text" value="" class="input-text" />
+                            作者：
+                            <input id="author" name="author" type="text" value="" class="input-text" /></br>
+                            信息类别：
+                            <select id="category" style='width:135px' name="category"></select>
                             &nbsp;<input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
                             <div class = "checkTip" style="float:right;margin-right:40%;color:red;">
                             </div>
@@ -48,5 +50,3 @@ $this->title = '信息管理';
         <iframe id="iframeId" name="iframeId" src="<?=yii::$app->urlManager->createUrl('public-info/find-by-attri')?>"  frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()"></iframe>
     </div>
 </div>
-</body>
-</html>
