@@ -18,8 +18,18 @@ $(function(){
 		.inputValidator({               //校验不能为空
 			min:1,
 			onerror:"请输入产品名称！"})
-
-
+	$("#price").formValidator({
+				onshow:"请输入产品价格！",
+				onfocus:"请输入产品价格！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入产品价格！"})
+	$("#state").formValidator({
+				onshow:"请输入产品状态！",
+				onfocus:"请输入产品状态！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入产品状态！"})
 })
 
 /**

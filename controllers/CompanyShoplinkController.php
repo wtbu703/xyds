@@ -54,13 +54,18 @@ class CompanyShoplinkController extends Controller{
     public function actionFindByAttri()
     {
         $shopName = Yii::$app->request->get('shopName');
+        $platform = Yii::$app->request->get('platform');
 
         $para = [];
         $para['shopName'] = $shopName;
+        $para['platform'] = $platform;
 
         $whereStr = '1=1';
         if ($shopName != '') {
             $whereStr = $whereStr . " and shopName like '%" . $shopName . "%'";
+        }
+        if ($platform != '') {
+            $whereStr = $whereStr . " and platform like '%" . $platform . "%'";
         }
         $companyShoplink = CompanyShoplink::find()->where($whereStr);
         $page = new Pagination(['totalCount' => $companyShoplink->count(), 'pageSize' => Common::PAGESIZE]);

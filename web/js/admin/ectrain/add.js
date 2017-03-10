@@ -18,6 +18,48 @@ $(function(){
 		.inputValidator({               //校验不能为空
 			min:1,
 			onerror:"请输入培训名！"})
+	$("#category").formValidator({
+				onshow:"请输入培训类别！",
+				onfocus:"请输入培训类别！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入培训类别！"})
+	$("#period").formValidator({
+				onshow:"请输入培训期数！",
+				onfocus:"请输入培训期数！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入培训期数！"})
+	$("#content").formValidator({
+				onshow:"请输入培训内容！",
+				onfocus:"请输入培训内容！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入培训内容！"})
+	$("#dayNum").formValidator({
+				onshow:"请输入培训天数！",
+				onfocus:"请输入培训天数！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入培训天数！"})
+	$("#peopleNum").formValidator({
+				onshow:"请输入培训人数！",
+				onfocus:"请输入培训人数！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入培训人数！"})
+	$("#target").formValidator({
+				onshow:"请输入针对人群！",
+				onfocus:"请输入针对人群！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入针对人群！"})
+	$("#publisher").formValidator({
+				onshow:"请输入发布人！",
+				onfocus:"请输入发布人！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入发布人！"})
 
 
 })
@@ -38,6 +80,8 @@ function add(){
 		paraStr += "&peopleNum=" + $("#peopleNum").val();
 		paraStr += "&target=" + $("#target").val();
 		paraStr += "&publisher=" + $("#publisher").val();
+		paraStr += "&picUrl=" + $("#picUrl").val();
+		paraStr += "&thumbnailUrl=" + $("#thumbnailUrl").val();
 
 		$.ajax({
 			url: insertUrl,

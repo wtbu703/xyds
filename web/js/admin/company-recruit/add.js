@@ -15,7 +15,6 @@ $(function(){
 			min:1,
 			onerror:"请输入职位！"})
 
-
 })
 
 /**

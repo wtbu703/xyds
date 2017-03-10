@@ -22,8 +22,6 @@ $this->title = '产品管理';
         <a class="add fb" href="javascript:openadd();"><em>添加产品</em></a>
     </div>
 </div>
-</head>
-<body>
 <div class="pad-lr-10">
     <form name="searchform" id="searchform" action="" method="post" target="iframeId">
         <table width="100%" cellspacing="0" class="search-form">
@@ -34,6 +32,8 @@ $this->title = '产品管理';
                         <div>
                             产品名称：
                             <input id="name" name="name" type="text" value="" class="input-text" />
+                            状态：
+                            <select id="state" style='width:135px' name="state"></select></br>
                             &nbsp;<input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
                             <div class = "checkTip" style="float:right;margin-right:40%;color:red;">
                             </div>
@@ -48,5 +48,3 @@ $this->title = '产品管理';
         <iframe id="iframeId" name="iframeId" src="<?=yii::$app->urlManager->createUrl('company-product/find-by-attri')?>"  frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()"></iframe>
     </div>
 </div>
-</body>
-</html>

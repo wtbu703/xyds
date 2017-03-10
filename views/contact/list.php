@@ -22,8 +22,6 @@ $this->title = '联系信息管理';
         <a class="add fb" href="javascript:openadd();"><em>添加联系信息</em></a>
     </div>
 </div>
-</head>
-<body>
 <div class="pad-lr-10">
     <form name="searchform" id="searchform" action="" method="post" target="iframeId">
         <table width="100%" cellspacing="0" class="search-form">
@@ -48,5 +46,3 @@ $this->title = '联系信息管理';
         <iframe id="iframeId" name="iframeId" src="<?=yii::$app->urlManager->createUrl('contact/find-by-attri')?>"  frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()"></iframe>
     </div>
 </div>
-</body>
-</html>

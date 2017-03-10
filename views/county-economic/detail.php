@@ -2,8 +2,6 @@
 $this->title = '年表详情';
 ?>
 
-</head>
-<body>
 <div class="pad-lr-10">
     <form id="myform" action="" method="post">
         <div class="pad_10">
@@ -113,5 +111,3 @@ $this->title = '年表详情';
             </div>
     </form>
 </div>
-</body>
-</html>

@@ -60,6 +60,10 @@ class CompanyController extends Controller{
         ]);
     }
 
+    /**
+     * @return string
+     * 修改一条记录
+     */
     public function actionUpdateOne(){
         $id = Yii::$app->request->post('id');
         $logoUrl = Yii::$app->request->post('logoUrl');
@@ -81,6 +85,11 @@ class CompanyController extends Controller{
         }
     }
 
+    /**
+     * @return string
+     * @throws \Exception
+     * 删除一条记录
+     */
     public function actionDeleteOne(){
         $id = Yii::$app->request->post('id');
         $company = Company::findOne($id);
@@ -113,7 +122,7 @@ class CompanyController extends Controller{
 
 
     /*
-     * 上传图片
+     * 上传
      */
     public function actionUpload(){
         //实现上传

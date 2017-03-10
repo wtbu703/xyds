@@ -1,5 +1,4 @@
 
-
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
 var tag = "<?=$tag?>"
@@ -18,12 +17,9 @@ if(tag == 'success'){
 }
 </script>
 <script type="text/javascript" src="js/admin/company-news/upload.js"></script>
-</head>
-<body>
-    <form id="uploadForm" name="form1" method="post" action="<?=yii::$app->urlManager->createUrl('company-news/upload')?>" enctype="multipart/form-data">
-        <input type="file" id="fileName" name="file" style="height:18px;border:1px #ff9900;width:250px;"/>
-        <input type="button" class="buttonsave" onClick="uploadPic();"  value="上传"/><div id="userPWDAgainTip"></div>
-    </form>
-</body>
-</html>
-<?php $this->endPage() ?>
+
+<form id="uploadForm" name="form1" method="post" action="<?=yii::$app->urlManager->createUrl('company-news/upload')?>" enctype="multipart/form-data">
+    <input type="file" id="fileName" name="file" style="height:18px;border:1px #ff9900;width:250px;"/>
+    <input type="button" class="buttonsave" onClick="uploadPic();"  value="上传"/><div id="userPWDAgainTip"></div>
+</form>
+

@@ -17,6 +17,8 @@ use Yii;
  * @property string $target
  * @property string $published
  * @property string $publisher
+ * @property string $thumbnailUrl
+ * @property string $picUrl
  */
 class Ectrain extends \yii\db\ActiveRecord
 {
@@ -42,6 +44,7 @@ class Ectrain extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 16],
             [['target'], 'string', 'max' => 32],
             [['publisher'], 'string', 'max' => 10],
+            [['thumbnailUrl', 'picUrl'], 'string', 'max' => 128],
         ];
     }
 
@@ -61,6 +64,8 @@ class Ectrain extends \yii\db\ActiveRecord
             'target' => '培训对象，针对人群',
             'published' => '发布时间',
             'publisher' => '发布人',
+            'thumbnailUrl' => '一张大图',
+            'picUrl' => '三张缩略图',
         ];
     }
 }

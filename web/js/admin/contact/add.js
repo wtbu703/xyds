@@ -14,8 +14,12 @@ $(function(){
 		.inputValidator({               //校验不能为空
 			min:1,
 			onerror:"请输入姓名！"})
-
-
+	$("#content").formValidator({
+				onshow:"请输入内容！",
+				onfocus:"请输入内容！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入内容！"})
 })
 
 /**

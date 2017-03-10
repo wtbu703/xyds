@@ -22,8 +22,7 @@ $this->title = '网店链接管理';
         <a class="add fb" href="javascript:openadd();"><em>添加网店链接</em></a>
     </div>
 </div>
-</head>
-<body>
+
 <div class="pad-lr-10">
     <form name="searchform" id="searchform" action="" method="post" target="iframeId">
         <table width="100%" cellspacing="0" class="search-form">
@@ -34,6 +33,8 @@ $this->title = '网店链接管理';
                         <div>
                             网店名称：
                             <input id="shopName" name="shopName" type="text" value="" class="input-text" />
+                            网店平台：
+                            <select id="platform" style='width:135px' name="platform"></select>
                             &nbsp;<input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
                             <div class = "checkTip" style="float:right;margin-right:40%;color:red;">
                             </div>
@@ -48,5 +49,3 @@ $this->title = '网店链接管理';
         <iframe id="iframeId" name="iframeId" src="<?=yii::$app->urlManager->createUrl('company-shoplink/find-by-attri')?>"  frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()"></iframe>
     </div>
 </div>
-</body>
-</html>

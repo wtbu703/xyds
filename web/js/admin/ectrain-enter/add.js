@@ -18,8 +18,36 @@ $(function(){
 		.inputValidator({               //校验不能为空
 			min:1,
 			onerror:"请输入姓名！"})
-
-
+	$("#idCardNo").formValidator({
+				onshow:"请输入身份证号！",
+				onfocus:"请输入身份证号！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入身份证号！"})
+	$("#mobile").formValidator({
+				onshow:"请输入手机号！",
+				onfocus:"请输入手机号！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入手机号！"})
+	$("#address").formValidator({
+				onshow:"请输入地址！",
+				onfocus:"请输入地址！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入地址！"})
+	$("#gender").formValidator({
+				onshow:"请输入性别！",
+				onfocus:"请输入性别！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入性别！"})
+	$("#age").formValidator({
+				onshow:"请输入年龄！",
+				onfocus:"请输入年龄！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入年龄！"})
 })
 
 /**
