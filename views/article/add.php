@@ -63,6 +63,10 @@ use yii\helpers\Html;
                     <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                         <table width="100%" cellspacing="0" class="table_form contentWrap">
                             <tr>
+                                <th>文章分类：</th>
+                                <td><select type="text" style="width:250px;height: 30px;" name="category" id="category"  class="input-text"/></td>
+                            </tr>
+                            <tr>
                                 <th width="100">标&nbsp;题&nbsp;：</th>
                                 <td><input type="text" style="width:250px;" name="title" id="title"  class="input-text"/></td>
                             </tr>
@@ -71,9 +75,12 @@ use yii\helpers\Html;
                                 <td><input type="text" style="width:250px;" name="author" id="author"  class="input-text"/></td>
                             </tr>
                             <tr>
+                                <th>关键词：</th>
+                                <td><input type="text" style="width:250px;" name="keyword" id="keyword"  class="input-text"/></td>
+                            </tr>
+                            <tr>
                                 <th>正&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文：</th>
                                 <td><textarea style="width:500px;height:200px;" name="content" id="content" ></textarea></td>
-
                             </tr>
                             <tr>
                                 <th>附&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;件：</th>
@@ -82,6 +89,7 @@ use yii\helpers\Html;
                                     <input type="text" style="display:none;" name="attachNames" id="attachNames" class="input-text"/>
                                     <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('article/upload')?>"></iframe>
                                 </td>
+                            </tr>
                         </table>
                     </div>
                     <div class="bk10"></div>

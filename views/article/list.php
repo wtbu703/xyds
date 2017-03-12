@@ -39,6 +39,13 @@ use yii\helpers\Html;
         <script type="text/javascript" src="js/tabpanel/Toolbar.js"></script>
         <script type="text/javascript" src="js/tabpanel/WindowPanel.js"></script>
         <script type="text/javascript" src="js/tabpanel/Drag.js"></script>
+        <!--日历-->
+        <link rel="stylesheet" type="text/css" href="js/calendar/win2k.css">
+        <link rel="stylesheet" type="text/css" href="js/calendar/jscal2.css">
+        <link rel="stylesheet" type="text/css" href="js/calendar/border-radius.css">
+        <link rel="stylesheet" type="text/css" href="js/calendar/calendar-blue.css">
+        <script type="text/javascript" src="js/calendar/calendar.js"></script>
+        <script type="text/javascript" src="js/calendar/en.js"></script>
         <!--弹出图片-->
         <script type="text/javascript" src="js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
         <script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
@@ -84,7 +91,34 @@ use yii\helpers\Html;
                                     <input id="title" name="title" type="text" value="" class="input-text" />
                                     作者：
                                     <input id="author" type="text" name="author" value="" class="input-text" />
-
+                                    类别：
+                                    <select id="category" style='width:135px' name="category"></select></br>
+                                    时间：
+                                    <input id="articledateTime_1" name="articledateTime_1" type="text" value="" class="date">
+                                    <script type="text/javascript">
+                                        Calendar.setup({
+                                            weekNumbers: true,
+                                            inputField : "articledateTime_1",
+                                            trigger    : "articledateTime_1",
+                                            dateFormat: "%Y-%m-%d %k:%M:%S",
+                                            showTime: true,
+                                            minuteStep: 1,
+                                            onSelect   : function() {this.hide();}
+                                        });
+                                    </script>
+                                    &nbsp;至&nbsp;&nbsp;
+                                    <input id="articledateTime_2" name="articledateTime_2" type="text" value="" class="date">
+                                    <script type="text/javascript">
+                                        Calendar.setup({
+                                            weekNumbers: true,
+                                            inputField : "articledateTime_2",
+                                            trigger    : "articledateTime_2",
+                                            dateFormat: "%Y-%m-%d %k:%M:%S",
+                                            showTime: true,
+                                            minuteStep: 1,
+                                            onSelect   : function() {this.hide();}
+                                        });
+                                    </script>
                                     &nbsp;<input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
                                     <div class = "checkTip" style="float:right;margin-right:40%;color:red;">
                                     </div>

@@ -64,6 +64,18 @@ use yii\helpers\Html;
                         <table width="90%" cellspacing="0" class="table_form contentWrap">
                             <tbody>
                             <tr>
+                                <th>文章分类：</th>
+                                <td><select style="width:270px;" id="platform">
+                                        <?foreach($cateGory as $key => $val){?>
+                                            <?if(intval($val->dictItemCode) == $article->category){?>
+                                                <option name="platform" value="<?=$val->dictItemCode?>" selected><?=$val->dictItemName?></option>
+                                            <?}else{?>
+                                                <option name="platform" value="<?=$val->dictItemCode?>"><?=$val->dictItemName?></option>
+                                            <?}?>
+                                        <?}?>
+                                    </select></td>
+                            </tr>
+                            <tr>
                                 <th width="100">标题</th>
                                 <td><input type="text" id="title" value="<?=$article->title?>"/></td>
                                 <input type="hidden" id="id" value="<?=$article->id?>" />
@@ -71,6 +83,10 @@ use yii\helpers\Html;
                             <tr>
                                 <th width="100">作者</th>
                                 <td><input type="text" id="author"  class="input-text" style="width:270px;" value="<?=$article->author?>" /></td>
+                            </tr>
+                            <tr>
+                                <th>关键词：</th>
+                                <td><input type="text" style="width:250px;" name="keyword" id="keyword" value="<?=$article->keyword?>" class="input-text"/></td>
                             </tr>
                             <tr>
                                 <th width="100">文章内容</th>

@@ -51,12 +51,20 @@ use yii\helpers\Html;
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
+                        <th width="100">文章类别</th>
+                        <td id="category"><?=$article->category?></td>
+                    </tr>
+                    <tr>
                         <th width="100">标题</th>
                         <td id="title"><?=$article->title?></td>
                     </tr>
                     <tr>
                         <th width="100">作者</th>
                         <td id="author"><?=$article->author?></td>
+                    </tr>
+                    <tr>
+                        <th width="100">关键词</th>
+                        <td id="keyword"><?=$article->keyword?></td>
                     </tr>
                     <tr>
                         <th width="100">内容</th>

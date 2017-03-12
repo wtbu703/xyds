@@ -4,6 +4,7 @@ namespace app\controllers;
 use yii;
 use yii\web\Controller;
 use app\models\Article;
+use app\models\Dictitem;
 use app\common\Common;
 use yii\data\Pagination;
 use app\common\HtmlDom;
@@ -49,7 +50,9 @@ class ArticleController extends Controller{
         $article->id = Common::generateID();
         $article->title = Yii::$app->request->post('title');
         $article->author = Yii::$app->request->post('author');
+        $article->keyword = Yii::$app->request->post('keyword');
         $article->content = Yii::$app->request->post('content');
+        $article->category = Yii::$app->request->post('category');
         $article->attachUrls = Yii::$app->request->post('attachUrls');
         $article->attachNames = Yii::$app->request->post('attachNames');
         $article->datetime = date("Y-m-d H:i:s");
@@ -69,10 +72,16 @@ class ArticleController extends Controller{
 
         $title = Yii::$app->request->get('title');
         $author = Yii::$app->request->get('author');
+        $category = Yii::$app->request->get('category');
+        $articledateTime_1 = Yii::$app->request->get('articledateTime_1');
+        $articledateTime_2 = Yii::$app->request->get('articledateTime_2');
 
         $para = [];
         $para['title'] = $title;
         $para['author'] = $author;
+        $para['category'] = $category;
+        $para['articledateTime_1'] = $articledateTime_1;
+        $para['articledateTime_2'] = $articledateTime_2;
 
         $whereStr = '1=1';
         if ($title != '') {
@@ -80,6 +89,15 @@ class ArticleController extends Controller{
         }
         if ($author != '') {
             $whereStr = $whereStr . " and author like '%" . $author . "%'";
+        }
+        if ($category != '') {
+            $whereStr = $whereStr . " and category='" . $category ."'";
+        }
+        if($articledateTime_1 != ''){
+            $whereStr = $whereStr." and datetime >= '".$articledateTime_1."%'";
+        }
+        if($articledateTime_2 != ''){
+            $whereStr = $whereStr." and datetime <= '".$articledateTime_2."%'";
         }
 
         $articles = Article::find()->where($whereStr);
@@ -105,8 +123,10 @@ class ArticleController extends Controller{
 
         $id = Yii::$app->request->get('id');
         $article = Article::findOne($id);
+        $cateGory = Dictitem::find()->where(['dictCode'=>'DICT_ARTICLE_CATEGORY'])->all();
         return $this->render('edit',[
             'article' => $article,
+            'cateGory'=>$cateGory,
         ]);
     }
 
@@ -167,7 +187,12 @@ class ArticleController extends Controller{
     {
         $id = Yii::$app->request->get('id');
         $article = Article::findOne($id);
-
+        $cateGory = Dictitem::find()->where(['dictCode'=>'DICT_ARTICLE_CATEGORY'])->all();
+        foreach ($cateGory as $index => $value) {
+            if ($article->category == $value->dictItemCode) {
+                $article->category = $value->dictItemName;
+            }
+        }
         return $this->render('detail',[
             'article'=>$article,
         ]);
