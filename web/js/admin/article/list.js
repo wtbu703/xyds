@@ -1,7 +1,7 @@
 // 加载字典信息
 $(document).ready(function(){
 	generateDict('DICT_ARTICLE_CATEGORY','category','文章类别');
-})
+});
 //打开添加页面
 function openadd(){
 	$.dialog({id:'article_add'}).close();
