@@ -1,32 +1,7 @@
 // 加载字典信息
 $(document).ready(function(){
-
-	generateState();
-})
-//生成状态下拉框
-function generateState(){
-	var dictArray = new Array();
-	dictArray.push("<option value=''><--请选择状态--></option>");//updated by ly
-	$.ajax({
-		url:listdictUrl,
-		type:"post",
-		dataType:"json",
-		data:"dictCode=DICT_STATE",
-		async:false,
-		success:function(data){
-			$.each(data,function(i,n){
-				dictArray.push("<option value='"+ n.dictItemCode +"'>"+ n.dictItemName +"</option>");
-			});
-			$('#state').html(dictArray.join(''));
-		},
-		error:function (data) {
-			window.top.art.dialog({content:'加载字典组出错！',lock:true,width:'250',height:'50',border: false,time:1.5},function(){});
-		}
-	});
-
-}
-
-
+    generateDict('DICT_STATE','state','状态');
+});
 
 //打开添加页面
 function openadd(){

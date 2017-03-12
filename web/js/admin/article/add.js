@@ -1,4 +1,7 @@
-
+// 加载字典信息
+$(document).ready(function(){
+	generateDict('DICT_ARTICLE_CATEGORY','category','文章类别');
+})
 //页面校验
 $(function(){
 	$.formValidator.initConfig({
@@ -9,11 +12,11 @@ $(function(){
 		}});
 	// 校验模型名称					
 	$("#title").formValidator({
-		onshow:"请输入名字！",
-		onfocus:"请输入名字！"})
+		onshow:"请输入标题！",
+		onfocus:"请输入标题！"})
 		.inputValidator({               //校验不能为空
 			min:1,
-			onerror:"请输入名字！"})
+			onerror:"请输入标题！"})
 
 
 })
@@ -28,7 +31,9 @@ function add(){
 		var paraStr = "";
 		paraStr += "title=" + $("#title").val();
 		paraStr += "&author=" + $("#author").val();
+		paraStr += "&keyword=" + $("#keyword").val();
 		paraStr += "&content=" + encodeURIComponent(contentEditor.getData());
+		paraStr += "&category=" + $("#category").val();
 		paraStr += "&attachUrls=" + $("#attachUrls").val();
 		paraStr += "&attachNames=" + $("#attachNames").val();
 		$.ajax({
