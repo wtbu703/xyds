@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\models\Resource;
-use Yii;
+use yii;
 use yii\web\Controller;
 use app\models\Admin;
 use app\models\Dictitem;
@@ -14,9 +14,8 @@ use yii\data\Pagination;
  * Class AdminmanageController
  * @package app\controllers
  */
-class AdminmanageController extends Controller{
+class AdminManageController extends Controller{
 
-    public $layout = false;
     public $enableCsrfValidation = false;
 
 	/**
@@ -45,7 +44,7 @@ class AdminmanageController extends Controller{
      * 根据条件查找多条记录
      * @return string
      */
-    public function actionFindbyattri(){
+    public function actionFindByAttri(){
 
         $username = Yii::$app->request->get('username');
         $truename = Yii::$app->request->get('truename');
@@ -96,7 +95,7 @@ class AdminmanageController extends Controller{
      * 检查用户名是否重复
      * @return string
      */
-    public function actionCheckusername(){
+    public function actionCheckUsername(){
         $username = Yii::$app->request->get('username');
         $user = Admin::find()->where(['username' => $username])->one();
         if(is_null($user)){
@@ -110,7 +109,7 @@ class AdminmanageController extends Controller{
      * 插入一条记录到数据库
      * @return string
      */
-    public function actionAddone(){
+    public function actionAddOne(){
 
         $user = new Admin();
         $user->id = Common::generateID();
@@ -145,7 +144,7 @@ class AdminmanageController extends Controller{
      * 修改一条记录并保存到数据库
      * @return string|void
      */
-    public function actionUpdateone(){
+    public function actionUpdateOne(){
 
         $id = Yii::$app->request->post('id');
         $user = Admin::findOne($id);
@@ -179,7 +178,7 @@ class AdminmanageController extends Controller{
      * 根据ID删除一条记录
      * @return string
      */
-    public function actionDeleteone(){
+    public function actionDeleteOne(){
 
         $id = Yii::$app->request->post("id");
         $user = Admin::findOne($id);
@@ -194,7 +193,7 @@ class AdminmanageController extends Controller{
      * 删除多条记录
      * @return string
      */
-    public function actionDeletemore(){
+    public function actionDeleteMore(){
 
         $ids = Yii::$app->request->post("ids");
         $ids_array = explode('-',$ids);
@@ -208,7 +207,7 @@ class AdminmanageController extends Controller{
      *获取一条记录
      * @return string
      */
-    public function actionFindone()
+    public function actionFindOne()
     {
         $id = Yii::$app->request->get('id');
         $user = Admin::findOne($id);
