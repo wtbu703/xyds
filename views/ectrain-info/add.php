@@ -20,19 +20,19 @@ $this->title = '添加培训详情';
                     </tr>
                     <tr>
                         <th >中央财政资金支持总金额：</th>
-                        <td><input type="text" style="width:250px;" name="centralSupport" id="centralSupport"  class="input-text"/>万元</td>
+                        <td><input type="text" style="width:250px;" name="centralSupport" id="centralSupport" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万元</td>
                     </tr>
                     <tr>
                         <th>中央财政资金已拨付金额：</th>
-                        <td><input type="text" style="width:250px;" name="centralPaid" id="centralPaid"  class="input-text"/>万元</td>
+                        <td><input type="text" style="width:250px;" name="centralPaid" id="centralPaid" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万元</td>
                     </tr>
                     <tr>
                         <th>地方财政配套资金总金额：</th>
-                        <td><input type="text" style="width:250px;" name="localSupport" id="localSupport"  class="input-text"/>万元</td>
+                        <td><input type="text" style="width:250px;" name="localSupport" id="localSupport" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万元</td>
                     </tr>
                     <tr>
                         <th>企业投入资金总金额：</th>
-                        <td><input type="text" style="width:250px;" name="companyPaid" id="companyPaid"  class="input-text"/>万元</td>
+                        <td><input type="text" style="width:250px;" name="companyPaid" id="companyPaid" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万元</td>
                     </tr>
                     <tr>
                         <th>项目承办单位：</th>

@@ -16,8 +16,8 @@ function openadd(){
 	$.dialog({id:'economic_add'}).close();
 	$.dialog.open(addUrl, {
 		title: '添加年表',
-		width: 700,
-		height:550,
+		width: 750,
+		height:600,
 		lock: true,
 		border: false,
 		id: 'economic_add',

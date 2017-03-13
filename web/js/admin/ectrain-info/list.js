@@ -4,8 +4,8 @@ function openadd(){
 	$.dialog({id:'info_add'}).close();
 	$.dialog.open(addUrl, {
 		title: '添加培训详情',
-		width: 700,
-		height:550,
+		width: 800,
+		height:600,
 		lock: true,
 		border: false,
 		id: 'info_add',
