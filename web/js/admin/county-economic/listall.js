@@ -4,8 +4,8 @@ function openedit(id,year) {
 	var url = editUrl + '&id='+id;
 	$.dialog.open(url,{
 		title: '修改年表--'+year,
-		width: 700,
-		height:500,
+		width: 750,
+		height:600,
 		lock: true,
 		border: false,
 		id: 'economic_update',
@@ -114,7 +114,7 @@ function detail(id,year){
 	var url = detailUrl+'&id='+id;
 	$.dialog.open(url,{
 		title: '年表详情--'+year,
-		width: 800,
+		width: 750,
 		height:600,
 		lock: true,
 		border: false,

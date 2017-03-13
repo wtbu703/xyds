@@ -69,19 +69,19 @@
                         </tr>
                         <tr>
 	                        <th>中央财政资金支持总金额（万元）：</th>
-	                        <td><input type="text" style="width:250px;height: 30px;" name="centralSupport" id="centralSupport" class="input-text"  value="<?=$serviceSystemBuild['centralSupport']?>" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();" /></td>
+	                        <td><input type="text" style="width:250px;height: 30px;" name="centralSupport" id="centralSupport" class="input-text"  value="<?=$serviceSystemBuild['centralSupport']?>" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-.-]+/,'');}).call(this)" onblur="this.v();" /></td>
                         </tr>
                         <tr>
 	                        <th>中央财政资金已拨付金额（截止上月底）（万元）：</th>
-	                        <td><input type="text" style="width:250px;height: 30px;" name="centralPaid" id="centralPaid" class="input-text" value="<?=$serviceSystemBuild['centralPaid']?>" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();" /></td>
+	                        <td><input type="text" style="width:250px;height: 30px;" name="centralPaid" id="centralPaid" class="input-text" value="<?=$serviceSystemBuild['centralPaid']?>" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-.-]+/,'');}).call(this)" onblur="this.v();" /></td>
                         </tr>
                         <tr>
 	                        <th>地方财政配套资金总金额（万元）：</th>
-	                        <td><input type="text" style="width:250px;height: 30px;" name="localSupport" id="localSupport" class="input-text" value="<?=$serviceSystemBuild['localSupport']?>" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();" /></td>
+	                        <td><input type="text" style="width:250px;height: 30px;" name="localSupport" id="localSupport" class="input-text" value="<?=$serviceSystemBuild['localSupport']?>" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-.-]+/,'');}).call(this)" onblur="this.v();" /></td>
                         </tr>
                         <tr>
 	                        <th>企业投入资金总金额（万元）：</th>
-	                        <td><input type="text" style="width:250px;height: 30px;" name="companyPaid" id="companyPaid" class="input-text" value="<?=$serviceSystemBuild['companyPaid']?>" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();" /></td>
+	                        <td><input type="text" style="width:250px;height: 30px;" name="companyPaid" id="companyPaid" class="input-text" value="<?=$serviceSystemBuild['companyPaid']?>" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-.-]+/,'');}).call(this)" onblur="this.v();" /></td>
                         </tr>
                         <tr>
 	                        <th>项目承办单位：</th>

@@ -1,6 +1,20 @@
 <?php
 $this->title = '添加年表';
 ?>
+<script language="javascript" type="text/javascript">
+    window.onload=function(){
+//设置年份的选择
+        var myDate= new Date();
+        var startYear=myDate.getFullYear()-50;//起始年份
+        var endYear=myDate.getFullYear()+50;//结束年份
+        var obj=document.getElementById('year')
+        for (var i=startYear;i<=endYear;i++)
+        {
+            obj.options.add(new Option(i,i));
+        }
+        //obj.options[obj.options.length-51].selected=1;
+    }
+</script>
 <script type="text/javascript">
     var listallUrl = "<?=yii::$app->urlManager->createUrl('county-economic/find-by-attri')?>";
     var insertUrl = "<?=yii::$app->urlManager->createUrl('county-economic/add-one')?>";
@@ -14,95 +28,97 @@ $this->title = '添加年表';
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
                         <th>年份：</th>
-                        <td><input type="text" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  style="width:250px;" name="year" id="year"  class="input-text"/>年</td>
+                        <td><select id="year" style="width:200px;height:25px;" >
+                                <option name="period" value="" selected>请选择年份</option>
+                            </select>年</td>
                     </tr>
                     <tr>
                         <th >地区生产总值：</th>
-                        <td><input type="text" style="width:250px;"  name="GRP" id="GRP"  class="input-text"/>亿元</td>
+                        <td><input type="text" style="width:250px;"  name="GRP" id="GRP" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>亿元</td>
                     </tr>
                     <tr>
                         <th>社会消费品零售总额：</th>
-                        <td><input type="text" style="width:250px;" name="socialConsumerTotal" id="socialConsumerTotal"  class="input-text"/>亿元</td>
+                        <td><input type="text" style="width:250px;" name="socialConsumerTotal" id="socialConsumerTotal" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>亿元</td>
                     </tr>
                     <tr>
                         <th>面积：</th>
-                        <td><input type="text" style="width:250px;" name="area" id="area"  class="input-text"/>平方公里</td>
+                        <td><input type="text" style="width:250px;" name="area" id="area" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');"  class="input-text"/>平方公里</td>
                     </tr>
                     <tr>
                         <th>乡镇数量：</th>
-                        <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="townNum" id="townNum"  class="input-text"/>个</td>
+                        <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');"  name="townNum" id="townNum"  class="input-text"/>个</td>
                     </tr>
                     <tr>
                         <th>行政村数量：</th>
-                        <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="villageNum" id="villageNum"  class="input-text"/>个</td>
+                        <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" name="villageNum" id="villageNum"  class="input-text"/>个</td>
                     </tr>
                     <tr>
                         <th>常住人口：</th>
-                        <td><input type="text" style="width:250px;" name="permanentPopulation" id="permanentPopulation"  class="input-text"/>万人</td>
+                        <td><input type="text" style="width:250px;" name="permanentPopulation" id="permanentPopulation" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万人</td>
                     </tr>
                     <tr>
                         <th>城镇人口：</th>
-                        <td><input type="text" style="width:250px;" name="urbanPopulation" id="urbanPopulation"  class="input-text"/>万人</td>
+                        <td><input type="text" style="width:250px;" name="urbanPopulation" id="urbanPopulation" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万人</td>
                     </tr>
                     <tr>
                         <th>农村人口：</th>
-                        <td><input type="text" style="width:250px;" name="ruralPopulation" id="ruralPopulation"  class="input-text"/>万人</td>
+                        <td><input type="text" style="width:250px;" name="ruralPopulation" id="ruralPopulation"  onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');"  class="input-text"/>万人</td>
                     </tr>
                     <tr>
                         <th>居民人均可支配收入：</th>
-                        <td><input type="text" style="width:250px;" name="disposableIncome" id="disposableIncome"  class="input-text"/>元</td>
+                        <td><input type="text" style="width:250px;" name="disposableIncome" id="disposableIncome" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>元</td>
                     </tr>
                     <tr>
                         <th>城镇居民人均可支配收入：</th>
-                        <td><input type="text" style="width:250px;" name="urbanDisposableIncome" id="urbanDisposableIncome"  class="input-text"/>元</td>
+                        <td><input type="text" style="width:250px;" name="urbanDisposableIncome" id="urbanDisposableIncome" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>元</td>
                     </tr>
                     <tr>
                         <th>农村居民人均可支配收入：</th>
-                        <td><input type="text" style="width:250px;" name="ruralDisposableIncome" id="ruralDisposableIncome"  class="input-text"/>元</td>
+                        <td><input type="text" style="width:250px;" name="ruralDisposableIncome" id="ruralDisposableIncome" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>元</td>
                     </tr>
                     <tr>
                         <th>农村公路里程数：</th>
-                        <td><input type="text" style="width:250px;" name="ruralRoadMileage" id="ruralRoadMileage"  class="input-text"/>公里</td>
+                        <td><input type="text" style="width:250px;" name="ruralRoadMileage" id="ruralRoadMileage" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>公里</td>
                     </tr>
                     <tr>
                         <th>固定电话年末用户：</th>
-                        <td><input type="text" style="width:250px;" name="telUser" id="telUser"  class="input-text"/>万户</td>
+                        <td><input type="text" style="width:250px;" name="telUser" id="telUser" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');"  class="input-text"/>万户</td>
                     </tr>
                     <tr>
                         <th>移动电话年末用户：</th>
-                        <td><input type="text" style="width:250px;" name="mobileUser" id="mobileUser"  class="input-text"/>万户</td>
+                        <td><input type="text" style="width:250px;" name="mobileUser" id="mobileUser" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万户</td>
                     </tr>
                     <tr>
                         <th>3G4G移动电话用户：</th>
-                        <td><input type="text" style="width:250px;" name="34GUser" id="34GUser"  class="input-text"/>万户</td>
+                        <td><input type="text" style="width:250px;" name="34GUser" id="34GUser" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万户</td>
                     </tr>
                     <tr>
                         <th>互联网宽带接入用户：</th>
-                        <td><input type="text" style="width:250px;" name="internetAccess" id="internetAccess"  class="input-text"/>万户</td>
+                        <td><input type="text" style="width:250px;" name="internetAccess" id="internetAccess" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万户</td>
                     </tr>
                     <tr>
                         <th>个体工商户数：</th>
-                        <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="individualHousehold" id="individualHousehold"  class="input-text"/>家</td>
+                        <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');"  name="individualHousehold" id="individualHousehold"  class="input-text"/>家</td>
                     </tr>
                     <tr>
                         <th>注册企业数量：</th>
-                        <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="registeredCompany" id="registeredCompany"  class="input-text"/>家</td>
+                        <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" name="registeredCompany" id="registeredCompany"  class="input-text"/>家</td>
                     </tr>
                     <tr>
                         <th>网店数量：</th>
-                        <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="onlineStore" id="onlineStore"  class="input-text"/>个</td>
+                        <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" name="onlineStore" id="onlineStore"  class="input-text"/>个</td>
                     </tr>
                     <tr>
                         <th>手机网店、微店数量：</th>
-                        <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="mobileStore" id="mobileStore"  class="input-text"/>个</td>
+                        <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" name="mobileStore" id="mobileStore"  class="input-text"/>个</td>
                     </tr>
                     <tr>
                         <th>电子商务交易额：</th>
-                        <td><input type="text" style="width:250px;" name="ecTurnover" id="ecTurnover"  class="input-text"/>万元</td>
+                        <td><input type="text" style="width:250px;" name="ecTurnover" id="ecTurnover" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万元</td>
                     </tr>
                     <tr>
                         <th>网络零售额：</th>
-                        <td><input type="text" style="width:250px;" name="netRetailSales" id="netRetailSales"  class="input-text"/>万元</td>
+                        <td><input type="text" style="width:250px;" name="netRetailSales" id="netRetailSales" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万元</td>
                     </tr>
                 </table>
             </div>

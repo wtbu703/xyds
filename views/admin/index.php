@@ -71,7 +71,7 @@ use yii\helpers\Html;
                 </form>
             </div>
         </div>
-        <div class="Bot">版权所有：</div>
+        <div class="Bot"></div>
     </div>
     </body>
 </html>

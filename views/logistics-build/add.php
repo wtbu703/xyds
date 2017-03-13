@@ -11,11 +11,11 @@
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
                         <th>乡镇快递覆盖率（%）：</th>
-                        <td><input type="text" style="width:250px;height: 30px;" name="townCover" id="townCover"  class="input-text" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"/></td>
+                        <td><input type="text" style="width:250px;height: 30px;" name="townCover" id="townCover"  class="input-text" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-.-]+/,'');}).call(this)" onblur="this.v();"/></td>
                     </tr>
 	                <tr>
 		                <th>行政村快递覆盖率（%）：</th>
-		                <td><input type="text" style="width:250px;height: 30px;" name="villageCover" id="villageCover"  class="input-text" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"/></td>
+		                <td><input type="text" style="width:250px;height: 30px;" name="villageCover" id="villageCover"  class="input-text" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-.-]+/,'');}).call(this)" onblur="this.v();"/></td>
 	                </tr>
 	                <tr>
 		                <th>当月本县快递收件数量（件）：</th>

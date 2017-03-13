@@ -12,7 +12,7 @@ $this->title = '年表管理';
         {
             obj.options.add(new Option(i,i));
         }
-        obj.options[obj.options.length-51].selected=1;
+        //obj.options[obj.options.length-51].selected=1;
     }
 </script>
 
@@ -47,7 +47,9 @@ $this->title = '年表管理';
                     <div class="explain-col">
                         <div>
                             年份：
-                            <select id="year" style="width:135px;height:20px;"></select>
+                            <select id="year" style="width:135px;height:25px;">
+                                <option name="period" value="" selected>请选择年份</option>
+                            </select>
                             &nbsp;<input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
                             <div class = "checkTip" style="float:right;margin-right:40%;color:red;">
                             </div>

@@ -4,7 +4,7 @@ function openadd(){
 	$.dialog.open(addUrl, {
 		title: '添加物流配送体系建设情况',
 		width: 800,
-		height:700,
+		height:400,
 		lock: true,
 		border: false,
 		id: 'build_add',
