@@ -8,7 +8,7 @@ $this->title = '培训详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th >培训ID：</th>
+                        <th width="200">培训ID：</th>
                         <td id="trainId"><?=$ectrainInfo->trainId?></td>
                     </tr>
                     <tr>
