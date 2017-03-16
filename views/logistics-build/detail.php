@@ -4,7 +4,7 @@
         <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
             <table width="100%" cellspacing="0" class="table_form contentWrap">
 	            <tr>
-		            <th>乡镇快递覆盖率（%）：</th>
+		            <th width="200">乡镇快递覆盖率（%）：</th>
 		            <td><?=$supportLaunch['townCover']?></td>
 	            </tr>
 	            <tr>

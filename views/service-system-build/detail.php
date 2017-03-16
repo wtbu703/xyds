@@ -4,7 +4,7 @@
         <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
             <table width="100%" cellspacing="0" class="table_form contentWrap">
 	            <tr>
-		            <th width="100%">项目建设名称：</th>
+		            <th width="300">项目建设名称：</th>
 		            <td><?=$serviceSystemBuild['name']?></td>
 	            </tr>
 	            <tr>
