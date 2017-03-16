@@ -137,9 +137,15 @@ class PublicInfoController extends Controller
         $publicInfo = PublicInfo::findOne($id);
         //字典反转
         $cateGory = Dictitem::find()->where(['dictCode'=>'DICT_CATEGORY'])->all();
+        $state = Dictitem::find()->where(['dictCode'=>'DICT_PUBLICINFO_STATE'])->all();
         foreach ($cateGory as $index => $value) {
             if ($publicInfo->category == $value->dictItemCode) {
                 $publicInfo->category = $value->dictItemName;
+            }
+        }
+        foreach ($state as $index => $value) {
+            if ($publicInfo->state == $value->dictItemCode) {
+                $publicInfo->state = $value->dictItemName;
             }
         }
         return $this->render('detail',[

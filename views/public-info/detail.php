@@ -23,6 +23,10 @@ $this->title = '信息详情';
                         <th width="100">类别</th>
                         <td id="category"><?=$publicInfo->category?></td>
                     </tr>
+                    <tr>
+                        <th width="100">状态</th>
+                        <td id="state"><?=$publicInfo->state?></td>
+                    </tr>
                 </table>
             </div>
             <div class="bk10"></div>
