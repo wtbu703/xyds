@@ -185,8 +185,11 @@ class SupportLaunchController extends Controller{
 		$serviceSystemBuild = SupportLaunch::findOne($id);
 		$picUrl = $serviceSystemBuild['decisionFileUrl'];//获取表中图片路径字段
 
+		if(!is_null($picUrl)){//如果有文件
+			unlink($picUrl);//删除文件
+		}
 		//根据ID删除site,siteinfo,并根据路径删除图片文件
-		if($serviceSystemBuild->delete()&&unlink($picUrl)){
+		if($serviceSystemBuild->delete()){
 			return "success";
 		}else{
 			return "fail";
@@ -205,7 +208,9 @@ class SupportLaunchController extends Controller{
 
 		foreach($id_array as $key => $data){
 			$serviceSystemBuild = SupportLaunch::findOne($data);
-			unlink($serviceSystemBuild['decisionFileUrl']);//根据路径删除文件
+			if(!is_null($serviceSystemBuild['decisionFileUrl'])){
+				unlink($serviceSystemBuild['decisionFileUrl']);//根据路径删除文件
+			}
 			$serviceSystemBuild->delete();//根据ID删除
 		}
 		return 'success';

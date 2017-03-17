@@ -222,8 +222,11 @@ class ServiceSystemBuildController extends Controller{
 		$serviceSystemBuild = ServiceSystemBuild::findOne($id);
 		$picUrl = $serviceSystemBuild['decisionFileUrl'];//获取表中图片路径字段
 
-		//根据ID删除site,siteinfo,并根据路径删除图片文件
-		if($serviceSystemBuild->delete()&&unlink($picUrl)){
+		if(!is_null($picUrl)){//如果有文件
+			unlink($picUrl);//删除决策文件
+		}
+		//根据ID删除
+		if($serviceSystemBuild->delete()){
 			return "success";
 		}else{
 			return "fail";
@@ -242,7 +245,9 @@ class ServiceSystemBuildController extends Controller{
 
 		foreach($id_array as $key => $data){
 			$serviceSystemBuild = ServiceSystemBuild::findOne($data);
-			unlink($serviceSystemBuild['decisionFileUrl']);//根据路径删除文件
+			if(!is_null($serviceSystemBuild['decisionFileUrl'])){//如果有文件
+				unlink($serviceSystemBuild['decisionFileUrl']);//根据路径删除文件
+			}
 			$serviceSystemBuild->delete();//根据ID删除
 		}
 		return 'success';

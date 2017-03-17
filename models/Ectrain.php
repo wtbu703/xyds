@@ -41,7 +41,7 @@ class Ectrain extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['published'], 'safe'],
             [['id'], 'string', 'max' => 40],
-            [['name'], 'string', 'max' => 16],
+            [['name'], 'string', 'max' => 64],
             [['target'], 'string', 'max' => 32],
             [['publisher'], 'string', 'max' => 10],
             [['thumbnailUrl', 'picUrl'], 'string', 'max' => 128],
