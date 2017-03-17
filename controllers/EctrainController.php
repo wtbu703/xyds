@@ -7,6 +7,7 @@ use app\models\Ectrain;
 use app\models\Dictitem;
 use yii\data\Pagination;
 use app\common\Common;
+use yii\helpers\Json;
 
 class EctrainController extends Controller{
     public $enableCsrfValidation = false;
@@ -132,8 +133,6 @@ class EctrainController extends Controller{
             unlink($ectrain->thumbnailUrl );
             $ectrain->thumbnailUrl =$thumbnailUrl;
         }
-
-        $ectrain->thumbnailUrl =$thumbnailUrl;
         $ectrain->name = Yii::$app->request->post('name');
         $ectrain->category = Yii::$app->request->post('category');
         $ectrain->content = Yii::$app->request->post('content');
@@ -289,6 +288,11 @@ class EctrainController extends Controller{
                 ],
             ]);
         }
+    }
+
+    public function actionEctrain(){
+        $ectrain = Ectrain::find()->all();
+        return Json::encode($ectrain);
     }
 }
 
