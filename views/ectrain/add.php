@@ -23,7 +23,7 @@ $this->title = '添加培训信息';
                     </tr>
                     <tr>
                         <th>内容：</th>
-                        <td><input type="text" style="width:250px;" name="content" id="content"  class="input-text"/></td>
+                        <td><textarea style="width:500px;height:100px;" name="content" id="content" ></textarea></td>
                     </tr>
                     <tr>
                         <th>天数：</th>
