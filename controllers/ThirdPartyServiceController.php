@@ -12,6 +12,7 @@ use yii\base\Controller;
 use app\common\Common;
 use app\models\ThirdPartyService;
 use yii\data\Pagination;
+use yii\helpers\Json;
 
 class ThirdPartyServiceController extends Controller{
 
@@ -165,7 +166,9 @@ class ThirdPartyServiceController extends Controller{
 			$serviceSite->companyName = $companyName;
 		}
 		if($logoUrl != ''){
-			unlink($serviceSite->logoUrl);
+			if(!is_null($serviceSite->logoUrl)){//如果有图片链接
+				unlink($serviceSite->logoUrl);//就删除图片文件
+			}
 			$serviceSite->logoUrl = $logoUrl;
 		}
 		if($introduction != ''){
@@ -207,12 +210,16 @@ class ThirdPartyServiceController extends Controller{
 		$serviceSystemBuild = ThirdPartyService::findOne($id);
 		$picUrl = $serviceSystemBuild['logoUrl'];//获取表中图片路径字段
 
-		//根据ID删除site,siteinfo,并根据路径删除图片文件
-		if($serviceSystemBuild->delete()&&unlink($picUrl)){
+		if(!is_null($picUrl)){//如果有图片文件
+			//根据路径删除图片文件
+			unlink($picUrl);
+		}
+		if($serviceSystemBuild->delete()){
 			return "success";
 		}else{
 			return "fail";
 		}
+
 	}
 
 	/**
@@ -227,9 +234,16 @@ class ThirdPartyServiceController extends Controller{
 
 		foreach($id_array as $key => $data){
 			$serviceSystemBuild = ThirdPartyService::findOne($data);
-			unlink($serviceSystemBuild['logoUrl']);//根据路径删除文件
+			if(!is_null($serviceSystemBuild['logoUrl'])){//如果有图片文件
+				unlink($serviceSystemBuild['logoUrl']);//根据路径删除文件
+			}
 			$serviceSystemBuild->delete();//根据ID删除
 		}
 		return 'success';
+	}
+
+	public function actionAjax(){
+
+		return Json::encode(ThirdPartyService::find()->all());
 	}
 }

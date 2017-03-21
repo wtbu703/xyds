@@ -42,11 +42,11 @@
                         </tr>
                         <tr>
 	                        <th>承办单位负责人：</th>
-	                        <td><input type="text" style="width:250px;height: 30px;" name="chargeName1" id="chargeName1" class="input-text" value="<?=$supportLaunch['chargeName1']?>"/></td>
+	                        <td><input type="text" style="width:250px;height: 30px;" name="chargeName1" id="chargeName1" class="input-text" value="<?=$supportLaunch['chargeName']?>"/></td>
                         </tr>
                         <tr>
 	                        <th>联系电话：</th>
-	                        <td><input type="text" style="width:250px;height: 30px;" name="chargeMobile1" id="chargeMobile1" class="input-text" value="<?=$supportLaunch['chargeMobile1']?>"/></td>
+	                        <td><input type="text" style="width:250px;height: 30px;" name="chargeMobile1" id="chargeMobile1" class="input-text" value="<?=$supportLaunch['chargeMobile']?>"/></td>
                         </tr>
                         <tr>
 	                        <th>信息公开网址：</th>

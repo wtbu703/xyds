@@ -272,8 +272,11 @@ class ServiceSiteController extends Controller{
 			->one();
 		$picUrl = $serviceSiteInfo['picUrl'];//获取表中图片路径字段
 
+		if(!is_null($picUrl)){//如果有图片文件
+			unlink($picUrl);//删除图片
+		}
 		//根据ID删除site,siteinfo,并根据路径删除图片文件
-		if(ServiceSite::findOne($siteId)->delete()&&$serviceSiteInfo->delete()&&unlink($picUrl)){
+		if(ServiceSite::findOne($siteId)->delete()&&$serviceSiteInfo->delete()){
 			return "success";
 		}else{
 			return "fail";
@@ -296,7 +299,9 @@ class ServiceSiteController extends Controller{
 				->where('siteId = :id',[':id' => $data])
 				->one();
 			$picUrl = $serviceSiteInfo['picUrl'];
-			unlink($picUrl);//根据路径删除图片文件
+			if(!is_null($picUrl)){//如果有图片
+				unlink($picUrl);//根据路径删除图片文件
+			}
 			$serviceSiteInfo->delete();//根据ID删除siteinfo
 		}
 		return 'success';
@@ -342,7 +347,9 @@ class ServiceSiteController extends Controller{
 		}
 		if($attachUrls != ''){
 			$picUrl = $serviceSiteInfo['picUrl'];
-			unlink($picUrl);
+			if(!is_null($picUrl)){//如果有文件
+				unlink($picUrl);//删除原文件
+			}
 			$serviceSiteInfo['picUrl'] = $attachUrls;
 		}
 		if($serviceSite->save()&&$serviceSiteInfo->save()){

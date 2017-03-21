@@ -33,11 +33,11 @@
 	            </tr>
 	            <tr>
 		            <th>承办单位负责人：</th>
-		            <td><?=$supportLaunch['chargeName1']?></td>
+		            <td><?=$supportLaunch['chargeName']?></td>
 	            </tr>
 	            <tr>
 		            <th>联系电话：</th>
-		            <td><?=$supportLaunch['chargeMobile1']?></td>
+		            <td><?=$supportLaunch['chargeMobile']?></td>
 	            </tr>
 	            <tr>
 		            <th>中央财政资金支持此项目的政府决策单位或领导：</th>
