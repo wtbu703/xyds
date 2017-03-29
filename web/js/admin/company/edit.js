@@ -29,6 +29,9 @@ function edit(){
 		paraStr += "&corporate=" + $("#corporate").val();
 		paraStr += "&introduction=" + $("#introduction").val();
 		paraStr += "&logoUrl=" + $("#picUrl").val();
+		paraStr += "&sources=" + $("#sources").val();
+		paraStr += "&webSite=" + $("#webSite").val();
+		paraStr += "&category=" + $("#category").val();
 
 		$.ajax({
 			url: updateUrl,

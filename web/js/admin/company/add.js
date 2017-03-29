@@ -1,4 +1,8 @@
+// 加载字典信息
+$(document).ready(function(){
 
+	generateDict('DICT_COMPANY_CATEGORY','category','企业类别');
+})
 //页面校验
 $(function(){
 	$.formValidator.initConfig({
@@ -26,8 +30,12 @@ $(function(){
 			.inputValidator({               //校验不能为空
 				min:1,
 				onerror:"请上传企业logo！"})
-
-
+	$("#category").formValidator({
+				onshow:"请输入企业类别！",
+				onfocus:"请输入企业类别！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入企业类别！"})
 })
 
 /**
@@ -44,7 +52,9 @@ function add(){
 		paraStr += "&address=" + $("#address").val();
 		paraStr += "&logoUrl=" + $("#picUrl").val();
 		paraStr += "&corporate=" + $("#corporate").val();
-
+		paraStr += "&sources=" + $("#sources").val();
+		paraStr += "&webSite=" + $("#webSite").val();
+		paraStr += "&category=" + $("#category").val();
 
 		$.ajax({
 			url: insertUrl,

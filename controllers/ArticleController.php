@@ -9,6 +9,7 @@ use app\common\Common;
 use yii\data\Pagination;
 use app\common\HtmlDom;
 use app\common\Phpexcel;
+use yii\helpers\Json;
 
 /**
  * Class ArticleController
@@ -364,4 +365,18 @@ class ArticleController extends Controller{
         $data = $phpexcel->ReadExcel('test.xlsx');
         print_r($data);exit;
     }
+
+	/**
+	 * 资讯接口
+	 * @return string
+	 */
+	public function actionArticle(){
+		$type = Yii::$app->request->post('newsType');
+		$articles = Article::find()
+			->where('category = :type',[":type"=>$type])
+			->limit(13)
+			->orderBy(['datetime'=>SORT_DESC])
+			->all();
+		return Json::encode($articles);
+	}
 }

@@ -169,19 +169,20 @@ class CategoryController extends Controller{
 		$categoryFulls = CategoryFull::find()
 			->where(['categoryCode' => $categoryCode])
 			->all();
-		//以下是现实对模型中的字典项进行转化
-		$dictItem = Dictitem::find()
-			->where(['dictCode' => 'DICT_STATE'])
-			->all();
-		foreach($dictItem as $index => $value){
-			if($category->state == $value->dictItemCode){
-				$category->state = $value->dictItemName;
-			}
-		}
-		//到此处截止
+
 		//如果是详情页
 		if($action == 'detail')
 		{
+			//以下是现实对模型中的字典项进行转化
+			$dictItem = Dictitem::find()
+				->where(['dictCode' => 'DICT_STATE'])
+				->all();
+			foreach($dictItem as $index => $value){
+				if($category->state == $value->dictItemCode){
+					$category->state = $value->dictItemName;
+				}
+			}
+			//到此处截止
 			return $this->render('detail',[
 				'category' => $category,
 				'categoryFulls' => $categoryFulls,

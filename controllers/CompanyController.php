@@ -5,8 +5,10 @@ namespace app\controllers;
 use yii;
 use yii\web\Controller;
 use app\models\Company;
+use app\models\Dictitem;
 use yii\data\Pagination;
 use app\common\Common;
+use yii\helpers\Json;
 
 class CompanyController extends Controller{
     public $enableCsrfValidation = false;
@@ -40,6 +42,10 @@ class CompanyController extends Controller{
         $company->address = Yii::$app->request->post('address');
         $company->corporate = Yii::$app->request->post('corporate');
         $company->logoUrl = Yii::$app->request->post('logoUrl');
+        $company->sources = Yii::$app->request->post('sources');
+        $company->webSite = Yii::$app->request->post('webSite');
+        $company->category = Yii::$app->request->post('category');
+        $company->datetime = date('Y-m-d H:m:s');
 
         if($company->save()){
             return "success";
@@ -55,8 +61,10 @@ class CompanyController extends Controller{
     public function actionUpdate(){
         $id = Yii::$app->request->get('id');
         $company = Company::findOne($id);
+        $category = Dictitem::find()->where(['dictCode'=>'DICT_COMPANY_CATEGORY'])->all();
         return $this->render('edit',[
             'company'=>$company,
+            'category'=>$category,
         ]);
     }
 
@@ -71,12 +79,18 @@ class CompanyController extends Controller{
         if($company->logoUrl !== $logoUrl&&$company->logoUrl != '' &&$logoUrl !=''){
             unlink($company->logoUrl );
         }
-        $company->logoUrl = $logoUrl;
+        if($logoUrl != '') {
+            $company->logoUrl = $logoUrl;
+        }
         $company->name = Yii::$app->request->post('name');
         $company->address = Yii::$app->request->post('address');
         $company->tel = Yii::$app->request->post('tel');
         $company->corporate = Yii::$app->request->post('corporate');
         $company->introduction = Yii::$app->request->post('introduction');
+        $company->sources = Yii::$app->request->post('sources');
+        $company->webSite = Yii::$app->request->post('webSite');
+        $company->category = Yii::$app->request->post('category');
+        $company->datetime = date('Y-m-d H:m:s');
 
         if($company->save()) {
             return "success";
@@ -168,8 +182,14 @@ class CompanyController extends Controller{
     public function actionFindOne(){
         $id = Yii::$app->request->get('id');
         $company = Company::findOne($id);
+        $category = Dictitem::find()->where(['dictCode' => 'DICT_COMPANY_CATEGORY'])->all();
+        foreach ($category as $index => $value) {
+            if ($company->category == $value->dictItemCode) {
+                $company->category = $value->dictItemName;
+            }
+        }
         return $this->render('detail',[
-            'company'=>$company
+            'company'=>$company,
         ]);
     }
 
@@ -199,4 +219,30 @@ class CompanyController extends Controller{
         ]);
     }
 
+	/**
+	 * 企业接口
+	 * @return string
+	 */
+	public function actionCompany(){
+		$type = Yii::$app->request->post('newsType');
+		$articles = Company::find()
+			->where('category = :type',[":type"=>$type])
+			->all();
+		return Json::encode($articles);
+	}
+
+	/**
+	 * 企业分类接口
+	 * @return string
+	 */
+	public function actionDict(){
+		$dictitems = Dictitem::find()
+			->where([
+				'state' => '1',
+				'dictCode' => 'DICT_COMPANY_CATEGORY',
+			])
+			->orderBy('orderBy')
+			->all();
+		return Json::encode($dictitems);
+	}
 }

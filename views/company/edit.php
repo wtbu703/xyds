@@ -19,6 +19,18 @@ $this->title = "修改企业";
                     <table width="90%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
+                            <th width="100">状态</th>
+                            <td><select style="width:270px;" id="category">
+                                    <?foreach($category as $key => $val){?>
+                                        <?if(intval($val->dictItemCode) == $company->category){?>
+                                            <option name="category" value="<?=$val->dictItemCode?>" selected><?=$val->dictItemName?></option>
+                                        <?}else{?>
+                                            <option name="category" value="<?=$val->dictItemCode?>"><?=$val->dictItemName?></option>
+                                        <?}?>
+                                    <?}?>
+                                </select></td>
+                        </tr>
+                        <tr>
                             <th width="100">名称</th>
                             <td><input type="text" id="name"  class="input-text" style="width:270px;" value="<?=$company->name?>"/></td>
                             <input type="hidden" id="id" value="<?=$company->id?>" />
@@ -30,6 +42,14 @@ $this->title = "修改企业";
                         <tr>
                             <th width="100">地址</th>
                             <td><input type="text" id="address"  class="input-text" style="width:270px;" value="<?=$company->address?>" /></td>
+                        </tr>
+                        <tr>
+                            <th>网址：</th>
+                            <td><input type="text" style="width:250px;" id="webSite" value="<?=$company->webSite?>" class="input-text"/></td>
+                        </tr>
+                        <tr>
+                            <th>来源：</th>
+                            <td><input type="text" style="width:250px;" id="sources"  class="input-text" value="<?=$company->sources?>"/></td>
                         </tr>
                         <tr>
                             <th width="100">电话</th>
@@ -61,3 +81,6 @@ $this->title = "修改企业";
     </div>
 </form>
 </div>
+<script type="text/javascript">
+    var contentEditor=genEditor('','introduction','');
+</script>

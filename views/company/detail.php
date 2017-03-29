@@ -8,6 +8,10 @@ $this->title = '企业详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
+                        <th width="100">企业类别</th>
+                        <td id="category"><?=$company->category?></td>
+                    </tr>
+                    <tr>
                         <th width="100">企业名称</th>
                         <td id="name"><?=$company->name?></td>
                     </tr>
@@ -20,6 +24,18 @@ $this->title = '企业详情';
                         <td id="address"><?=$company->address?></td>
                     </tr>
                     <tr>
+                        <th width="100">企业网站</th>
+                        <td id="address"><?=$company->webSite?></td>
+                    </tr>
+                    <tr>
+                        <th width="100">内容来源</th>
+                        <td id="address"><?=$company->sources?></td>
+                    </tr>
+                    <tr>
+                        <th width="100">发布时间</th>
+                        <td id="address"><?=$company->datetime?></td>
+                    </tr>
+                    <tr>
                         <th width="100">联系电话</th>
                         <td id="tel"><?=$company->tel?></td>
                     </tr>
@@ -28,7 +44,7 @@ $this->title = '企业详情';
                         <td id="introduction"><textarea style="width:500px;height:100px;"><?=$company->introduction?></textarea></td>
                     </tr>
                     <tr>
-                        <th width="100">企业LOGO</th>
+                        <th width="100">企业图片</th>
                         <td id="logoUrl"><img src="<?=$company->logoUrl?>"></td>
                     </tr>
                 </table>

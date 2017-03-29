@@ -1,9 +1,9 @@
 <script type="text/javascript">
-    var findOneUrl = "<?=yii::$app->urlManager->createUrl('category/find-one')?>";
-    var deleteOneUrlUrl = "<?=yii::$app->urlManager->createUrl('category/delete-one')?>";
-    var deleteMoreUrl = "<?=yii::$app->urlManager->createUrl('category/delete-more')?>"
+    var findOneUrl = "<?=yii::$app->urlManager->createUrl('pic/find-one')?>";
+    var deleteOneUrlUrl = "<?=yii::$app->urlManager->createUrl('pic/delete-one')?>";
+    var deleteMoreUrl = "<?=yii::$app->urlManager->createUrl('pic/delete-more')?>"
 </script>
-<script language="javascript" type="text/javascript" src="js/admin/category/listall.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript" src="js/admin/pic/listall.js" charset="utf-8"></script>
 <div class="pad-lr-10">
     <div class="table-list">
         <table width="100%" cellspacing="0" id="dict_list">
@@ -11,9 +11,9 @@
 	            <tr align="center">
 	                <th width="80px" align="left"><input type="checkbox" id='check_box' onclick="selectall('categoryCode')"/>全选/取消</th>
 		            <th width="30px">序号</th>
-		            <th width="220px">商品大类标识</th>
-		            <th width="160px">商品大类名称</th>
-		            <th width="80px">商品大类状态</th>
+		            <th width="220px">图片大类标识</th>
+		            <th width="160px">图片大类名称</th>
+		            <th width="80px">图片大类状态</th>
 		            <th>操作</th>
 	            </tr>
             </thead>
@@ -21,14 +21,14 @@
             <?if(!is_null($categorys)){?>
 	            <?php foreach ($categorys as $index => $val){?>
 	                <tr align="center">
-		                <td align="left"><input type="checkbox" id="categoryCode" name="categoryCode" value="<?=$val->categoryCode?>"/></td>
+		                <td align="left"><input type="checkbox" id="categoryCode" name="categoryCode" value="<?=$val->picCode?>"/></td>
 	                    <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-	                    <td><a href="javascript:detail('<?=$val->categoryCode?>','<?=$val->categoryName?>')"><?=$val->categoryCode?></a></td>
-	                    <td><?=$val->categoryName?></td>
+	                    <td><a href="javascript:detail('<?=$val->picCode?>','<?=$val->picName?>')"><?=$val->picCode?></a></td>
+	                    <td><?=$val->picName?></td>
 	                    <td><?=$val->state?></td>
 	                    <td>
-	                        <a href="javascript:update('<?=$val->categoryCode?>','<?=$val->categoryName?>')">修改</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-		                    <a href="javascript:deleteOne('<?=$val->categoryCode?>')">删除</a>
+	                        <a href="javascript:update('<?=$val->picCode?>','<?=$val->picName?>')">修改</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		                    <a href="javascript:deleteOne('<?=$val->picCode?>')">删除</a>
 	                    </td>
 	                </tr>
 	            <?}?>
@@ -59,10 +59,10 @@
         </div>
     </div>
 </div>
-<form action="<?=Yii::$app->urlManager->createUrl('category/find-by-attri')?>" method="get" id="pageForm">
+<form action="<?=Yii::$app->urlManager->createUrl('pic/find-by-attri')?>" method="get" id="pageForm">
     <input type="hidden" id="page" name="page" value="<?=$pages->page?>"/>
-    <input type="hidden" name="r" value="category/find-by-attri"/>
+    <input type="hidden" name="r" value="pic/find-by-attri"/>
     <input type="hidden" id="pre-page" name="pre-page" value="<?=$pages->pageSize?>"/>
-    <input type="hidden" id="categoryName" name="categoryName" value="<?=$para['categoryName']?>"/>
+    <input type="hidden" id="categoryName" name="categoryName" value="<?=$para['picName']?>"/>
     <input type="hidden" id="state" name="state" value="<?=$para['state']?>"/>
 </form>

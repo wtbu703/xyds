@@ -4,8 +4,8 @@ function openedit(id,name) {
 	var url = editUrl + '&id='+id;
 	$.dialog.open(url,{
 		title: '修改企业--'+name,
-		width: 700,
-		height:500,
+		width: 800,
+		height:600,
 		lock: true,
 		border: false,
 		id: 'company_update',
