@@ -18,6 +18,8 @@ use Yii;
  * @property string $catchtime
  * @property string $keyword
  * @property string $sourceUrl
+ * @property string $picUrl
+ * @property integer $count
  */
 class Article extends \yii\db\ActiveRecord
 {
@@ -36,12 +38,12 @@ class Article extends \yii\db\ActiveRecord
     {
         return [
             [['id'], 'required'],
-            [['category'], 'integer'],
+            [['category', 'count'], 'integer'],
             [['content'], 'string'],
             [['datetime'], 'safe'],
-            [['id', 'sourceUrl'], 'string', 'max' => 64],
-            [['title', 'attachUrls', 'keyword'], 'string', 'max' => 32],
-            [['author', 'attachNames', 'catchtime'], 'string', 'max' => 16],
+            [['id', 'sourceUrl', 'picUrl'], 'string', 'max' => 64],
+            [['title', 'attachUrls', 'attachNames', 'keyword'], 'string', 'max' => 32],
+            [['author', 'catchtime'], 'string', 'max' => 16],
         ];
     }
 
@@ -62,6 +64,8 @@ class Article extends \yii\db\ActiveRecord
             'catchtime' => '抓取时间',
             'keyword' => '关键词',
             'sourceUrl' => '来源网址链接，如果有',
+            'picUrl' => 'Pic Url',
+            'count' => '点击次数',
         ];
     }
 }

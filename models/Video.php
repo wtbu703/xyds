@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use yii\db\ActiveRecord;
+use Yii;
 
 /**
  * This is the model class for table "video".
@@ -14,8 +14,11 @@ use yii\db\ActiveRecord;
  * @property string $datetime
  * @property integer $sign
  * @property integer $state
+ * @property string $picUrl
+ * @property string $content
+ * @property string $duration
  */
-class Video extends ActiveRecord
+class Video extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -34,9 +37,11 @@ class Video extends ActiveRecord
             [['id'], 'required'],
             [['datetime'], 'safe'],
             [['sign', 'state'], 'integer'],
+            [['content'], 'string'],
             [['id', 'name'], 'string', 'max' => 32],
-            [['source'], 'string', 'max' => 64],
-            [['url'], 'string', 'max' => 128]
+            [['source', 'picUrl'], 'string', 'max' => 64],
+            [['url'], 'string', 'max' => 128],
+            [['duration'], 'string', 'max' => 255],
         ];
     }
 
@@ -53,6 +58,9 @@ class Video extends ActiveRecord
             'datetime' => 'Datetime',
             'sign' => 'Sign',
             'state' => 'State',
+            'picUrl' => 'Pic Url',
+            'content' => 'Content',
+            'duration' => 'Duration',
         ];
     }
 }

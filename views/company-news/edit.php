@@ -1,7 +1,6 @@
 <?php
 $this->title = "修改新闻";
 ?>
-
 <script>
     var updateUrl = "<?=yii::$app->urlManager->createUrl('company-news/update-one')?>";
 </script>
@@ -43,6 +42,13 @@ $this->title = "修改新闻";
                                 <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('company-news/upload')?>"></iframe>
                             </td>
                         </tr>
+                        <tr>
+                            <th>上传图片：</th>
+                            <td>
+                                <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
+                                <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('company-news/uploads')?>"></iframe>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -57,3 +63,6 @@ $this->title = "修改新闻";
     </div>
 </form>
 </div>
+<script type="text/javascript">
+    var contentEditor=genEditor('','content','');
+</script>

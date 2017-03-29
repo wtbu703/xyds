@@ -5,13 +5,13 @@ var tag = "<?=$tag?>"
 
 if(tag == 'success'){
     var signSheetUrl = window.parent.$('#signSheetUrl').val();
-    var attachNames = window.parent.$('#attachNames').val();
+    var attachNames = window.parent.$('#signSheetName').val();
     if(signSheetUrl != ''){
         window.parent.$('#signSheetUrl').val(signSheetUrl + ";<?=$fileArg['fileSaveUrl']?>");
-        window.parent.$('#attachNames').val(attachNames + ";<?=$fileArg['fileName']?>");
+        window.parent.$('#signSheetName').val(attachNames + ";<?=$fileArg['fileName']?>");
     }else{
         window.parent.$('#signSheetUrl').val("<?=$fileArg['fileSaveUrl']?>");
-        window.parent.$('#attachNames').val("<?=$fileArg['fileName']?>");
+        window.parent.$('#signSheetName').val("<?=$fileArg['fileName']?>");
     }
 
 }

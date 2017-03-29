@@ -6,6 +6,7 @@ use yii\web\Controller;
 use app\models\CompanyRecruit;
 use yii\data\Pagination;
 use app\common\Common;
+use yii\helpers\Json;
 
 class CompanyRecruitController extends Controller{
     public $enableCsrfValidation = false;
@@ -144,6 +145,10 @@ class CompanyRecruitController extends Controller{
         return $this->render('detail',[
             'companyRecruit'=>$companyRecruit
         ]);
+    }
+    public function actionCompanyRecruit(){
+        $companyRecruit = CompanyRecruit::find()->all();
+        return Json::encode($companyRecruit);
     }
 }
 

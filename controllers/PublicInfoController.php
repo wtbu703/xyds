@@ -6,7 +6,9 @@ use yii;
 use yii\web\Controller;
 use app\models\PublicInfo;
 use app\models\Dictitem;
+use app\models\InfoState;
 use yii\data\Pagination;
+use yii\helpers\Json;
 use app\common\Common;
 
 class PublicInfoController extends Controller
@@ -28,7 +30,10 @@ class PublicInfoController extends Controller
      */
     public function actionAdd()
     {
-        return $this->render('add');
+        $state = Dictitem::find()->where(['dictCode' => 'DICT_PUBLICINFO_STATE'])->all();
+        return $this->render('add',[
+            'state'=>$state,
+        ]);
     }
 
     /**
@@ -45,9 +50,17 @@ class PublicInfoController extends Controller
         $publicInfo->category = Yii::$app->request->post('category');
         $publicInfo->state = Yii::$app->request->post('state');
         $publicInfo->attachUrl = Yii::$app->request->post('attachUrl');
+        $publicInfo->attachName = Yii::$app->request->post('attachName');
+        $publicInfo->picUrl = Yii::$app->request->post('picUrl');
         $publicInfo->published = date("Y-m-d H:i:s");
 
-        if ($publicInfo->save()) {
+        $infoState = new InfoState();
+        $infoState->id = Common::create40ID();
+        $infoState->infoId = $publicInfo->id;
+        $infoState->state = $publicInfo->state;
+        $infoState->time = Yii::$app->request->post('datetime');
+
+        if ($publicInfo->save()&&$infoState->save()) {
             return "success";
         } else {
             return "fail";
@@ -77,11 +90,21 @@ class PublicInfoController extends Controller
     public function actionUpdateOne(){
         $id = Yii::$app->request->post('id');
         $attachUrl = Yii::$app->request->post('attachUrl');
+        $picUrl = Yii::$app->request->post('picUrl');
         $publicInfo = PublicInfo::findOne($id);
-        if($publicInfo->attachUrl != $attachUrl&&$publicInfo->attachUrl != ''&&$attachUrl!=''){
+        if($publicInfo->attachUrl != $attachUrl&&$publicInfo->attachUrl != ''&&$attachUrl!=''&&file_exists($publicInfo->attachUrl)){
             unlink($publicInfo->attachUrl );
         }
-        $publicInfo->attachUrl = $attachUrl;
+        if($attachUrl != '') {
+            $publicInfo->attachUrl = $attachUrl;
+            $publicInfo->attachName = Yii::$app->request->post('attachName');
+        }
+        if($publicInfo->picUrl != $picUrl&&$publicInfo->picUrl != ''&&$picUrl!=''&&file_exists($publicInfo->picUrl)){
+            unlink($publicInfo->picUrl );
+        }
+        if($picUrl != '') {
+            $publicInfo->picUrl = $picUrl;
+        }
         $publicInfo->author = Yii::$app->request->post('author');
         $publicInfo->title = Yii::$app->request->post('title');
         $publicInfo->content = Yii::$app->request->post('content');
@@ -101,8 +124,11 @@ class PublicInfoController extends Controller
     public function actionDeleteOne(){
         $id = Yii::$app->request->post('id');
         $publicInfo = PublicInfo::findOne($id);
-        if($publicInfo->attachUrl !='') {
+        if($publicInfo->attachUrl !=''&&file_exists($publicInfo->attachUrl)) {
             unlink($publicInfo->attachUrl);
+        }
+        if($publicInfo->picUrl !=''&&file_exists($publicInfo->picUrl)) {
+            unlink($publicInfo->picUrl);
         }
         if($publicInfo->delete()) {
             return "success";
@@ -120,8 +146,11 @@ class PublicInfoController extends Controller
         $ids_array = explode('-',$ids);
         foreach($ids_array as $key=>$data){
             $publicInfo = PublicInfo::findOne($data);
-            if($publicInfo->attachUrl) {
+            if($publicInfo->attachUrl != ''&&file_exists($publicInfo->attachUrl)) {
                 unlink($publicInfo->attachUrl);
+            }
+            if($publicInfo->picUrl  != ''&&file_exists($publicInfo->picUrl)) {
+                unlink($publicInfo->picUrl);
             }
             PublicInfo::deleteall('id=:id',[':id'=>$data]);
         }
@@ -220,6 +249,54 @@ class PublicInfoController extends Controller
                 "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
             ],
         ]);
-
     }
+
+    /**
+     * @return string
+     * 上传图片
+    */
+    /*
+     * 上传图片
+     */
+    public function actionUploads(){
+        //实现上传
+        if (Yii::$app->request->isPost) {
+            $isThumb = Yii::$app->request->get('isThumb');
+            $views = 'uploads';
+            if(is_null($isThumb)){
+                $fileArg = Common::upload($_FILES,true,false);
+            }else{
+                $fileArg = Common::upload($_FILES,true,true);
+                $views = 'uploads';
+            }
+
+            return $this->render($views,[
+                "fileArg" => $fileArg,
+                "tag" => $fileArg['tag'],
+            ]);
+        }
+        $detail = Yii::$app->request->get('detail');
+        if(is_null($detail)){
+            return $this->render('uploads',[
+                "tag" => "empty",
+                "fileArg" =>[
+                    "fileSaveUrl" =>"",//上传文件保存的路径
+                    "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
+                ],
+            ]);
+        }else{
+            return $this->render('uploads',[
+                "tag" => "empty",
+                "fileArg" =>[
+                    "fileSaveUrl" =>"",//上传文件保存的路径
+                    "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
+                ],
+            ]);
+        }
+    }
+    public function actionInfo(){
+        $info = PublicInfo::find()->all();
+        return Json::encode($info);
+    }
+
 }

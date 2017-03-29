@@ -7,6 +7,7 @@ use yii\web\Controller;
 use app\models\Video;
 use app\common\Common;
 use yii\data\Pagination;
+use yii\helpers\Json;
 
 /**
  * Class VideoController
@@ -14,7 +15,7 @@ use yii\data\Pagination;
  */
 class VideoController extends Controller
 {
-    public $layout = false;
+    //public $layout = false;
     public $enableCsrfValidation = false;
 
 
@@ -92,6 +93,9 @@ class VideoController extends Controller
             $video->datetime = date("Y-m-d H:i:s");
             $video->name = Yii::$app->request->post('name');
             $video->url = Yii::$app->request->post('url');
+            $video->content = Yii::$app->request->post('content');
+            $video->picUrl = Yii::$app->request->post('picUrl');
+            $video->duration = Yii::$app->request->post('duration');
         }else {
             $video = new Video();
             $video->id = Common::generateID();
@@ -99,7 +103,10 @@ class VideoController extends Controller
             $video->source = Yii::$app->request->post('source');
             $video->datetime = date("Y-m-d H:i:s");
             $video->url = Yii::$app->request->post('attachUrls');
-            $video->name = Yii::$app->request->post('attachNames');
+            $video->name = Yii::$app->request->post('name');
+            $video->content = Yii::$app->request->post('content');
+            $video->picUrl = Yii::$app->request->post('picUrl');
+            $video->duration = Yii::$app->request->post('duration');
         }
 
         if($video->save()){
@@ -158,15 +165,32 @@ class VideoController extends Controller
             $video->source = Yii::$app->request->post('source');
             $video->name = Yii::$app->request->post('name');
             $video->url = Yii::$app->request->post('url');
+            $video->content = Yii::$app->request->post('content');
+            $video->picUrl = Yii::$app->request->post('picUrl');
+            $video->duration = Yii::$app->request->post('duration');
         }else {
             $id = Yii::$app->request->post('id');
+            $url = Yii::$app->request->post('url');
+            $picUrl = Yii::$app->request->post('picUrl');
             $video = Video::findOne($id);
+            if($url != ''&&$video->url != ''&&$url != $video->url&&file_exists($video->url)){
+                unlink($video->url);
+            }
+            if($url != ''){
+                $video->url = $url;
+            }
+            if($picUrl != ''&&$video->picUrl != ''&&$picUrl != $video->picUrl&&file_exists($video->picUrl)){
+                unlink($video->picUrl);
+            }
+            if($picUrl != ''){
+                $video->picUrl = $picUrl;
+            }
             $video->sign = Yii::$app->request->post('sign');
             $video->source = Yii::$app->request->post('source');
-            $video->url = Yii::$app->request->post('attachUrls');
             $video->name = Yii::$app->request->post('attachNames');
+            $video->content = Yii::$app->request->post('content');
+            $video->duration = Yii::$app->request->post('duration');
         }
-
         if($video->save()){
             return "success";
         }else{
@@ -182,6 +206,12 @@ class VideoController extends Controller
 
         $id = Yii::$app->request->post("id");
         $video = Video::findOne($id);
+        if($video->url != ''&&$video->sign != 1&&file_exists($video->url)){
+            unlink($video->url);
+        }
+        if($video->picUrl != ''&&file_exists($video->picUrl)){
+            unlink($video->picUrl);
+        }
         if($video->delete()){
             return "success";
         }else{
@@ -199,6 +229,13 @@ class VideoController extends Controller
         $ids_array = explode('-',$ids);
 
         foreach($ids_array as $key => $data){
+            $video = Video::findOne($data);
+            if($video->url != ''&&$video->sign != 1&&file_exists($video->url)){
+                unlink($video->url);
+            }
+            if($video->picUrl != ''&&file_exists($video->picUrl)){
+                unlink($video->picUrl);
+            }
             Video::deleteAll('id = :id',[':id'=>$data]);
         }
         return 'success';
@@ -218,5 +255,51 @@ class VideoController extends Controller
         ]);
     }
 
+    /*
+     * 上传图片
+     */
+    public function actionUploads(){
+        //实现上传
+        if (Yii::$app->request->isPost) {
+            $isThumb = Yii::$app->request->get('isThumb');
+            $views = 'uploads';
+            if(is_null($isThumb)){
+                $fileArg = Common::upload($_FILES,true,false);
+            }else{
+                $fileArg = Common::upload($_FILES,true,true);
+                $views = 'uploads';
+            }
+
+            return $this->render($views,[
+                "fileArg" => $fileArg,
+                "tag" => $fileArg['tag'],
+            ]);
+        }
+        $detail = Yii::$app->request->get('detail');
+        if(is_null($detail)){
+            return $this->render('uploads',[
+                "tag" => "empty",
+                "fileArg" =>[
+                    "fileSaveUrl" =>"",//上传文件保存的路径
+                    "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
+                ],
+            ]);
+        }else{
+            return $this->render('uploads',[
+                "tag" => "empty",
+                "fileArg" =>[
+                    "fileSaveUrl" =>"",//上传文件保存的路径
+                    "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
+                ],
+            ]);
+        }
+    }
+
+    public function actionVideo(){
+        $video = Video::find()
+            ->limit(1)
+            ->all();
+        return Json::encode($video);
+    }
 }
 

@@ -168,6 +168,7 @@ class CategoryController extends Controller{
 			->one();
 		$categoryFulls = CategoryFull::find()
 			->where(['categoryCode' => $categoryCode])
+			->orderBy('orderBy')
 			->all();
 
 		//如果是详情页

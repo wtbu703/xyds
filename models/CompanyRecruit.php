@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "company-recruit".
+ * This is the model class for table "companyrecruit".
  *
  * @property string $id
  * @property string $companyId
@@ -15,6 +15,7 @@ use Yii;
  * @property string $tel
  * @property string $email
  * @property string $contacts
+ * @property integer $count
  */
 class CompanyRecruit extends \yii\db\ActiveRecord
 {
@@ -23,7 +24,7 @@ class CompanyRecruit extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'companyRecruit';
+        return 'companyrecruit';
     }
 
     /**
@@ -34,6 +35,7 @@ class CompanyRecruit extends \yii\db\ActiveRecord
         return [
             [['id', 'companyId'], 'required'],
             [['demand'], 'string'],
+            [['count'], 'integer'],
             [['id', 'companyId'], 'string', 'max' => 40],
             [['position', 'tel', 'email'], 'string', 'max' => 16],
             [['mobile'], 'string', 'max' => 11],
@@ -47,14 +49,15 @@ class CompanyRecruit extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'companyId' => 'Company ID',
-            'position' => 'Position',
-            'demand' => 'Demand',
-            'mobile' => 'Mobile',
-            'tel' => 'Tel',
-            'email' => 'Email',
-            'contacts' => 'Contacts',
+            'id' => '使用函数创建唯一40位ID',
+            'companyId' => '企业ID，外键，使用函数创建唯一40位ID',
+            'position' => '职位',
+            'demand' => '要求',
+            'mobile' => '11位手机号',
+            'tel' => '座机',
+            'email' => '邮箱',
+            'contacts' => '联系人',
+            'count' => '点击次数',
         ];
     }
 }

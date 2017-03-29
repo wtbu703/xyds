@@ -8,7 +8,7 @@ $this->title = '年表详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="200">年份：</th>
+                        <th>年份：</th>
                         <td id="year"><?=$countyEconomic->year?>年</td>
                     </tr>
                     <tr>

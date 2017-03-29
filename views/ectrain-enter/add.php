@@ -13,7 +13,7 @@ $this->title = '添加培训报名信息';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th >培训ID：</th>
+                        <th width="100px">培训ID：</th>
                         <td><input type="text" style="width:250px;" name="trainId" id="trainId"  class="input-text"/></td>
                     </tr>
                     <tr>

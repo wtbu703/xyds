@@ -11,14 +11,14 @@ $this->title = "修改产品";
     <div class="pad-10">
         <div class="col-tab">
             <ul class="tabBut cu-li">
-                <li id="tab_setting_1" class="on" onclick="">修改企业</li>
+                <li id="tab_setting_1" class="on" onclick="">修改产品</li>
             </ul>
             <div id="div_setting_1" class="contentList pad-10">
                 <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                     <table width="90%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-                            <th width="100">企业</th>
+                            <th width="100px">企业</th>
                             <td><input type="text" id="companyId"  class="input-text" style="width:270px;" value="<?=$companyProduct->companyId?>" /></td>
                         </tr>
                         <tr>
@@ -44,15 +44,22 @@ $this->title = "修改产品";
                         </tr>
                         <tr>
                             <th width="100">状态</th>
-                            <td><select style="width:270px;" id="period">
+                            <td><select style="width:270px;" id="state">
                                     <?foreach($productState as $key => $val){?>
                                         <?if(intval($val->dictItemCode) == $companyProduct->state){?>
-                                            <option name="period" value="<?=$val->dictItemCode?>" selected><?=$val->dictItemName?></option>
+                                            <option name="state" value="<?=$val->dictItemCode?>" selected><?=$val->dictItemName?></option>
                                         <?}else{?>
-                                            <option name="period" value="<?=$val->dictItemCode?>"><?=$val->dictItemName?></option>
+                                            <option name="state" value="<?=$val->dictItemCode?>"><?=$val->dictItemName?></option>
                                         <?}?>
                                     <?}?>
                                 </select></td>
+                        </tr>
+                        <tr>
+                            <th>产品图片：</th>
+                            <td>
+                                <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text" "/>
+                                <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('company-product/upload')?>"></iframe>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -68,3 +75,6 @@ $this->title = "修改产品";
     </div>
 </form>
 </div>
+<script type="text/javascript">
+    var contentEditor=genEditor('','introduction','');
+</script>

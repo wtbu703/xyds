@@ -13,8 +13,11 @@ use Yii;
  * @property string $published
  * @property string $content
  * @property integer $category
+ * @property string $attachName
  * @property string $attachUrl
  * @property integer $state
+ * @property string $picUrl
+ * @property integer $conunt
  */
 class PublicInfo extends \yii\db\ActiveRecord
 {
@@ -35,9 +38,9 @@ class PublicInfo extends \yii\db\ActiveRecord
             [['id', 'title'], 'required'],
             [['published'], 'safe'],
             [['content'], 'string'],
-            [['category', 'state'], 'integer'],
+            [['category', 'state', 'conunt'], 'integer'],
             [['id'], 'string', 'max' => 40],
-            [['title', 'attachUrl'], 'string', 'max' => 64],
+            [['title', 'attachName', 'attachUrl', 'picUrl'], 'string', 'max' => 64],
             [['author'], 'string', 'max' => 8],
         ];
     }
@@ -54,8 +57,11 @@ class PublicInfo extends \yii\db\ActiveRecord
             'published' => '发布时间',
             'content' => '内容',
             'category' => '分类，字典',
+            'attachName' => 'Attach Name',
             'attachUrl' => '附近路径',
             'state' => 'State',
+            'picUrl' => 'Pic Url',
+            'conunt' => '点击次数',
         ];
     }
 }

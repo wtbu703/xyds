@@ -63,6 +63,7 @@ $this->title = '添加企业';
         </div>
     </div>
 </div>
+</br></br></br>
 <script type="text/javascript">
     var contentEditor=genEditor('','introduction','');
 </script>

@@ -18,7 +18,7 @@ $this->title = "修改培训";
                     <table width="90%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-                            <th >培训ID：</th>
+                            <th width="100px">培训ID：</th>
                             <td><input type="text" style="width:250px;" name="trainId" id="trainId" value="<?=$ectrainInfo->trainId?>" class="input-text"/></td>
                             <input type="hidden" id="id" value="<?=$ectrainInfo->id?>" />
                         </tr>

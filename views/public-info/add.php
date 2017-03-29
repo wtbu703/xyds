@@ -5,6 +5,19 @@ $this->title = '添加信息';
 <script type="text/javascript">
     var listallUrl = "<?=yii::$app->urlManager->createUrl('public-info/find-by-attri')?>";
     var insertUrl = "<?=yii::$app->urlManager->createUrl('public-info/add-one')?>";
+
+    function get_status(){
+        var a;
+        var timeText = $('.time_text');
+        a = document.myform.state.value;
+        <?foreach($state as $key => $val){?>
+        if(a == <?=$val->dictItemCode?>){
+            a = "<?=$val->dictItemName?>";
+        }
+        <?}?>
+        a = a+'时间';
+        timeText.html(a);
+    }
 </script>
 <script type="text/javascript" src="js/admin/public-info/add.js"></script>
 
@@ -14,7 +27,7 @@ $this->title = '添加信息';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th>标题：</th>
+                        <th width="100px">标题：</th>
                         <td><input type="text" style="width:250px;" name="title" id="title"  class="input-text"/></td>
                     </tr>
                     <tr>
@@ -27,11 +40,26 @@ $this->title = '添加信息';
                     </tr>
                     <tr>
                         <th>类别：</th>
-                        <td><select type="text" style="width:250px;height:30px;" name="category" id="category"  class="input-text"/></td>
+                        <td><select type="text" style="width:250px;height:30px;" name="category" id="category"  class="input-text"></select></td>
                     </tr>
                     <tr>
                         <th>状态：</th>
-                        <td><select type="text" style="width:250px;height:30px;" name="state" id="state"  class="input-text"/></td>
+                        <td><select style="width:270px;" id="state" onmouseout="get_status()"></select></td>
+                    </tr>
+                    <tr>
+                        <th class="time_text"></th>
+                        <td><input id="datetime" name="datetime" type="text" value="" class="date">
+                            <script type="text/javascript">
+                                Calendar.setup({
+                                    weekNumbers: true,
+                                    inputField : "datetime",
+                                    trigger    : "datetime",
+                                    dateFormat: "%Y-%m-%d %k:%M:%S",
+                                    showTime: true,
+                                    minuteStep: 1,
+                                    onSelect   : function() {this.hide();}
+                                });
+                            </script></td>
                     </tr>
                     <tr>
                         <th>附&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;件：</th>
@@ -41,7 +69,13 @@ $this->title = '添加信息';
                             <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('public-info/upload')?>"></iframe>
                         </td>
                     </tr>
-
+                    <tr>
+                        <th>上传图片：</th>
+                        <td>
+                            <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
+                            <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('article/uploads')?>"></iframe>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <div class="bk10"></div>
@@ -54,3 +88,7 @@ $this->title = '添加信息';
         </div>
     </div>
 </div>
+</br></br></br>
+<script type="text/javascript">
+    var contentEditor=genEditor('','content','');
+</script>

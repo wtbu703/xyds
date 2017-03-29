@@ -18,7 +18,7 @@ $this->title = "修改联系信息";
                     <table width="90%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-                            <th width="100">姓名</th>
+                            <th width="100px">姓名</th>
                             <td><input type="text" id="truename"  class="input-text" style="width:270px;" value="<?=$contact->truename?>"/></td>
                             <input type="hidden" id="id" value="<?=$contact->id?>" />
                         </tr>
@@ -53,3 +53,6 @@ $this->title = "修改联系信息";
     </div>
 </form>
 </div>
+<script type="text/javascript">
+    var contentEditor=genEditor('','content','');
+</script>

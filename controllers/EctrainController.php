@@ -45,6 +45,8 @@ class EctrainController extends Controller{
         $ectrain->publisher = Yii::$app->request->post('publisher');
         $ectrain->picUrl = Yii::$app->request->post('picUrl');
         $ectrain->thumbnailUrl = Yii::$app->request->post('thumbnailUrl');
+        $ectrain->beginTime = Yii::$app->request->post('beginTime');
+        $ectrain->endTime = Yii::$app->request->post('endTime');
         $ectrain->published = date("Y-m-d H:i:s");
 
         if($ectrain->save()){
@@ -125,12 +127,16 @@ class EctrainController extends Controller{
         $picUrl = Yii::$app->request->post('picUrl');
         $thumbnailUrl = Yii::$app->request->post('thumbnailUrl');
         $ectrain = Ectrain::findOne($id);
-        if($ectrain->picUrl != $picUrl&&$ectrain->picUrl !=''&&$picUrl !=''){
+        if($ectrain->picUrl != $picUrl&&$ectrain->picUrl !=''&&$picUrl !=''&&file_exists($ectrain->picUrl)){
             unlink($ectrain->picUrl);
+        }
+        if($picUrl != ''){
             $ectrain->picUrl = $picUrl;
         }
-        if($ectrain->thumbnailUrl != $thumbnailUrl&&$ectrain->thumbnailUrl != ''&&$thumbnailUrl !=''){
+        if($ectrain->thumbnailUrl != $thumbnailUrl&&$ectrain->thumbnailUrl != ''&&$thumbnailUrl !=''&&file_exists($ectrain->thumbnailUrl)){
             unlink($ectrain->thumbnailUrl );
+        }
+        if($picUrl != ''){
             $ectrain->thumbnailUrl =$thumbnailUrl;
         }
         $ectrain->name = Yii::$app->request->post('name');
@@ -141,6 +147,8 @@ class EctrainController extends Controller{
         $ectrain->peopleNum = Yii::$app->request->post('peopleNum');
         $ectrain->target = Yii::$app->request->post('target');
         $ectrain->publisher = Yii::$app->request->post('publisher');
+        $ectrain->beginTime = Yii::$app->request->post('beginTime');
+        $ectrain->endTime = Yii::$app->request->post('endTime');
 
         if($ectrain->save()){
             return "success";
@@ -156,10 +164,10 @@ class EctrainController extends Controller{
     public function actionDeleteOne(){
         $id = Yii::$app->request->post('id');
         $ectrain = Ectrain::findOne($id);
-        if(is_null($ectrain->picUrl)){
+        if(is_null($ectrain->picUrl)&&file_exists($ectrain->picUrl)){
             unlink($ectrain->picUrl);
         }
-        if(is_null($ectrain->thumbnailUrl)){
+        if(is_null($ectrain->thumbnailUrl)&&file_exists($ectrain->thumbnailUrl)){
             unlink($ectrain->thumbnailUrl );
         }
 
@@ -179,10 +187,10 @@ class EctrainController extends Controller{
         $ids_array = explode('-',$ids);
         foreach($ids_array as $key=>$data){
             $ectrain = Ectrain::findOne($data);
-            if($ectrain->picUrl !='') {
+            if($ectrain->picUrl !=''&&file_exists($ectrain->picUrl)) {
                 unlink($ectrain->picUrl);
             }
-            if($ectrain->thumbnailUrl !='') {
+            if($ectrain->thumbnailUrl !=''&&file_exists($ectrain->thumbnailUrl)) {
                 unlink($ectrain->thumbnailUrl);
             }
             Ectrain::deleteall('id=:id',[':id'=>$data]);
@@ -294,6 +302,22 @@ class EctrainController extends Controller{
         $ectrain = Ectrain::find()->all();
         return Json::encode($ectrain);
     }
+
+	/**
+	 * 培训分类接口
+	 * @return string
+	 */
+	public function actionDict(){
+		$dictitems = Dictitem::find()
+			->where([
+				'state' => '1',
+				'dictCode' => 'DICT_ECTRAIN_CATEGORY',
+			])
+			->orderBy('orderBy')
+			->all();
+		return Json::encode($dictitems);
+	}
+
 }
 
 

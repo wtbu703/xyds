@@ -17,7 +17,7 @@ use yii\helpers\Json;
  * @package app\controllers
  */
 class ArticleController extends Controller{
-    public $layout = false;
+   // public $layout = false;
     public $enableCsrfValidation = false;
 
 	/**
@@ -56,6 +56,8 @@ class ArticleController extends Controller{
         $article->category = Yii::$app->request->post('category');
         $article->attachUrls = Yii::$app->request->post('attachUrls');
         $article->attachNames = Yii::$app->request->post('attachNames');
+        $article->picUrl = YIi::$app->request->post('picUrl');
+        $article->sourceUrl = '本站';
         $article->datetime = date("Y-m-d H:i:s");
 
         if($article->save()){
@@ -138,7 +140,24 @@ class ArticleController extends Controller{
     public function actionUpdateone(){
 
         $id = Yii::$app->request->post('id');
+        $attachUrls = Yii::$app->request->post('attachUrls');
+        $picUrl = Yii::$app->request->post('picUrl');
         $article = Article::findOne($id);
+        if($article->attachUrls !=''&&$article->attachUrls != $attachUrls&&$attachUrls !=''&&file_exists($article->attachUrls) ){
+            unlink($article->attachUrls);
+        }
+        if($attachUrls !=''){
+            $article->attachUrls = $attachUrls;
+            $article->attachNames = Yii::$app->request->post('attachNames');
+        }
+        if($article->picUrl !=''&&$article->picUrl != $picUrl&&$picUrl !=''&&file_exists($article->picUrl)){
+            unlink($article->attachUrls);
+        }
+        if($picUrl !=''){
+            $article->picUrl = $picUrl;
+        }
+
+        $article->category = Yii::$app->request->post('category');
         $article->title = Yii::$app->request->post('title');
         $article->author = Yii::$app->request->post('author');
         $article->content = Yii::$app->request->post('content');
@@ -158,6 +177,12 @@ class ArticleController extends Controller{
 
         $id = Yii::$app->request->post("id");
         $article = Article::findOne($id);
+        if(!is_null($article->attachUrls)&&file_exists($article->attachUrls)){
+            unlink($article->attachUrls);
+        }
+        if(!is_null($article->picUrl)&&file_exists($article->picUrl)){
+            unlink($article->picUrl);
+        }
         if($article->delete()){
             return "success";
         }else{
@@ -175,6 +200,13 @@ class ArticleController extends Controller{
         $ids_array = explode('-',$ids);
 
         foreach($ids_array as $key => $data){
+            $article = Article::findOne($data);
+            if(!is_null($article->attachUrls)&&file_exists($article->attachUrls)){
+                unlink($article->attachUrls);
+            }
+            if(!is_null($article->picUrl)&&file_exists($article->picUrl)){
+                unlink($article->picUrl);
+            }
             Article::deleteAll('id = :id',[':id'=>$data]);
         }
         return 'success';
@@ -224,6 +256,45 @@ class ArticleController extends Controller{
 
     }
 
+    /*
+     * 上传图片
+     */
+    public function actionUploads(){
+        //实现上传
+        if (Yii::$app->request->isPost) {
+            $isThumb = Yii::$app->request->get('isThumb');
+            $views = 'uploads';
+            if(is_null($isThumb)){
+                $fileArg = Common::upload($_FILES,true,false);
+            }else{
+                $fileArg = Common::upload($_FILES,true,true);
+                $views = 'uploads';
+            }
+
+            return $this->render($views,[
+                "fileArg" => $fileArg,
+                "tag" => $fileArg['tag'],
+            ]);
+        }
+        $detail = Yii::$app->request->get('detail');
+        if(is_null($detail)){
+            return $this->render('uploads',[
+                "tag" => "empty",
+                "fileArg" =>[
+                    "fileSaveUrl" =>"",//上传文件保存的路径
+                    "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
+                ],
+            ]);
+        }else{
+            return $this->render('uploads',[
+                "tag" => "empty",
+                "fileArg" =>[
+                    "fileSaveUrl" =>"",//上传文件保存的路径
+                    "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
+                ],
+            ]);
+        }
+    }
     /**
      * 文章抓取首页
      * @return string
@@ -379,4 +450,5 @@ class ArticleController extends Controller{
 			->all();
 		return Json::encode($articles);
 	}
+
 }

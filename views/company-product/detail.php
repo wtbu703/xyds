@@ -34,6 +34,10 @@ $this->title = '产品详情';
                         <th width="100">产品状态</th>
                         <td id="state"><?=$companyProduct->state?></td>
                     </tr>
+                    <tr>
+                        <th>产品大图：</th>
+                        <td id="thumbnailUrl"> <img src="<?=$companyProduct->thumbnailUrl?>"></td>
+                    </tr>
                 </table>
             </div>
             <div class="bk10"></div>

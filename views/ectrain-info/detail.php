@@ -8,7 +8,7 @@ $this->title = '培训详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="200">培训ID：</th>
+                        <th >培训ID：</th>
                         <td id="trainId"><?=$ectrainInfo->trainId?></td>
                     </tr>
                     <tr>
@@ -50,6 +50,14 @@ $this->title = '培训详情';
                     <tr>
                         <th>培训时间：</th>
                         <td id="published"><?=$ectrainInfo->published?></td>
+                    </tr>
+                    <tr>
+                        <th>决策文件名称：</th>
+                        <td id="decisionFileName"><?=$ectrainInfo->decisionFileName?></td>
+                    </tr>
+                    <tr>
+                        <th>签到文件名称：</th>
+                        <td id="signSheetName"><?=$ectrainInfo->signSheetName?></td>
                     </tr>
                 </table>
             </div>

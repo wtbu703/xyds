@@ -8,7 +8,7 @@ $this->title = '企业详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100">企业类别</th>
+                        <th width="100px">企业类别</th>
                         <td id="category"><?=$company->category?></td>
                     </tr>
                     <tr>
@@ -45,7 +45,7 @@ $this->title = '企业详情';
                     </tr>
                     <tr>
                         <th width="100">企业图片</th>
-                        <td id="logoUrl"><img src="<?=$company->logoUrl?>"></td>
+                        <td id="logoUrl"><img src="<?=$company->logoUrl?>" width="60%"></td>
                     </tr>
                 </table>
             </div>

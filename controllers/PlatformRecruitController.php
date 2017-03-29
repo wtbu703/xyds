@@ -4,8 +4,10 @@ namespace app\controllers;
 use yii;
 use yii\web\Controller;
 use app\models\PlatformRecruit;
+use app\models\CompanyRecruit;
 use yii\data\Pagination;
 use app\common\Common;
+use yii\helpers\Json;
 
 class PlatformRecruitController extends Controller{
     public $enableCsrfValidation = false;
@@ -142,6 +144,33 @@ class PlatformRecruitController extends Controller{
         return $this->render('detail',[
             'platformRecruit'=>$platformRecruit
         ]);
+    }
+
+    public function actionPlatformRecruit(){
+        $platformRecruit = PlatformRecruit::find()
+            ->all();
+        return Json::encode($platformRecruit);
+    }
+
+    /**
+     * @return string
+     * 6个热门职位的接口
+     */
+    public function actionPosition(){
+        $companyRecruit = CompanyRecruit::find()
+            ->orderBy(['count'=>SORT_DESC])
+            ->select('position')
+            ->limit(6)
+            ->all();
+        return Json::encode($companyRecruit);
+    }
+    public function actionPositions(){
+        $companyRecruit = CompanyRecruit::find()
+            ->orderBy(['count'=>SORT_DESC])
+            ->select('position,demand')
+            ->limit(6)
+            ->all();
+        return Json::encode($companyRecruit);
     }
 }
 
