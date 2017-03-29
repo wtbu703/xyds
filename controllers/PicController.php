@@ -279,10 +279,10 @@ class PicController extends Controller{
 		$category->intro = Yii::$app->request->post('intro');
 		$category->state = Yii::$app->request->post('state');
 
-		if($category->save()){
+		if($category->save()){//pic保存
 			$orders = Yii::$app->request->post('orders');
 			$picUrls = Yii::$app->request->post('picUrls');
-			if(is_null($orders)||is_null($picUrls)||($orders=='')||($picUrls=='')){
+			if(is_null($orders)||is_null($picUrls)||($orders=='')||($picUrls=='')){//如果传来的是空值
 				//return;
 			}else{
 				$ids = Yii::$app->request->post('ids');
@@ -327,5 +327,15 @@ class PicController extends Controller{
 		}else{
 			return false;
 		}
+	}
+
+	/**
+	 * 以接收的code查询出item记录，以json格式返回
+	 * @return string
+	 */
+	public function actionAjax(){
+		$code = Yii::$app->request->post('code');
+		$picitem = Picitem::find()->where('picCode = :picCode',[':picCode'=>$code])->all();
+		return Json::encode($picitem);
 	}
 }
