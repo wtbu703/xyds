@@ -17,7 +17,7 @@ $this->title = "修改招聘信息";
                     <table width="90%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-                            <th width="100">企业ID</th>
+                            <th width="100px">企业ID</th>
                             <td><input type="text" id="companyId"  class="input-text" style="width:270px;" value="<?=$companyRecruit->companyId?>"/></td>
                             <input type="hidden" id="id" value="<?=$companyRecruit->id?>" />
                         </tr>
@@ -60,3 +60,6 @@ $this->title = "修改招聘信息";
     </div>
 </form>
 </div>
+<script type="text/javascript">
+    var contentEditor=genEditor('','demand','');
+</script>

@@ -23,6 +23,14 @@ $this->title = '新闻详情';
                         <th width="100">关键词</th>
                         <td id="keyword"><?=$companyNews->keyword?></td>
                     </tr>
+                    <tr>
+                        <th width="100">附件名称</th>
+                        <td id="picUrl"><?=$companyNews->attachName?></td>
+                    </tr>
+                    <tr>
+                        <th width="100">图片</th>
+                        <td id="picUrl"><img src="<?=$companyNews->picUrl?>" width="60%" /></td>
+                    </tr>
                 </table>
             </div>
             <div class="bk10"></div>

@@ -19,6 +19,8 @@ use Yii;
  * @property string $publisher
  * @property string $thumbnailUrl
  * @property string $picUrl
+ * @property string $beginTime
+ * @property string $endTime
  */
 class Ectrain extends \yii\db\ActiveRecord
 {
@@ -39,7 +41,7 @@ class Ectrain extends \yii\db\ActiveRecord
             [['id', 'name', 'category', 'dayNum', 'period', 'peopleNum', 'target', 'published'], 'required'],
             [['category', 'dayNum', 'period', 'peopleNum'], 'integer'],
             [['content'], 'string'],
-            [['published'], 'safe'],
+            [['published', 'beginTime', 'endTime'], 'safe'],
             [['id'], 'string', 'max' => 40],
             [['name'], 'string', 'max' => 64],
             [['target'], 'string', 'max' => 32],
@@ -66,6 +68,8 @@ class Ectrain extends \yii\db\ActiveRecord
             'publisher' => '发布人',
             'thumbnailUrl' => '一张大图',
             'picUrl' => '三张缩略图',
+            'beginTime' => 'Begin Time',
+            'endTime' => 'End Time',
         ];
     }
 }

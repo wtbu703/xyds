@@ -14,7 +14,7 @@ $this->title = '添加培训信息';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th >培训名：</th>
+                        <th width="100px">培训名：</th>
                         <td><input type="text" style="width:250px;" name="name" id="name"  class="input-text"/></td>
                     </tr>
                     <tr>
@@ -38,6 +38,35 @@ $this->title = '添加培训信息';
                         <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="peopleNum" id="peopleNum" class="input-text"></td>
                     </tr>
                     <tr>
+                        <th>报名时间：</th>
+                        <td><input id="beginTime" name="beginTime" type="text" value="" class="date">
+                        <script type="text/javascript">
+                            Calendar.setup({
+                                weekNumbers: true,
+                                inputField : "beginTime",
+                                trigger    : "beginTime",
+                                dateFormat: "%Y-%m-%d %k:%M:%S",
+                                showTime: true,
+                                minuteStep: 1,
+                                onSelect   : function() {this.hide();}
+                            });
+                        </script>
+                        &nbsp;至&nbsp;&nbsp;
+                        <input id="endTime" name="endTime" type="text" value="" class="date">
+                        <script type="text/javascript">
+                            Calendar.setup({
+                                weekNumbers: true,
+                                inputField : "endTime",
+                                trigger    : "endTime",
+                                dateFormat: "%Y-%m-%d %k:%M:%S",
+                                showTime: true,
+                                minuteStep: 1,
+                                onSelect   : function() {this.hide();}
+                            });
+                        </script>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>针对人群：</th>
                         <td><input type="text" style="width:250px;"  name="target" id="target" class="input-text"></td>
                     </tr>
@@ -46,14 +75,14 @@ $this->title = '添加培训信息';
                         <td><input type="text" style="width:250px;"  name="publisher" id="publisher" class="input-text"></td>
                     </tr>
                     <tr>
-                        <th>产品缩略图：</th>
+                        <th>缩略图：</th>
                         <td>
                             <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
                             <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('ectrain/upload')?>"></iframe>
                         </td>
                     </tr>
                     <tr>
-                        <th>产品大图：</th>
+                        <th>大图：</th>
                         <td>
                             <input type="text" style="display:none;" name="thumbnailUrl" id="thumbnailUrl" class="input-text"/>
                             <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl(['ectrain/upload','detail'=>'detail'])?>"></iframe>
@@ -71,4 +100,6 @@ $this->title = '添加培训信息';
         </div>
     </div>
 </div>
-
+<script type="text/javascript">
+    var contentEditor=genEditor('','content','');
+</script>

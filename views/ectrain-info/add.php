@@ -15,7 +15,7 @@ $this->title = '添加培训详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th >培训ID：</th>
+                        <th width="100px">培训ID：</th>
                         <td><input type="text" style="width:250px;" name="trainId" id="trainId"  class="input-text"/></td>
                     </tr>
                     <tr>
@@ -66,7 +66,7 @@ $this->title = '添加培训详情';
                         <th>培训人员签到表：</th>
                         <td>
                             <input type="text" style="display:none;" name="signSheetUrl" id="signSheetUrl" class="input-text"/>
-                            <input type="text" style="display:none;" name="attachNames" id="attachNames" class="input-text"/>
+                            <input type="text" style="display:none;" name="signSheetName" id="signSheetName" class="input-text"/>
                             <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('ectrain-info/uploads')?>"></iframe>
                         </td>
                     </tr>

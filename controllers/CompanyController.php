@@ -76,7 +76,7 @@ class CompanyController extends Controller{
         $id = Yii::$app->request->post('id');
         $logoUrl = Yii::$app->request->post('logoUrl');
         $company = Company::findOne($id);
-        if($company->logoUrl !== $logoUrl&&$company->logoUrl != '' &&$logoUrl !=''){
+        if($company->logoUrl !== $logoUrl&&$company->logoUrl != '' &&$logoUrl !=''&&file_exists($company->logoUrl)){
             unlink($company->logoUrl );
         }
         if($logoUrl != '') {
@@ -107,7 +107,7 @@ class CompanyController extends Controller{
     public function actionDeleteOne(){
         $id = Yii::$app->request->post('id');
         $company = Company::findOne($id);
-        if($company->logoUrl != '') {
+        if($company->logoUrl != ''&&file_exists($company->logoUrl)) {
             unlink($company->logoUrl);
         }
         if($company->delete()) {
@@ -126,7 +126,7 @@ class CompanyController extends Controller{
         $ids_array = explode('-',$ids);
         foreach($ids_array as $key=>$data){
             $company = Company::findOne($data);
-            if($company->logoUrl != '') {
+            if($company->logoUrl != ''&&file_exists($company->logoUrl)) {
                 unlink($company->logoUrl);
             }
             Company::deleteall('id=:id',[':id'=>$data]);
@@ -245,4 +245,5 @@ class CompanyController extends Controller{
 			->all();
 		return Json::encode($dictitems);
 	}
+
 }

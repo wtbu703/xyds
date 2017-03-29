@@ -48,8 +48,10 @@ class EctrainInfoController extends Controller
         $ectrainInfo->chargeMobile = Yii::$app->request->post('chargeMobile');
         $ectrainInfo->centralDecisionUnit = Yii::$app->request->post('centralDecisionUnit');
         $ectrainInfo->decisionFileUrl = Yii::$app->request->post('attachUrls');
+        $ectrainInfo->decisionFileName = Yii::$app->request->post('attachName');
         $ectrainInfo->publicInfoUrl = Yii::$app->request->post('publicInfoUrl');
         $ectrainInfo->signSheetUrl = Yii::$app->request->post('signSheetUrl');
+        $ectrainInfo->signSheetName = Yii::$app->request->post('signSheetName');
         $ectrainInfo->published = date('Y-m-d');
 
         if ($ectrainInfo->save()) {
@@ -80,14 +82,20 @@ class EctrainInfoController extends Controller
         $decisionFileUrl = Yii::$app->request->post('attachUrls');
         $signSheetUrl = Yii::$app->request->post('signSheetUrl');
         $ectrainInfo = EctrainInfo::findOne($id);
-        if($ectrainInfo->decisionFileUrl != $decisionFileUrl&&$ectrainInfo->decisionFileUrl !=''&&$decisionFileUrl !=''){
+        if($ectrainInfo->decisionFileUrl != $decisionFileUrl&&$ectrainInfo->decisionFileUrl !=''&&$decisionFileUrl !=''&&file_exists($ectrainInfo->decisionFileUrl)){
             unlink($ectrainInfo->decisionFileUrl );
         }
-        if($ectrainInfo->signSheetUrl != $signSheetUrl&&$ectrainInfo->signSheetUrl != ''&&$signSheetUrl !=''){
+        if($decisionFileUrl !=''){
+            $ectrainInfo->decisionFileUrl = $decisionFileUrl;
+            $ectrainInfo->decisionFileName = Yii::$app->request->post('attachName');
+        }
+        if($ectrainInfo->signSheetUrl != $signSheetUrl&&$ectrainInfo->signSheetUrl != ''&&$signSheetUrl !=''&&file_exists($ectrainInfo->signSheetUrl)){
             unlink($ectrainInfo->signSheetUrl );
         }
-        $ectrainInfo->decisionFileUrl = $decisionFileUrl;
-        $ectrainInfo->signSheetUrl = $signSheetUrl;
+        if($signSheetUrl !=''){
+            $ectrainInfo->signSheetUrl = $signSheetUrl;
+            $ectrainInfo->signSheetName = Yii::$app->request->post('signSheetName');
+        }
         $ectrainInfo->trainId = Yii::$app->request->post('trainId');
         $ectrainInfo->centralSupport = Yii::$app->request->post('centralSupport');
         $ectrainInfo->centralPaid = Yii::$app->request->post('centralPaid');
@@ -114,10 +122,10 @@ class EctrainInfoController extends Controller
     public function actionDeleteOne(){
         $id = Yii::$app->request->post('id');
         $ectrainInfo = EctrainInfo::findOne($id);
-        if($ectrainInfo->decisionFileUrl !='') {
+        if($ectrainInfo->decisionFileUrl !=''&&file_exists($ectrainInfo->decisionFileUrl)) {
             unlink($ectrainInfo->decisionFileUrl);
         }
-        if($ectrainInfo->signSheetUrl !='') {
+        if($ectrainInfo->signSheetUrl !=''&&file_exists($ectrainInfo->signSheetUrl)) {
             unlink($ectrainInfo->signSheetUrl);
         }
         if($ectrainInfo->delete()) {
@@ -136,10 +144,10 @@ class EctrainInfoController extends Controller
         $ids_array = explode('-',$ids);
         foreach($ids_array as $key=>$data){
             $ectrainInfo = EctrainInfo::findOne($data);
-            if($ectrainInfo->decisionFileUrl !='') {
+            if($ectrainInfo->decisionFileUrl !=''&&file_exists($ectrainInfo->decisionFileUrl)) {
                 unlink($ectrainInfo->decisionFileUrl);
             }
-            if($ectrainInfo->signSheetUrl !='') {
+            if($ectrainInfo->signSheetUrl !=''&&file_exists($ectrainInfo->signSheetUrl)) {
                 unlink($ectrainInfo->signSheetUrl);
             }
             EctrainInfo::deleteall('id=:id',[':id'=>$data]);

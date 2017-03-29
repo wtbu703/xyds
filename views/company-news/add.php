@@ -14,7 +14,7 @@ $this->title = '添加新闻';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th >企业ID：</th>
+                        <th width="100px">企业ID：</th>
                         <td><input type="text" style="width:250px;" name="companyId" id="companyId"  class="input-text"/></td>
                     </tr>
                     <tr>
@@ -37,7 +37,13 @@ $this->title = '添加新闻';
                             <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('company-news/upload')?>"></iframe>
                         </td>
                     </tr>
-
+                    <tr>
+                        <th>上传图片：</th>
+                        <td>
+                            <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
+                            <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('company-news/uploads')?>"></iframe>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <div class="bk10"></div>
@@ -50,3 +56,6 @@ $this->title = '添加新闻';
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    var contentEditor=genEditor('','content','');
+</script>

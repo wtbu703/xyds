@@ -13,7 +13,7 @@ $this->title = '添加联系信息';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th >姓名：</th>
+                        <th width="100px">姓名：</th>
                         <td><input type="text" style="width:250px;" name="truename" id="truename"  class="input-text"/></td>
                     </tr>
                     <tr>
@@ -44,3 +44,6 @@ $this->title = '添加联系信息';
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    var contentEditor=genEditor('','content','');
+</script>

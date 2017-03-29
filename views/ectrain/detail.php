@@ -8,7 +8,7 @@ $this->title = '培训详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th >培训名：</th>
+                        <th width="100px">培训名：</th>
                         <td id="name"><?=$ectrain->name?></td>
                     </tr>
                     <tr>
@@ -32,6 +32,10 @@ $this->title = '培训详情';
                         <td id="peopleNum"><?=$ectrain->peopleNum?></td>
                     </tr>
                     <tr>
+                        <th>报名时间：</th>
+                        <td><?=$ectrain->beginTime?>至<?=$ectrain->endTime?></td>
+                    </tr>
+                    <tr>
                         <th>针对人群：</th>
                         <td id="target"><?=$ectrain->target?></td>
                     </tr>
@@ -44,15 +48,15 @@ $this->title = '培训详情';
                         <td id="published"><?=$ectrain->published?></td>
                     </tr>
                     <tr>
-                        <th>产品大图：</th>
-                        <td id="thumbnailUrl"> <img src="<?=$ectrain->thumbnailUrl?>"></td>
+                        <th>大图：</th>
+                        <td id="thumbnailUrl"> <img src="<?=$ectrain->thumbnailUrl?>" width="60%"></td>
                     </tr>
                     <tr>
-                        <th>产品缩略图：</th>
+                        <th>缩略图：</th>
                         <td id="picUrl">
                             <?$picUrl_array = explode(';',$ectrain->picUrl);
                             foreach($picUrl_array as $key=>$data){?>
-                                <img src="<?=$data?>">
+                                <img src="<?=$data?>"  width="60%">
                             <?} ?>
                         </td>
                     </tr>

@@ -7,6 +7,7 @@ use yii\web\Controller;
 use app\models\CompanyNews;
 use yii\data\Pagination;
 use app\common\Common;
+use yii\helpers\json;
 
 class CompanyNewsController extends Controller
 {
@@ -43,6 +44,8 @@ class CompanyNewsController extends Controller
         $companyNews->content = Yii::$app->request->post('content');
         $companyNews->keyword = Yii::$app->request->post('keyword');
         $companyNews->attachUrl = Yii::$app->request->post('attachUrl');
+        $companyNews->attachName = Yii::$app->request->post('attachName');
+        $companyNews->picUrl = Yii::$app->request->post('picUrl');
         $companyNews->published = date("Y-m-d H:i:s");
 
         if ($companyNews->save()) {
@@ -71,11 +74,21 @@ class CompanyNewsController extends Controller
     public function actionUpdateOne(){
         $id = Yii::$app->request->post('id');
         $attachUrl = Yii::$app->request->post('attachUrl');
+        $picUrl = Yii::$app->request->post('picUrl');
         $companyNews = CompanyNews::findOne($id);
-        if($companyNews->attachUrl != $attachUrl&&$companyNews->attachUrl != ''&&$attachUrl !=''){
+        if($companyNews->attachUrl != $attachUrl&&$companyNews->attachUrl != ''&&$attachUrl !=''&&file_exists($companyNews->attachUrl)){
             unlink($companyNews->attachUrl );
         }
-        $companyNews->attachUrl = $attachUrl;
+        if($attachUrl != '') {
+            $companyNews->attachUrl = $attachUrl;
+            $companyNews->attachName = Yii::$app->request->post('attachName');
+        }
+        if($companyNews->picUrl != $picUrl&&$companyNews->picUrl != ''&&$picUrl !=''&&file_exists($companyNews->picUrl)){
+            unlink($companyNews->picUrl );
+        }
+        if($picUrl != '') {
+            $companyNews->picUrl = $picUrl;
+        }
         $companyNews->companyId = Yii::$app->request->post('companyId');
         $companyNews->title = Yii::$app->request->post('title');
         $companyNews->content = Yii::$app->request->post('content');
@@ -95,8 +108,11 @@ class CompanyNewsController extends Controller
     public function actionDeleteOne(){
         $id = Yii::$app->request->post('id');
         $companyNews = CompanyNews::findOne($id);
-        if($companyNews->attachUrl !='') {
+        if($companyNews->attachUrl !=''&&file_exists($companyNews->attachUrl)) {
             unlink($companyNews->attachUrl);
+        }
+        if($companyNews->picUrl != ''&&file_exists($companyNews->picUrl)) {
+            unlink($companyNews->picUrl);
         }
         if($companyNews->delete()) {
             return "success";
@@ -114,8 +130,11 @@ class CompanyNewsController extends Controller
         $ids_array = explode('-',$ids);
         foreach($ids_array as $key=>$data){
             $companyNews = CompanyNews::findOne($data);
-            if($companyNews->attachUrl !='') {
+            if($companyNews->attachUrl !=''&&file_exists($companyNews->attachUrl)) {
                 unlink($companyNews->attachUrl);
+            }
+            if($companyNews->picUrl != ''&&file_exists($companyNews->picUrl)) {
+                unlink($companyNews->picUrl);
             }
             CompanyNews::deleteall('id=:id',[':id'=>$data]);
         }
@@ -197,6 +216,49 @@ class CompanyNewsController extends Controller
                 "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
             ],
         ]);
+    }
+    /*
+     * 上传图片
+     */
+    public function actionUploads(){
+        //实现上传
+        if (Yii::$app->request->isPost) {
+            $isThumb = Yii::$app->request->get('isThumb');
+            $views = 'uploads';
+            if(is_null($isThumb)){
+                $fileArg = Common::upload($_FILES,true,false);
+            }else{
+                $fileArg = Common::upload($_FILES,true,true);
+                $views = 'uploads';
+            }
 
+            return $this->render($views,[
+                "fileArg" => $fileArg,
+                "tag" => $fileArg['tag'],
+            ]);
+        }
+        $detail = Yii::$app->request->get('detail');
+        if(is_null($detail)){
+            return $this->render('uploads',[
+                "tag" => "empty",
+                "fileArg" =>[
+                    "fileSaveUrl" =>"",//上传文件保存的路径
+                    "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
+                ],
+            ]);
+        }else{
+            return $this->render('uploads',[
+                "tag" => "empty",
+                "fileArg" =>[
+                    "fileSaveUrl" =>"",//上传文件保存的路径
+                    "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
+                ],
+            ]);
+        }
+    }
+
+    public function actionCompanyNews(){
+        $companyNews = CompanyNews::find()->all();
+        return Json::encode($companyNews);
     }
 }

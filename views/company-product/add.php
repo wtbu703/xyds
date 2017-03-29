@@ -13,7 +13,7 @@ $this->title = '添加产品';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th >企业ID：</th>
+                        <th width="100px">企业ID：</th>
                         <td><input type="text" style="width:250px;" name="companyId" id="companyId"  class="input-text"/></td>
                     </tr>
                     <tr>
@@ -40,6 +40,13 @@ $this->title = '添加产品';
                         <th>产品状态：</th>
                         <td><select style='width:250px;height:25px; ' id="state"  name="state" class="input-text"></select></td>
                     </tr>
+                    <tr>
+                        <th>产品图片：</th>
+                        <td>
+                            <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
+                            <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('company-product/upload')?>"></iframe>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <div class="bk10"></div>
@@ -52,3 +59,6 @@ $this->title = '添加产品';
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    var contentEditor=genEditor('','introduction','');
+</script>

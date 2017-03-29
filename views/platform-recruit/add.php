@@ -13,7 +13,7 @@ $this->title = '添加平台招聘信息';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th>职位：</th>
+                        <th width="100px">职位：</th>
                         <td><input type="text" style="width:250px;" name="position" id="position"  class="input-text"/></td>
                     </tr>
                     <tr>
@@ -47,4 +47,8 @@ $this->title = '添加平台招聘信息';
             <input type="button" class="buttonclose" value="关闭" name="dosubmit"  onclick="window.top.$.dialog.get('recruit_add').close();"/>
         </div>
     </div>
+    </br></br></br>
 </div>
+<script type="text/javascript">
+    var contentEditor=genEditor('','demand','');
+</script>
