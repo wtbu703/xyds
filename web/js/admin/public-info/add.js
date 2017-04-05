@@ -25,12 +25,12 @@ $(function(){
 			.inputValidator({               //校验不能为空
 				min:1,
 				onerror:"请输入信息作者！"})
-	$("#content").formValidator({
+	/*$("#content").formValidator({
 				onshow:"请输入信息内容！",
 				onfocus:"请输入信息内容！"})
 			.inputValidator({               //校验不能为空
 				min:1,
-				onerror:"请输入信息内容！"})
+				onerror:"请输入信息内容！"})*/
 	// 校验模型名称
 	$("#category").formValidator({
 				onshow:"请输入信息类别！",
@@ -45,10 +45,15 @@ $(function(){
 			.inputValidator({               //校验不能为空
 				min:1,
 				onerror:"请输入信息状态！"})
+	$("#datetime").formValidator({
+				onshow:"请输入时间！",
+				onfocus:"请输入时间！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入时间！"})
 
 
 })
-
 /**
  * 添加过滤
  * @param path
@@ -59,10 +64,13 @@ function add(){
 		var paraStr = "";
 		paraStr += "&title=" + $("#title").val();
 		paraStr += "&author=" + $("#author").val();
-		paraStr += "&content=" + $("#content").val();
+		paraStr += "&content=" + encodeURIComponent(contentEditor.getData());
 		paraStr += "&state=" + $("#state").val();
 		paraStr += "&category=" + $("#category").val();
 		paraStr += "&attachUrl=" + $("#attachUrls").val();
+		paraStr += "&attachName=" + $("#attachNames").val();
+		paraStr += "&picUrl=" + $("#picUrl").val();
+		paraStr += "&datetime=" + $("#datetime").val();
 
 		$.ajax({
 			url: insertUrl,

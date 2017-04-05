@@ -26,11 +26,12 @@ function edit(){
 		paraStr += "id=" + $("#id").val();
 		paraStr += "&companyId=" + $("#companyId").val();
 		paraStr += "&name=" + $("#name").val();
-		paraStr += "&introduction=" + $("#introduction").val();
+		paraStr += "&introduction=" + encodeURIComponent(contentEditor.getData());
 		paraStr += "&price=" + $("#price").val();
 		paraStr += "&stock=" + $("#stock").val();
 		paraStr += "&discount=" + $("#discount").val();
 		paraStr += "&state=" + $("#state").val();
+		paraStr += "&thumbnailUrl=" + $("#picUrl").val();
 
 		$.ajax({
 			url: updateUrl,

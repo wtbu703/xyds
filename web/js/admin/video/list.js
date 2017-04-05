@@ -9,8 +9,8 @@ function openadd(){
 	$.dialog({id:'video_add'}).close();
 	$.dialog.open(addUrl, {
 		title: '添加视频',
-		width: 700,
-		height:550,
+		width: 750,
+		height:600,
 		lock: true,
 		border: false,
 		id: 'video_add',

@@ -27,7 +27,7 @@ function edit(){
 		paraStr += "&mobile=" + $("#mobile").val();
 		paraStr += "&QQ=" + $("#QQ").val();
 		paraStr += "&email=" + $("#email").val();
-		paraStr += "&content=" + $("#content").val();
+		paraStr += "&content=" + encodeURIComponent(contentEditor.getData());
 
 		$.ajax({
 			url: updateUrl,

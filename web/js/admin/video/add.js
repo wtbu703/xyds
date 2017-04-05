@@ -19,7 +19,18 @@ $(function(){
 		.inputValidator({               //校验不能为空
 			min:1,
 			onerror:"请输入名字！"})
-
+	$("#content").formValidator({
+				onshow:"请输入介绍！",
+				onfocus:"请输入介绍！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入介绍！"})
+	$("#picUrl").formValidator({
+				onshow:"请上传图片！",
+				onfocus:"请上传图片！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请上传图片！"})
 
 })
 
@@ -36,6 +47,9 @@ function add(){
 		paraStr += "&url=" + $("#url").val();
 		paraStr += "&attachUrls=" + $("#attachUrls").val();
 		paraStr += "&attachNames=" + $("#attachNames").val();
+		paraStr += "&content=" + $("#content").val();
+		paraStr += "&picUrl=" + $("#picUrl").val();
+		paraStr += "&duration=" + $("#duration").val();
 		$.ajax({
 			url: insertUrl,
 			type: "post",

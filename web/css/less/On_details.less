@@ -1,0 +1,147 @@
+@charset "utf-8";
+@import url('common.less');
+@font-face {
+	    font-family: '微软雅黑';  
+	    src:url(../fonts/msyh.ttf);
+	}
+//申请职位div背景 颜色
+@post_color: #f5f5f5;
+//申请按钮背景颜色
+
+@apply_button_color:#6095c1;
+@apply_button_hover:#76b6c9;
+//内容字体颜色
+@content_font_color:#dcdcdc;
+//突出部分颜色
+@color:#db3b3b;
+//职位信息背景颜色
+@job_info_bg:#e6e7ea;
+//职位信息字的颜色
+@job_info_font:#c62f2f;
+.content_post{
+	background-color: @post_color;
+	margin-top: 10px;
+}
+.post_ul{
+	padding:0px;
+}
+.post_ul li{
+	font-size: 14px;
+	margin-top: 10px;
+	font-family: '微软雅黑';
+}
+.post_ul li span{
+	font-size: 18px;
+	font-weight: 600;
+	color: #000000;
+}
+.salary{
+	font-family: '微软雅黑';
+	font-size: 20px;
+	font-weight: 600;
+	color: @color;
+	text-align: center;
+	line-height: 500%;
+}
+.apply_:hover{
+	text-decoration: none;
+}
+.apply{
+	font-family: '微软雅黑';
+	font-size: 18px;
+	color:#fff;
+	background-color: @apply_button_color;
+	height:45px;
+	text-align: center;
+	line-height: 45px;
+	margin-top: 15px;
+	-moz-border-radius: 10px; 
+    -webkit-border-radius: 10px; 
+    border-radius:10px;
+}
+.apply_:hover .apply{
+	text-decoration: none;
+	background-color: @apply_button_hover;
+}
+.collect{ 
+	text-align: center;
+	padding:10px;
+}
+.collect:hover img{
+	background:url(../../images/On_details/collection2.png) no-repeat;
+}
+.collect div{
+	display: inline-block;
+	font-family: '宋体';
+	font-size: 12px;
+	height:20px;
+	line-height: 20px;
+	margin-left: 5px;
+}
+
+.job_info{
+	background-color: @job_info_bg;
+	border-left: @job_info_font 3px solid;
+	margin-top:20px;
+	height:35px;
+	line-height: 35px;
+}
+.job_info span{
+	font-family: '微软雅黑';
+	font-size: 18px;
+	font-weight: 500;
+	color:@job_info_font;
+}
+.description{
+	border:1px solid @content_font_color;
+	margin:0;
+}
+.description li{
+	margin-top:15px;
+	font-family: '微软雅黑';
+	font-size: 14px;
+}
+.ask{
+	margin-top:40px;
+	margin-bottom: 50px;
+	padding:0;
+}
+.job_tel{
+	background-color: @job_info_bg;
+	border-left: @job_info_font 3px solid;
+	height:35px;
+	line-height: 35px;
+}
+.job_tel span{
+	font-family: '微软雅黑';
+	font-size: 18px;
+	font-weight: 500;
+	color:@job_info_font;
+}
+.tel_info{
+	border:1px solid @content_font_color;
+	margin:0;
+}
+.tel_info li{
+	font-family: '微软雅黑';
+	font-size: 16px;
+	font-weight: 600;
+	margin-top:15px;
+	margin-bottom: 10px;
+}
+.company_info{
+	border:1px solid @content_font_color;
+	margin-bottom: 30px;
+}
+.company_info p{
+	font-family: '宋体';
+	font-size: 16px;
+	margin-top: 15px;
+	margin-bottom: 20px;
+	text-indent:2em;
+}
+
+
+
+
+

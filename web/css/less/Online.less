@@ -1,0 +1,167 @@
+@charset "utf-8";
+@import url('common.less');
+@font-face {
+	    font-family: '微软雅黑';  
+	    src:url(../fonts/msyh.ttf);
+	}
+//内容搜索背景颜色
+@full_li_bg:#1da297;
+//搜索选中字颜色
+@full_li_font:#fff;
+//未选中颜色
+@full_li_a:#6c6565;
+//搜索按钮hover颜色
+@button_hover:#109085;
+//搜索框下的提示文字颜色
+@sea_font:#000000;
+//搜索框下的提示文字hover颜色
+@seafont_hover:#c62f2f;
+//推荐职位
+@recommend_fontcolor:#777575;
+//职位标题颜色
+@detail_title:#117ada;
+//加载更多
+@down_bg:#eeecec;
+@down_bg_hover:#e6e7ea;
+.full_text{
+	margin-top:40px;
+	padding:0;
+}
+.full_ul{
+	padding:0;
+}
+.full_ul li{
+	width:95px;
+	height:40px;
+	float: left;
+	line-height: 40px;
+	text-align: center;
+	font-size: 14px;
+	font-family: '微软雅黑';
+	font-weight: 600;
+}
+.full_li{
+	background-color: @full_li_bg;
+}
+.full_li{
+	color: @full_li_font;
+}
+.full_ul  a{
+	color:@full_li_a;
+}
+.full_ul a:hover li{
+	background-color:  @full_li_bg;
+	color:@full_li_font;
+}
+.full_search{
+	padding:0;
+}
+.sea_1{
+	height:45px;
+	width:79%;
+	border:@full_li_bg 1px solid;
+	padding-left:8px;
+	font-size: 14px;
+	font-family: '微软雅黑';
+	float: left;
+}
+.full_search button{
+	height:45px;
+	width:20%;
+	float: left;
+	background-color: @full_li_bg;
+	border:@full_li_bg 1px solid;
+	color: @full_li_font;
+	font-size: 18px;
+	font-family: '微软雅黑';
+}
+.full_search button:hover{
+	background-color: @button_hover;
+}
+.full_search button img{
+	margin-left: -10%;
+}
+.hot{
+	padding:0;
+	margin-top:20px;
+}
+.hot li{
+	float: left;
+	padding-left: 8px;
+	color: @sea_font;
+}
+.hot a:hover li{
+	color: @seafont_hover;
+}
+.recommend{
+	padding-left:5%;
+	padding-right: 5%;
+	padding-bottom: 5px;
+	margin-top:20px;
+}
+.recommend span{
+	float: left;
+	font-size: 16px;
+	font-family: '微软雅黑';
+	color: @recommend_fontcolor;
+}
+.recommend a{
+	float: right;
+}
+.recommend_line{
+	width: 100%;
+	height:1px;
+	background-color: @seafont_hover;
+	margin-top:30px;
+}
+.detial{
+	padding-left:5%;
+	padding-right: 5%;
+}
+.detial h4{
+	font-size: 16px;
+	font-family: '微软雅黑';
+	color: @detail_title;
+}
+.detial p{
+	color: @recommend_fontcolor;
+	line-height: 30px;
+	margin:0;
+}
+.detial span{
+	color:@sea_font;
+	font-weight: 500;
+}
+.detial a{
+	color: @seafont_hover;
+}
+.detial_line{
+	background-color: @down_bg;
+	width: 100%;
+	height:1px;
+	margin-top: 10px;
+}
+.down_more{
+	width:70%;
+	height:50px;
+	line-height: 50px;
+	text-align: center;
+	background-color: @down_bg;
+	margin-top:20px;
+	margin-bottom: 10px;
+	margin-left: 15%;
+	font-size: 16px;
+	font-family: '微软雅黑';
+	-moz-border-radius: 10px; 
+    -webkit-border-radius: 10px; 
+    border-radius:10px; 
+	color: @full_li_a;
+
+}
+.down_:hover{
+	text-decoration: none;
+}
+.down_:hover .down_more{
+	background-color: @down_bg_hover;
+	
+}

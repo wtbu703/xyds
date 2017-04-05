@@ -24,7 +24,7 @@ function edit(){
 		var paraStr = "";
 		paraStr += "id="+$("#id").val();
 		paraStr += "&position=" + $("#position").val();
-		paraStr += "&demand=" + $("#demand").val();
+		paraStr += "&demand=" + encodeURIComponent(contentEditor.getData());
 		paraStr += "&mobile=" + $("#mobile").val();
 		paraStr += "&tel=" + $("#tel").val();
 		paraStr += "&email=" + $("#email").val();

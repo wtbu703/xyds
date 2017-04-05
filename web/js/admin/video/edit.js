@@ -34,6 +34,9 @@ function edit(){
 		paraStr += "&name=" + $("#name").val();
 		paraStr += "&source=" + $("#source").val();
 		paraStr += "&url=" + $("#url").val();
+		paraStr += "&content=" + $("#content").val();
+		paraStr += "&picUrl=" + $("#picUrl").val();
+		paraStr += "&duration=" + $("#duration").val();
 		$.ajax({
 			url: updateUrl,
 			type: "post",

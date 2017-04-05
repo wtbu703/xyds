@@ -1,0 +1,179 @@
+@charset "utf-8";
+/* less变量的公共部分css */
+.clearfloat {
+  zoom: 1;
+}
+.clearfloat:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.header_f {
+  float: left;
+}
+.header_r {
+  float: right;
+}
+/* END less变量的公共部分css */
+.column {
+  margin-top: 15px;
+  zoom: 1;
+}
+.column .colum_border {
+  border-bottom: 1px solid #dcdcdc;
+  height: 46px;
+}
+.column:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.column .redbar,
+.column span {
+  float: left;
+}
+.column .redbar {
+  width: 6px;
+  height: 46px;
+  background-color: #d73455;
+  margin-right: 5px;
+}
+.column span {
+  font-size: 20px;
+  line-height: 46px;
+  margin-right: 20px;
+}
+.column a {
+  font-size: 14px;
+  text-decoration: none;
+  height: 46px;
+  line-height: 66px;
+  float: right;
+}
+.list {
+  border: 1px solid #dcdcdc;
+  margin-top: 20px;
+  padding-top: 1%;
+  padding-bottom: 10px;
+}
+.list img {
+  width: 100%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+.list h5 {
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  height: auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.list h5 {
+  color: #000;
+}
+.list .list_text {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+.list p {
+  margin-bottom: 0px;
+  text-overflow: clip;
+  overflow: hidden;
+  height: 60px;
+}
+.list p,
+.list span {
+  color: #484444;
+}
+.list .list_btn {
+  padding-top: 12%;
+}
+.list .list_btn a {
+  float: right;
+  background-color: #6095c1;
+  color: #fff;
+}
+.list .list_btn a:hover {
+  background-color: #2d6a9c;
+}
+.inform_border {
+  border: 1px solid #dcdcdc;
+  margin-top: 20px;
+  padding: 15px;
+}
+.inform_border h5 {
+  font-size: 22px;
+  font-family: '宋体';
+  font-weight: 900;
+  text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  height: auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.inform_border h5 a {
+  color: #000;
+}
+.inform_border img {
+  width: 100%;
+}
+.inform_border p {
+  text-overflow: clip;
+  overflow: hidden;
+  height: 70px;
+  padding-top: 10px;
+}
+.inform_border p a {
+  color: #000;
+}
+.inform_border ul li {
+  list-style: none;
+}
+.inform_border ul li a {
+  font-family: '宋体';
+  color: #000;
+  text-decoration: none;
+}
+.inform_border ul li a:hover {
+  color: #c62f2f;
+}
+.inform_border .list_symbol {
+  width: 11px;
+  height: 11px;
+  background-color: #8a0000;
+}
+.list_train {
+  padding-left: 0px;
+  padding-top: 10px;
+}
+.list_train li {
+  zoom: 1;
+  background: url('../../images/ectrain/message.png') no-repeat 0px 50%;
+  padding-left: 20px;
+}
+.list_train li:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.list_train h5 {
+  width: 80%;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  height: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  float: left;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: left;
+}
+.list_train span {
+  float: right;
+  color: #0033a1;
+  font-weight: 900;
+  margin-top: 7px;
+}

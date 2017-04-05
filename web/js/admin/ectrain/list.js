@@ -8,7 +8,7 @@ function openadd(){
 	$.dialog({id:'contact_add'}).close();
 	$.dialog.open(addUrl, {
 		title: '添加培训信息',
-		width: 700,
+		width: 800,
 		height:550,
 		lock: true,
 		border: false,

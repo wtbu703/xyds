@@ -34,7 +34,7 @@ function add(){
 		paraStr += "&mobile=" + $("#mobile").val();
 		paraStr += "&email=" + $("#email").val();
 		paraStr += "&QQ=" + $("#QQ").val();
-		paraStr += "&content=" + $("#content").val();
+		paraStr += "&content=" + encodeURIComponent(contentEditor.getData());
 		$.ajax({
 			url: insertUrl,
 			type: "post",

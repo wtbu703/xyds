@@ -1,0 +1,164 @@
+@charset "utf-8";
+//本页面公用css
+.clearfloat{
+    zoom:1;
+    &:after{
+        content:'';
+        display: block;
+        clear:both;
+    }
+}
+.header_f{
+        float:left;
+    }
+.header_r{
+        float:right;
+    }
+.top_two{margin-top: 35px;}
+
+@border:#c62f2f;/* 培训通知左边框颜色 */
+.notice{border-left:5px @border  solid;}
+.notice a{ font-family:"微软雅黑";font-size:24px;font-weight: 'Regular';color:black;}
+.nav_1>li>a {position: relative;display: block;padding:3px 0 ;}
+.nav_1>li>a:hover{background-color:#fff;}
+.classify{width:120px;height:31px;padding-left:15px;margin-top: 3px;}
+.row_display{display: none;}
+
+@base:#16d0ff;/* 边框变化前的颜色 */
+@change:#d73455;/* 边框变化后的颜色 */
+@pageco:#b5b5b5;
+.classify a{font-family:"微软雅黑";font-size:18px;color:black;border:1px @base solid;text-align:center;}
+.classify a:hover{
+    border:1px @change solid;
+}
+.classify1{width:120px;height:31px;padding-left:15px;margin-top: 3px;}
+.classify1 a{font-family:"微软雅黑";font-size:18px;color:black;border:1px @base solid;text-align:center;}
+.classify1 a:hover{
+    border:1px @change solid;
+}
+.column_mt{
+    margin-top:15px;
+}
+@font_m:20px;
+@font_small:18px;
+@bg:#fff;
+@placeholder:#fff;
+
+
+
+
+/* 企业展示导航 */
+.column{
+    @border_c:#00ccff;
+    @borderhover_c:#d73455;
+    @background_c:#d73455;
+    @btnbackground_c:#fff;
+    
+    .nav-tabs{
+        border:none;
+    }
+    .clearfloat;
+    .redbar, span, a{
+        .header_f;
+    }
+    .redbar{
+        width:6px;
+        height:46px;
+        background-color:@background_c;
+        margin-right:5px;
+    }
+    span{
+        font-size:@font_m;
+        line-height:46px;
+        margin-right:20px;
+    }
+    a{
+        font-size:@font_small;
+        border-color:@border_c;
+        background-color:@bg;
+        margin-top:3.5px;
+        margin-right:20px;
+        &:hover{
+            border-color:@borderhover_c;
+        }
+        
+    }
+    .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active{
+        border-color:@borderhover_c;
+        background:@bg;
+    }
+}
+.row_one{margin-top: 20px;}
+.pagination > li > a{border:1px solid @pageco;}
+.pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus {
+    color: @change;
+    background-color: #fff;
+    border-color: @change;
+}
+@contentbg:#f9f6f6;/* 正文背景 */
+@pagination:black;/* 页码颜色 */
+
+.content{border:1px #0000ff solid;background-color:@contentbg;}
+.content h1{font-size:20px;font-family:"微软雅黑";font-weight:700;margin:20px 15px;}
+.content .text{float:left;}
+.content .text .time{margin-top: 50px;margin-left:18px;}
+.content .text p{font-family:"微软雅黑";font-size:14px;margin-left:18px;margin-top:5px;}
+.content .down{margin-bottom:35px;}
+
+@text_span:#ff0000;/* 详情颜色 */
+.content .text p.detail{margin-left: 85px;margin-top:25px;}
+.content .text a{font-family:"微软雅黑";font-size:14px;color:@text_span;}
+.row_page{margin-top:20px;}
+.pagination li a{margin-left:10px;border-radius: 6px;color:@pagination;}
+.pagination li a.fen {border-style:none;}
+
+/* 进度条 */
+@circle_bged:#ff7575;/* 已经完成的颜色 */@circle_bg:#d9d9d9;/* 未完成的颜色 */@mask_bg:#fff;/* 内环背景颜色 */
+.circle {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top:80px;
+            right:30px;
+            border-radius: 50%;
+            background: @circle_bged;
+        }
+        .pie_left, .pie_right { 
+            width:150px; 
+            height:150px;
+            position: absolute;
+            top: 0;left: 0;
+        }
+        .left1, .right1 {
+            width:150px; 
+            height:150px;
+            background:@circle_bg;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        /* clip剪切图片 */
+        .pie_right, .right1 {
+            clip:rect(0 auto auto 75px);/* IE4 to IE7 */
+            clip:rect(0,auto,auto,75px);/* IE8 &other browsers */
+            
+        }
+        .pie_left, .left1 {
+            clip:rect(0 75px auto 0);/* IE4 to IE7 */
+            clip:rect(0,75px,auto,0);/* IE8 &other browsers */
+        }
+        .mask {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            left: 30px;
+            top: 30px;
+            background: @mask_bg;
+            position: absolute;
+            text-align: center;
+            line-height: 90px;
+            font-size: 16px;
+            font-weight: bold;
+            color: @circle_bged;
+        }

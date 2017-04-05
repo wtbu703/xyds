@@ -1,0 +1,154 @@
+@charset "utf-8";
+/* less变量的公共部分css */
+.clearfloat {
+  zoom: 1;
+}
+.clearfloat:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.header_f {
+  float: left;
+}
+.header_r {
+  float: right;
+}
+/* END less变量的公共部分css */
+.information_list {
+  margin: 30px auto;
+}
+.information_list a {
+  color: #555555;
+}
+.information_list li.active a {
+  color: #428bca;
+}
+.news h5 {
+  margin: 0px auto;
+  font-size: 20px;
+  font-weight: 900;
+}
+.news p {
+  padding-top: 5%;
+  padding-bottom: 2%;
+  text-overflow: clip;
+  overflow: hidden;
+  height: 85px;
+}
+.news h5 a,
+.news p a {
+  color: #000;
+}
+.news span {
+  float: right;
+}
+.artcle {
+  border-bottom: 1px solid #d2d2d2;
+  margin-bottom: 10px;
+}
+.column {
+  margin: 27px auto;
+}
+.column .redbar {
+  width: 6px;
+  height: 46px;
+  background-color: #c62f2f;
+  margin-right: 5px;
+  float: left;
+}
+.column span {
+  font-size: 20px;
+  line-height: 46px;
+  margin-right: 20px;
+}
+.hot {
+  border: 1px solid #d2d2d2;
+}
+.hot ul {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.hot li.news_arrow {
+  background: url('../../images/images_ecinformation/news_arrow.png') no-repeat 99% 50%;
+}
+.hot li {
+  height: 30px;
+  line-height: 30px;
+  padding-right: 20px;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  height: auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.hot li a {
+  color: #000;
+  font-family: '宋体';
+  text-decoration: none;
+}
+.hot li a:hover {
+  color: #c62f2f;
+}
+.hot .icon {
+  float: right;
+  margin-top: 10px;
+}
+.hot_company h5 {
+  margin: 0px auto;
+  margin-bottom: 5px;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  height: auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.hot_company h5 a {
+  font-weight: 600;
+}
+.hot_company h5 a,
+.hot_company p a {
+  color: #000;
+}
+.hot_company p {
+  text-overflow: clip;
+  overflow: hidden;
+  height: 60px;
+}
+.hot_company span {
+  color: #ff0000;
+  padding-left: 20px;
+  float: right;
+  padding-right: 10px;
+  margin-top: 1%;
+  background: url('../../images/images_ecinformation/company_eye.png') no-repeat 0px 50%;
+}
+.company {
+  margin: 3% auto;
+}
+.company img {
+  border: 1px solid #d2d2d2;
+}
+.row_page {
+  margin-top: 20px;
+}
+.pagination > li > a {
+  border: 1px solid #b5b5b5;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  color: #d73455;
+  background-color: #fff;
+  border-color: #d73455;
+}
+.pagination li a {
+  margin-left: 10px;
+  border-radius: 6px;
+  color: #000000;
+}
+.pagination li a.fen {
+  border-style: none;
+}

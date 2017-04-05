@@ -1,0 +1,192 @@
+@charset"utf-8";
+//本页面公用css
+@import url('commonless.less');
+.clearfloat{
+	zoom:1;
+	&:after{
+		content:'';
+		display: block;
+		clear:both;
+	}
+}
+.header_f{
+		float:left;
+	}
+.header_r{
+		float:right;
+	}
+.shadow{
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);/*for ie6,7,8*/ 
+	background-color: #fff; 
+	-moz-box-shadow:-2px 2px 5px #d2d2d2;/*firefox*/ 
+	-webkit-box-shadow:-2px 2px 5px #d2d2d2;/*webkit*/ 
+	box-shadow:-2px 2px 5px #d2d2d2;/*opera或ie9*/ 
+}
+.border_radius{
+	-moz-border-radius: 4px; /* Firefox */
+  	-webkit-border-radius: 4px; /* Safari 和 Chrome */
+  	border-radius: 4px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+}
+@font_m:20px;
+@font_small:18px;
+@bg:#e2e2e2;
+@placeholder:#fff;
+/* 公司店铺链接 */
+.store_link{
+	.shadow;
+	padding-bottom:30px;
+	@focolor:#000;/* 字体颜色 */
+	@focolor1:#585858;
+	@linkbg:#e6e7ea;
+	@linkcolor:#c62f2f;
+	@border1:#c62f2f;
+	.link_title{
+		padding-top:25px;
+		margin-left: 25px;
+		img{
+			.header_f;
+			margin-top:8px;
+			margin-right: 5px;
+		}
+		h4{
+			
+			font-family: "微软雅黑";
+			font-weight: bold;
+			color:@focolor1;
+		}
+	}
+	ul{
+		padding-left: 0;
+	}
+	li.link_name{
+		list-style-type: none;
+		padding-left:40px;
+		margin-top:5px;
+		a{
+			text-decoration: none;
+		}
+		img{
+			.header_f;
+			margin-right: 5px;
+			width:36px;
+			height:36px;
+		}
+		span{
+			font-family: "微软雅黑";
+			font-weight: Regular;
+			color:@focolor;	
+			font-size:18px;
+			line-height: 1.8;
+			cursor:pointer;	
+			padding-left: 5px;
+		}	
+	}
+	li.link_name:hover{
+		border-left:2px solid @border1;
+		margin-left:-2px;
+		background:@linkbg;
+		span{
+			color:@linkcolor;
+		}
+	}
+}
+/* 公司新闻 */
+.company_news{
+	.shadow;
+	margin-top:20px;
+	padding-bottom:20px;
+	@focolor:#585858;/* 字体颜色 */
+	@fohover:#c62f2f;
+	@newscolor:#000000;/* 新闻字体 */
+	.link_title{
+		padding-top:25px;
+		margin-left: 25px;
+		img{
+			.header_f;
+			margin-top:8px;
+			margin-right: 5px;
+		}
+		h4{
+			
+			font-family: "微软雅黑";
+			font-weight: bold;
+			color:@focolor;
+		}
+	}
+	.news{
+		margin-top:10px;
+		div{
+			background:@newscolor;
+			.header_f;
+			margin-left:10px;
+			margin-top:7px;
+			width:2px;
+			height:2px;
+		}
+		a{
+			font-size: 12px;
+			font-family: "宋体";
+			color:@newscolor;
+			text-decoration: none;
+			padding-left:10px;
+			display: block;
+			.article_title(20px);
+			&:hover{
+				color:@fohover;
+			}
+		}
+	}
+}
+/* 公司招聘 */
+.company_recruit{
+	.shadow;
+	@focolor1:#585858;
+	@newscolor:#000000;/* 字体颜色 */
+	@recruitco:#c62f2f;/* 职位颜色 */
+	@borderc:#7d7d7d;/* 分割线颜色 */
+	margin-top:20px;
+	padding-bottom:20px;
+	.link_title{
+		padding-top:25px;
+		margin-left: 25px;
+		img{
+			.header_f;
+			margin-top:8px;
+			margin-right: 5px;
+		}
+		h4{
+			
+			font-family: "微软雅黑";
+			font-weight: bold;
+			color:@focolor1;
+		}
+	}
+	.recruit{
+		margin-top:10px;
+		border-bottom:2px solid @borderc;
+		div{
+			background:@newscolor;
+			.header_f;
+			margin-left:10px;
+			margin-top:10px;
+			width:2px;
+			height:2px;
+		}
+		a{
+			font-size: 16px;
+			font-family: "微软雅黑";
+			color:@recruitco;
+			text-decoration: none;
+			padding-left:10px;
+		}
+		h5{
+			font-family: "宋体";
+			margin-left:20px;
+			.article_title(20px);
+			span{
+				margin-left:5px;
+				margin-right:5px;
+			}
+		}
+	}
+}

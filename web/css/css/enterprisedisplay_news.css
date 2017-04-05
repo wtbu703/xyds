@@ -1,0 +1,155 @@
+@charset "utf-8";
+/* less变量的公共部分css */
+.clearfloat {
+  zoom: 1;
+}
+.clearfloat:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.header_f {
+  float: left;
+}
+.header_r {
+  float: right;
+}
+/* END less变量的公共部分css */
+.shadow {
+  background-color: #fff;
+  -moz-box-shadow: -2px 2px 5px #d2d2d2;
+  /*firefox*/
+  -webkit-box-shadow: -2px 2px 5px #d2d2d2;
+  /*webkit*/
+  box-shadow: -2px 2px 5px #d2d2d2;
+  /*opera或ie9*/
+}
+.information_list {
+  margin: 30px auto;
+}
+.information_list a {
+  color: #555555;
+}
+.information_list li.active a {
+  color: #428bca;
+}
+.ec_news {
+  -webkit-box-shadow: -2px 2px 5px #d2d2d2;
+  box-shadow: -2px 2px 5px #d2d2d2;
+  padding: 1%;
+}
+.ec_margin {
+  margin-bottom: 2%;
+}
+.more_news {
+  text-align: center;
+  margin-top: 2%;
+}
+.more_news a {
+  color: #000;
+}
+.nav_s {
+  margin-left: 15px;
+  background: url('../../images/images_ecinformationDetail/home.png') no-repeat 0 50%;
+  padding-left: 25px;
+  font-family: '宋体';
+}
+.nav_s span a {
+  color: #000;
+}
+.news h5 {
+  margin: 0px auto;
+  font-size: 20px;
+  font-weight: 900;
+}
+.news p {
+  padding-top: 5%;
+  padding-bottom: 2%;
+  text-overflow: clip;
+  overflow: hidden;
+  height: 85px;
+}
+.news h5 a,
+.news p a {
+  color: #000;
+}
+.news span {
+  float: right;
+}
+.artcle {
+  border-bottom: 1px solid #d2d2d2;
+  margin-bottom: 10px;
+}
+/* 企业展示导航 */
+.column_mt {
+  margin: 15px auto;
+}
+.column {
+  zoom: 1;
+}
+.column:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.column .redbar,
+.column span,
+.column a {
+  float: left;
+}
+.column .redbar {
+  width: 6px;
+  height: 46px;
+  background-color: #d73455;
+  margin-right: 5px;
+}
+.column span {
+  font-size: 20px;
+  line-height: 46px;
+  margin-right: 20px;
+  font-family: "微软雅黑";
+}
+.column a {
+  font-size: 18px;
+  border-color: #00ccff;
+  margin-top: 3.5px;
+  margin-right: 15px;
+  cursor: default;
+}
+.column a:hover {
+  border-color: #d73455;
+  background-color: #ffffff;
+}
+.column a:focus {
+  border-color: #d73455;
+  background-color: #ffffff;
+}
+.column .hover {
+  border-color: #d73455;
+}
+/* 搜索框 */
+.enterprise_search {
+  height: 40px;
+  margin-top: 18px;
+}
+.enterprise_search .btn_search {
+  height: 40px;
+  width: 40px;
+  background: #2eb4a9;
+  border: 1px solid #2eb4a9;
+  padding: 0 0;
+  border-radius: 0;
+}
+.enterprise_search .btn_search:hover {
+  background: #109085;
+}
+.enterprise_search .search_input {
+  height: 40px;
+  border: 1px solid #2eb4a9;
+}
+.hr1 {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 2px solid #e2e2e2;
+}

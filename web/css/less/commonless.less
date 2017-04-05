@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* less变量的公共部分css */
+
+//标题省略
+.article_title(@height:30px){
+	-o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    height: @height;		  
+    overflow: hidden;
+    white-space: nowrap;   
+}
+
+//详情省略
+.article_text(@height:50px){
+	text-overflow: clip;
+    overflow: hidden;
+    height: @height;
+}
+
+
+.clearfloat{
+	zoom:1;
+	&:after{
+		content:'';
+		display: block;
+		clear:both;
+	}
+}
+.header_f{
+		float:left;
+	}
+.header_r{
+		float:right;
+	}
+@header_bgc:#f5f5f5;
+@font_big:22px;
+@font_m:20px;
+@font_small:18px;
+@font_xs:14px;
+@font_xxs:12px;
+@font_text:'宋体';
+@font_list_c:#c62f2f;
+
+/* END less变量的公共部分css */

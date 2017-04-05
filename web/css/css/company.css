@@ -1,0 +1,232 @@
+@charset "utf-8";
+/* less变量的公共部分css */
+.clearfloat {
+  zoom: 1;
+}
+.clearfloat:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.header_f {
+  float: left;
+}
+.header_r {
+  float: right;
+}
+/* END less变量的公共部分css */
+.clearfloat {
+  zoom: 1;
+}
+.clearfloat:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.header_f {
+  float: left;
+}
+.header_r {
+  float: right;
+}
+.shadow {
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
+  /*for ie6,7,8*/
+  background-color: #fff;
+  -moz-box-shadow: -2px 2px 5px #d2d2d2;
+  /*firefox*/
+  -webkit-box-shadow: -2px 2px 5px #d2d2d2;
+  /*webkit*/
+  box-shadow: -2px 2px 5px #d2d2d2;
+  /*opera或ie9*/
+}
+.border_radius {
+  -moz-border-radius: 4px;
+  /* Firefox */
+  -webkit-border-radius: 4px;
+  /* Safari 和 Chrome */
+  border-radius: 4px;
+  /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+}
+/* 公司店铺链接 */
+.store_link {
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
+  /*for ie6,7,8*/
+  background-color: #fff;
+  -moz-box-shadow: -2px 2px 5px #d2d2d2;
+  /*firefox*/
+  -webkit-box-shadow: -2px 2px 5px #d2d2d2;
+  /*webkit*/
+  box-shadow: -2px 2px 5px #d2d2d2;
+  /*opera或ie9*/
+  padding-bottom: 30px;
+  /* 字体颜色 */
+}
+.store_link .link_title {
+  padding-top: 25px;
+  margin-left: 25px;
+}
+.store_link .link_title img {
+  float: left;
+  margin-top: 8px;
+  margin-right: 5px;
+}
+.store_link .link_title h4 {
+  font-family: "微软雅黑";
+  font-weight: bold;
+  color: #585858;
+}
+.store_link ul {
+  padding-left: 0;
+}
+.store_link li.link_name {
+  list-style-type: none;
+  padding-left: 40px;
+  margin-top: 5px;
+}
+.store_link li.link_name a {
+  text-decoration: none;
+}
+.store_link li.link_name img {
+  float: left;
+  margin-right: 5px;
+  width: 36px;
+  height: 36px;
+}
+.store_link li.link_name span {
+  font-family: "微软雅黑";
+  font-weight: Regular;
+  color: #000000;
+  font-size: 18px;
+  line-height: 1.8;
+  cursor: pointer;
+  padding-left: 5px;
+}
+.store_link li.link_name:hover {
+  border-left: 2px solid #c62f2f;
+  margin-left: -2px;
+  background: #e6e7ea;
+}
+.store_link li.link_name:hover span {
+  color: #c62f2f;
+}
+/* 公司新闻 */
+.company_news {
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
+  /*for ie6,7,8*/
+  background-color: #fff;
+  -moz-box-shadow: -2px 2px 5px #d2d2d2;
+  /*firefox*/
+  -webkit-box-shadow: -2px 2px 5px #d2d2d2;
+  /*webkit*/
+  box-shadow: -2px 2px 5px #d2d2d2;
+  /*opera或ie9*/
+  margin-top: 20px;
+  padding-bottom: 20px;
+  /* 字体颜色 */
+  /* 新闻字体 */
+}
+.company_news .link_title {
+  padding-top: 25px;
+  margin-left: 25px;
+}
+.company_news .link_title img {
+  float: left;
+  margin-top: 8px;
+  margin-right: 5px;
+}
+.company_news .link_title h4 {
+  font-family: "微软雅黑";
+  font-weight: bold;
+  color: #585858;
+}
+.company_news .news {
+  margin-top: 10px;
+}
+.company_news .news div {
+  background: #000000;
+  float: left;
+  margin-left: 10px;
+  margin-top: 7px;
+  width: 2px;
+  height: 2px;
+}
+.company_news .news a {
+  font-size: 12px;
+  font-family: "宋体";
+  color: #000000;
+  text-decoration: none;
+  padding-left: 10px;
+  display: block;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.company_news .news a:hover {
+  color: #c62f2f;
+}
+/* 公司招聘 */
+.company_recruit {
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
+  /*for ie6,7,8*/
+  background-color: #fff;
+  -moz-box-shadow: -2px 2px 5px #d2d2d2;
+  /*firefox*/
+  -webkit-box-shadow: -2px 2px 5px #d2d2d2;
+  /*webkit*/
+  box-shadow: -2px 2px 5px #d2d2d2;
+  /*opera或ie9*/
+  /* 字体颜色 */
+  /* 职位颜色 */
+  /* 分割线颜色 */
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+.company_recruit .link_title {
+  padding-top: 25px;
+  margin-left: 25px;
+}
+.company_recruit .link_title img {
+  float: left;
+  margin-top: 8px;
+  margin-right: 5px;
+}
+.company_recruit .link_title h4 {
+  font-family: "微软雅黑";
+  font-weight: bold;
+  color: #585858;
+}
+.company_recruit .recruit {
+  margin-top: 10px;
+  border-bottom: 2px solid #7d7d7d;
+}
+.company_recruit .recruit div {
+  background: #000000;
+  float: left;
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 2px;
+  height: 2px;
+}
+.company_recruit .recruit a {
+  font-size: 16px;
+  font-family: "微软雅黑";
+  color: #c62f2f;
+  text-decoration: none;
+  padding-left: 10px;
+}
+.company_recruit .recruit h5 {
+  font-family: "宋体";
+  margin-left: 20px;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.company_recruit .recruit h5 span {
+  margin-left: 5px;
+  margin-right: 5px;
+}

@@ -25,7 +25,7 @@ function edit(){
 		paraStr += "&id=" + $("#id").val();
 		paraStr += "&name=" + $("#name").val();
 		paraStr += "&category=" + $("#category").val();
-		paraStr += "&content=" + $("#content").val();
+		paraStr += "&content=" + encodeURIComponent(contentEditor.getData());
 		paraStr += "&dayNum=" + $("#dayNum").val();
 		paraStr += "&period=" + $("#period").val();
 		paraStr += "&peopleNum=" + $("#peopleNum").val();
@@ -33,6 +33,8 @@ function edit(){
 		paraStr += "&publisher=" + $("#publisher").val();
 		paraStr += "&picUrl=" + $("#picUrl").val();
 		paraStr += "&thumbnailUrl=" + $("#thumbnailUrl").val();
+		paraStr += "&beginTime=" + $('#beginTime').val();
+		paraStr += "&endTime=" + $('#endTime').val();
 
 		$.ajax({
 			url: updateUrl,

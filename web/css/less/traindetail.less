@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* @media only screen and (max-width: 768px) { h2{ font-size: 15px; }}
+@media only screen and (min-width: 768px) { h2{ font-size: 20px; }}
+@media only screen and (min-width: 992px) { h2{ font-size: 25px; }}
+@media only screen and (min-width: 1200px) { h2{ font-size: 30px; }}
+ */
+ol,ul {list-style:none;}
+li{list-style-type:none;}
+.shadow{
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#000000', Direction=135, Strength=10);/*for ie6,7,8*/ 
+	background-color: #fff; 
+	-moz-box-shadow:0px 0px 10px #000000;/*firefox*/ 
+	-webkit-box-shadow:0px 0px 10px #000000;/*webkit*/ 
+	box-shadow:0px 0px 10px #000000;/*opera或ie9*/ 
+}
+@bg:#e2e2e2;/*正文大背景颜色*/
+@cbg:#fff;/*正文颜色*/
+@topborder:#e2e2e2;
+.wrapper{background-color:@bg;width:100%;height:auto;}
+.content{margin-top:30px;padding-bottom:50px;}
+.article{background:@cbg;.shadow;}
+.home{display:inline-block;display: inline;zoom:1;margin-top: -3px;}
+
+@font_color:#000;/* 字体颜色 */
+@font_hover_color:#c62f2f;/* 字体变化颜色 */
+.right_head{
+			margin-top:10px;
+			height:37px;border-bottom:4px solid @topborder ;
+}
+.lh_index{
+		  font-size:14px;
+		  font-family:"宋体";
+		  color:@font_color;
+		  line-height:22px;
+		  width:auto;
+}
+.lh_index a{color:@font_color;padding-left:5px;}
+/* 文章正文 */
+.row_text{margin-top:40px;font-family: "微软雅黑";}
+.clock{display: inline-block;display: inline;zoom:1;}
+p.subhead{font-size: 14px;font-family: "微软雅黑";margin-top:25px;}
+p.row_text{font-size: 14px;font-family: "宋体";margin-top:25px;}
+.down{margin-top:100px;padding-bottom: 180px;}

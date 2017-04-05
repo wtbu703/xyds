@@ -33,9 +33,11 @@ function add(){
 		var paraStr = "";
 		paraStr += "companyId=" + $("#companyId").val();
 		paraStr += "&title=" + $("#title").val();
-		paraStr += "&content=" + $("#content").val();
+		paraStr += "&content=" + encodeURIComponent(contentEditor.getData());
 		paraStr += "&keyword=" + $("#keyword").val();
 		paraStr += "&attachUrl=" + $("#attachUrls").val();
+		paraStr += "&attachName=" + $("#attachNames").val();
+		paraStr += "&picUrl=" + $("#picUrl").val();
 
 		$.ajax({
 			url: insertUrl,

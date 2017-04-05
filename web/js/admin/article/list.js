@@ -1,14 +1,14 @@
 // 加载字典信息
 $(document).ready(function(){
 	generateDict('DICT_ARTICLE_CATEGORY','category','文章类别');
-});
+})
 //打开添加页面
 function openadd(){
 	$.dialog({id:'article_add'}).close();
 	$.dialog.open(addUrl, {
 		title: '添加文章',
-		width: 700,
-		height:550,
+		width: 800,
+		height:600,
 		lock: true,
 		border: false,
 		id: 'article_add',

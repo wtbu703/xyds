@@ -4,7 +4,7 @@ function openedit(id,name) {
 	var url = editUrl + '&id='+id;
 	$.dialog.open(url,{
 		title: '修改培训信息--'+name,
-		width: 700,
+		width: 800,
 		height:500,
 		lock: true,
 		border: false,
