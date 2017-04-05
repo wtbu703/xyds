@@ -14,14 +14,9 @@ $(function(){
 		.inputValidator({               //校验不能为空
 			min:1,
 			onerror:"请输入职位！"})
-	$("#demand").formValidator({
-				onshow:"请输入要求！",
-				onfocus:"请输入要求！"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请输入要求！"})
 
-})
+
+});
 
 /**
  * 添加过滤
@@ -32,7 +27,7 @@ function add(){
 	if($.formValidator.pageIsValid()){ // 表单提交进行校验
 		var paraStr = "";
 		paraStr += "&position=" + $("#position").val();
-		paraStr += "&demand=" + $("#demand").val();
+		paraStr += "&demand=" + encodeURIComponent(contentEditor.getData());
 		paraStr += "&mobile=" + $("#mobile").val();
 		paraStr += "&tel=" + $("#tel").val();
 		paraStr += "&email=" + $("#email").val();

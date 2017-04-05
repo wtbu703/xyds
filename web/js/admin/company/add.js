@@ -47,7 +47,7 @@ function add(){
 	if($.formValidator.pageIsValid()){ // 表单提交进行校验
 		var paraStr = "";
 		paraStr += "name=" + $("#name").val();
-		paraStr += "&introduction=" + $("#introduction").val();
+		paraStr += "&introduction=" + encodeURIComponent(contentEditor.getData());
 		paraStr += "&tel=" + $("#tel").val();
 		paraStr += "&address=" + $("#address").val();
 		paraStr += "&logoUrl=" + $("#picUrl").val();

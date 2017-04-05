@@ -26,9 +26,12 @@ function edit(){
 		paraStr += "id="+$("#id").val();
 		paraStr += "&title="+$("#title").val();
 		paraStr += "&author="+$("#author").val();
-		paraStr += "&content=" + $("#content").val();
+		paraStr += "&content=" + encodeURIComponent(contentEditor.getData());
 		paraStr += "&category=" + $("#category").val();
+		paraStr += "&state=" + $("#state").val();
 		paraStr += "&attachUrl=" + $("#attachUrls").val();
+		paraStr += "&attachName=" + $("#attachNames").val();
+		paraStr += "&picUrl=" + $("#picUrl").val();
 
 		$.ajax({
 			url: updateUrl,

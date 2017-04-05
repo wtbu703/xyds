@@ -33,8 +33,10 @@ function edit(){
 		paraStr += "&chargeMobile=" + $("#chargeMobile").val();
 		paraStr += "&centralDecisionUnit=" + $("#centralDecisionUnit").val();
 		paraStr += "&attachUrls=" + $("#attachUrls").val();
+		paraStr += "&attachName=" + $("#attachName").val();
 		paraStr += "&publicInfoUrl=" + $("#publicInfoUrl").val();
 		paraStr += "&signSheetUrl=" + $("#signSheetUrl").val();
+		paraStr += "&signSheetName=" + $("#signSheetName").val();
 		paraStr += "&published=" + $("#published").val();
 
 		$.ajax({

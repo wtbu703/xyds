@@ -28,6 +28,10 @@ function edit(){
 		paraStr +="&title="+$("#title").val();
 		paraStr +="&author="+$("#author").val();
 		paraStr +="&content="+encodeURIComponent(contentEditor.getData());
+		paraStr += "&category=" + $("#category").val();
+		paraStr += "&attachUrls=" + $("#attachUrls").val();
+		paraStr += "&attachNames=" + $("#attachNames").val();
+		paraStr += "&picUrl=" + $("#picUrl").val();
 		$.ajax({
 			url: updateUrl,
 			type: "post",

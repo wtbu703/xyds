@@ -27,7 +27,7 @@ function edit(){
 		paraStr += "&address=" + $("#address").val();
 		paraStr += "&tel=" + $("#tel").val();
 		paraStr += "&corporate=" + $("#corporate").val();
-		paraStr += "&introduction=" + $("#introduction").val();
+		paraStr += "&introduction=" + encodeURIComponent(contentEditor.getData());
 		paraStr += "&logoUrl=" + $("#picUrl").val();
 		paraStr += "&sources=" + $("#sources").val();
 		paraStr += "&webSite=" + $("#webSite").val();

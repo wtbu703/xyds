@@ -17,7 +17,12 @@ $(function(){
 		.inputValidator({               //校验不能为空
 			min:1,
 			onerror:"请输入标题！"})
-
+	$("#category").formValidator({
+				onshow:"请输入类别！",
+				onfocus:"请输入类别！"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入类别！"})
 
 })
 
@@ -36,6 +41,7 @@ function add(){
 		paraStr += "&category=" + $("#category").val();
 		paraStr += "&attachUrls=" + $("#attachUrls").val();
 		paraStr += "&attachNames=" + $("#attachNames").val();
+		paraStr += "&picUrl=" + $("#picUrl").val();
 		$.ajax({
 			url: insertUrl,
 			type: "post",
