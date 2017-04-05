@@ -234,7 +234,9 @@ class CompanyProductController extends Controller
         }
     }
     public function actionCompanyProduct(){
-        $companyProduct = CompanyProduct::find()->all();
+	    $companyId = yii::$app->request->post('companyId');
+        $companyProduct = CompanyProduct::find()
+	        ->where('companyId = :companyId',[":companyId" => $companyId])->all();
         return Json::encode($companyProduct);
     }
 }

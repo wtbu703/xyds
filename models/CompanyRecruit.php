@@ -16,6 +16,7 @@ use Yii;
  * @property string $email
  * @property string $contacts
  * @property integer $count
+ * @property string $datetime
  */
 class CompanyRecruit extends \yii\db\ActiveRecord
 {
@@ -36,6 +37,7 @@ class CompanyRecruit extends \yii\db\ActiveRecord
             [['id', 'companyId'], 'required'],
             [['demand'], 'string'],
             [['count'], 'integer'],
+            [['datetime'], 'safe'],
             [['id', 'companyId'], 'string', 'max' => 40],
             [['position', 'tel', 'email'], 'string', 'max' => 16],
             [['mobile'], 'string', 'max' => 11],
@@ -58,6 +60,7 @@ class CompanyRecruit extends \yii\db\ActiveRecord
             'email' => '邮箱',
             'contacts' => '联系人',
             'count' => '点击次数',
+            'datetime' => '时间',
         ];
     }
 }
