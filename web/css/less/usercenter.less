@@ -1,0 +1,65 @@
+@charset "utf-8";
+@import url("account_common.less");
+
+@ls_bgc:#fff; //左侧背景颜色
+@ls_lia:#1c8bd9;//左侧列表悬浮颜色
+.leftsidebar{
+	.shadow;
+	padding-top:5px;
+  	text-align:center;
+	background-color:@ls_bgc;
+  	.head_icon{
+  		display:block;
+  		margin: 30px auto;
+  	}
+  	.idname{
+  		font:16px @font_wr;
+  	}
+}
+
+//左导航
+.leftsidebar_list{
+  	list-style:none;
+  	text-decoration:none;
+  	padding-top:40px;
+  	li{
+  		height:45px;
+  		line-height:45px;
+  		&:hover{
+  			border-left:3px solid @ls_lia;
+  			margin-left: -3px;
+  			background-color:@fbgc;
+  		}
+  	}
+  	li a{
+  		color:@list_fc;
+  		font-size:18px;
+  		text-decoration:none;
+  		&:hover{
+  			color:@ls_lia;
+  		}
+  	}
+  	.sidebar_li a{
+		color:@list_fch;
+	}
+}
+.sidebar_li{
+	margin-top:40px;
+	background:url('../../images/images_contactus/bar.jpg') no-repeat 0 50%;
+}
+.account-tab{
+	padding-left:30px;
+	.shadow;
+	padding-top:0px;
+}
+.account-tab li{
+	float: left;
+	list-style:none;
+	width:80px;
+	padding:1%;
+	text-align:center;
+	cursor:pointer;
+}
+.account-tab .tab_active{
+	box-shadow:5px 2px 5px 0px @border_c inset;
+}

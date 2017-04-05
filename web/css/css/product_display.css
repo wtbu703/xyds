@@ -1,0 +1,272 @@
+@charset "utf-8";
+/* less变量的公共部分css */
+.clearfloat {
+  zoom: 1;
+}
+.clearfloat:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.header_f {
+  float: left;
+}
+.header_r {
+  float: right;
+}
+/* END less变量的公共部分css */
+.clearfloat {
+  zoom: 1;
+}
+.clearfloat:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.header_f {
+  float: left;
+}
+.header_r {
+  float: right;
+}
+.shadow {
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
+  /*for ie6,7,8*/
+  background-color: #fff;
+  -moz-box-shadow: -2px 2px 5px #d2d2d2;
+  /*firefox*/
+  -webkit-box-shadow: -2px 2px 5px #d2d2d2;
+  /*webkit*/
+  box-shadow: -2px 2px 5px #d2d2d2;
+  /*opera或ie9*/
+}
+.border_radius {
+  -moz-border-radius: 4px;
+  /* Firefox */
+  -webkit-border-radius: 4px;
+  /* Safari 和 Chrome */
+  border-radius: 4px;
+  /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 2px solid #e5e5e5;
+}
+.column_mt {
+  margin-top: 15px;
+}
+#large {
+  width: 100%;
+}
+/* 企业展示导航 */
+.column {
+  zoom: 1;
+}
+.column:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.column:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.column .redbar,
+.column span,
+.column a {
+  float: left;
+}
+.column .redbar {
+  width: 6px;
+  height: 46px;
+  background-color: #d73455;
+  margin-right: 5px;
+}
+.column span {
+  font-size: 20px;
+  line-height: 46px;
+  margin-right: 20px;
+}
+.column a {
+  font-size: 18px;
+  border-color: #00ccff;
+  background-color: #e2e2e2;
+  margin-top: 3.5px;
+  margin-right: 15px;
+}
+.column a:hover {
+  border-color: #d73455;
+}
+.column .btn-default:hover,
+.column .btn-default:focus,
+.column .btn-default:active,
+.column .btn-default.active {
+  border-color: #d73455;
+}
+.enterprise_search {
+  height: 40px;
+  margin-top: 18px;
+}
+.enterprise_search .search_input {
+  height: 40px;
+  border: 1px solid #2eb4a9;
+  background: #ffffff;
+}
+.enterprise_search .btn_search {
+  height: 40px;
+  width: 40px;
+  background: #2eb4a9;
+  border: 1px solid #2eb4a9;
+  padding: 0 0;
+  border-radius: 0;
+}
+.enterprise_search .btn_search:hover {
+  background: #109085;
+}
+/* 企业具体信息 */
+.left_content1 {
+  /* 字体颜色 */
+  /* 字体变化颜色 */
+  /* 文章背景颜色 */
+  /* 文章字体颜色 */
+}
+.left_content1 .box {
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
+  /*for ie6,7,8*/
+  background-color: #fff;
+  -moz-box-shadow: -2px 2px 5px #d2d2d2;
+  /*firefox*/
+  -webkit-box-shadow: -2px 2px 5px #d2d2d2;
+  /*webkit*/
+  box-shadow: -2px 2px 5px #d2d2d2;
+  /*opera或ie9*/
+}
+.left_content1 .box .right_head {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 10px;
+  height: 37px;
+  border-bottom: 2px solid #e2e2e2;
+}
+.left_content1 .box .home {
+  display: inline-block;
+  display: inline;
+  zoom: 1;
+  margin-top: -3px;
+}
+.left_content1 .box .lh_index {
+  font-size: 14px;
+  font-family: "宋体";
+  color: #000000;
+  line-height: 22px;
+  width: auto;
+}
+.left_content1 .box .lh_index a {
+  color: #000000;
+  padding-left: 5px;
+  margin-top: 5px;
+}
+.left_content1 .box .lh_index a:hover {
+  color: #c62f2f;
+}
+/* 企业展示产品 */
+.product_title {
+  /* 字体颜色 */
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 18px;
+  font-family: "微软雅黑";
+  font-weight: bold;
+  color: #585858;
+}
+.product_title .clock {
+  float: left;
+}
+.product_title span {
+  margin-left: 10px;
+}
+.enterprise {
+  font-family: "微软雅黑";
+  color: #000000;
+  margin-top: 20px;
+  padding: 0 10px;
+  -moz-border-radius: 4px;
+  /* Firefox */
+  -webkit-border-radius: 4px;
+  /* Safari 和 Chrome */
+  border-radius: 4px;
+  /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+}
+.enterprise .box_shadow {
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
+  /*for ie6,7,8*/
+  background-color: #fff;
+  -moz-box-shadow: -2px 2px 5px #d2d2d2;
+  /*firefox*/
+  -webkit-box-shadow: -2px 2px 5px #d2d2d2;
+  /*webkit*/
+  box-shadow: -2px 2px 5px #d2d2d2;
+  /*opera或ie9*/
+}
+.enterprise #large {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.enterprise .enterprise_detail {
+  background: #ffffff;
+  margin-left: 0px;
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
+  /*for ie6,7,8*/
+  background-color: #fff;
+  -moz-box-shadow: -2px 2px 5px #d2d2d2;
+  /*firefox*/
+  -webkit-box-shadow: -2px 2px 5px #d2d2d2;
+  /*webkit*/
+  box-shadow: -2px 2px 5px #d2d2d2;
+  /*opera或ie9*/
+}
+.enterprise .redline .solid {
+  border-bottom: 2px solid #ff0000;
+  overflow: hidden;
+}
+.enterprise .redline .dashed {
+  border-bottom: 2px dashed #ff0000;
+  overflow: hidden;
+}
+.enterprise .red {
+  color: #ff0000;
+}
+.enterprise .belong,
+.enterprise s {
+  color: #8c8b8c;
+  font-size: 11px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+/* 分页 */
+.row_page {
+  margin-top: 20px;
+}
+.pagination > li > a {
+  border: 1px solid #b5b5b5;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  color: #d73455;
+  background-color: #fff;
+  border-color: #d73455;
+}
+.pagination li a {
+  margin-left: 10px;
+  border-radius: 6px;
+  color: #000000;
+}
+.pagination li a.fen {
+  border-style: none;
+}

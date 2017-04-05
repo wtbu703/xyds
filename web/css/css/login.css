@@ -1,0 +1,58 @@
+.main{
+	background: url(../../images/login/banner.jpg) center no-repeat;
+}
+.login{
+	margin-top: 50px;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	z-index: 10;
+	overflow: hidden;
+}
+.login p{
+	font: 20px "微软雅黑";
+	text-align: center;
+	padding-top:12px;
+}
+.login-input{
+	padding: 55px 40px;
+}
+.login-input input[type="text"]{
+	background: url(../../images/login/user.png) no-repeat 5px 3px;
+	padding-left: 35px;
+}
+.login-input input[type="password"]{
+	background: url(../../images/login/lock.png) no-repeat 5px 3px;
+	padding-left: 35px;
+}
+.login-lable{
+	font:14px "宋体";
+}
+.login-text{
+	margin-bottom: 25px;
+}
+.login-submit{
+	margin:30px auto;
+} 
+.login-title{
+	width: 100%;
+	height: 50px;
+	background-color: #f6f8fb;
+}
+.bg-shade{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: -1;
+	width: 100%;
+	height: 386px;
+	background-color:#fff;
+	opacity: 0.5;
+}
+.register{
+	float: right;
+	margin-right: 20px;
+}
+.login-register{
+	font: 12px "宋体";
+	color: #d73455;
+}

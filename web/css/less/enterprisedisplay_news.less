@@ -1,0 +1,152 @@
+@charset "utf-8";
+@import url('commonless.less');
+
+.shadow{
+	
+	background-color: #fff; 
+	-moz-box-shadow:-2px 2px 5px #d2d2d2;/*firefox*/ 
+	-webkit-box-shadow:-2px 2px 5px #d2d2d2;/*webkit*/ 
+	box-shadow:-2px 2px 5px #d2d2d2;/*opera或ie9*/ 
+}
+.information_list{
+	@font_c:#555;
+	@fontactive_c:#428bca;
+	margin:30px auto;
+	a{
+		color:@font_c;
+	}
+    li.active a{
+		color:@fontactive_c;
+		//没有li无法覆盖样式
+	}
+}
+.ec_news{
+	 -webkit-box-shadow: -2px 2px 5px #d2d2d2;
+    box-shadow: -2px 2px 5px #d2d2d2;
+    padding:1%;
+
+	
+}
+.ec_margin{
+	margin-bottom:2%;
+}
+.more_news{
+	text-align:center;
+	margin-top:2%;
+	a{
+		color:#000;
+	}
+}
+.nav_s{
+		
+		margin-left:15px;
+		background:url('../../images/images_ecinformationDetail/home.png') no-repeat 0 50%;
+		padding-left:25px;
+		font-family:'宋体';
+		span a{
+			color:#000;	
+		}
+	}
+
+.news{
+	h5{
+		margin:0px auto;
+		font-size:@font_m;
+		font-weight:900;
+	}
+	p{
+		padding-top:5%;
+		padding-bottom:2%;
+		.article_text(85px);
+	}
+	h5 a,p a{
+		color:#000;
+	}
+	span{
+		.header_r;
+	}
+}
+.artcle{
+	border-bottom:1px solid @border_c;
+	margin-bottom:10px;
+}
+
+@border_c:#d2d2d2;
+/* 企业展示导航 */
+.column_mt{
+	margin:15px auto;
+}
+.column{
+	@border_c:#00ccff;
+	@borderhover_c:#d73455;
+	@background_c:#d73455;
+	@btnbackground_c:#fff;
+	
+	.clearfloat;
+	.redbar, span, a{
+		.header_f;
+	}
+	.redbar{
+		width:6px;
+		height:46px;
+		background-color:@background_c;
+		margin-right:5px;
+	}
+	span{
+		font-size:@font_m;
+		line-height:46px;
+		margin-right:20px;
+		font-family: "微软雅黑";
+	}
+	a{
+		font-size:@font_small;
+		border-color:@border_c;
+		margin-top:3.5px;
+		margin-right:15px;
+		cursor: default;
+		&:hover{
+			border-color:@borderhover_c;
+			background-color:@btnbackground_c;
+		} 
+		&:focus{
+			border-color:@borderhover_c;
+			background-color:@btnbackground_c;
+		} 
+		
+	}
+	.hover{
+			border-color:@borderhover_c;
+		}
+}
+
+
+/* 搜索框 */
+.enterprise_search{
+	@inputborder:#2eb4a9;
+	@inputhover:#109085;
+	height:40px;
+	margin-top:18px;
+	.btn_search{
+		height:40px;
+		width:40px;
+		background:@inputborder;
+		border:1px solid @inputborder;
+		padding:0 0;
+		border-radius: 0;
+		&:hover{
+			background:@inputhover;
+		}
+	}
+	.search_input{
+		height:40px;
+		border:1px solid @inputborder;
+	}
+}
+
+.hr1{
+	margin-top: 0px;
+	margin-bottom: 20px; 
+    border: 0;
+    border-top: 2px solid #e2e2e2;
+}
+

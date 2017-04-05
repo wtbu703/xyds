@@ -1,0 +1,148 @@
+@charset"utf-8";
+//字体引用
+@font-face {
+	    font-family: '微软雅黑';  
+	    src:url(../font/msyh.ttf);
+	}
+/*内容部分背景颜色*/
+@content_body_color:#e2e2e2;
+/*阴影颜色*/
+@shadow_color:#d2d2d2;
+//字体颜色
+@font_color:#000;
+//a:hover颜色
+@font_hover_color:#c62f2f;
+//搜索框颜色
+@search_color:#2eb4a9;
+//搜索框：hover颜色
+@search_hover_color:#109085;
+//左边框颜色
+@left_bg_color:#f5f5f7;
+@left_li_color:#e6e7ea;
+//右边框颜色
+@right_bg_color:#fff;
+.content_body{
+			background-color:@content_body_color;
+}
+ul li{list-style: none;}
+//第三方服务
+.content_box{
+			margin-top:30px;
+}
+.kong{clear:both; height:0; padding:0; overflow:hidden;}
+.content_header{
+			float:left;
+  			border-left: solid @font_hover_color 5px;
+ 			height: 40px;
+  			text-align:center;
+  			line-height:40px;
+  			font-size: 24px;
+			font-family:'微软雅黑';
+  }
+  //搜索部分
+.content_search{
+			float:right;
+			margin-top:-2px;
+			font-family:'微软雅黑';
+}
+.third_home{
+	margin-top:-5px;
+}
+.form_2{
+			width:237px;
+			height:35px;
+			border:solid 1px @search_color;
+			float:left;
+			outline:none;
+			padding-left:10px;
+			background-color: @content_body_color;
+}
+.search_bg{
+			width:50px;
+			height:35px;
+			background-color:@search_color;
+			border:0;
+			float:right;
+}
+.search_bg:hover{
+	background-color: @search_hover_color;
+}
+.line{
+			margin-top:10px;
+			margin-bottom:20px;
+			height:2px;width:100%;
+			background-color:@right_bg_color;
+}
+
+.public_shadow{
+	box-shadow: 0px 0px 2px 2px @shadow_color;
+    -moz-box-shadow: -2px 2px 5px 0px @shadow_color; 
+}
+
+//企业类型
+ .content_left{
+			position:relative;display:block;
+			margin-bottom:5px;
+			background-color:@left_bg_color;
+}
+
+.list_first{
+			font-size:18px;
+			line-height:50px;
+			font-weight:600;
+			font-family:'微软雅黑';
+}
+.list_first img{margin-top:-2px;
+				margin-left:15px;
+}
+.list_item1{
+			margin-left:5%;
+			width:95%;
+			margin-top:15px;
+			margin-bottom:25px;
+			height:30px;
+			text-align:center;
+			line-height:30px;
+			font-family:'微软雅黑';
+			font-size:18px;
+			font-weight:500;
+			background-color:@left_li_color;
+			border-left: solid @font_hover_color 2.5px none;
+}
+.list-group a{
+			color:@font_color;
+}
+.list_on a{
+  color: @font_hover_color;
+}
+.list_on {
+  border-left: solid @font_hover_color 2.5px;
+}
+.list_item1 a:hover{
+			text-decoration:none;
+			color:@font_hover_color;
+}
+.list_item1:hover{
+  			border-left: solid @font_hover_color 2.5px;
+			margin-left: 4.6%;;
+}
+.list_item1 a:active{
+			text-decoration:none;
+			color:@font_hover_color;
+}
+.right_head{
+			margin-top:10px;
+}
+
+.lh_index{
+		  font-size:14px;
+		  font-family:"宋体";
+		  color:@font_color;
+		  line-height:22px;
+		  width:auto;
+}
+.lh_index a{color:@font_color;}
+.right_line{
+			margin-top:10px;
+			border-bottom:@left_bg_color 2px solid;
+}

@@ -1,0 +1,257 @@
+@charset"utf-8";
+//本页面公用css
+@import url('commonless.less');
+.clearfloat{
+	zoom:1;
+	&:after{
+		content:'';
+		display: block;
+		clear:both;
+	}
+}
+.header_f{
+		float:left;
+	}
+.header_r{
+		float:right;
+	}
+.shadow{
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);/*for ie6,7,8*/ 
+	background-color: #fff; 
+	-moz-box-shadow:-2px 2px 5px #d2d2d2;/*firefox*/ 
+	-webkit-box-shadow:-2px 2px 5px #d2d2d2;/*webkit*/ 
+	box-shadow:-2px 2px 5px #d2d2d2;/*opera或ie9*/ 
+}
+.border_radius{
+	-moz-border-radius: 4px; /* Firefox */
+  	-webkit-border-radius: 4px; /* Safari 和 Chrome */
+  	border-radius: 4px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+}
+@font_m:20px;
+@font_small:18px;
+@bg:#e2e2e2;
+@placeholder:#fff;
+
+hr{
+	margin-top: 10px;
+	margin-bottom: 20px; 
+    border: 0;
+    border-top: 2px solid @bg;
+}
+
+.column_mt{
+	margin-top:15px;
+}
+/* 企业展示导航 */
+.column{
+	@border_c:#00ccff;
+	@borderhover_c:#d73455;
+	@background_c:#d73455;
+	@btnbackground_c:#fff;
+	
+	.clearfloat;
+	.redbar, span, a{
+		.header_f;
+	}
+	.redbar{
+		width:6px;
+		height:46px;
+		background-color:@background_c;
+		margin-right:5px;
+	}
+	span{
+		font-size:@font_m;
+		line-height:46px;
+		margin-right:20px;
+		font-family: "微软雅黑";
+	}
+}
+/* 搜索框 */
+.enterprise_search{
+	@inputborder:#2eb4a9;
+	@inputhover:#109085;
+	height:40px;
+	margin-top:18px;
+	.btn_search{
+		height:40px;
+		width:40px;
+		background:@inputborder;
+		border:1px solid @inputborder;
+		padding:0 0;
+		border-radius: 0;
+		&:hover{
+			background:@inputhover;
+		}
+	}
+	.search_input{
+		height:40px;
+		border:1px solid @inputborder;
+	}
+}
+/* 企业具体信息 */
+.left_content1{
+	@topborder:#e2e2e2;
+	@font_color:#000;/* 字体颜色 */
+	@font_hover_color:#c62f2f;/* 字体变化颜色 */
+	@articlebg:#f2f2f2;/* 文章背景颜色 */
+	@articleco:#585858;/* 文章字体颜色 */
+	
+	.box{
+		.shadow;
+		.right_head{
+			margin-left: 15px;
+			margin-right:15px;
+			margin-top:10px;
+			height:37px;border-bottom:2px solid @topborder ;
+		}
+		.left_title{
+			.header_f;
+			margin-top:20px;
+			img{
+				.header_f;
+				margin-top:10px;
+			}
+			.name{
+				.header_f;
+				
+				padding-left:5.0rem;
+				font-family: "微软雅黑";
+				font-weight: bold;
+			}
+		}
+		.article_source{
+			
+			background:@articlebg;
+			h5{
+				font-family: "微软雅黑";
+				color:@articleco;
+			}
+		}
+		.company{
+			.header_f;
+			margin-top: 30px;
+			
+			.message{
+				.header_f;
+				margin-top:50px;
+				padding-left:60px;
+				h5{
+					font-family: "微软雅黑";
+					color:@font_color;
+				}
+			}
+			img{
+				.header_f;
+			}
+		}
+		.describe{
+			margin-top:20px;
+			h5{
+				font-family: "微软雅黑";
+				color:@font_color;
+			}
+			.kong{
+				margin-top:18px;
+			}
+		}	
+		.home{display:inline-block;display: inline;zoom:1;margin-top: -3px;}
+	
+	
+		.lh_index{
+				  font-size:14px;
+				  font-family:"宋体";
+				  color:@font_color;
+				  line-height:22px;
+				  width:auto;
+			}
+			.lh_index a{color:@font_color;padding-left:5px;margin-top: 5px;}
+		}	
+}
+
+/* 企业展示产品 */
+.product_title{
+	@focolor:#585858;/* 字体颜色 */
+	margin-top:20px;
+	margin-left:20px;
+	font-size: 18px;
+	font-family: "微软雅黑";
+	font-weight:bold;
+	color:@focolor;
+	.header_f;
+}
+.product_all{
+	@focolor:#757676;/* 字体颜色 */
+	.header_r;
+	margin-top:22px;
+	
+	font-size: 14px;
+	font-family: "微软雅黑";
+	font-weight:bold;
+	color:@focolor;
+}
+.enterprise{
+	@detailbg:#fff;
+	@linecolor:red;
+	@spanc:#8c8b8c;
+	@enterprisec:#000000;
+	@prisecolor:red;
+	font-family: "微软雅黑";
+	color:@enterprisec;
+	margin-top:20px;
+	padding:0 10px;
+	.border_radius;
+	.box_shadow{
+		.shadow;
+	}
+	#large{
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+	.enterprise_detail{
+	background:@detailbg;
+	margin-left:0px;
+	.shadow;
+	}
+	.redline{
+		.solid{
+			 border-bottom:2px solid @linecolor;
+			 overflow:hidden;
+		}
+		.dashed{
+			border-bottom:2px dashed @linecolor;
+			overflow:hidden;
+		}
+		
+	}
+	.red{
+		color:@prisecolor;
+	}
+	.belong,s{
+			color:@spanc;
+			font-size: 11px;
+			margin-top:5px;
+			margin-bottom:5px;
+	}
+	
+}
+
+/* 分页 */
+.row_page{margin-top:20px;}
+.pagination > li > a{border:1px solid #b5b5b5;}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  color: #d73455;
+  background-color: #fff;
+  border-color: #d73455;
+}
+.pagination li a {
+  margin-left: 10px;
+  border-radius: 6px;
+  color: #000000;
+}
+.pagination li a.fen {
+  border-style: none;
+}

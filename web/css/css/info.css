@@ -1,0 +1,364 @@
+@charset "utf-8";
+/**/
+/**/
+.clearfloat {
+  zoom: 1;
+}
+.clearfloat:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.header_f {
+  float: left;
+}
+.header_r {
+  float: right;
+}
+.header_c {
+  background-color: #f5f5f5;
+}
+.header_c .index_logo {
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+.header .form_long {
+  display: inline-block;
+  width: auto;
+}
+.header .loginbar {
+  margin: 10px 15px 5% auto;
+}
+.header .loginbar a {
+  color: #636363;
+}
+.header .form_text {
+  height: 38px;
+  background: url('../../images/images_common/search.png') no-repeat;
+  padding-left: 35px;
+  border-color: #2eb4a9;
+  border-radius: 0px;
+}
+.header .btn_text {
+  height: 38px;
+  background-color: #2eb4a9;
+  font-size: 22px;
+  padding: 0px 6px;
+  color: #fff;
+  float: right;
+  border: 1px solid #2eb4a9;
+  border-radius: 0px;
+}
+.header .btn_text:hover {
+  background-color: #109085;
+}
+.nav_c {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 0px;
+}
+.nav_c .navbar_btn {
+  float: none;
+  margin-right: 0px;
+}
+.nav_c .nav_fontc li a {
+  height: 58px;
+  line-height: 28px;
+  color: #1d91af;
+}
+.nav_c .nav_fontc li a:hover {
+  color: #db3b3b;
+}
+.nav_c .nav_fontc li a:focus {
+  color: #db3b3b;
+  background-color: #ffffff;
+}
+.nav_c ul li.actived a {
+  line-height: 20px;
+  color: #db3b3b;
+  background-color: #ffffff;
+  border-top: 4px solid #3bb8db;
+  border-bottom: 4px solid #3bb8db;
+}
+.nav_c ul li.actived a:hover {
+  color: #db3b3b;
+  background-color: #ffffff;
+}
+.nav_c ul li.actived a:focus {
+  color: #db3b3b;
+  background-color: #ffffff;
+}
+.footer {
+  color: #c8c8c8;
+  background-color: #1d1d1d;
+}
+.footer .container {
+  margin-top: 5%;
+  padding-top: 5%;
+}
+.footer ul li {
+  list-style: none;
+  padding-bottom: 20px;
+}
+.footer ul li a {
+  color: #c8c8c8;
+}
+.footer a {
+  color: #fff;
+}
+.footer span {
+  color: #00ccff;
+  font-size: 18px;
+  font-weight: 900;
+}
+.contect span {
+  float: left;
+  padding-left: 15px;
+  padding-bottom: 35px;
+}
+.contect a {
+  background-color: #3892a9;
+  font-size: 18px;
+  font-weight: 900;
+  border: none;
+}
+.contect a:hover {
+  color: #fff;
+  background: #2ba4c3;
+}
+.address img,
+.address p {
+  float: left;
+}
+.address p {
+  padding-top: 10px;
+}
+.address .address_img img {
+  padding-top: 10px;
+  padding-right: 6%;
+}
+.copyright {
+  text-align: center;
+}
+.copyright p {
+  margin: 10px auto;
+}
+.copyright span {
+  color: #41e0d8;
+}
+/*logo*/
+.top_title {
+  cursor: default;
+  text-shadow: 2px 3px 2px #cccccc;
+}
+.top_title span {
+  font-size: 34px;
+  font-weight: 900;
+  font-family: '黑体';
+  color: #16a398;
+}
+.top_underline {
+  text-decoration: underline;
+}
+.footer_title {
+  text-shadow: none;
+}
+@media (max-width: 767px) {
+  .top_title span {
+    font-size: 34px;
+  }
+}
+@media (min-width: 768px) {
+  .top_title span {
+    font-size: 22px;
+  }
+}
+@media (min-width: 992px) {
+  .top_title span {
+    font-size: 34px;
+  }
+}
+@media (min-width: 1200px) {
+  .top_title span {
+    font-size: 34px;
+  }
+}
+/*logo*/
+@font-face {
+  font-family: '微软雅黑';
+  src: url(../fonts/msyh.ttf);
+}
+.icon2 {
+  margin-top: 25px;
+  float: left;
+}
+.content_right {
+  float: right;
+  font-size: 18px;
+  font-family: '微软雅黑';
+}
+.con_ul {
+  width: 100%;
+  padding-left: 0px;
+}
+.con_ul li a {
+  width: 100%;
+  float: left;
+  font-size: 12px;
+  margin-top: 12px;
+  font-family: '宋体';
+  color: #000000;
+  font-weight: 200;
+  text-overflow: clip;
+}
+.con_ul li a:hover {
+  color: #c62f2f;
+}
+.con_ul div {
+  width: 3px;
+  height: 3px;
+  background-color: #000000;
+  float: left;
+  text-align: center;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+.con_ul span {
+  float: left;
+  width: 85%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.con_h {
+  float: right;
+}
+.pagination {
+  margin-top: 50px;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  color: #c62f2f;
+  background-color: #ffffff;
+  border-color: #c62f2f;
+}
+.pagination li a {
+  margin-left: 10px;
+  border-radius: 2px;
+  color: #000000;
+  font-size: 10px;
+  font-weight: 100;
+}
+.pagination li a.fen {
+  border-style: none;
+}
+.img_info {
+  margin-top: 20px;
+}
+.zixun_banner {
+  background-color: #f5f5f5;
+}
+.zixun_banner img {
+  width: 100%;
+}
+.zixun_banner .item .zixun_text {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.zixun_banner .item h5 {
+  font-size: 20px;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  height: auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.zixun_banner .item a {
+  color: #000;
+}
+.zixun_banner .item img {
+  padding-bottom: 14px;
+}
+.zixun_banner .item p {
+  font-size: 14px;
+  text-overflow: clip;
+  overflow: hidden;
+  height: 60px;
+}
+.img_banner {
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 125px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.img_banner h4 {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  filter: alpha(opacity=50);
+  position: static;
+}
+.distance_b {
+  margin-bottom: 10px;
+}
+.tender_title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.tender_title span {
+  font-size: 18px;
+  font-weight: 900;
+  color: #585858;
+}
+.font_color {
+  color: #da6f6f;
+}
+.tender {
+  color: #3bb8db;
+  text-align: center;
+  font-size: 18px;
+  cursor: default;
+}
+.tender .tender_border {
+  border: 2px solid #6fd1da;
+}
+.tender span,
+.tender img {
+  padding: 0px;
+}
+.tender img {
+  padding-top: 10px;
+}
+.tender .tender_process {
+  border: 2px solid #6fd1da;
+  box-shadow: 2px 2px 4px 0px #5ac1ca;
+  -moz-box-shadow: 2px 2px 4px 0px #5ac1ca;
+  -webkit-box-shadow: 2px 2px 4px 0px #5ac1ca;
+  -o-box-shadow: 2px 2px 4px 0px #5ac1ca;
+  -ms-box-shadow: 2px 2px 4px 0px #5ac1ca;
+}
+.tender .active {
+  border: 2px solid #da6f6f;
+  box-shadow: 2px 2px 4px 0px #da6f6f;
+  -moz-box-shadow: 2px 2px 4px 0px #da6f6f;
+  -webkit-box-shadow: 2px 2px 4px 0px #da6f6f;
+  -o-box-shadow: 2px 2px 4px 0px #da6f6f;
+  -ms-box-shadow: 2px 2px 4px 0px #da6f6f;
+  color: #da6f6f;
+}
+.tender_time a {
+  font-size: 16px;
+  margin-top: 5px;
+}
+.tender_time .active_time {
+  color: #da6f6f;
+}
+.tender_img {
+  text-align: center;
+}

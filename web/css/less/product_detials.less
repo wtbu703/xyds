@@ -1,0 +1,127 @@
+@charset "utf-8";
+@import url('common.less');
+@font-face {
+      font-family: '微软雅黑';  
+      src:url(../fonts/msyh.ttf);
+  }
+//阴影颜色
+@shadow:#d2d2d2;
+//字体颜色
+@font_color:#000000;
+//a:hover颜色
+@font_hover_color:#c62f2f;
+//搜索框颜色
+@search_color:#2eb4a9;
+//搜索框hover颜色
+@search_hover:#109085;
+//右边框颜色
+@right_bg_color:#fff;
+//公司店铺ul颜色
+@store_link:#585858;
+//公司店铺ulhovrer颜色
+@store_linkhover:#e6e7ea;
+//页面红色
+@red:#ff0000;
+.public_shadow{box-shadow: -2px 2px 5px 0px @shadow;
+    -moz-box-shadow: -2px 2px 5px 0px @shadow; 
+}
+.content_box{
+			margin-top:30px;
+}
+.content_header{
+			float:left;
+  			border-left: solid @font_hover_color 5px;
+ 			height: 40px;
+  			text-align:center;
+  			line-height:40px;
+  			font-size: 24px;
+			font-family:'微软雅黑';
+  }
+  //搜索部分
+.content_search{
+			float:right;
+			margin-top:-2px;
+			font-family:'微软雅黑';
+}
+.third_home{
+	margin-top:-5px;
+}
+.form_2{
+			width:237px;
+			height:35px;
+			border:solid 1px @search_color;
+			float:left;
+			outline:none;
+			padding-left:10px;
+}
+.search_bg{
+			width:50px;
+			height:35px;
+			background-color:@search_color;
+			border:0;
+			float:right;
+}
+.search_bg:hover{
+	background-color: @search_hover;
+}
+.line{
+			margin-top:10px;
+			margin-bottom:20px;
+			height:2px;width:100%;
+			background-color:@store_linkhover;
+}
+.con_head{
+	padding:0;
+}
+.content_right{
+			background-color:@right_bg_color;
+}
+.right_head{
+			margin-top:10px;
+			height: 50px;
+}
+.third_home{
+	margin-top:-5px;
+	margin-left: 20px;
+}
+.lh_index{
+		  font-size:14px;
+		  font-family:"宋体";
+		  color:@font_color;
+		  line-height:50px;
+		  width:auto;
+}
+.lh_index a{color:@font_color;}
+.goods{
+	margin-top:20px;
+}
+.Details{
+	padding:0;
+}
+.detials_title{
+	height:50px;
+	border-bottom: 1px solid @store_linkhover;
+} 
+.detials_title span{
+	font-family: "微软雅黑";
+	font-size: 18px;
+  font-weight: bold;
+	color: @store_link;
+	line-height: 50px;
+}
+.detials_p{
+  font-family: "微软雅黑";
+  font-size: 14px;
+  font-weight: Regular;
+  color:@font_color;
+  margin-top: 5px;
+}
+.detials_p1{
+  color:#ff0000;
+}
+.detials_p2{
+  padding-bottom: 20px;
+}
+
+
+

@@ -1,0 +1,281 @@
+@charset "utf-8";
+@import url('commonless.less');
+
+
+
+//分界线
+@borderbottom_c:#e4e4e4;
+hr{
+	margin-top: 10px;
+	margin-bottom: 20px; 
+    border: 0;
+    border-top: 1px solid @borderbottom_c;
+}
+.borderbottom{
+	border-top: 1px solid @borderbottom_c;
+	border-bottom: 1px solid @borderbottom_c;
+	margin-top: 10px;
+	margin-bottom: 20px; 
+
+}
+.column_mt{
+	margin-top:15px;
+}
+
+//视频部分代码
+@media(max-width:767px){.train_media video {width:100%;height:auto;}}
+@media(min-width:768px){.train_media video {width:100%;height:auto;}}
+@media(min-width:992px){.train_media video {width:100%;height:auto;}}
+@media(min-width:1200px){.train_media video {width:100%;height:auto;}}
+
+//js
+.tab2,.tab3,.tab4{
+	display:none;
+}
+
+//正文部分
+
+//电商资讯
+@borderhover_c:#d73455;
+@btnbackground_c:#fff;
+@redbar_a:#d73455;
+@redbar_b:#3bb8db;
+
+.column{
+	@border_c:#00ccff;
+	.clearfloat;
+	.redbar, span, a{
+		.header_f;
+	}
+	.redbar{
+		width:6px;
+		height:46px;
+		background-color:@redbar_b;
+		margin-right:5px;
+	}
+	span{
+		font-size:@font_m;
+		line-height:46px;
+		margin-right:20px;
+	}
+	a{
+		font-size:@font_small;
+		border-color:@border_c;
+		margin-top:3.5px;
+		margin-right:15px;
+		cursor: default;
+		&:hover{
+			border-color:@borderhover_c;
+			background-color:@btnbackground_c;
+		} 
+		&:focus{
+			border-color:@borderhover_c;
+			background-color:@btnbackground_c;
+		} 
+
+	}
+	.hover{
+		border-color:@borderhover_c;
+	}
+}
+
+.point{
+	padding-left: 40%;
+	margin-bottom: 130px;
+	margin-left: -10%;
+	@border_c:#fff;
+	@borderhover_c:#d73455;
+	
+	li{
+		border-radius: 0px; 
+		border: 3px solid @border_c;
+	}
+	.active{
+		border-color: @borderhover_c;
+
+	}
+}
+.zixun_banner{
+	@bgc:#f5f5f5;
+	background-color:@bgc;
+
+	img{
+		width:100%;
+	}
+	.item .zixun_text{
+		padding-left:5px;
+		padding-right:5px;
+
+	}
+	.item h5{
+		font-size:@font_m;
+		.article_title(auto);
+		
+	}
+	.item a{
+		color:#000;
+	} 
+	.item img{
+		padding-bottom:14px;
+	}
+	.item p{
+		font-size:@font_xs;
+		.article_text(60px);
+	}
+}
+.img_banner{
+	width:100%;
+	left:0;
+	right:0;
+	bottom:125px;
+	padding-top:0px;
+	padding-bottom:0px;
+
+	h4{
+		background-color: rgba(0,0,0,0.5);
+		padding-top:5px;
+		padding-bottom:5px;
+		filter:Alpha(opacity=50);
+		position:static;
+	}
+
+}
+.distance_b{
+	margin-bottom:10px;
+}
+.zixun_camera{
+	font-family: @font_text;
+	
+	a{
+		font-size:@font_xxs;
+		color:#000;
+		text-decoration: none;
+
+		&:hover{
+			color:@font_list_c;
+		}
+	}
+	ul{
+		padding-left:0px;
+	}
+	ul li {
+		height:auto;
+		.clearfloat;
+		list-style:none;
+	}
+	h5{
+		width:80%;
+		.article_title(auto);
+		.header_f;
+		margin-top:7px;
+		margin-bottom: 7px;
+	}
+	span{
+		.header_r;
+		font-size:@font_xxs;
+		margin-top:7px;
+	}
+	img{
+		width:100%;
+	}
+}
+
+//电商培训、信息公开、企业展示部分css
+.column_train .redbar{
+	
+	background-color:@redbar_b;
+}
+.point_train{
+	@borderhover_blue:#00ffff;
+	.active{
+		border-color:@borderhover_blue;
+	}
+}
+
+.tender_title{
+	@color:#585858;
+	text-align:center;
+	margin-bottom:10px;
+	span{
+		font-size:@font_small;
+		font-weight: 900;
+		color:@color;
+	}
+}
+@active_c:#da6f6f;
+.font_color{color:@active_c;}
+.tender{
+	@boder_c:#6fd1da;
+	@shadow_c:#5ac1ca;
+	
+	color:@redbar_b;
+	text-align:center;
+	font-size:@font_small;
+	cursor:default;
+	.tender_border{
+		border:2px solid @boder_c;
+	}
+	span,img{
+		padding:0px;
+	}
+	img{
+		padding-top:10px;
+	}
+	.tender_process{
+		.tender_border;
+		box-shadow:2px 2px 4px 0px @shadow_c;
+		-moz-box-shadow:2px 2px 4px 0px @shadow_c;
+		-webkit-box-shadow:2px 2px 4px 0px @shadow_c;
+		-o-box-shadow:2px 2px 4px 0px @shadow_c;
+		-ms-box-shadow:2px 2px 4px 0px @shadow_c;
+		
+	}
+	.active{
+		border:2px solid @active_c;
+		box-shadow:2px 2px 4px 0px @active_c;
+		-moz-box-shadow:2px 2px 4px 0px @active_c;
+		-webkit-box-shadow:2px 2px 4px 0px @active_c;
+		-o-box-shadow:2px 2px 4px 0px @active_c;
+		-ms-box-shadow:2px 2px 4px 0px @active_c;
+		.font_color
+	}
+}
+.tender_time{
+	a{
+		font-size:16px;
+		margin-top:5px;
+	}
+	.active_time{
+		.font_color
+	}
+}
+.tender_img {
+	text-align:center;
+
+}
+.publicity{
+	text-align:left;
+}
+.company_show{
+	@bgc:#fff;
+	margin-top:20px;
+	img{
+		width:100%;
+	}
+	p{
+		padding-top:20px;
+		padding-left:5px;
+		padding-left:5px;
+		padding-bottom:20px;
+		background:@bgc;
+		
+	}
+
+}
+.img_banner2{
+	width: 90%;
+    left: 5%;
+    bottom:160px;
+    padding-bottom: 0px;
+}
+

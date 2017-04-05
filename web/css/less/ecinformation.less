@@ -1,0 +1,139 @@
+@charset "utf-8";
+@import url('commonless.less');
+
+.information_list{
+	@font_c:#555;
+	@fontactive_c:#428bca;
+	margin:30px auto;
+	a{
+		color:@font_c;
+	}
+    li.active a{
+		color:@fontactive_c;
+		//没有li无法覆盖样式
+	}
+}
+.news{
+	h5{
+		margin:0px auto;
+		font-size:@font_m;
+		font-weight:900;
+	}
+	p{
+		padding-top:5%;
+		padding-bottom:2%;
+		.article_text(85px);
+	}
+	h5 a,p a{
+		color:#000;
+	}
+	span{
+		.header_r;
+	}
+}
+.artcle{
+	border-bottom:1px solid @border_c;
+	margin-bottom:10px;
+}
+.column{
+	margin:27px auto;
+	.redbar{
+			@background_c:#c62f2f;
+			width:6px;
+			height:46px;
+			background-color:@background_c;
+			margin-right:5px;
+			.header_f;
+		}
+	span{
+			font-size:@font_m;
+			line-height:46px;
+			margin-right:20px;
+		}
+}
+@border_c:#d2d2d2;
+.hot{
+	@border_c:#d2d2d2;
+	border:1px solid @border_c;
+	
+	ul{
+		padding-left:10px;
+		padding-top:10px;
+		padding-bottom:10px;
+	} 
+	li.news_arrow{
+		background:url('../../images/images_ecinformation/news_arrow.png') no-repeat 99% 50% ;
+	}
+	li{
+		height:30px;
+		line-height:30px;
+		padding-right:20px;	
+		.article_title(auto);		
+	}
+	li a{
+		color:#000;
+		font-family:'宋体';
+		text-decoration:none;
+		&:hover{
+			color:@font_list_c;
+		}
+	}
+	.icon{
+		.header_r;
+
+		margin-top:10px;
+	}
+}
+.hot_company{
+	@font_c:#ff0000;
+	h5{
+		margin:0px auto;
+		margin-bottom:5px;
+		.article_title(auto);
+		a{
+			font-weight:600;
+		}
+	}
+	h5 a,p a{
+		color:#000;
+	}
+	p{
+		.article_text(60px);
+	}
+	span{
+		color:@font_c;
+		padding-left:20px;
+		.header_r;
+		padding-right:10px;
+		margin-top:1%;
+		background:url('../../images/images_ecinformation/company_eye.png') no-repeat 0px 50% ;
+	}
+}
+.company{
+	
+	margin:3% auto;
+
+	img{
+		border:1px solid @border_c;
+	}
+}
+
+//分页
+.row_page{margin-top:20px;}
+.pagination > li > a{border:1px solid #b5b5b5;}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  color: #d73455;
+  background-color: #fff;
+  border-color: #d73455;
+}
+.pagination li a {
+  margin-left: 10px;
+  border-radius: 6px;
+  color: #000000;
+}
+.pagination li a.fen {
+  border-style: none;
+}

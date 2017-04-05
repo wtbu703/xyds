@@ -1,0 +1,135 @@
+@charset"utf-8";
+//本页面公用css
+
+
+.header_f{
+		float:left;
+	}
+.header_r{
+		float:right;
+	}
+.shadow{
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);/*for ie6,7,8*/ 
+	background-color: #fff; 
+	-moz-box-shadow:-2px 2px 5px #d2d2d2;/*firefox*/ 
+	-webkit-box-shadow:-2px 2px 5px #d2d2d2;/*webkit*/ 
+	box-shadow:-2px 2px 5px #d2d2d2;/*opera或ie9*/ 
+}
+.shadow1{
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);/*for ie6,7,8*/ 
+	background-color: #fff; 
+	-moz-box-shadow: 0px 0px 5px #d2d2d2;/*firefox*/ 
+	-webkit-box-shadow: 0px 0px 5px #d2d2d2;/*webkit*/ 
+	box-shadow: 0px 0px 5px #d2d2d2;/*opera或ie9*/ 
+}
+@font_m:20px;
+@font_small:18px;
+@bg:#1c8cdb;
+@placeholder:#fff;
+@acolor:#000000; /* 字体变化前 */
+@ahover:#1c8bd9; /* 字体变化后 */
+@bgcolor:#e5edf2; /* 背景颜色 */
+hr{
+	margin-top: 10px;
+	margin-bottom: 20px; 
+    border: 0;
+    border-top: 2px solid @bg;
+}
+
+/* 数据统计 */
+.column{
+	@border_c:#00ccff;
+	@borderhover_c:#d73455;
+	@background_c:#d73455;
+	@btnbackground_c:#fff;
+	margin-top:15px;
+	
+	.redbar, span, a{
+		.header_f;
+	}
+	.redbar{
+		width:6px;
+		height:46px;
+		background-color:@background_c;
+		margin-right:5px;
+	}
+	span{
+		font-size:@font_m;
+		line-height:46px;
+		margin-right:20px;
+		font-family: "微软雅黑";
+	}
+}
+/* 左侧子菜单 */
+.nav_top{
+	.shadow;
+	padding-bottom: 110px;
+	a{
+		color: @acolor;
+		
+		&:hover,&:focus{
+			color:@ahover;
+	    	background-color:@bgcolor;
+	    	border-left:3px solid @ahover;
+	    	margin-left: -3px;
+		}
+	}
+	
+}
+/* 取消默认样式 */
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+    color:@ahover;
+	background-color:@bgcolor;
+	border-left:3px solid @ahover;
+	margin-left: -3px;
+}
+.nav-pills>li>a {
+    border-radius: 0;
+}
+.nav_right>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 35px;
+}
+/* 右侧切换 */
+.nav_right{
+	@nav_border:#e5e5e5;
+	border-radius: 4px 4px 0 0;
+	border:1px solid @nav_border;
+}
+.tab-content{
+	.tab-pane{
+		margin:5px auto;
+		.shadow1;
+		
+	}
+}
+/* 中间文章字体 */
+.row_two{margin-top: 40px}
+.box_shadow1{
+	.shadow1;
+	span{font-family: "微软雅黑";font-size: 16px;margin-left:20px;}
+	p{font-family: "微软雅黑";font-size: 14px;padding:10px 10px;}
+}
+.pie,.profile{
+	height:300px;
+}
+.provincemap{
+	height: 400px;width: 100%;
+	.shadow1;
+}
+/* 底部表格 */
+.row_bottom{
+	margin-top:40px;
+	table{
+		margin:10px auto;
+		.shadow1;
+		caption{
+			margin-top:10px ;
+			margin-bottom:10px ;
+
+			font-family: "微软雅黑";
+			font-size:16px;
+		}
+	}
+}

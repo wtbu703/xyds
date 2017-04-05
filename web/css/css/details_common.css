@@ -1,0 +1,137 @@
+@charset "utf-8";
+@font-face {
+  font-family: '微软雅黑';
+  src: url(../font/msyh.ttf);
+}
+/*内容部分背景颜色*/
+/*阴影颜色*/
+.content_body {
+  background-color: #e2e2e2;
+}
+ul li {
+  list-style: none;
+}
+.content_box {
+  margin-top: 30px;
+}
+.kong {
+  clear: both;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.content_header {
+  float: left;
+  border-left: solid #c62f2f 5px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 24px;
+  font-family: '微软雅黑';
+}
+.content_search {
+  float: right;
+  margin-top: -2px;
+  font-family: '微软雅黑';
+}
+.third_home {
+  margin-top: -5px;
+}
+.form_2 {
+  width: 237px;
+  height: 35px;
+  border: solid 1px #2eb4a9;
+  float: left;
+  outline: none;
+  padding-left: 10px;
+  background-color: #e2e2e2;
+}
+.search_bg {
+  width: 50px;
+  height: 35px;
+  background-color: #2eb4a9;
+  border: 0;
+  float: right;
+}
+.search_bg:hover {
+  background-color: #109085;
+}
+.line {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  height: 2px;
+  width: 100%;
+  background-color: #ffffff;
+}
+.public_shadow {
+  box-shadow: 0px 0px 2px 2px #d2d2d2;
+  -moz-box-shadow: -2px 2px 5px 0px #d2d2d2;
+}
+.content_left {
+  position: relative;
+  display: block;
+  margin-bottom: 5px;
+  background-color: #f5f5f7;
+}
+.list_first {
+  font-size: 18px;
+  line-height: 50px;
+  font-weight: 600;
+  font-family: '微软雅黑';
+}
+.list_first img {
+  margin-top: -2px;
+  margin-left: 15px;
+}
+.list_item1 {
+  margin-left: 5%;
+  width: 95%;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  font-family: '微软雅黑';
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #e6e7ea;
+  border-left: solid #c62f2f 2.5px none;
+}
+.list-group a {
+  color: #000000;
+}
+.list_on a {
+  color: #c62f2f;
+}
+.list_on {
+  border-left: solid #c62f2f 2.5px;
+}
+.list_item1 a:hover {
+  text-decoration: none;
+  color: #c62f2f;
+}
+.list_item1:hover {
+  border-left: solid #c62f2f 2.5px;
+  margin-left: 4.6%;
+}
+.list_item1 a:active {
+  text-decoration: none;
+  color: #c62f2f;
+}
+.right_head {
+  margin-top: 10px;
+}
+.lh_index {
+  font-size: 14px;
+  font-family: "宋体";
+  color: #000000;
+  line-height: 22px;
+  width: auto;
+}
+.lh_index a {
+  color: #000000;
+}
+.right_line {
+  margin-top: 10px;
+  border-bottom: #f5f5f7 2px solid;
+}

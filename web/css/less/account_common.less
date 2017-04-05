@@ -1,0 +1,101 @@
+@charset utf-8;
+
+@redbar_a:#d73455; 
+@border_c:#d2d2d2; //左侧边框阴影颜色
+@list_fc:#444444; //左侧字体颜色
+@list_fch:#c62f2f; //左侧字体鼠标悬停颜色
+@fbgc:#e6e7ea; //左侧字体背景颜色
+@content_top:30px;
+@font_wr:"微软雅黑";
+@border_common:1px solid #ccc;
+//边框阴影
+.shadow{
+	margin-top:27px;
+	box-shadow:-2px 2px 5px 0px @border_c;
+	-moz-box-shadow:-2px 2px 5px 0px @border_c;
+	-webkit-box-shadow:-2px 2px 5px 0px @border_c;
+	-o-box-shadow:-2px 2px 5px 0px @border_c;
+	-ms-box-shadow:-2px 2px 5px 0px @border_c;
+}
+/*红色星号*/
+.remind2{
+	background:url('../../images/images_contactus/remind.png') no-repeat 35% 69%;
+}
+.remind3{
+	background:url('../../images/images_contactus/remind.png') no-repeat 21% 69%;
+}
+.remind4{
+	background:url('../../images/images_contactus/remind.png') no-repeat 5% 69%;
+}
+h1,h2,h3,h4,h5,h6{
+	text-align:center;
+}
+.clearfloat{
+	zoom:1;
+	&:after{
+		content:'';
+		display: block;
+		clear:both;
+	}
+}
+ul,ol{
+	padding:0px;
+}
+
+/*表单主体*/
+.content{
+	.shadow;
+	padding:2%;
+	/*表单头部快速导航*/
+	.nav_s{
+		margin-left:15px;
+		background:url('../../images/images_contactus/home.png') no-repeat 0 50%;
+		padding-left:25px;
+		font-family:'宋体';
+		span a{
+			color:#000;	
+		}
+	}
+}
+.registerform{
+	margin-top:@content_top;
+}
+.registerform div input[type=submit]{
+	display:block;
+	width:80px;
+	margin: 30px auto;
+}
+.register-gray{
+	font:14px @font_wr;
+	color: #d4d2d2;
+}
+// 红色星号
+.redstar{
+	color:red;
+	font-size:20px;
+	margin-right:5px;
+}
+
+//头部导航
+.column{
+	margin-top:@content_top;
+	.clearfloat;
+	.redbar, span, a{
+		float:left;
+	}
+	.redbar{
+		width:6px;
+		height:46px;
+		background-color:@redbar_a;
+		margin-right:5px;
+	}
+	span{
+		font-size:20px;
+		line-height:46px;
+		margin-right:20px;
+	}
+}
+
+.Validform_checktip{
+	overflow:visible;
+}
