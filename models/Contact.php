@@ -9,10 +9,12 @@ use Yii;
  *
  * @property string $id
  * @property string $truename
+ * @property string $gender
  * @property string $mobile
  * @property string $email
  * @property string $QQ
  * @property string $content
+ * @property string $datetime
  */
 class Contact extends \yii\db\ActiveRecord
 {
@@ -32,8 +34,10 @@ class Contact extends \yii\db\ActiveRecord
         return [
             [['id', 'truename'], 'required'],
             [['content'], 'string'],
+            [['datetime'], 'safe'],
             [['id'], 'string', 'max' => 40],
             [['truename'], 'string', 'max' => 8],
+            [['gender'], 'string', 'max' => 2],
             [['mobile'], 'string', 'max' => 11],
             [['email'], 'string', 'max' => 16],
             [['QQ'], 'string', 'max' => 12],
@@ -46,12 +50,14 @@ class Contact extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'truename' => 'Truename',
-            'mobile' => 'Mobile',
-            'email' => 'Email',
-            'QQ' => 'Qq',
-            'content' => 'Content',
+            'id' => '使用函数创建唯一40位ID',
+            'truename' => '姓名',
+            'gender' => '性别',
+            'mobile' => '11位手机号',
+            'email' => '邮箱',
+            'QQ' => 'QQ号',
+            'content' => '内容',
+            'datetime' => '时间',
         ];
     }
 }
