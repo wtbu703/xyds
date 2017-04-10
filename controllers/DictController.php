@@ -308,4 +308,33 @@ class DictController extends Controller{
     public function actionExcel(){
         Common::Excel(new Dict());
     }
+
+    /**
+     * @return string
+     * 企业分类字典接口
+     */
+    public function actionDict(){
+        $dictitems = Dictitem::find()
+            ->where([
+                'state' => '1',
+                'dictCode' => 'DICT_COMPANY_CATEGORY',
+            ])
+            ->orderBy('orderBy')
+            ->all();
+        return Json::encode($dictitems);
+    }
+    /**
+     * @return string
+     * 信息分类字典接口
+     */
+    public function actionInfo(){
+        $dictitems = Dictitem::find()
+            ->where([
+                'state' => '1',
+                'dictCode' => 'DICT_CATEGORY',
+            ])
+            ->orderBy('orderBy')
+            ->all();
+        return Json::encode($dictitems);
+    }
 }

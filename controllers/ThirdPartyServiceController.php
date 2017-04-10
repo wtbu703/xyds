@@ -242,8 +242,28 @@ class ThirdPartyServiceController extends Controller{
 		return 'success';
 	}
 
+	/**
+	 * @return string
+	 * 获取第三方服务列表
+	 */
 	public function actionAjax(){
+		$cat = Yii::$app->request->post('cat');
+		$tag = Yii::$app->request->post('tag');
+		if($cat == '-1'){
+			if($tag == '-1') {
+				return Json::encode(ThirdPartyService::find()->all());
+			}else{
+				$third = ThirdPartyService::find()
+						->where("companyName like '%" . $tag . "%'")
+						->all();
+				return Json::encode($third);
+			}
+		}else{
+			$third = ThirdPartyService::find()
+					->where('category = :cat',[":cat"=>$cat])
+					->all();
+			return Json::encode($third);
+		}
 
-		return Json::encode(ThirdPartyService::find()->all());
 	}
 }

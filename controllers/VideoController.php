@@ -295,11 +295,39 @@ class VideoController extends Controller
         }
     }
 
-    public function actionVideo(){
+	/**
+	 * 首页视频接口
+	 * @return string
+	 */
+	public function actionVideoIndex(){
         $video = Video::find()
+            ->orderBy(['datetime' => SORT_DESC])
             ->limit(1)
             ->all();
         return Json::encode($video);
     }
+
+	/**
+	 * 电商培训页视频接口
+	 * @return string
+	 */
+	public function actionEctrainVideo(){
+		$video = Video::find()
+			->orderBy(['datetime' => SORT_DESC])
+			->limit(6)
+			->all();
+		return Json::encode($video);
+	}
+
+	/**
+	 * 在线视频页接口
+	 * @return string
+	 */
+	public function actionVideoAll(){
+		$video = Video::find()
+			->orderBy(['datetime' => SORT_DESC])
+			->all();
+		return Json::encode($video);
+	}
 }
 

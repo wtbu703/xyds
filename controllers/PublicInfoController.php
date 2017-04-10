@@ -110,6 +110,8 @@ class PublicInfoController extends Controller
         $publicInfo->content = Yii::$app->request->post('content');
         $publicInfo->category = Yii::$app->request->post('category');
 
+
+
         if($publicInfo->save()) {
             return "success";
         }else{
@@ -251,10 +253,6 @@ class PublicInfoController extends Controller
         ]);
     }
 
-    /**
-     * @return string
-     * 上传图片
-    */
     /*
      * 上传图片
      */
@@ -294,9 +292,48 @@ class PublicInfoController extends Controller
             ]);
         }
     }
+
+    /**
+     * @return string
+     * 信息公开的接口
+     */
     public function actionInfo(){
-        $info = PublicInfo::find()->all();
+        $cat = Yii::$app->request->post('cat');
+        if($cat == 0) {
+            $info = PublicInfo::find()
+                ->select('title,published,id')
+                ->orderBy(['published' => SORT_DESC])
+                ->all();
+
+        }else{
+            $info = PublicInfo::find()
+                ->select('title,published,id')
+                ->where('category=:category', [':category' => $cat])
+                ->orderBy(['published' => SORT_DESC])
+                ->all();
+        }
+        return Json::encode($info);
+    }
+    /**
+     * 获取有图片的信息
+     */
+    public function actionInfoOne(){
+        $info = PublicInfo::find()
+            ->select('title,published,picUrl,content,id')
+            ->where('picUrl != ""')
+            ->orderBy(['published' => SORT_DESC])
+            ->limit(1)
+            ->all();
         return Json::encode($info);
     }
 
+    public function actionState(){
+        $infoId = Yii::$app->request->post('id');
+        $state = InfoState::find()
+            ->select('state,time,id')
+            ->where('infoId = :infoId',[':infoId'=>$infoId])
+            ->orderBy(['state'=>SORT_ASC])
+            ->all();
+        return Json::encode($state);
+    }
 }
