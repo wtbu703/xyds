@@ -25,6 +25,7 @@ use yii\helpers\Html;
 	<script src="js/front/common_js/bootstrap.min.js"></script>
 	<script src="js/front/common_js/common.js"></script>
 
+
 </head>
 
 <body>
@@ -45,18 +46,26 @@ use yii\helpers\Html;
 					<div class="header_left header_r">
 						<div class="loginbar header_r">
 							<div class="header_f">
-								<a href="<?=yii::$app->urlManager->createUrl('front/login')?>">登录</a>
-								<span>|</span>
-								<a href="<?=yii::$app->urlManager->createUrl('front/regist')?>">免费注册</a>
+								<a href="<?=yii::$app->urlManager->createUrl('admin/index')?>">登录</a>
 								<span>|</span>
 								<a href="<?=yii::$app->urlManager->createUrl('front/contactus')?>">加入我们</a>
 							</div>		
 						</div>
-						<form class="navbar-form header_r" role="search">
+						<!--<form class="navbar-form header_r" role="search" action="">-->
 		                    <div class="form-group">
-		                        <input type="text" class="form-control form_text form_long" placeholder="请输入搜索内容"><button type="submit" class="btn btn-default btn_text">搜索</button>
+		                        <input type="text" class="form-control form_text form_long" id ="title" placeholder="请输入搜索内容">
+								<button type="submit" id="search" class="btn btn-default btn_text">搜索</button>
 		                    </div>               
-		                </form>
+		                <!--</form>-->
+
+						<script type="text/javascript">
+						$(function() {
+							$('#search').click(function () {
+								var title = "title="+$('#title').val();
+								location.href ="<?=Yii::$app->urlManager->createUrl('front/search')?>&"+title+"";
+							})
+						})
+						</script>
 					</div>	
 				</div>	
 			</div>
@@ -78,13 +87,13 @@ use yii\helpers\Html;
 					<div class="collapse navbar-collapse navbar-responsive-collapse ">
 						<ul class="nav navbar-nav nav_fontc">
 							<li class="actived"><a href="<?=yii::$app->urlManager->createUrl('front/index')?>">首页</a></li>
-							<li><a href="ecinformation.html">电商资讯</a></li>
-							<li><a href="ectrain.html">电商培训</a></li>
-							<li><a href="enterprisedisplay.html">企业展示</a></li>
+							<li><a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>">电商资讯</a></li>
+							<li><a href="<?=Yii::$app->urlManager->createUrl('front/train-notice')?>">电商培训</a></li>
+							<li><a href="<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>">企业展示</a></li>
 							<li><a href="#">服务站点</a></li>
 							<li><a href="<?=yii::$app->urlManager->createUrl('front/third')?>">第三方服务</a></li>
-							<li><a href="info.html">信息公开</a></li>
-							<li><a href="dtat_statist.html">数据统计</a></li>
+							<li><a href="<?=yii::$app->urlManager->createUrl('front/public-info')?>">信息公开</a></li>
+							<li><a href="<?=Yii::$app->urlManager->createUrl('front/data-statistic')?>">数据统计</a></li>
 							<li><a href="<?=yii::$app->urlManager->createUrl('front/line')?>">在线招聘</a></li>
 						</ul>
 					</div>
@@ -103,7 +112,7 @@ use yii\helpers\Html;
 		<div class="container">
 		    <div class="row">
 				<div  class="col-xs-6 col-sm-6 col-md-4">	
-					<a href="index.html"><img class="img-responsive" src="images/images_index/logo.png" alt="logo"></a>
+					<a href="<?=yii::$app->urlManager->createUrl('front/index')?>"><img class="img-responsive" src="images/images_index/logo.png" alt="logo"></a>
 					<div class="top_title footer_title">
 						<span>县域</span><br />
 						<span class="top_underline">电子商务服务平台</span>
@@ -112,14 +121,14 @@ use yii\helpers\Html;
 				<div class="col-xs-6 col-sm-3 col-md-2">	
 					<ul>
 						<li><span>网站导航</span></li>
-						<li><a href="ecinformation.html">电商资讯</a></li>
-						<li><a href="ectrain.html">电商培训</a></li>
-						<li><a href="enterprisedisplay.html">企业展示</a></li>
+						<li><a href="<?=yii::$app->urlManager->createUrl('front/ec-info')?>">电商资讯</a></li>
+						<li><a href="<?=Yii::$app->urlManager->createUrl('front/train-notice')?>">电商培训</a></li>
+						<li><a href="<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>">企业展示</a></li>
 						<li><a href="">服务站点</a></li>
-						<li><a href="third.html">第三方服务</a></li>
-						<li><a href="info.html">信息公开</a></li>
-						<li><a href="dtat_statist.html">数据统计</a></li>
-						<li><a href="online.php">在线招聘</a></li>
+						<li><a href="<?=yii::$app->urlManager->createUrl('front/third')?>">第三方服务</a></li>
+						<li><a href="<?=yii::$app->urlManager->createUrl('front/public-info')?>">信息公开</a></li>
+						<li><a href="<?=Yii::$app->urlManager->createUrl('front/data-statistic')?>">数据统计</a></li>
+						<li><a href="<?=yii::$app->urlManager->createUrl('front/line')?>">在线招聘</a></li>
 					</ul>
 				</div>
 				<div class="col-xs-6 col-sm-3 col-md-2">	

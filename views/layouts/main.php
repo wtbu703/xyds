@@ -57,6 +57,9 @@ use yii\helpers\Html;
 	<link rel="stylesheet" type="text/css" href="js/calendar/calendar-blue.css">
 	<script type="text/javascript" src="js/calendar/calendar.js"></script>
 	<script type="text/javascript" src="js/calendar/en.js"></script>
+	<!--文本编辑器 -->
+	<script type="text/javascript" src="js/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="js/ckeditor/genEditor.js"></script>
 	<!--公共函数-->
 	<script type="text/javascript" src="js/common.js"></script>
 	<script language="javascript" type="text/javascript" src="js/page.js" charset="utf-8"></script>
