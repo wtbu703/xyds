@@ -8,6 +8,7 @@ use app\models\CompanyShoplink;
 use app\models\Dictitem;
 use yii\data\Pagination;
 use app\common\Common;
+use yii\helpers\Json;
 
 class CompanyShoplinkController extends Controller{
     public $enableCsrfValidation = false;
@@ -166,5 +167,19 @@ class CompanyShoplinkController extends Controller{
             'companyShoplink'=>$companyShoplink
         ]);
     }
+
+	/**
+	 * 企业网店链接接口
+	 * @return string
+	 */
+	public function actionCompanyShoplink(){
+		$companyId = Yii::$app->request->post('companyId');
+		$companyProduct = CompanyShoplink::find()
+			->where('companyId = :companyId',[":companyId" => $companyId])
+			->limit(5)
+			->orderBy(['platform'=>SORT_ASC])
+			->all();
+		return Json::encode($companyProduct);
+	}
 
 }

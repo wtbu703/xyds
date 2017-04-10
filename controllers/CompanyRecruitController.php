@@ -7,6 +7,7 @@ use app\models\CompanyRecruit;
 use yii\data\Pagination;
 use app\common\Common;
 use yii\helpers\Json;
+use yii\db\Query;
 
 class CompanyRecruitController extends Controller{
     public $enableCsrfValidation = false;
@@ -146,8 +147,68 @@ class CompanyRecruitController extends Controller{
             'companyRecruit'=>$companyRecruit
         ]);
     }
+
+    /**
+     * @return string
+     * 企业招聘的接口
+     */
     public function actionCompanyRecruit(){
-        $companyRecruit = CompanyRecruit::find()->all();
+	    $companyId = Yii::$app->request->post('companyId');
+	    $companyRecruit = CompanyRecruit::find()
+		    ->where('companyId = :companyId',[":companyId" => $companyId])
+		    ->orderBy(['datetime'=>SORT_DESC])
+		    ->all();
+        return Json::encode($companyRecruit);
+    }
+
+
+    /**
+     * @return string
+     * 10个职位和介绍
+     */
+    public function actionPositions(){
+        $cat = Yii::$app->request->post('cat');
+
+            if ($cat == 0) {
+                $term = 'datetime';
+            } else if ($cat == 1) {
+                $term = 'datetime';
+            } else if ($cat == 2) {
+                $term = 'count';
+            }
+            $query = new Query();
+            $companyRecruit = $query->select('a.id as id,b.id as companyId,b.name as companyName,a.position as position,a.demand as demand,a.salary as salary,a.exp as exp,a.workPlace as workPlace,a.record as record,a.count as count,a.datetime as datetime')
+                ->from('companyRecruit a')
+                ->orderBy([$term => SORT_DESC])
+                ->leftJoin('company b', 'a.companyId = b.id')
+                ->all();
+
+        return Json::encode($companyRecruit);
+    }
+
+    /**
+     * @return string
+     * 根据热门职位查询招聘信息
+     */
+    public function actionSearch(){
+        $index = Yii::$app->request->post('index');
+        $searchValue = Yii::$app->request->post('searchValue');
+        if($index == 0){
+            $sear = 'demand';
+        }else if($index == 1){
+            $sear = 'position';
+        }else if($index == 2){
+            $sear = 'companyName';
+        }
+        $whereStr = '';
+        $whereStr = $whereStr . " $sear like '%" . $searchValue ."%'";
+        $query = new Query();
+        $companyRecruit = $query->select('a.id as id,b.id as companyId,b.name as companyName,a.position as position,a.demand as demand,a.salary as salary,a.exp as exp,a.workPlace as workPlace,a.record as record,a.count as count,a.datetime as datetime')
+            ->from('companyRecruit a')
+            ->where($whereStr)
+            ->orderBy(['datetime' =>SORT_DESC])
+            ->leftJoin('company b','a.companyId = b.id')
+            ->all();
         return Json::encode($companyRecruit);
     }
 }

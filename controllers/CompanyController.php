@@ -230,7 +230,6 @@ class CompanyController extends Controller{
 			->all();
 		return Json::encode($articles);
 	}
-
 	/**
 	 * 企业分类接口
 	 * @return string
@@ -245,5 +244,27 @@ class CompanyController extends Controller{
 			->all();
 		return Json::encode($dictitems);
 	}
+    /**
+     * 首页4个企业的接口
+     * @return string
+     */
+    public function actionCompanyIndex(){
+        $company = Company::find()
+            ->orderBy(['datetime'=>SORT_DESC])
+            ->limit(4)
+            ->all();
+        return Json::encode($company);
+    }
 
+	/**
+	 * 3个热点企业接口
+	 * @return string
+	 */
+	public function actionHotCompany(){
+		$company = Company::find()
+			->orderBy(['count'=>SORT_DESC])
+			->limit(3)
+			->all();
+		return Json::encode($company);
+	}
 }

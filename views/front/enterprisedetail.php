@@ -1,92 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="description" content="xxxxxxxxxxxxxxxxxxxxxxxxxx">
-	<meta name="keywords" content="xxxx,xxxx,xxx,xxxxx,xxxx,">
-	<meta http-equiv="Window-target" content="_top">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>企业展示详情</title>
-	<link href="css/common_css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="css/css/common.css" rel="stylesheet">
+
 	<link rel="stylesheet" type="text/css" href="css/css/enterprisedetail.css">
 	<link rel="stylesheet" type="text/css" href="css/css/company.css">
+	<script src="js/front/enterprise_detail.js"></script>
+	<script src="js/front/common_js/company.js"></script>
 	<script type="text/javascript">
-		var companyDetailUrl = "<?=yii::$app->urlManager->createUrl('company/company')?>";
-		var dictUrl = "<?=yii::$app->urlManager->createUrl('company/dict')?>";
-
+		var companyDetailUrl = "<?=Yii::$app->urlManager->createUrl('company/company')?>";
+		var dictUrl = "<?=Yii::$app->urlManager->createUrl('company/dict')?>";
+		var displayUrl = "<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>";
 		var companyId = "<?=$companyId?>";
-		var productUrl = "<?=yii::$app->urlManager->createUrl('company-product/company-product')?>";
+		var productUrl = "<?=Yii::$app->urlManager->createUrl('company-product/company-product')?>";
+		var shoplinkUrl = "<?=Yii::$app->urlManager->createUrl('company-shoplink/company-shoplink')?>";
+		var newsUrl = "<?=Yii::$app->urlManager->createUrl('company-news/company-news')?>";
+		var recruitUrl = "<?=Yii::$app->urlManager->createUrl('company-recruit/company-recruit')?>";
+		var productDisplayUrl = "<?=Yii::$app->urlManager->createUrl('front/product-display')?>";
+		var productDetailUrl = "<?=Yii::$app->urlManager->createUrl('front/product-detail')?>";
 	</script>
-</head>
-<body>
-	<!-- header -->
-	<div class="header_c">
-		<div class="container header">
-		    <div class="row">
-				<div class="col-xs-0 col-sm-6 col-md-7 index_logo">	
-					<a href="index.html">
-					<img class="img-responsive header_f hidden-xs" alt="logo" src="images/images_index/logo.png" />
-					</a>
-					<div class="top_title">
-						<span>县域</span><br />
-						<span class="top_underline">电子商务服务平台</span>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-5">	
-					<div class="header_left header_r">
-						<div class="loginbar header_r">
-							<div class="header_f">
-								<a href="login.html">登录</a>
-								<span>|</span>
-								<a href="regist.html">免费注册</a>
-								<span>|</span>
-								<a href="contactus.html">加入我们</a>
-							</div>		
-						</div>
-						<form class="navbar-form header_r" role="search">
-		                    <div class="form-group">
-		                        <input type="text" class="form-control form_text form_long" placeholder="请输入搜索内容"><button type="submit" class="btn btn-default btn_text">搜索</button>
-		                    </div>               
-		                </form>
-					</div>	
-				</div>	
-			</div>
-		</div>
-	</div>
-	<!-- 导航栏 -->
-	<div class="container">
-		<div class="row">
-            <div class="col-xs-12 col-sm-12 col-lg-12"> 
-                <div class="navbar navbar-default nav_c" role="navigation">
-                    <div class="navbar-header">
-                        <button class="navbar-toggle navbar_btn" type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                            <span class="sr-only">Toggle Navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse navbar-responsive-collapse ">
-                        <ul class="nav navbar-nav nav_fontc">
-                            <li><a href="index.html">首页</a></li>
-                            <li><a href="ecinformation.html">电商资讯</a></li>
-                            <li><a href="ectrain.html">电商培训</a></li>
-                            <li class="actived"><a href="enterprisedisplay.html">企业展示</a></li>
-                            <li><a href="service_site.html">服务站点</a></li>
-                            <li><a href="third.html">第三方服务</a></li>
-                            <li><a href="info.html">信息公开</a></li>
-                            <li><a href="dtat_statist.html">数据统计</a></li>
-                            <li><a href="Online.html">在线招聘</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-		</div>
-	</div>
-	<!-- End导航栏 -->
-    <!-- End header -->
+
 	<img class="img-responsive hidden-xs" src="images/images_enterprise/2banner.jpg" alt="banner">
 	
 	<div class="container">
@@ -109,7 +38,39 @@
 		<div class="row">
 			<!-- 企业具体信息 -->
 			<div class="col-md-9 col-xs-12 col-sm-9 left_content1">
+				<?if(!is_null($company)){?>
+				<div class="box clearfix">
+					<div class="right_head">
+						<div class="list_head">
+							<span class="lh_index"><img class="img-responsive home" src="images/images_common/home.png" alt="首页图标"><a href="<?=Yii::$app->urlManager->createUrl('front/index')?>">首页</a>&nbsp;></span>
+							<span class="lh_index"><a href="<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>">企业展示</a>&nbsp;></span>
+							<span class="lh_index"><?=$company->name?></span>
+						</div>
+					</div>
+					<div class="left_title clearfix col-md-12 col-sm-12 col-xs-12">
+						<h3 class="name"><?=$company->name?></h3>
 
+					</div>
+					<div class="article_source col-md-12 col-sm-12 col-xs-12">
+						<div class="col-md-3 col-sm-1 col-xs-0"></div>
+						<h5 class="col-md-9 col-sm-11 col-xs-12">内容来源:&nbsp;<?=$company->sources?>&nbsp;点击次数:&nbsp;<?=$company->count?>&nbsp;次&nbsp;发布时间:&nbsp;<?=$company->datetime?></h5>
+					</div>
+					<div class="company col-md-12 col-sm-12 col-xs-12 clearfix">
+						<img class="img-responsive" src="<?=$company->logoUrl?>" alt="企业图片">
+						<div class="message col-md-6 col-sm-10 col-xs-12">
+							<h5>公司名称：&nbsp;<?=$company->name?></h5>
+							<h5>公司法人：&nbsp;<?=$company->corporate?></h5>
+							<h5>公司网址：&nbsp;<?=$company->webSite?></h5>
+							<h5>联系电话：&nbsp;<?=$company->tel?></h5>
+							<h5>联系地址：&nbsp;<?=$company->address?></h5>
+						</div>
+					</div>
+					<div class="describe col-md-12 col-sm-12 col-xs-12">
+						<h5>企业简介</h5>
+						<h5><?=$company->introduction?></h5>
+					</div>
+				</div>
+				<?}?>
 			</div>
 			<!-- end 企业具体信息 -->
 			<!-- 右侧链接 -->
@@ -126,14 +87,7 @@
 		<!-- 企业展示下半部分 -->
 		<div class="row">
 			<div class="col-md-9 col-sm-9 col-xs-12 product_display">
-				<div class="col-md-12 col-sm-12 col-xs-12 clearfix">
-					<h4 class="product_title">产品展示</h4>
-					<a class="product_all" href="product_display.html">>>所有产品</a>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 enterprise">
 
-					
-				</div>
 
 			</div>
 			<!-- 公司招聘 -->
@@ -171,87 +125,3 @@
 			<div class="col-md-3 col-sm-3 col-xs-0 col-lg-3"></div>
 		</div>
 	</div>
-
-	<!-- footer -->
-	<div class="footer">
-		<div class="container">
-		    <div class="row">
-				<div  class="col-xs-6 col-sm-6 col-md-4">	
-					<a href="index.html"><img class="img-responsive" src="images/images_index/logo.png" alt="logo"></a>
-					<div class="top_title footer_title">
-						<span>县域</span><br />
-						<span class="top_underline">电子商务服务平台</span>
-					</div>
-				</div>
-				<div class="col-xs-6 col-sm-3 col-md-2">	
-					<ul>
-						<li><span>网站导航</span></li>
-						<li><a href="ecinformation.html">电商资讯</a></li>
-						<li><a href="ectrain.html">电商培训</a></li>
-						<li><a href="enterprisedisplay.html">企业展示</a></li>
-						<li><a href="">服务站点</a></li>
-						<li><a href="third.html">第三方服务</a></li>
-						<li><a href="info.html">信息公开</a></li>
-						<li><a href="dtat_statist.html">数据统计</a></li>
-						<li><a href="Online.html">在线招聘</a></li>
-					</ul>
-				</div>
-				<div class="col-xs-6 col-sm-3 col-md-2">	
-					<ul>
-						<li><span>友情链接</span></li>
-						<li><a href="">武汉市政府</a></li>
-						<li><a href="">电商在线</a></li>
-						<li><a href="">703工作室</a></li>
-						<li><a href="">湖北省政府</a></li>
-						<li><a href="">武汉工商局</a></li>
-						<li><a href="">武汉电商网</a></li>
-						<li><a href="">中国电商企业</a></li>
-					</ul>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-4">	
-					<div class="row">
-						<div class="col-xs-4 contect">	
-							<span>联系我们</span>
-						</div>
-						<div class="col-xs-8 contect">	
-							<a class="btn btn-default" href="contactus.html" role="button">点击填写个人信息</a>
-						</div>
-					</div>
-					<div class="row address">
-						<div class="col-xs-4">	
-							<img class="img-responsive" src="images/images_index/phone.png" alt="图片">
-						</div>
-						<div class="col-xs-8 address_img">	
-							<p>湖北省武汉市 黄家湖西路3号</p>
-							<p>电话：17786417595</p>
-							<p>E-mail：liph77@163.com</p>
-							<img class="img-responsive" src="images/images_index/weixin1.png" alt="二维码">
-							<img class="img-responsive" src="images/images_index/weixin2.png" alt="二维码">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container-fluid copyright">
-        <div class="row">
-            <div class="col-xs-12">  
-                <p> © 2017 - <span>Hangjia Hu</span> All Right Reserved</p>
-            </div>
-        </div>
-    </div>
-    <!-- End footer -->
-
-	<script src="js/front/common_js/jquery-1.11.3.min.js"></script>
-	<script src="js/front/common_js/bootstrap.min.js"></script>
-	<script src="js/front/common_js/common.js"></script>
-	<script>
-		var data = parseJSON('<?=$companyDetail?>');
-	</script>
-	<script src="js/front/enterprise_detail.js"></script>
-	<script src="js/front/common_js/company.js"></script>
-	<script>
-		companyDetail(data);
-	</script>
-</body>
-</html>

@@ -298,10 +298,30 @@ class EctrainController extends Controller{
         }
     }
 
-    public function actionEctrain(){
-        $ectrain = Ectrain::find()->all();
-        return Json::encode($ectrain);
+	/**
+	 * 培训通知接口
+	 * @return string
+	 */
+	public function actionEctrain(){
+	    $type = Yii::$app->request->post('newsType');
+	    $articles = Ectrain::find()
+		    ->where('category = :type',[":type"=>$type])
+		    ->orderBy(['published'=>SORT_DESC])
+		    ->all();
+	    return Json::encode($articles);
     }
+
+	/**
+	 * 培训页接口
+	 * @return string
+	 */
+	public function actionEctrainAll(){
+		$ectrain = Ectrain::find()
+			->orderBy(['published'=>SORT_DESC])
+			->limit(9)
+			->all();
+		return Json::encode($ectrain);
+	}
 
 	/**
 	 * 培训分类接口
@@ -317,7 +337,18 @@ class EctrainController extends Controller{
 			->all();
 		return Json::encode($dictitems);
 	}
-
+    /**
+     * @return string
+     * 首页3条有图的电商培训
+     */
+    public function actionEctrainIndex(){
+        $ectrain = Ectrain::find()
+            ->where('thumbnailUrl != ""')
+            ->orderBy(['published'=> SORT_DESC])
+            ->limit(3)
+            ->all();
+        return Json::encode($ectrain);
+    }
 }
 
 

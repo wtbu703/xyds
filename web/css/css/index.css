@@ -271,6 +271,22 @@ hr {
 .company_show {
   margin-top: 20px;
 }
+.company_show h4 {
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  height: 29px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.company_show p {
+  padding-top: 20px;
+  padding-left: 5px;
+  padding-bottom: 20px;
+  background: #ffffff;
+  text-overflow: clip;
+  overflow: hidden;
+  height: 160px;
+}
 .company_show img {
   width: 100%;
 }

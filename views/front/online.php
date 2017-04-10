@@ -5,7 +5,7 @@ $this->title = "在线招聘";
 <link rel="stylesheet" type="text/css" href="css/css/Online.css">
 <script type="text/javascript">
     var positionUrl = "<?=yii::$app->urlManager->createUrl('company-recruit/positions')?>";
-    var seachUrl = "<?=yii::$app->urlManager->createUrl('company-recruit/seach')?>";
+    var searchUrl = "<?=yii::$app->urlManager->createUrl('company-recruit/search')?>";
     var detailUrl = "<?=yii::$app->urlManager->createUrl('front/detail')?>";
 </script>
 <script src="js/front/Online.js"></script>

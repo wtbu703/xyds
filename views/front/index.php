@@ -6,9 +6,15 @@ $this->title = "首页";
 <link rel="stylesheet" type="text/css" href="css/css/index.css">
 <script type="text/javascript">
 var indexUrl = "<?=yii::$app->urlManager->createUrl('article/article')?>";
-var findUrl = "<?=yii::$app->urlManager->createUrl('ectrain/ectrain')?>";
-var VideoUrl = "<?=yii::$app->urlManager->createUrl('video/video')?>";
-var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
+var findUrl = "<?=yii::$app->urlManager->createUrl('ectrain/ectrain-index')?>";
+var VideoUrl = "<?=yii::$app->urlManager->createUrl('video/video-index')?>";
+var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info-one')?>";
+var infoDetail = "<?=yii::$app->urlManager->createUrl('front/info-detail')?>";
+var infoAllUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
+var companyUrl = "<?=yii::$app->urlManager->createUrl('company/company-index')?>";
+var stateUrl = "<?=yii::$app->urlManager->createUrl('public-info/state')?>";
+var ecInfoDetailUrl = "<?=yii::$app->urlManager->createUrl('front/ec-info-detail')?>";
+var trainDetailUrl = "<?=yii::$app->urlManager->createUrl('front/train-detail')?>";
 </script>
 <script type="text/javascript" src="js/front/index.js"></script>
 
@@ -22,16 +28,16 @@ var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
 	</ol>
 	<div class="carousel-inner">
 		<div class="item active">
-			<a href="ecinformationDetail.html"><img class="center-block" alt="轮播图" src="images/images_index/banner1.jpg" /></a>
+			<a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>"><img class="center-block" alt="轮播图" src="images/images_index/banner1.jpg" /></a>
 		</div>
 		<div class="item">
-			<a href="ecinformationDetail.html"><img class="center-block" alt="轮播图" src="images/images_index/banner2.jpg" /></a>
+			<a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>"><img class="center-block" alt="轮播图" src="images/images_index/banner2.jpg" /></a>
 		</div>
 		<div class="item">
-			<a href="ecinformationDetail.html"><img class="center-block" alt="轮播图" src="images/images_index/banner3.jpg" /></a>
+			<a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>"><img class="center-block" alt="轮播图" src="images/images_index/banner3.jpg" /></a>
 		</div>
 		<div class="item">
-			<a href="ecinformationDetail.html"><img class="center-block" alt="轮播图" src="images/images_index/banner4.jpg" /></a>
+			<a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>"><img class="center-block" alt="轮播图" src="images/images_index/banner4.jpg" /></a>
 		</div>
 	</div>
 </div>
@@ -97,10 +103,10 @@ var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
 			</div>
 		</div>
 		<div class="col-xs-2 col-sm-2 col-md-2 train_img">
-			<a href="trainingnotice.html"><img src="images/images_index/artist.png" alt="美工培训" class="img-responsive center-block artist_hover"></a>
-			<a href="trainingnotice.html"><img src="images/images_index/service.png" alt="销售培训" class="img-responsive center-block service_hover"></a>
-			<a href="trainingnotice.html"><img src="images/images_index/sales.png" alt="客服培训" class="img-responsive center-block sales_hover"></a>
-			<a href="trainingnotice.html"><img src="images/images_index/more.png" alt="其它培训" class="img-responsive center-block more_hover"></a>
+			<a href="<?=Yii::$app->urlManager->createUrl('front/train-notice')?>"><img src="images/images_index/artist.png" alt="美工培训" class="img-responsive center-block artist_hover"></a>
+			<a href="<?=Yii::$app->urlManager->createUrl('front/train-notice')?>"><img src="images/images_index/service.png" alt="销售培训" class="img-responsive center-block service_hover"></a>
+			<a href="<?=Yii::$app->urlManager->createUrl('front/train-notice')?>"><img src="images/images_index/sales.png" alt="客服培训" class="img-responsive center-block sales_hover"></a>
+			<a href="<?=Yii::$app->urlManager->createUrl('front/train-notice')?>"><img src="images/images_index/more.png" alt="其它培训" class="img-responsive center-block more_hover"></a>
 		</div>
 		<div class="col-xs-10 col-sm-10 col-md-6 ">
 			<div class="train_media">
@@ -137,19 +143,20 @@ var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
 		<div class="col-xs-12 col-sm-12 col-md-4">
 			<div class="row">
 				<div class="col-xs-12 tender_title">
-					<img class="" src="../images/images_index/xinxi_icon1.png" alt="">
+					<img class="" src="images/images_index/xinxi_icon1.png" alt="">
 					<span>招标最新进展</span>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row_public">
+		<!--	<div class="row ">
 				<div class="col-xs-12 tender">
 					<span class="col-xs-3 tender_process">
 					招标公示
 					</span>
-					<img class="col-xs-1 img-responsive" src="../images/images_index/xinxi_arrow3.png" alt="">
+					<img class="col-xs-1 img-responsive" src="images/images_index/xinxi_arrow3.png" alt="">
 					<span class="col-xs-3 tender_process">招标保名
 					</span>
-					<img class="col-xs-1 " class="col-xs-1 img-responsive " src="../images/images_index/xinxi_arrow3.png" alt="">
+					<img class="col-xs-1 " class="col-xs-1 img-responsive " src="images/images_index/xinxi_arrow3.png" alt="">
 					<span class="col-xs-3 tender_process">
 					资格审查
 					</span>
@@ -177,7 +184,7 @@ var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
 					<div class="col-xs-3"></div>
 					<div class="col-xs-1"></div>
 					<div class="col-xs-3">
-						<img class=" " src="../images/images_index/xinxi_arrow2.png" alt="">
+						<img class=" " src="images/images_index/xinxi_arrow2.png" alt="">
 					</div>
 				</div>
 			</div>
@@ -186,11 +193,11 @@ var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
 					<span class="col-xs-3 tender_process">
 					缴保证金
 					</span>
-					<img class="col-xs-1 img-responsive" src="../images/images_index/xinxi_arrow1.png" alt="">
+					<img class="col-xs-1 img-responsive" src="images/images_index/xinxi_arrow1.png" alt="">
 					<span class="col-xs-3 tender_process">
 					编制文件
 					</span>
-					<img class="col-xs-1 " class="col-xs-1 img-responsive " src="../images/images_index/xinxi_arrow1.png" alt="">
+					<img class="col-xs-1 " class="col-xs-1 img-responsive " src="images/images_index/xinxi_arrow1.png" alt="">
 					<span class="col-xs-3 active tender_process">
 					招标答疑
 					</span>
@@ -214,7 +221,7 @@ var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
 			<div class="row">
 				<div class="col-xs-12 tender_img ">
 					<div class="col-xs-3">
-						<img class=" " src="../images/images_index/xinxi_arrow2.png" alt="">
+						<img class=" " src="images/images_index/xinxi_arrow2.png" alt="">
 					</div>
 					<div class="col-xs-1"></div>
 					<div class="col-xs-3"></div>
@@ -227,10 +234,10 @@ var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
 					<span class="col-xs-3 tender_process">
 					开标定标
 					</span>
-					<img class="col-xs-1 img-responsive" src="../images/images_index/xinxi_arrow3.png" alt="">
+					<img class="col-xs-1 img-responsive" src="images/images_index/xinxi_arrow3.png" alt="">
 					<span class="col-xs-3 tender_process">中标公示
 					</span>
-					<img class="col-xs-1 " class="col-xs-1 img-responsive " src="../images/images_index/xinxi_arrow3.png" alt="">
+					<img class="col-xs-1 " class="col-xs-1 img-responsive " src="images/images_index/xinxi_arrow3.png" alt="">
 					<span class="col-xs-3 tender_process">
 					发招标书
 					</span>
@@ -250,15 +257,16 @@ var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
 						2017.04.01
 					</span>
 				</div>
-			</div>
+			</div>-->
+		</div>
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-4">
 			<div class="tender_title publicity">
-				<img class="" src="../images/images_index/xinxi_icon1.png" alt="">
+				<img class="" src="images/images_index/xinxi_icon1.png" alt="">
 				<span>相关公告公示</span>
 			</div>
 
-			<div class="zixun_camera">
+			<div class="zixun_camera row_open">
 			<!-- 信息公开接口 -->
 				<!-- <ul >
 					<li>
@@ -358,9 +366,9 @@ var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
 	<div class="container">
 		<div class="row row1">
 			<!-- 企业展示接口 -->
-			<div class="col-xs-12 col-sm-6 col-md-3 company_show">
+			<!--<div class="col-xs-12 col-sm-6 col-md-3 company_show">
 				<div class="divborder">
-					<a href="enterprisedetail.html"><img class="pic1 img-responsive center-block" id="pic" src="../images/images_index/qiye_1.jpg" alt="新闻图片"></a>
+					<a href="enterprisedetail.html"><img class="pic1 img-responsive center-block" id="pic" src="images/images_index/qiye_1.jpg" alt="新闻图片"></a>
 				</div>
 				<div class="carousel-caption hidden-md hidden-xs hidden-sm img_banner img_banner2">
 					<h4>电子商务创业园</h4>
@@ -371,7 +379,7 @@ var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
 			</div>
 
 			<div class="col-xs-12 col-sm-6 col-md-3 company_show">
-				<a href="enterprisedetail"><img class="img-responsive" src="../images/images_index/qiye_2.jpg" alt="新闻图片"></a>
+				<a href="enterprisedetail"><img class="img-responsive" src="images/images_index/qiye_2.jpg" alt="新闻图片"></a>
 				<div class="carousel-caption hidden-md hidden-xs hidden-sm img_banner img_banner2">
 					<h4>电子商务创业园</h4>
 				</div>
@@ -380,7 +388,7 @@ var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
 				</p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-3 company_show">
-				<a href="enterprisedetail"><img class="img-responsive" src="../images/images_index/qiye_3.jpg" alt="新闻图片"></a>
+				<a href="enterprisedetail"><img class="img-responsive" src="images/images_index/qiye_3.jpg" alt="新闻图片"></a>
 				<div class="carousel-caption hidden-md hidden-xs hidden-sm img_banner img_banner2">
 					<h4>电子商务创业园</h4>
 				</div>
@@ -389,14 +397,14 @@ var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
 				</p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-3 company_show">
-				<a href="enterprisedetail"><img class="img-responsive" src="../images/images_index/qiye_4.jpg" alt="新闻图片"></a>
+				<a href="enterprisedetail"><img class="img-responsive" src="images/images_index/qiye_4.jpg" alt="新闻图片"></a>
 				<div class="carousel-caption hidden-md hidden-xs hidden-sm img_banner img_banner2">
 					<h4>电子商务创业园</h4>
 				</div>
 				<p>
 					电子商务创业园A区,座落在定海区盐仓街道茅岭路173号,办公面积600平米,仓储面积1000平米,停车位20余个。创业园在2015年7月初开工建设,历时2个月,投资装修资金140余万元,已于2015年9月1日试营业,入驻商家19余家。
 				</p>
-			</div>
+			</div>-->
 			<!-- END企业展示接口 -->
 		</div>
 	</div>
@@ -417,7 +425,7 @@ var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-md-3 company_show">
-				<a href="dtat_tatist.html"><img class="img-responsive" src="../images/images_index/shuju_1.jpg" alt="新闻图片"></a>
+				<a href="dtat_tatist.html"><img class="img-responsive" src="images/images_index/shuju_1.jpg" alt="新闻图片"></a>
 				<div class="carousel-caption hidden-md hidden-xs hidden-sm img_banner img_banner2">
 					<h4>电子商务创业园</h4>
 				</div>
@@ -426,10 +434,10 @@ var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
 				</p>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6 company_show">
-				<a href="dtat_statist.html"><img class="img-responsive data_img" src="../images/images_index/shuju_2.jpg" alt="新闻图片"></a>
+				<a href="dtat_statist.html"><img class="img-responsive data_img" src="images/images_index/shuju_2.jpg" alt="新闻图片"></a>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-3 company_show">
-				<a href="dtat_statist.html"><img class="img-responsive" src="../images/images_index/shuju_3.jpg" alt="新闻图片"></a>
+				<a href="dtat_statist.html"><img class="img-responsive" src="images/images_index/shuju_3.jpg" alt="新闻图片"></a>
 				<div class="carousel-caption hidden-md hidden-xs hidden-sm img_banner img_banner2">
 					<h4>电子商务创业园</h4>
 				</div>

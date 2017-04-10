@@ -451,4 +451,16 @@ class ArticleController extends Controller{
 		return Json::encode($articles);
 	}
 
+	/**
+	 * 右侧热点新闻接口
+	 * @return string
+	 */
+	public function actionHotNews(){
+		$article = Article::find()
+			->orderBy(['count'=>SORT_DESC])
+			->limit(7)
+			->all();
+		return Json::encode($article);
+	}
+
 }

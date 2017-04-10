@@ -142,7 +142,8 @@ hr {
   margin-top: 10px;
 }
 .left_content1 .box .left_title .name {
-  float: left;
+  width:300px;
+  margin:10px auto;
   padding-left: 5.0rem;
   font-family: "微软雅黑";
   font-weight: bold;

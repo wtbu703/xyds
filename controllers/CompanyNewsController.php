@@ -257,8 +257,29 @@ class CompanyNewsController extends Controller
         }
     }
 
-    public function actionCompanyNews(){
-        $companyNews = CompanyNews::find()->all();
+	/**
+	 * 企业新闻接口
+	 * @return string
+	 */
+	public function actionCompanyNews(){
+	    $companyId = Yii::$app->request->post('companyId');
+	    $companyNews = CompanyNews::find()
+		    ->where('companyId = :companyId',[":companyId" => $companyId])->all();
         return Json::encode($companyNews);
     }
+
+	/**
+	 * 企业新闻接口
+	 * @return string
+	 */
+	public function actionAllNews(){
+		$newsType = Yii::$app->request->post('newsType');
+		$companyId = Yii::$app->request->post('companyId');
+		$articles = CompanyNews::find()
+			->where('category = :type and companyId = :companyId',[":type"=>$newsType,":companyId" => $companyId])
+			->limit(6)
+			->orderBy(['datetime'=>SORT_DESC])
+			->all();
+		return Json::encode($articles);
+	}
 }

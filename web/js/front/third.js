@@ -47,24 +47,7 @@ function searchByNameCat(){
     getThird('-1',tag);
 }
 $(document).ready(function(){
-    //左右高度相等
-    function height_change(){
-        var ht = $("#content_left").height();
-        var Da = Math.max(
-            $("#content_right").height(),
-            $("#content_left").height()
-        );
-        if ((screen.width <= 1024) && (screen.height <= 768))  {
-            $(".content_left").height(ht);
-        }
-        else {
-            $(".content_left").height(Da);
-            $(".content_right").height(Da);
-        }
-        $(window).resize(function(){
-            window.location.reload();
-        });
-    }
+
     //左边栏
     var left = $('.content_left');//定位到需要插入的DIV
     var lefthtml = [];//新建一个数组变量
@@ -84,6 +67,8 @@ $(document).ready(function(){
             
         }
     });
+    //右边部分
+    getThird();
     //鼠标点击切换效果
     $(".list-group li").each(function(index){
         $(this).click(function(){
@@ -91,8 +76,21 @@ $(document).ready(function(){
             $(".list-group li").eq(index).addClass("list_on");
         });
     });
-    //右边部分 
-    getThird();
+    //左右高度相等
+
+        var ht = $("#content_left").height();
+        var Da = Math.max(
+            $("#content_right").height(),
+            $("#content_left").height()
+        );
+        if ((screen.width <= 1024) && (screen.height <= 768))  {
+            $("#content_left").height(ht);
+        }
+        else {
+            $("#content_left").height(Da-20);
+            $("#content_right").height(Da);
+        }
+
 
 
 });
