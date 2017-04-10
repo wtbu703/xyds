@@ -1,8 +1,8 @@
-/*function train(newsType=0){
+function train(newsType){
     var textdiv = $('.row_one');//定位到需要插入的DIV
     var html = [];//新建一个数组变量
     $.ajax({
-        url: 192.168.1.154:8010/xyds/web/index.php?r=ectrain/ectrain,//后台给的
+        url: ectrainUrl,//后台给的
         type: "post",//发送方法
         dataType: "json",//返回的数据格式
         data:"newsType="+newsType,
@@ -26,7 +26,7 @@
                     html.push('<p>培训对象:'+n.target+'</p>');
                     html.push('<p>报名时间:'+out+'-'+end+'</p>');
                     html.push('<p>发布时间:'+n.published+'</p>');
-                    html.push('<p class="detail"><a href="traindetail.html">详情&nbsp;&gt;&nbsp;&gt;</a></p>');
+                    html.push('<p class="detail"><a href="'+detailUrl+'&id='+n.id+'">详情&nbsp;&gt;&nbsp;&gt;</a></p>');
                     html.push('</div>');
                     html.push('<div class="row"><div class="circle col-md-3 hidden-xs"><div class="pie_left"><div class="left1"></div></div><div class="pie_right"><div class="right1" style="transform: rotate(180deg);"></div></div><div class="mask">已报名<span>'+n.peopleNum+'</span>人</div>');
                     html.push('</div>');
@@ -43,23 +43,22 @@
         }
     });
 }
-*/$(document).ready(function(){
+$(document).ready(function(){
     //培训分类
-    /*var textclassify = $('.row_enterprise');//定位到需要插入的DIV
+    var textclassify = $('.row_enterprise');//定位到需要插入的DIV
     var texthtml = [];//新建一个数组变量
     
     $.ajax({
-        url: 字典接口,//后台给的
+        url: dictUrl,//后台给的
         type: "post",//发送方法
         dataType: "json",//返回的数据格式
         async: false,
         success:function(data){//如果成功即执行
-            texthtml.push('<div class="col-xs-12 col-md-8 column column_mt"><div class="redbar"></div><span>企业展示</span><ul class="nav nav_classify">');
+            texthtml.push('<div class="col-xs-12 col-md-12 column column_mt"><div class="redbar"></div><span>培训通知</span><ul class="nav nav_classify">');
             texthtml.push('<a class="btn btn-default col-xs-12 col-sm-2 col-md-1 active">全部</a>');  
             $.each(data,function(i,n){//遍历返回的数据 
                 {
-                  texthtml.push('<a class="btn btn-default col-xs-12 col-sm-2 col-md-1">'+n.dictItemName+'</a>');   
-                    
+                  texthtml.push('<a class="btn btn-default col-xs-12 col-sm-2 col-md-1">'+n.dictItemName+'</a>');
                 }
                 //以原格式组装好数组
             });
@@ -71,10 +70,10 @@
         error:function(){
             
         }
-    });*/
+    });
 
     /*培训通知*/
-    /*train(0);*/
+    train(0);
     
     
     var $tab_list = $('.nav_classify a');
@@ -92,7 +91,7 @@
         } else {
             $(this).find('.right1').css('transform', "rotate(180deg)");
             $(this).find('.left1').css('transform', "rotate(" + (num - 180) + "deg)");
-        };
+        }
     });
     
-})
+});
