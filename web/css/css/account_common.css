@@ -60,7 +60,7 @@ ol {
 .registerform {
   margin-top: 30px;
 }
-.registerform div input[type=submit] {
+.registerform div input[type=button] {
   display: block;
   width: 80px;
   margin: 30px auto;

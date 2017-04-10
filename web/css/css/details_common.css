@@ -1,8 +1,5 @@
 @charset "utf-8";
-@font-face {
-  font-family: '微软雅黑';
-  src: url(../font/msyh.ttf);
-}
+
 /*内容部分背景颜色*/
 /*阴影颜色*/
 .content_body {
@@ -39,7 +36,7 @@ ul li {
 }
 .form_2 {
   width: 237px;
-  height: 35px;
+  height: 37px;
   border: solid 1px #2eb4a9;
   float: left;
   outline: none;
@@ -48,7 +45,7 @@ ul li {
 }
 .search_bg {
   width: 50px;
-  height: 35px;
+  height: 37px;
   background-color: #2eb4a9;
   border: 0;
   float: right;
@@ -70,8 +67,12 @@ ul li {
 .content_left {
   position: relative;
   display: block;
-  margin-bottom: 5px;
+  padding-bottom: 5px;
   background-color: #f5f5f7;
+}
+.content_left a{
+  color: #000000;
+
 }
 .list_first {
   font-size: 18px;
@@ -83,41 +84,47 @@ ul li {
   margin-top: -2px;
   margin-left: 15px;
 }
-.list_item1 {
+
+.list-group a {
+  color: #000000;
   margin-left: 5%;
   width: 95%;
-  margin-top: 15px;
-  margin-bottom: 25px;
   height: 30px;
   text-align: center;
   line-height: 30px;
   font-family: '微软雅黑';
   font-size: 18px;
   font-weight: 500;
+}
+.list_item1 {
+  width: 95%;
+  margin-left: 5%;
   background-color: #e6e7ea;
+}
+.list-group a:hover{
+  text-decoration: none;
   border-left: solid #c62f2f 2.5px none;
 }
-.list-group a {
-  color: #000000;
+.list-group a:active{
+  border-left: solid #c62f2f 2.5px none;
 }
-.list_on a {
-  color: #c62f2f;
-}
-.list_on {
-  border-left: solid #c62f2f 2.5px;
-}
-.list_item1 a:hover {
+.list-group a:focus{
   text-decoration: none;
-  color: #c62f2f;
+  border-left: solid #c62f2f 2.5px none;
+  outline:0;
 }
-.list_item1:hover {
+.list-group a:visited{
+  border-left: solid #c62f2f 2.5px none;
+
+}
+.list-group a:hover li{
+  color: #c62f2f;
   border-left: solid #c62f2f 2.5px;
   margin-left: 4.6%;
 }
-.list_item1 a:active {
-  text-decoration: none;
-  color: #c62f2f;
-}
+.list_on{color: #c62f2f;
+  border-left: solid #c62f2f 2.5px;
+  margin-left: 4.6%;}
 .right_head {
   margin-top: 10px;
 }

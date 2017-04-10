@@ -1,0 +1,68 @@
+@charset "utf-8";
+/*阴影颜色*/
+@shadow_color:#d2d2d2;
+.content_top{
+	height:40px;
+	margin-top:15px;
+	box-shadow: 0px 0px 2px 2px @shadow_color;
+    -moz-box-shadow: -2px 2px 5px 0px @shadow_color;
+}
+.content_top img{
+	margin-top: 10px;
+	float:left;
+}
+.content_top span{
+	float: left;
+	line-height: 40px;
+	margin-left: 10px;
+	font-size: 14px;
+	font-family: '微软雅黑';
+}
+.content_con{
+	padding:0;
+	font-size:14px;
+	font-weight: Regular;
+	font-family: '微软雅黑';
+	margin-top:15px;
+	box-shadow: 0px 0px 2px 2px @shadow_color;
+    -moz-box-shadow: -2px 2px 5px 0px @shadow_color;
+}
+.content_box{
+	padding:0 15px;
+}
+.content_con h4{
+	font-size:18px;
+	font-weight: bold;
+}
+.content_con span{
+	padding-right: 8px;
+}
+.content_con p{
+	font-size:16px;
+	font-weight: Regular;
+	font-family: '微软雅黑';
+	margin-top:10px;
+}
+.content_line{
+	margin:0;
+	margin-top:20px;
+	border-bottom: 1px solid #dadada;
+}
+//分页
+.row_page{margin-top:20px;}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  color: #d73455;
+  background-color: #fff;
+  border-color: #d73455;
+}
+.pagination li a {
+  margin-left: 10px;
+  border-radius: 6px;
+  color: #8c8c8c;
+}
+.pagination li a.fen {
+  border-style: none;
+}

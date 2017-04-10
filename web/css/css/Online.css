@@ -206,17 +206,16 @@
   font-size: 14px;
   font-family: '微软雅黑';
   font-weight: 600;
+  cursor: pointer;
 }
 .full_li {
-  background-color: #1da297;
-}
-.full_li {
-  color: #ffffff;
-}
-.full_ul a {
   color: #6c6565;
 }
-.full_ul a:hover li {
+.full_li:hover {
+  background-color: #1da297;
+  color: #ffffff;
+}
+.full_active {
   background-color: #1da297;
   color: #ffffff;
 }
@@ -290,8 +289,16 @@
   font-family: '微软雅黑';
   color: #117ada;
 }
-.detial p {
-  color: #777575;
+.detail_p{
+  height:90px;
+  overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -moz-box-orient:vertical;
+  -webkit-box-orient:vertical;
+  font-size: 14px;
+  font-family: '微软雅黑';
+  color:#777575;
   line-height: 30px;
   margin: 0;
 }

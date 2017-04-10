@@ -195,61 +195,34 @@
   margin-top: 10px;
 }
 .post_ul {
+  height:50px;
   padding: 0px;
+  margin-top:20px;
 }
-.post_ul li {
-  font-size: 14px;
-  margin-top: 10px;
-  font-family: '微软雅黑';
-}
-.post_ul li span {
-  font-size: 18px;
+.position {
+  float:left;
+  font-size: 20px;
   font-weight: 600;
   color: #000000;
+}
+.position_d{
+  flaot:left;
+  font-size: 16px;
+  font-family: '微软雅黑';
+  margin-left:10px;
+}
+.post_ul span{
+ font-size:16px;
+  font-family: '微软雅黑';
 }
 .salary {
   font-family: '微软雅黑';
   font-size: 20px;
   font-weight: 600;
   color: #db3b3b;
-  text-align: center;
-  line-height: 500%;
+  margin-left:50px;
 }
-.apply_:hover {
-  text-decoration: none;
-}
-.apply {
-  font-family: '微软雅黑';
-  font-size: 18px;
-  color: #fff;
-  background-color: #6095c1;
-  height: 45px;
-  text-align: center;
-  line-height: 45px;
-  margin-top: 15px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
-.apply_:hover .apply {
-  text-decoration: none;
-  background-color: #76b6c9;
-}
-.collect {
-  text-align: center;
-  padding: 10px;
-}
-.collect:hover img {
-  background: url(../../images/On_details/collection2.png) no-repeat;
-}
-.collect div {
-  display: inline-block;
-  font-family: '宋体';
-  font-size: 12px;
-  height: 20px;
-  line-height: 20px;
-  margin-left: 5px;
-}
+
 .job_info {
   background-color: #e6e7ea;
   border-left: #c62f2f 3px solid;
@@ -266,12 +239,11 @@
 .description {
   border: 1px solid #dcdcdc;
   margin: 0;
+  padding-top:10px;
+  padding-bottom:10px;
+  font-size:14px;
 }
-.description li {
-  margin-top: 15px;
-  font-family: '微软雅黑';
-  font-size: 14px;
-}
+
 .ask {
   margin-top: 40px;
   margin-bottom: 50px;
@@ -292,16 +264,17 @@
 .tel_info {
   border: 1px solid #dcdcdc;
   margin: 0;
+  padding-top:10px;
+  padding-bottom:10px;
 }
 .tel_info li {
   font-family: '微软雅黑';
-  font-size: 16px;
-  font-weight: 600;
-  margin-top: 15px;
-  margin-bottom: 10px;
+  font-size: 14px;
 }
 .company_info {
   border: 1px solid #dcdcdc;
+  padding-top:10px;
+  padding-bottom:10px;
   margin-bottom: 30px;
 }
 .company_info p {

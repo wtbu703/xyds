@@ -226,6 +226,7 @@
   font-size: 18px;
   font-weight: 800;
   margin-top: 10px;
+  margin-bottom:15px;
   text-align: center;
 }
 .content_list {
@@ -235,7 +236,7 @@
 }
 .content_list ul {
   padding: 0px;
-  line: height:14px;
+  line: height：14px;
 }
 .content_list div {
   width: 10px;
@@ -254,6 +255,7 @@
 }
 .content_list h {
   float: right;
+  margin-left:20px;
 }
 .art_down {
   float: left;
