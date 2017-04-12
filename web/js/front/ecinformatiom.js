@@ -1,15 +1,18 @@
-function ziXun1(newsType){
+function ziXun1(newsType,page){
     var rowNews = $('.information_main');
     var rowNews_html = [];
+    var paraStr = 'newsType='+newsType+'&page='+page;
     $.ajax({
         url: articleUrl,
         type: "post",
         dataType: "json",
         async: false,
-        data: "newsType="+newsType,
+        data: paraStr,
         success:function(data){
+            var articledata = JSON.parse(data.article);
+            rowNews.html('');
             rowNews_html.push('<div class="information_content">');
-            $.each(data,function(i,n){
+            $.each(articledata,function(i,n){
                 //时间格式转换为 2017-12-02
                 var out = daytime(n.datetime);
                 var content = texthtml(n.content);
@@ -30,11 +33,41 @@ function ziXun1(newsType){
             });
             rowNews_html.push('</div>');
             rowNews.append(rowNews_html.join(''));
+            getPage(data.pageSize,data.page,data.totalCount,newsType);
         },
         error:function(){
             
         }
     });
+}
+function getPage(pageSize,page,totalCount,cat){
+    var totalPage = Math.ceil(totalCount/pageSize);
+    var next = parseInt(page)+1; //下一页
+    var prev = parseInt(page)-1; //上一页
+    var last = parseInt(totalPage)-1;//尾页
+    var pagediv = $('.pagination');//定位到需要插入的DIV
+    var pagehtml = [];//新建一个数组变量
+    pagediv.html('');
+    pagehtml.push('<li><a>'+totalCount+'条/'+totalPage+'页</a></li>');
+    if(page > 0) {
+        pagehtml.push('<li><a href="javascript:ziXun1('+cat+',\'0\')">首页</a></li>');
+        pagehtml.push('<li><a href="javascript:ziXun1('+cat+','+prev+')" aria-label="Previous">上一页</a></li>');
+    }
+    pagehtml.push('<li><a href="javascript:ziXun1('+cat+','+page+')">'+next+'</a></li>');
+    if(page < last&&totalPage > 1) {
+        pagehtml.push('<li><a href="javascript:ziXun1('+cat+','+next+')" aria-label="Next">下一页</a></li>');
+        pagehtml.push('<li><a href="javascript:ziXun1('+cat+','+last+')">尾页</a></li>');//跳转到信息公开详情页
+    }
+    if(totalPage > 1) {
+        pagehtml.push('<input type="text" name="page"  id="pagevalue" value="'+next+'"/>');
+        var p = "$('#pagevalue').val()";
+        pagehtml.push('<a class="pagego" href="javascript:ziXun1('+cat+','+p+')">GO</a>');
+    }
+
+    //以原格式组装好数组
+
+    pagediv.append(pagehtml.join(''));//把数组插入到已定位的DIV
+
 }
 function hotNews(){
     var hotnews = $('.hotNews');
@@ -95,7 +128,7 @@ function hotCompany(){
 }
 $(document).ready(function(){
 
-    ziXun1(0);
+    ziXun1(0,0);
     //文章
    
     //选项卡切换
@@ -103,7 +136,7 @@ $(document).ready(function(){
     $tab_list.click(function(){
         $(this).addClass('active').siblings().removeClass('active');
         var index = $tab_list.index(this);
-        ziXun1(index);
+        ziXun1(index,0);
         $('div.information_main > div').eq(index).show().siblings().hide();
     });
 

@@ -40,8 +40,11 @@ class LogisticsBuildController extends Controller{
 		$serviceSystemBuild = new LogisticsBuild();
 		$serviceSystemBuild->id = Common::create40ID();
 		$serviceSystemBuild->townCover = Yii::$app->request->post('townCover');
+		$serviceSystemBuild->countyToVillage = Yii::$app->request->post('countyToVillage');
 		$serviceSystemBuild->villageCover = Yii::$app->request->post('villageCover');
+		$serviceSystemBuild->villageToHamlet = Yii::$app->request->post('villageToHamlet');
 		$serviceSystemBuild->receiveNum = Yii::$app->request->post('receiveNum');
+		$serviceSystemBuild->sendNum = Yii::$app->request->post('sendNum');
 		$serviceSystemBuild->orderBy = Yii::$app->request->post('orderBy');
 		$serviceSystemBuild->published = date('Y-m-d');
 		if($serviceSystemBuild->save()){
@@ -125,8 +128,11 @@ class LogisticsBuildController extends Controller{
 
 		$serviceSystemBuild = LogisticsBuild::findOne(Yii::$app->request->post('id'));
 		$serviceSystemBuild->townCover = Yii::$app->request->post('townCover');
+		$serviceSystemBuild->countyToVillage = Yii::$app->request->post('countyToVillage');
 		$serviceSystemBuild->villageCover = Yii::$app->request->post('villageCover');
+		$serviceSystemBuild->villageToHamlet = Yii::$app->request->post('villageToHamlet');
 		$serviceSystemBuild->receiveNum = Yii::$app->request->post('receiveNum');
+		$serviceSystemBuild->sendNum = Yii::$app->request->post('sendNum');
 		$serviceSystemBuild->orderBy = Yii::$app->request->post('orderBy');
 		if($serviceSystemBuild->save()){
 			return 'success';
@@ -166,5 +172,28 @@ class LogisticsBuildController extends Controller{
 			LogisticsBuild::findOne($data)->delete();
 		}
 		return 'success';
+	}
+
+	/**
+	 * 数据统计对物流的查询
+	 * @return bool|string
+	 */
+	public function actionAjax(){
+		$type = Yii::$app->request->post('type');
+		if($type==2){//快递覆盖率，月，村、行政村
+			$sql = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(published,'%Y-%m')AS months,COUNT(townCover)AS townCover,COUNT(villageCover)AS villageCover FROM logisticsbuild GROUP BY DATE_FORMAT(published,'%Y-%m')");
+			$res = $sql->queryAll();
+			return yii\helpers\Json::encode($res);
+		}else if($type==3){//快递企业数量，县到乡、乡到村
+			$sql = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(published,'%Y-%m')AS months,COUNT(countyToVillage)AS countyToVillage,COUNT(villageToHamlet)AS villageToHamlet FROM logisticsbuild GROUP BY DATE_FORMAT(published,'%Y-%m')");
+			$res = $sql->queryAll();
+			return yii\helpers\Json::encode($res);
+		}else if($type==4){//县快递量，收、发
+			$sql = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(published,'%Y-%m')AS months,COUNT(receiveNum)AS receiveNum,COUNT(sendNum)AS sendNum FROM logisticsbuild GROUP BY DATE_FORMAT(published,'%Y-%m')");
+			$res = $sql->queryAll();
+			return yii\helpers\Json::encode($res);
+		}else{
+			return false;
+		}
 	}
 }

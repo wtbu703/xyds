@@ -127,6 +127,7 @@ class ServiceSiteDealTableController extends Controller{
 	public function actionAddOne(){
 
 		$siteId = Yii::$app->request->post('id');
+		$datetime = Yii::$app->request->post('datetime');
 		$buyCategory = Yii::$app->request->post('categoryFullBuy');
 		$buySum = Yii::$app->request->post('buySum');
 		$buyTotal = Yii::$app->request->post('buyTotal');
@@ -134,22 +135,25 @@ class ServiceSiteDealTableController extends Controller{
 		$sellSum = Yii::$app->request->post('sellSum');
 		$sellTotal = Yii::$app->request->post('sellTotal');
 
-		$dealTable = new ServiceSiteDealTable();
-		$dealTable->id = Common::create40ID();
-		$dealTable->siteId = $siteId;
-		$dealTable->date = date("Y-m-d");
-		$dealTable->buyGoodCategory = $buyCategory;
-		$dealTable->buyMoneySum = $buySum;
-		$dealTable->buyOrderTotal = $buyTotal;
-		$dealTable->sellGoodCategory = $sellCategory;
-		$dealTable->sellMoneySum = $sellSum;
-		$dealTable->sellOrderTotal = $sellTotal;
-		$dealTable->state = '0';
-
-		if($dealTable->save()){
-			return "success";
-		}else{
-			return false;
+		$buyCategory_array = explode(';',$buyCategory);
+		$buySum_array = explode(';',$buySum);
+		$sellCategory_array = explode(';',$sellCategory);
+		$sellSum_array = explode(';',$sellSum);
+		foreach($buyCategory_array as $key => $value){
+			$dealTable = new ServiceSiteDealTable();
+			$dealTable->id = Common::create40ID();
+			$dealTable->siteId = $siteId;
+			$dealTable->date = $datetime;
+			$dealTable->buyGoodCategory = $value;
+			$dealTable->buyMoneySum = $buySum_array[$key];
+			$dealTable->buyOrderTotal = $buyTotal;
+			$dealTable->sellGoodCategory = $sellCategory_array[$key];
+			$dealTable->sellMoneySum = $sellSum_array[$key];
+			$dealTable->sellOrderTotal = $sellTotal;
+			$dealTable->state = '0';
+			$dealTable->save();
 		}
+
+		return "success";
 	}
 }

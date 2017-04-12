@@ -15,6 +15,7 @@ use Yii;
  * @property string $address
  * @property integer $gender
  * @property integer $age
+ * @property string $created
  */
 class EctrainEnter extends \yii\db\ActiveRecord
 {
@@ -34,6 +35,7 @@ class EctrainEnter extends \yii\db\ActiveRecord
         return [
             [['id', 'truename', 'idCardNo', 'mobile', 'gender', 'age'], 'required'],
             [['gender', 'age'], 'integer'],
+            [['created'], 'safe'],
             [['id', 'trainId'], 'string', 'max' => 40],
             [['truename'], 'string', 'max' => 8],
             [['idCardNo'], 'string', 'max' => 18],
@@ -48,14 +50,15 @@ class EctrainEnter extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'trainId' => 'Train ID',
-            'truename' => 'Truename',
-            'idCardNo' => 'Id Card No',
-            'mobile' => 'Mobile',
-            'address' => 'Address',
-            'gender' => 'Gender',
-            'age' => 'Age',
+            'id' => '使用函数创建唯一40位ID',
+            'trainId' => '外键，培训ID，使用函数创建唯一40位ID',
+            'truename' => '真实姓名',
+            'idCardNo' => '18位身份证号',
+            'mobile' => '11位手机号码',
+            'address' => '地址',
+            'gender' => '性别，字典',
+            'age' => '年龄',
+            'created' => 'Created',
         ];
     }
 }

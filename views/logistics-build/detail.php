@@ -8,12 +8,24 @@
 		            <td><?=$supportLaunch['townCover']?></td>
 	            </tr>
 	            <tr>
+		            <th>县->乡快递企业数量（个）：</th>
+		            <td><?=$supportLaunch['countyToVillage']?></td>
+	            </tr>
+	            <tr>
 		            <th>行政村快递覆盖率（%）：</th>
 		            <td><?=$supportLaunch['villageCover']?></td>
 	            </tr>
 	            <tr>
+		            <th>乡->村快递企业数量（个）：</th>
+		            <td><?=$supportLaunch['villageToHamlet']?></td>
+	            </tr>
+	            <tr>
 		            <th>当月本县快递收件数量（件）：</th>
 		            <td><?=$supportLaunch['receiveNum']?></td>
+	            </tr>
+	            <tr>
+		            <th>当月本县快递发件数量（件）：</th>
+		            <td><?=$supportLaunch['sendNum']?></td>
 	            </tr>
 	            <tr>
 		            <th>排序：</th>

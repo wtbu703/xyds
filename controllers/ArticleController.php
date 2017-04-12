@@ -443,12 +443,44 @@ class ArticleController extends Controller{
 	 */
 	public function actionArticle(){
 		$type = Yii::$app->request->post('newsType');
-		$articles = Article::find()
-			->where('category = :type',[":type"=>$type])
-			->limit(13)
-			->orderBy(['datetime'=>SORT_DESC])
-			->all();
-		return Json::encode($articles);
+        $page = Yii::$app->request->post('page');
+        if($type == 0){
+            $query = Article::find()
+                ->count();
+        }else{
+            $query = Article::find()
+                ->where('category=:category', [':category' => $type])
+                ->count();
+        }
+        $pagination = new Pagination([
+            'page' => $page,
+            'defaultPageSize' => 10,
+            'validatePage' => false,
+            'totalCount' => $query,
+        ]);
+        if($type == 0) {
+            $article = Article::find()
+                ->select('title,datetime,id,content,picUrl')
+                ->orderBy(['datetime' => SORT_DESC])
+                ->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
+
+        }else{
+            $article = Article::find()
+                ->select('title,datetime,id,content,picUrl')
+                ->where('category=:category', [':category' => $type])
+                ->orderBy(['datetime' => SORT_DESC])
+                ->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
+        }
+        $para = [];
+        $para['article'] = Json::encode($article);
+        $para['page'] = $page;
+        $para['pageSize'] = $pagination->defaultPageSize;
+        $para['totalCount'] = $pagination->totalCount;
+        return Json::encode($para);
 	}
 
 	/**

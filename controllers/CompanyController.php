@@ -224,11 +224,54 @@ class CompanyController extends Controller{
 	 * @return string
 	 */
 	public function actionCompany(){
-		$type = Yii::$app->request->post('newsType');
-		$articles = Company::find()
-			->where('category = :type',[":type"=>$type])
-			->all();
-		return Json::encode($articles);
+        $type = Yii::$app->request->post('newsType');
+        $page = Yii::$app->request->post('page');
+        if($type == 0){
+            $query = Company::find()
+                ->count();
+        }else{
+            $query = Company::find()
+                ->where('category=:category', [':category' => $type])
+                ->count();
+        }
+        $pagination = new Pagination([
+            'page' => $page,
+            'defaultPageSize' => 10,
+            'validatePage' => false,
+            'totalCount' => $query,
+        ]);
+        if($type == 0) {
+            $company = Company::find()
+                ->select('name,category,id,logoUrl')
+                ->orderBy(['datetime' => SORT_DESC])
+                ->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
+
+        }else{
+            $company = Company::find()
+                ->select('name,category,id,logoUrl')
+                ->where('category=:category', [':category' => $type])
+                ->orderBy(['datetime' => SORT_DESC])
+                ->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
+        }
+        //企业分类的字典反转
+        $category = Dictitem::find()->where(['dictCode' => 'DICT_COMPANY_CATEGORY'])->all();
+        foreach($company as $key=>$data) {
+            foreach ($category as $index => $value) {
+                if ($data->category == $value->dictItemCode) {
+                    $company[$key]->category = $value->dictItemName;
+                }
+            }
+        }
+        $para = [];
+        $para['company'] = Json::encode($company);
+        $para['page'] = $page;
+        $para['pageSize'] = $pagination->defaultPageSize;
+        $para['totalCount'] = $pagination->totalCount;
+        return Json::encode($para);
 	}
 	/**
 	 * 企业分类接口

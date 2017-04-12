@@ -36,21 +36,7 @@
 					<div class="col-xs-12">
 						<nav aria-label="Page navigation" >
 							<ul class="pagination pagination-lg">
-							    <li><a href="#" aria-label="Previous">
-							        上一页</a>
-							    </li>
-							    <li><a href="#">1</a></li>
-							    <li><a href="#">2</a></li>
-							    <li><a href="#">3</a></li>
-							    <li><a href="#">4</a></li>
-							    <li><a href="#">5</a></li>
-							    <li><a class="fen" href="#">...</a></li>
-							    <li><a href="#">25</a></li>
-							    <li>
-							      <a href="#" aria-label="Next">
-							        下一页
-							      </a>
-							    </li>
+
 							</ul>
 						</nav>
 					</div>	

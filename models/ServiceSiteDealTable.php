@@ -10,15 +10,15 @@ use Yii;
  * @property string $id
  * @property string $siteId
  * @property string $date
- * @property string $buyGoodCategory
- * @property string $buyMoneySum
+ * @property integer $buyGoodCategory
+ * @property double $buyMoneySum
  * @property string $buyOrderTotal
- * @property string $sellGoodCategory
- * @property string $sellMoneySum
+ * @property integer $sellGoodCategory
+ * @property double $sellMoneySum
  * @property string $sellOrderTotal
  * @property string $state
  */
-class ServiceSiteDealTable extends \yii\db\ActiveRecord
+class Servicesitedealtable extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -36,9 +36,9 @@ class ServiceSiteDealTable extends \yii\db\ActiveRecord
         return [
             [['id', 'siteId', 'date', 'buyGoodCategory', 'buyMoneySum', 'buyOrderTotal', 'sellGoodCategory', 'sellMoneySum', 'sellOrderTotal'], 'required'],
             [['date'], 'safe'],
-            [['buyOrderTotal', 'sellOrderTotal'], 'integer'],
+            [['buyGoodCategory', 'buyOrderTotal', 'sellGoodCategory', 'sellOrderTotal'], 'integer'],
+            [['buyMoneySum', 'sellMoneySum'], 'number'],
             [['id', 'siteId'], 'string', 'max' => 40],
-            [['buyGoodCategory', 'buyMoneySum', 'sellGoodCategory', 'sellMoneySum'], 'string', 'max' => 32],
             [['state'], 'string', 'max' => 2],
         ];
     }

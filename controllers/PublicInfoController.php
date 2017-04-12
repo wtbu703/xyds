@@ -299,10 +299,28 @@ class PublicInfoController extends Controller
      */
     public function actionInfo(){
         $cat = Yii::$app->request->post('cat');
-        if($cat == 0) {
+        $page = Yii::$app->request->post('page');
+        if($cat == -1){
+            $query = PublicInfo::find()
+                ->count();
+        }else{
+            $query = PublicInfo::find()
+                ->where('category=:category', [':category' => $cat])
+                ->count();
+        }
+        $pagination = new Pagination([
+            'page' => $page,
+            'defaultPageSize' => 21,
+            'validatePage' => false,
+            'totalCount' => $query,
+        ]);
+
+        if($cat == -1) {
             $info = PublicInfo::find()
                 ->select('title,published,id')
                 ->orderBy(['published' => SORT_DESC])
+                ->offset($pagination->offset)
+                ->limit($pagination->limit)
                 ->all();
 
         }else{
@@ -310,9 +328,16 @@ class PublicInfoController extends Controller
                 ->select('title,published,id')
                 ->where('category=:category', [':category' => $cat])
                 ->orderBy(['published' => SORT_DESC])
+                ->offset($pagination->offset)
+                ->limit($pagination->limit)
                 ->all();
         }
-        return Json::encode($info);
+        $para = [];
+        $para['info'] = Json::encode($info);
+        $para['page'] = $page;
+        $para['pageSize'] = $pagination->defaultPageSize;
+        $para['totalCount'] = $pagination->totalCount;
+        return Json::encode($para);
     }
     /**
      * 获取有图片的信息
@@ -327,6 +352,10 @@ class PublicInfoController extends Controller
         return Json::encode($info);
     }
 
+    /**
+     * @return string
+     * 招标最新进展的接口
+     */
     public function actionState(){
         $infoId = Yii::$app->request->post('id');
         $state = InfoState::find()

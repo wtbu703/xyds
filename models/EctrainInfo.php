@@ -22,6 +22,10 @@ use Yii;
  * @property string $publicInfoUrl
  * @property string $signSheetName
  * @property string $signSheetUrl
+ * @property integer $companyNum
+ * @property integer $newCompanyThisM
+ * @property integer $singleNum
+ * @property integer $newSingleThisM
  * @property string $published
  */
 class EctrainInfo extends \yii\db\ActiveRecord
@@ -42,6 +46,7 @@ class EctrainInfo extends \yii\db\ActiveRecord
         return [
             [['id'], 'required'],
             [['centralSupport', 'centralPaid', 'localSupport', 'companyPaid'], 'number'],
+            [['companyNum', 'newCompanyThisM', 'singleNum', 'newSingleThisM'], 'integer'],
             [['published'], 'safe'],
             [['id', 'trainId'], 'string', 'max' => 40],
             [['organizer', 'centralDecisionUnit'], 'string', 'max' => 16],
@@ -72,6 +77,10 @@ class EctrainInfo extends \yii\db\ActiveRecord
             'publicInfoUrl' => '信息公开网址链接',
             'signSheetName' => 'Sign Sheet Name',
             'signSheetUrl' => '培训人员签到表上传路径',
+            'companyNum' => '企业网商总数（个）',
+            'newCompanyThisM' => '当月新孵化企业网商',
+            'singleNum' => '个人网商总数（个）',
+            'newSingleThisM' => '当月新孵化个人网商',
             'published' => '培训时间',
         ];
     }

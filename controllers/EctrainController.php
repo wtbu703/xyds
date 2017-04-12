@@ -303,12 +303,43 @@ class EctrainController extends Controller{
 	 * @return string
 	 */
 	public function actionEctrain(){
-	    $type = Yii::$app->request->post('newsType');
-	    $articles = Ectrain::find()
-		    ->where('category = :type',[":type"=>$type])
-		    ->orderBy(['published'=>SORT_DESC])
-		    ->all();
-	    return Json::encode($articles);
+        $type = Yii::$app->request->post('newsType');
+        $page = Yii::$app->request->post('page');
+        if($type == 0){
+            $query = Ectrain::find()
+                ->count();
+        }else{
+            $query = Ectrain::find()
+                ->where('category=:category', [':category' => $type])
+                ->count();
+        }
+        $pagination = new Pagination([
+            'page' => $page,
+            'defaultPageSize' => 6,
+            'validatePage' => false,
+            'totalCount' => $query,
+        ]);
+        if($type == 0) {
+            $ectrain = Ectrain::find()
+                ->orderBy(['published' => SORT_DESC])
+                ->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
+
+        }else{
+            $ectrain = Ectrain::find()
+                ->where('category=:category', [':category' => $type])
+                ->orderBy(['published' => SORT_DESC])
+                ->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
+        }
+        $para = [];
+        $para['ectrain'] = Json::encode($ectrain);
+        $para['page'] = $page;
+        $para['pageSize'] = $pagination->defaultPageSize;
+        $para['totalCount'] = $pagination->totalCount;
+        return Json::encode($para);
     }
 
 	/**

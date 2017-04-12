@@ -145,6 +145,21 @@ class EctrainEnterController extends Controller{
             'ectrainEnter'=>$ectrainEnter
         ]);
     }
+
+	/**
+	 * 按月统计培训报名人数
+	 * @return bool|string
+	 */
+	public function actionAjax(){
+		$type = Yii::$app->request->post('type');
+		if($type==1){
+			$sql = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(created,'%Y-%m')AS months,COUNT(*) AS number FROM ectrainenter GROUP BY DATE_FORMAT(created,'%Y-%m')");
+			$res = $sql->queryAll();
+			return yii\helpers\Json::encode($res);
+		}else{
+			return false;
+		}
+	}
 }
 
 

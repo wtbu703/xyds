@@ -19,6 +19,14 @@ $(function() {
         min:1,
         onerror:"请输入！"
     });
+    $("#countyToVillage").formValidator({
+        onshow: "（必填）",
+        onfocus: "（必填）",
+        oncorrect: "（正确）"
+    }).inputValidator({               //校验不能为空
+        min:1,
+        onerror:"请输入！"
+    });
     $("#villageCover").formValidator({
         onshow: "（必填）",
         onfocus: "（必填）",
@@ -27,7 +35,23 @@ $(function() {
         min:1,
         onerror:"请输入！"
     });
+    $("#villageToHamlet").formValidator({
+        onshow: "（必填）",
+        onfocus: "（必填）",
+        oncorrect: "（正确）"
+    }).inputValidator({               //校验不能为空
+        min:1,
+        onerror:"请输入！"
+    });
     $("#receiveNum").formValidator({
+        onshow: "（必填）",
+        onfocus: "（必填）",
+        oncorrect: "（正确）"
+    }).inputValidator({               //校验不能为空
+        min:1,
+        onerror:"请输入！"
+    });
+    $("#sendNum").formValidator({
         onshow: "（必填）",
         onfocus: "（必填）",
         oncorrect: "（正确）"
@@ -49,8 +73,11 @@ function save(){
 	if($.formValidator.pageIsValid()){ // 表单提交进行校验
         var paraStr;
         paraStr = "townCover=" + $('#townCover').val()
+            + "&countyToVillage=" + $('#countyToVillage').val()
             + "&villageCover=" + $('#villageCover').val()
+            + "&villageToHamlet=" + $('#villageToHamlet').val()
             + "&receiveNum=" + $('#receiveNum').val()
+            + "&sendNum=" + $('#sendNum').val()
             + "&orderBy=" + $('#orderBy').val();
 		$.ajax({
 			url: updateUrl,
