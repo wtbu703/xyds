@@ -1,11 +1,4 @@
-$(function(){
-    $.formValidator.initConfig({
-        formid:"myform",
-        autotip:true,			//是否显示提示信息
-        onerror:function(msg,obj){
-            window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})
-        }});
-});
+
 function add(){
         var paraStr = "";
         paraStr += "name=" + $("#name").val();

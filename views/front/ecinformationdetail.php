@@ -57,8 +57,20 @@
 					</div>
 					<div class="col-xs-12">
 						<ul class="page">
-							<li><h5><a href="#">上一篇：2016国家科技奖 蚂蚁金服成唯一获奖ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</a></h5><span>2017-02-08</span></li>
-							<li><h5><a href="#">下一篇：2016国家科技奖 蚂蚁金服成唯一获奖ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</a></h5><span>2017-02-08</span></li>
+							<?php
+							if(!is_null($stitle)){?>
+								<?php
+								$time = substr($sdatetime,6,-9);
+								?>
+								<li><div></div><a href="<?=Yii::$app->urlManager->createUrl('front/ec-info-detail')?>&id=<?=$sid?>"><span>上一篇: <?=$stitle?> <h>&nbsp;2017-02-08</h></span></a></li>
+							<?}?>
+							<?php
+							if(!is_null($titles)){?>
+								<?php
+								$time = substr($datetimes,6,-9);
+								?>
+								<li><div></div><a href="<?=Yii::$app->urlManager->createUrl('front/ec-info-detail')?>&id=<?=$ids?>"><span>下一篇：<?=$titles?> <h>&nbsp;2017-02-08</h></span></a></li>
+							<?}?>
 						</ul>
 					</div>
 					<?}?>

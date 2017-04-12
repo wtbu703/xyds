@@ -12,6 +12,7 @@ var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info-one')?>";
 var infoDetail = "<?=yii::$app->urlManager->createUrl('front/info-detail')?>";
 var infoAllUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
 var companyUrl = "<?=yii::$app->urlManager->createUrl('company/company-index')?>";
+var companyDetailUrl = "<?=yii::$app->urlManager->createUrl('front/enterprise-detail')?>";
 var stateUrl = "<?=yii::$app->urlManager->createUrl('public-info/state')?>";
 var ecInfoDetailUrl = "<?=yii::$app->urlManager->createUrl('front/ec-info-detail')?>";
 var trainDetailUrl = "<?=yii::$app->urlManager->createUrl('front/train-detail')?>";
@@ -148,116 +149,7 @@ var trainDetailUrl = "<?=yii::$app->urlManager->createUrl('front/train-detail')?
 				</div>
 			</div>
 			<div class="row_public">
-		<!--	<div class="row ">
-				<div class="col-xs-12 tender">
-					<span class="col-xs-3 tender_process">
-					招标公示
-					</span>
-					<img class="col-xs-1 img-responsive" src="images/images_index/xinxi_arrow3.png" alt="">
-					<span class="col-xs-3 tender_process">招标保名
-					</span>
-					<img class="col-xs-1 " class="col-xs-1 img-responsive " src="images/images_index/xinxi_arrow3.png" alt="">
-					<span class="col-xs-3 tender_process">
-					资格审查
-					</span>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 tender tender_time">
-					<span class="col-xs-3 ">
-						2017.02.19
-					</span>
-					<div class="col-xs-1"></div>
-					<span class="col-xs-3 ">
-						2017.02.19
-					</span>
-					<div class="col-xs-1"></div>
-					<span class="col-xs-3 ">
-						2017.02.19
-					</span>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 tender_img ">
-					<div class="col-xs-3"></div>
-					<div class="col-xs-1"></div>
-					<div class="col-xs-3"></div>
-					<div class="col-xs-1"></div>
-					<div class="col-xs-3">
-						<img class=" " src="images/images_index/xinxi_arrow2.png" alt="">
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 tender">
-					<span class="col-xs-3 tender_process">
-					缴保证金
-					</span>
-					<img class="col-xs-1 img-responsive" src="images/images_index/xinxi_arrow1.png" alt="">
-					<span class="col-xs-3 tender_process">
-					编制文件
-					</span>
-					<img class="col-xs-1 " class="col-xs-1 img-responsive " src="images/images_index/xinxi_arrow1.png" alt="">
-					<span class="col-xs-3 active tender_process">
-					招标答疑
-					</span>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 tender tender_time">
-					<span class="col-xs-3 ">
-						2017.03.10
-					</span>
-					<div class="col-xs-1"></div>
-					<span class="col-xs-3 ">
-						2017.03.15
-					</span>
-					<div class="col-xs-1"></div>
-					<span class="col-xs-3 active_time">
-						2017.03.20
-					</span>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 tender_img ">
-					<div class="col-xs-3">
-						<img class=" " src="images/images_index/xinxi_arrow2.png" alt="">
-					</div>
-					<div class="col-xs-1"></div>
-					<div class="col-xs-3"></div>
-					<div class="col-xs-1"></div>
-					<div class="col-xs-3"></div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 tender">
-					<span class="col-xs-3 tender_process">
-					开标定标
-					</span>
-					<img class="col-xs-1 img-responsive" src="images/images_index/xinxi_arrow3.png" alt="">
-					<span class="col-xs-3 tender_process">中标公示
-					</span>
-					<img class="col-xs-1 " class="col-xs-1 img-responsive " src="images/images_index/xinxi_arrow3.png" alt="">
-					<span class="col-xs-3 tender_process">
-					发招标书
-					</span>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 tender tender_time">
-					<span class="col-xs-3 ">
-						2017.03.22
-					</span>
-					<div class="col-xs-1"></div>
-					<span class="col-xs-3 ">
-						2017.03.23
-					</span>
-					<div class="col-xs-1"></div>
-					<span class="col-xs-3 ">
-						2017.04.01
-					</span>
-				</div>
-			</div>-->
+
 		</div>
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-4">
@@ -268,80 +160,7 @@ var trainDetailUrl = "<?=yii::$app->urlManager->createUrl('front/train-detail')?
 
 			<div class="zixun_camera row_open">
 			<!-- 信息公开接口 -->
-				<!-- <ul >
-					<li>
-						<h5>
-							<a href="info_details.html">
-								本市区公司申请进入产业园指导说明书
-							</a>
-						</h5>
-						<span>[8-13]</span>
-					</li>
-					<li>
-						<h5>
-							<a href="info_details.html">
-								本市区公司申请进入产业园指导说明书
-							</a>
-						</h5>
-						<span>[8-13]</span>
-					</li>
-					<li>
-						<h5>
-							<a href="info_details.html">
-								本市区公司申请进入产业园指导说明书
-							</a>
-						</h5>
-						<span>[8-13]</span>
-					</li>
-					<li>
-						<h5>
-							<a href="info_details.html">
-								本市区公司申请进入产业园指导说明书
-							</a>
-						</h5>
-						<span>[8-13]</span>
-					</li>
-					<li>
-						<h5>
-							<a href="info_details.html">
-								本市区公司申请进入产业园指导说明书
-							</a>
-						</h5>
-						<span>[8-13]</span>
-					</li>
-					<li>
-						<h5>
-							<a href="info_details.html">
-								本市区公司申请进入产业园指导说明书
-							</a>
-						</h5>
-						<span>[8-13]</span>
-					</li>
-					<li>
-						<h5>
-							<a href="info_details.html">
-								本市区公司申请进入产业园指导说明书
-							</a>
-						</h5>
-						<span>[8-13]</span>
-					</li>
-					<li>
-						<h5>
-							<a href="info_details.html">
-								本市区公司申请进入产业园指导说明书
-							</a>
-						</h5>
-						<span>[8-13]</span>
-					</li>
-					<li>
-						<h5>
-							<a href="info_details.html">
-								本市区公司申请进入产业园指导说明书
-							</a>
-						</h5>
-						<span>[8-13]</span>
-					</li>
-				</ul>-->
+
 				<!-- 	END信息公开接口	 -->
 			</div>
 
@@ -366,45 +185,7 @@ var trainDetailUrl = "<?=yii::$app->urlManager->createUrl('front/train-detail')?
 	<div class="container">
 		<div class="row row1">
 			<!-- 企业展示接口 -->
-			<!--<div class="col-xs-12 col-sm-6 col-md-3 company_show">
-				<div class="divborder">
-					<a href="enterprisedetail.html"><img class="pic1 img-responsive center-block" id="pic" src="images/images_index/qiye_1.jpg" alt="新闻图片"></a>
-				</div>
-				<div class="carousel-caption hidden-md hidden-xs hidden-sm img_banner img_banner2">
-					<h4>电子商务创业园</h4>
-				</div>
-				<p>
-					电子商务创业园A区,座落在定海区盐仓街道茅岭路173号,办公面积600平米,仓储面积1000平米,停车位20余个。创业园在2015年7月初开工建设,历时2个月,投资装修资金140余万元,已于2015年9月1日试营业,入驻商家19余家。
-				</p>
-			</div>
 
-			<div class="col-xs-12 col-sm-6 col-md-3 company_show">
-				<a href="enterprisedetail"><img class="img-responsive" src="images/images_index/qiye_2.jpg" alt="新闻图片"></a>
-				<div class="carousel-caption hidden-md hidden-xs hidden-sm img_banner img_banner2">
-					<h4>电子商务创业园</h4>
-				</div>
-				<p>
-					电子商务创业园A区,座落在定海区盐仓街道茅岭路173号,办公面积600平米,仓储面积1000平米,停车位20余个。创业园在2015年7月初开工建设,历时2个月,投资装修资金140余万元,已于2015年9月1日试营业,入驻商家19余家。
-				</p>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-3 company_show">
-				<a href="enterprisedetail"><img class="img-responsive" src="images/images_index/qiye_3.jpg" alt="新闻图片"></a>
-				<div class="carousel-caption hidden-md hidden-xs hidden-sm img_banner img_banner2">
-					<h4>电子商务创业园</h4>
-				</div>
-				<p>
-					电子商务创业园A区,座落在定海区盐仓街道茅岭路173号,办公面积600平米,仓储面积1000平米,停车位20余个。创业园在2015年7月初开工建设,历时2个月,投资装修资金140余万元,已于2015年9月1日试营业,入驻商家19余家。
-				</p>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-3 company_show">
-				<a href="enterprisedetail"><img class="img-responsive" src="images/images_index/qiye_4.jpg" alt="新闻图片"></a>
-				<div class="carousel-caption hidden-md hidden-xs hidden-sm img_banner img_banner2">
-					<h4>电子商务创业园</h4>
-				</div>
-				<p>
-					电子商务创业园A区,座落在定海区盐仓街道茅岭路173号,办公面积600平米,仓储面积1000平米,停车位20余个。创业园在2015年7月初开工建设,历时2个月,投资装修资金140余万元,已于2015年9月1日试营业,入驻商家19余家。
-				</p>
-			</div>-->
 			<!-- END企业展示接口 -->
 		</div>
 	</div>

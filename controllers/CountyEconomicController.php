@@ -291,6 +291,25 @@ class CountyEconomicController extends Controller{
         unlink($attachUrls);//删除上传的Excel
         return "success";
     }
+
+	public function actionAjax(){
+		$type = Yii::$app->request->post('type');
+		if($type==6){//年经济指标，生产总值、零售、居民人均可支配、电商交易额、网络零售额
+			$sql = Yii::$app->getDb()->createCommand("SELECT year,GRP,socialConsumerTotal,disposableIncome,ecTurnover,netRetailSales FROM countyeconomic GROUP BY `year`");
+			$res = $sql->queryAll();
+			return yii\helpers\Json::encode($res);
+		}else if($type==7){//个体工商户、注册企业数、网店数
+			$sql = Yii::$app->getDb()->createCommand("SELECT year,individualHousehold,registeredCompany,onlineStore FROM countyeconomic GROUP BY `year`");
+			$res = $sql->queryAll();
+			return yii\helpers\Json::encode($res);
+		}else if($type==8){//农村公路、互联网接入
+			$sql = Yii::$app->getDb()->createCommand("SELECT year,ruralRoadMileage,internetAccess FROM countyeconomic GROUP BY `year`");
+			$res = $sql->queryAll();
+			return yii\helpers\Json::encode($res);
+		}else{
+			return false;
+		}
+	}
 }
 
 

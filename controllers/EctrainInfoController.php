@@ -242,4 +242,20 @@ class EctrainInfoController extends Controller
         ]);
 
     }
+
+	/**
+	 * 按月分组查询网商总数
+	 * @return bool|string
+	 */
+	public function actionAjax(){
+		$type = Yii::$app->request->post('type');
+		if($type==5){
+			$sql = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(published,'%Y-%m')AS months,COUNT(companyNum)as companyNum,
+count(newCompanyThisM)as newCompanyThisM,count(singleNum)as singleNum,count(newSingleThisM)as newSingleThisM FROM ectraininfo GROUP BY DATE_FORMAT(published,'%Y-%m')");
+			$res = $sql->queryAll();
+			return yii\helpers\Json::encode($res);
+		}else{
+			return false;
+		}
+	}
 }

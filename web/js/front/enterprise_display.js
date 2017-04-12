@@ -1,16 +1,17 @@
-function enterprise(newsType=0){ 
+function enterprise(newsType,page){
     var textdiv = $('.row_one');//定位到需要插入的DIV
     var html = [];//新建一个数组变量
-    
+    var paraStr = 'newsType='+newsType+'&page='+page;
     $.ajax({
         url: companyUrl,//后台给的
         type: "post",//发送方法
         dataType: "json",//返回的数据格式
-        data:"newsType="+newsType,
+        data:paraStr,
         async: false,
         success:function(data){//如果成功即执行
+            var companydata = JSON.parse(data.company);
             textdiv.html('');
-            $.each(data,function(i,n){//遍历返回的数据 
+            $.each(companydata,function(i,n){//遍历返回的数据
                 {
                     html.push('<div class="col-md-4 col-sm-6 col-xs-12 enterprise">'); 
                     html.push('<div class="box_shadow">'); 
@@ -25,12 +26,43 @@ function enterprise(newsType=0){
                 //以原格式组装好数组
             });
             textdiv.append(html.join(''));//把数组插入到已定位的DIV
+            getPage(data.pageSize,data.page,data.totalCount,newsType);
         },
     
         error:function(){
             
         }
     });
+}
+//分页
+function getPage(pageSize,page,totalCount,cat){
+    var totalPage = Math.ceil(totalCount/pageSize);
+    var next = parseInt(page)+1; //下一页
+    var prev = parseInt(page)-1; //上一页
+    var last = parseInt(totalPage)-1;//尾页
+    var pagediv = $('.pagination');//定位到需要插入的DIV
+    var pagehtml = [];//新建一个数组变量
+    pagediv.html('');
+    pagehtml.push('<li><a>'+totalCount+'条/'+totalPage+'页</a></li>');
+    if(page > 0) {
+        pagehtml.push('<li><a href="javascript:enterprise('+cat+',\'0\')">首页</a></li>');
+        pagehtml.push('<li><a href="javascript:enterprise('+cat+','+prev+')" aria-label="Previous">上一页</a></li>');
+    }
+    pagehtml.push('<li><a href="javascript:enterprise('+cat+','+page+')">'+next+'</a></li>');
+    if(page < last&&totalPage > 1) {
+        pagehtml.push('<li><a href="javascript:enterprise('+cat+','+next+')" aria-label="Next">下一页</a></li>');
+        pagehtml.push('<li><a href="javascript:enterprise('+cat+','+last+')">尾页</a></li>');//跳转到信息公开详情页
+    }
+    if(totalPage > 1) {
+        pagehtml.push('<input type="text" name="page"  id="pagevalue" value="'+next+'"/>');
+        var p = "$('#pagevalue').val()";
+        pagehtml.push('<a class="pagego" href="javascript:enterprise('+cat+','+p+')">GO</a>');
+    }
+
+    //以原格式组装好数组
+
+    pagediv.append(pagehtml.join(''));//把数组插入到已定位的DIV
+
 }
 $(document).ready(function(){
     
@@ -65,7 +97,7 @@ $(document).ready(function(){
         }
     });
     //企业展示
-    enterprise(0);
+    enterprise(0,0);
     $(function(){
         $w = $('.pic').width();
         $h = $('.pic').height();
@@ -84,7 +116,7 @@ $(document).ready(function(){
         $tab_list.click(function(){
             $(this).addClass('active').siblings().removeClass('active');
             var index = $tab_list.index(this);
-            enterprise(index);
+            enterprise(index,0);
             $('.row_one').eq(index).show().siblings().hide();
         });
     });

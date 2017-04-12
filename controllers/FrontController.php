@@ -137,33 +137,7 @@ class FrontController extends Controller{
 	 * @return string
 	 */
 	public function actionPublicInfo(){
-		$category = Yii::$app->request->get('category');
-		$query = PublicInfo::find();
-		$pagination = new Pagination([
-				'defaultPageSize' => 21,
-				'validatePage' => false,
-				'totalCount' => $query->count(),
-		]);
-		if(is_null($category)) {
-			$info = $query
-					->select('title,published,id')
-					->orderBy(['published' => SORT_DESC])
-					->offset($pagination->offset)
-					->limit($pagination->limit)
-					->all();
-		}else{
-			$info = $query
-					->select('title,published,id')
-					->where('category=:category', [':category' => $category])
-					->orderBy(['published' => SORT_DESC])
-					->offset($pagination->offset)
-					->limit($pagination->limit)
-					->all();
-		}
-		return $this->render('info',[
-				'info' => $info,
-				'pagination' => $pagination,
-		]);
+		return $this->render('info');
 	}
 
 	/**
@@ -174,16 +148,15 @@ class FrontController extends Controller{
 		$id = Yii::$app->request->get('id');
 		$info = PublicInfo::findOne($id);
 		$sinfo = PublicInfo::find()
-				->orderBy(['state'=>SORT_DESC])
+				->orderBy(['published'=>SORT_ASC])
 				->where('published>:time',[':time'=>$info->published])
 				->limit('0,1')
 				->one();
 		$infos = PublicInfo::find()
-				->orderBy(['state'=>SORT_DESC])
+				->orderBy(['published'=>SORT_DESC])
 				->where('published<:time',[':time'=>$info->published])
 				->limit('0,1')
 				->one();
-		$infos->id;
 		return $this->render('infodetail',[
 				'info'=>$info,
 				'sid'=>$sinfo->id,
@@ -281,8 +254,25 @@ class FrontController extends Controller{
 	public function actionEcInfoDetail(){
 		$articleId = Yii::$app->request->get('articleId');
 		$article = Article::findOne($articleId);
+		$sarticle = Article::find()
+				->orderBy(['datetime'=>SORT_ASC])
+				->where('datetime>:time',[':time'=>$article->datetime])
+				->limit('0,1')
+				->one();
+		$articles = Article::find()
+				->orderBy(['datetime'=>SORT_DESC])
+				->where('datetime<:time',[':time'=>$article->datetime])
+				->limit('0,1')
+				->one();
+
 		return $this->render('ecinformationdetail',[
-			'article' => $article
+			'article' => $article,
+			'sid'=>$sarticle->id,
+			'ids'=>$articles->id,
+			'stitle'=>$sarticle->title,
+			'titles'=>$articles->title,
+			'sdatetime'=>$sarticle->datetime,
+			'datetimes'=>$articles->datetime,
 		]);
 	}
 
@@ -292,30 +282,45 @@ class FrontController extends Controller{
 	 */
 	public function actionSearch(){
 		$title = Yii::$app->request->get('title');
-		$whereStr = '';
-		$whereStr = $whereStr . " title like '%" . $title . "%'";
-		$article = Article::find()
-				->where($whereStr)
-				->orderBy(['datetime'=>SORT_DESC])
-				->all();
-		$cou = Article::find()
-				->where($whereStr)
-				->orderBy(['datetime'=>SORT_DESC])
-				->count();
-		$companyNews = CompanyNews::find()
-				->where($whereStr)
-				->orderBy(['published'=>SORT_DESC])
-				->all();
-		$unt = CompanyNews::find()
-				->where($whereStr)
-				->orderBy(['published'=>SORT_DESC])
-				->count();
-		$count = $cou + $unt;
 		return $this->render('search',[
-				'article'=>$article,
-				'companyNews'=>$companyNews,
-				'count'=>$count,
+				'title'=>$title,
 		]);
+	}
+
+	/**
+	 * @return string
+	 * 加载搜索信息，并实现分页
+	 */
+	public function actionFindMore(){
+		$title = Yii::$app->request->post('title');
+		$page = Yii::$app->request->post('page');
+		$whereStr = " title like '%" . $title . "%'";
+		$query = Article::find()
+				->where($whereStr)
+				->count();
+
+
+		$pagination = new Pagination([
+				'page' => $page,
+				'defaultPageSize' => 10,
+				'validatePage' => false,
+				'totalCount' => $query,
+		]);
+
+		$sea = Article::find()
+				->select('title,datetime,id,author,category,keyword,content')
+				->where($whereStr)
+				->orderBy(['datetime' => SORT_DESC])
+				->offset($pagination->offset)
+				->limit($pagination->limit)
+				->all();
+
+		$para = [];
+		$para['sea'] = Json::encode($sea);
+		$para['page'] = $page;
+		$para['pageSize'] = $pagination->defaultPageSize;//一页的条数
+		$para['totalCount'] = $pagination->totalCount; //总条数
+		return Json::encode($para);
 	}
 	/**
 	 * 企业新闻页
@@ -342,6 +347,10 @@ class FrontController extends Controller{
 		]);
 	}
 
+	/**
+	 * @return string
+	 * 打开培训报名页面
+	 */
 	public function actionSignup(){
 		$trainId = Yii::$app->request->get('id');
 		return $this->render('signup',[
@@ -362,6 +371,7 @@ class FrontController extends Controller{
 		$ectrainEnter->mobile  = Yii::$app->request->post('mobile');
 		$ectrainEnter->address  = Yii::$app->request->post('address');
 		$ectrainEnter->idCardNo  = Yii::$app->request->post('idCardNo');
+		$ectrainEnter->created = date('Y-m-d H:i:s');
 		if($ectrainEnter->save()){
 			return "success";
 		}else{

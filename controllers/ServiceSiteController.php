@@ -7,6 +7,7 @@
  */
 namespace app\controllers;
 
+use app\models\ServiceSiteDealTable;
 use yii;
 use yii\base\Controller;
 use app\common\Common;
@@ -356,6 +357,53 @@ class ServiceSiteController extends Controller{
 			return "success";
 		}else{
 			return false;
+		}
+	}
+
+	/**
+	 * 服务站点接口
+	 * @return string
+	 */
+	public function actionAjax(){
+		$serviceSites = ServiceSite::find()->all();
+		return yii\helpers\Json::encode($serviceSites);
+	}
+
+	/**
+	 * 以站点ID和类别查询生成图表
+	 * @return null|string
+	 */
+	public function actionGeneratePic(){
+		$siteId = Yii::$app->request->post('siteId');
+		$type = Yii::$app->request->post('type');
+		switch($type){
+			case 1:
+				$sql1 = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(date,'%Y-%m')AS months,SUM(buyMoneySum)AS number FROM servicesitedealtable WHERE siteId = :siteId GROUP BY DATE_FORMAT(date,'%Y-%m')");
+				$sql1->bindParam(':siteId',$siteId);
+				$res1 = $sql1->queryAll();
+				return yii\helpers\Json::encode($res1);
+				break;
+			case 2:
+				$sql1 = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(date,'%Y-%m')AS months,SUM(buyOrderTotal)AS number FROM servicesitedealtable WHERE siteId = :siteId GROUP BY DATE_FORMAT(date,'%Y-%m')");
+				$sql1->bindParam(':siteId',$siteId);
+				$res1 = $sql1->queryAll();
+				return yii\helpers\Json::encode($res1);
+				break;
+			case 3:
+				$sql1 = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(date,'%Y-%m')AS months,SUM(sellMoneySum)AS number FROM servicesitedealtable WHERE siteId = :siteId GROUP BY DATE_FORMAT(date,'%Y-%m')");
+				$sql1->bindParam(':siteId',$siteId);
+				$res1 = $sql1->queryAll();
+				return yii\helpers\Json::encode($res1);
+				break;
+			case 4:
+				$sql1 = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(date,'%Y-%m')AS months,SUM(sellOrderTotal)AS number FROM servicesitedealtable WHERE siteId = :siteId GROUP BY DATE_FORMAT(date,'%Y-%m')");
+				$sql1->bindParam(':siteId',$siteId);
+				$res1 = $sql1->queryAll();
+				return yii\helpers\Json::encode($res1);
+				break;
+			default:
+				return null;
+
 		}
 	}
 }

@@ -271,11 +271,11 @@ $(document).ready(function(){
         success:function(data){//如果成功即执行
             $.each(data,function(i,n){//遍历返回的数据 遍历返回的数据 i是遍历的次数 n是遍历的内容
                 html.push('<div class="col-xs-12 col-sm-6 col-md-3 company_show">');
-                html.push('<img class="img-responsive" src="'+ n.logoUrl +'" alt="">');
+                html.push('<a href="'+companyDetailUrl+'&id='+n.id+'"><img class="img-responsive" src="'+n.logoUrl +'" alt=""></a>');
                 html.push('<div class="carousel-caption hidden-md hidden-xs hidden-sm img_banner img_banner2">');
                 html.push('<h4>'+ n.name +'</h4>');
                 html.push('</div>');
-                html.push('<p>'+ n.introduction +'</p>');
+                html.push('<a href="'+companyDetailUrl+'&id='+n.id+'"><p>'+ n.introduction +'</p></a>');
                 html.push('</div>');
                 //以原格式组装好数组
             });
