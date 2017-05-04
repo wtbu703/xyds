@@ -33,13 +33,15 @@
 				<!-- END接口 -->
 				</div>
 				<div class="row row_page">
-					<div class="col-xs-12">
+					<div class="col-xs-0 col-sm-0 col-md-4"></div>
+					<div class="col-xs-12 col-sm-12 col-md-7">
 						<nav aria-label="Page navigation" >
 							<ul class="pagination pagination-lg">
 
 							</ul>
 						</nav>
-					</div>	
+					</div>
+					<div class="col-xs-0 col-sm-0 col-md-1"></div>
 				</div>
 
 			</div>
@@ -48,7 +50,7 @@
 					<div class="col-xs-12 column">	
 						<div class="redbar">
 						</div>
-						<span class="">热点新闻</span>
+						<span class="">热点新闻<a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>">>>更多</a></span>
 					</div>
 				</div>
 				<div class="hot">
@@ -64,7 +66,7 @@
 					<div class="col-xs-12 column">	
 						<div class="redbar">
 						</div>
-						<span class="">热门企业</span>
+						<span class="">热门企业<a href="<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>">>>更多</a></span>
 					</div>
 				</div>
 				<div class="hot hotCompany">

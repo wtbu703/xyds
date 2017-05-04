@@ -132,8 +132,6 @@ hr {
   /* 字体变化颜色 */
   /* 文章背景颜色 */
   /* 文章字体颜色 */
-}
-.left_content1 .box {
   filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
   /*for ie6,7,8*/
   background-color: #fff;
@@ -144,33 +142,30 @@ hr {
   box-shadow: -2px 2px 5px #d2d2d2;
   /*opera或ie9*/
 }
-.left_content1 .box .right_head {
+.left_content1 .right_head {
   margin-left: 15px;
   margin-right: 15px;
   margin-top: 10px;
   height: 37px;
   border-bottom: 2px solid #e2e2e2;
 }
-.left_content1 .box .home {
+.left_content1 .home {
   display: inline-block;
   display: inline;
   zoom: 1;
   margin-top: -3px;
 }
-.left_content1 .box .lh_index {
+.left_content1 .lh_index {
   font-size: 14px;
   font-family: "宋体";
   color: #000000;
   line-height: 22px;
   width: auto;
 }
-.left_content1 .box .lh_index a {
+.left_content1 .lh_index a {
   color: #000000;
   padding-left: 5px;
   margin-top: 5px;
-}
-.left_content1 .box .lh_index a:hover {
-  color: #c62f2f;
 }
 /* 企业展示产品 */
 .product_title {
@@ -228,6 +223,9 @@ hr {
   /*webkit*/
   box-shadow: -2px 2px 5px #d2d2d2;
   /*opera或ie9*/
+}
+.enterprise .enterprise_detail a {
+  color: black;
 }
 .enterprise .redline .solid {
   border-bottom: 2px solid #ff0000;

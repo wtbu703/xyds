@@ -19,7 +19,15 @@ function openadd(){
 //查询功能
 function search(){
 	if(str_is_null($('#title').val())&&str_is_null($('#author').val())&&str_is_null($('#category').val())) {
-        $('.checkTip').html('至少有一个查询条件不为空');
+
+		window.top.art.dialog({
+			content: '至少有一个查询条件不为空！',
+			lock: true,
+			width: 250,
+			height: 100,
+			border: false,
+			time: 2
+		});
 		return ;
 	}
 	var paraStr = "&title="+$('#title').val()+"&author="+$('#author').val()+"&category="+$('#category').val();

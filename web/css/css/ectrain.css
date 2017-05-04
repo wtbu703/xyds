@@ -38,10 +38,11 @@
   background-color: #d73455;
   margin-right: 5px;
 }
-.column span {
+.column span a{
   font-size: 20px;
   line-height: 46px;
   margin-right: 20px;
+  color:#000;
 }
 .column a {
   font-size: 14px;
@@ -114,6 +115,7 @@
 }
 .inform_border h5 a {
   color: #000;
+  text-decoration:none;
 }
 .inform_border img {
   width: 100%;
@@ -125,6 +127,7 @@
   padding-top: 10px;
 }
 .inform_border p a {
+   text-decoration:none;
   color: #000;
 }
 .inform_border ul li {
@@ -173,7 +176,6 @@
 }
 .list_train span {
   float: right;
-  color: #0033a1;
-  font-weight: 900;
-  margin-top: 7px;
+  margin-top: 6px;
+  font-family:'宋体';
 }

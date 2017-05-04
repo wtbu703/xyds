@@ -20,7 +20,14 @@ function openadd(){
 //查询功能
 function search(){
 	if(str_is_null($('#dictName').val()) && str_is_null($('#dictState').val())) {
-        $('.checkTip').html('至少有一个查询条件不为空');
+        window.top.art.dialog({
+            content: '查询条件不能为空',
+            lock: true,
+            width: 250,
+            height: 80,
+            border: false,
+            time: 2
+        }, function () {});
 		return ;
 	}
 	var paraStr = "&dictName="+$('#dictName').val()+"&state="+$('#dictState').val();

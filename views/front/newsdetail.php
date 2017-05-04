@@ -1,12 +1,15 @@
-
+<?
+$this->title = '企业新闻';
+?>
 	<link href="css/css/enterprisedisplay_detailnews.css" rel="stylesheet">
 	<link href="css/css/company.css" rel="stylesheet">
 	<script src="js/front/enterprisedisplay_detailnews.js"></script>
 	<script>
 		var shoplinkUrl = "<?=Yii::$app->urlManager->createUrl('company-shoplink/company-shoplink')?>";
-		var onlineUrl = "<?=Yii::$app->urlManager->createUrl('front/online')?>";
+		var onlineUrl = "<?=Yii::$app->urlManager->createUrl('front/detail')?>";
 		var recruitUrl = "<?=Yii::$app->urlManager->createUrl('company-recruit/company-recruit')?>";
 		var companyId = "<?=$companyId?>";
+		var lineUrl = "<?=Yii::$app->urlManager->createUrl('front/line')?>";
 	</script>
 	<img class="img-responsive center-block hidden-xs" src="images/images_enterprisedisplay_news/2banner.jpg" />
 
@@ -19,10 +22,10 @@
 				</div>
 				<span class="">企业展示</span>
 			</div>
-			<div class="col-xs-12 col-md-4 col-md-offset-1 enterprise_search">
+			<!-- <div class="col-xs-12 col-md-4 col-md-offset-1 enterprise_search">
 				<input type="text" name="search" class="search_input col-md-9">
 				<button class="btn btn-default btn-sm btn_search" type="submit"><img src="images/images_enterprisedisplay_news/search.png" alt="搜索图标"></button>
-			</div>
+			</div> -->
 		</div>
 		<!-- end 二级导航 -->
 	</div>
@@ -37,6 +40,8 @@
 							<span><a href="<?=Yii::$app->urlManager->createUrl('front/index')?>">首页</a></span>
 							<span>></span>
 							<span><a href="<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>">企业展示</a></span>
+							<span>></span>
+							<span><a href="<?=Yii::$app->urlManager->createUrl('front/enterprise-detail')?>&id=<?=$companyId?>"><?=$companyName?></a></span>
 							<span>></span>
 							<span>公司新闻</span>
 						</div>
@@ -59,9 +64,9 @@
 							<img class="img-responsive" src="<?=$companyNews->picUrl?>" alt="新闻图片">
 						</div>
 						<div class="col-xs-12"><?=$companyNews->content?></div>
-							<?if(!is_null($companyNews->attachUrls)&&!is_null($companyNews->attachNames)){//如果存在附件?>
+							<?if(!is_null($companyNews->attachUrl)&&!is_null($companyNews->attachName)){//如果存在附件?>
 								<div class="col-xs-12 article_attachment">
-									<span>附件：</span><a href="<?=$companyNews->attachUrls?>"><?=$companyNews->attachNames?></a>
+									<span>附件：</span><a href="<?=$companyNews->attachUrl?>"><?=$companyNews->attachName?></a>
 								</div>
 							<?}?>
 						<?}?>
@@ -71,8 +76,20 @@
 						</div>
 						<div class="col-xs-12">
 							<ul class="page">
-								<li><h5><a href="#">上一篇：2016国家科技奖 蚂蚁金服成唯一获奖ssss</a></h5><span>2017-02-08</span></li>
-								<li><h5><a href="#">下一篇：2016国家科技奖 蚂蚁金服成唯一获奖sss</a></h5><span>2017-02-08</span></li>
+								<?php
+								if($stitle != ''){?>
+									<?php
+									$stime = substr($spublished,0,10);
+									?>
+									<li><div></div><a href="<?=Yii::$app->urlManager->createUrl('front/news-detail')?>&newsId=<?=$sid?>&companyId=<?=$companyId?>"><span>上一篇：<?=$stitle?> <h>&nbsp;<?=$stime?></h></span></a></li>
+								<?}?>
+								<?php
+								if($titles != ''){?>
+									<?php
+									$times = substr($publisheds,0,10);
+									?>
+									<li><div></div><a href="<?=Yii::$app->urlManager->createUrl('front/news-detail')?>&newsId=<?=$ids?>&companyId=<?=$companyId?>"><span>下一篇：<?=$titles?> <h>&nbsp;<?=$times?></h></span></a></li>
+								<?}?>
 							</ul>
 						</div>
 						<!-- end接口 -->

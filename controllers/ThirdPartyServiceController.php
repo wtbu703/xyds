@@ -11,9 +11,15 @@ use yii;
 use yii\base\Controller;
 use app\common\Common;
 use app\models\ThirdPartyService;
+use app\models\Dictitem;
 use yii\data\Pagination;
 use yii\helpers\Json;
 
+/**
+ * 第三方服务
+ * Class ThirdPartyServiceController
+ * @package app\controllers
+ */
 class ThirdPartyServiceController extends Controller{
 
 	/**
@@ -40,7 +46,7 @@ class ThirdPartyServiceController extends Controller{
 
 		if (Yii::$app->request->isPost) {
 
-			$fileArg = Common::upload($_FILES,true,false);
+			$fileArg = Common::upload($_FILES,true,false, 'third_company',2048000);
 			return $this->render('upload',[
 				"fileArg" => $fileArg,
 				"tag" => $fileArg['tag'],
@@ -72,6 +78,12 @@ class ThirdPartyServiceController extends Controller{
 		$serviceSystemBuild->address = Yii::$app->request->post('address');
 		$serviceSystemBuild->fax = Yii::$app->request->post('fax');
 		$serviceSystemBuild->postcode = Yii::$app->request->post('postcode');
+		$serviceSystemBuild->content = Yii::$app->request->post('content');
+		$serviceSystemBuild->publicTime = Yii::$app->request->post('publicTime');
+		$serviceSystemBuild->contact = Yii::$app->request->post('contact');
+		$serviceSystemBuild->sources = Yii::$app->request->post('sources');
+		$serviceSystemBuild->category = Yii::$app->request->post('category');
+		$serviceSystemBuild->datetime = date('Y-m-d H:i:s');
 		if($serviceSystemBuild->save()){
 			return 'success';
 		}else{
@@ -109,6 +121,16 @@ class ThirdPartyServiceController extends Controller{
 			->limit($pages->limit)
 			->all();
 
+		//字典反转
+		$category = Dictitem::find()->where(['dictCode'=>'DICT_COMPANY_CATEGORY'])->all();
+		foreach($models as $key=>$data) {
+			foreach ($category as $index => $value) {
+				if ($data->category == $value->dictItemCode) {
+					$models[$key]->category = $value->dictItemName;
+				}
+			}
+		}
+
 		return $this->render('listall',[
 			'thirdPartyServices' => $models,
 			'pages' => $pages,
@@ -126,18 +148,24 @@ class ThirdPartyServiceController extends Controller{
 		$action = Yii::$app->request->get('action');
 
 		$serviceSystemBuild = ThirdPartyService::findOne($buildId);
+		$category = Dictitem::find()->where(['dictCode' => 'DICT_COMPANY_CATEGORY'])->all();
 
 		//如果是详情页
 		if($action == 'detail'){
+			foreach ($category as $index => $value) {
+				if ($serviceSystemBuild->category == $value->dictItemCode) {
+					$serviceSystemBuild->category = $value->dictItemName;
+				}
+			}
 
 			return $this->render('detail',[
 				'ThirdPartyService' => $serviceSystemBuild
 			]);
 		} elseif($action == 'update')//如果是修改页
 		{
-
 			return $this->render('update',[
-				'ThirdPartyService' => $serviceSystemBuild
+				'ThirdPartyService' => $serviceSystemBuild,
+				'category'=>$category,
 			]);
 		}else{
 			return false;
@@ -160,6 +188,11 @@ class ThirdPartyServiceController extends Controller{
 		$address = Yii::$app->request->post("address");
 		$fax = Yii::$app->request->post("fax");
 		$postcode = Yii::$app->request->post("postcode");
+		$content = Yii::$app->request->post('content');
+		$publicTime = Yii::$app->request->post('publicTime');
+		$contact = Yii::$app->request->post('contact');
+		$sources = Yii::$app->request->post('sources');
+		$category = Yii::$app->request->post('category');
 
 		$serviceSite = ThirdPartyService::findOne($id);
 		if($companyName != ''){
@@ -188,7 +221,18 @@ class ThirdPartyServiceController extends Controller{
 		}
 		if($postcode != ''){
 			$serviceSite->postcode = $postcode;
+		}if($content != ''){
+			$serviceSite->content = $content;
+		}if($publicTime != ''){
+			$serviceSite->publicTime = $publicTime;
+		}if($contact != ''){
+			$serviceSite->contact = $contact;
+		}if($sources != ''){
+			$serviceSite->sources = $sources;
+		}if($category != ''){
+			$serviceSite->category = $category;
 		}
+		$serviceSite->datetime = date('Y-m-d H:i:s');
 
 
 		if($serviceSite->save()){
@@ -249,20 +293,70 @@ class ThirdPartyServiceController extends Controller{
 	public function actionAjax(){
 		$cat = Yii::$app->request->post('cat');
 		$tag = Yii::$app->request->post('tag');
+		$page = Yii::$app->request->post('page');
 		if($cat == '-1'){
 			if($tag == '-1') {
-				return Json::encode(ThirdPartyService::find()->all());
+				$query = ThirdPartyService::find()
+						->count();
+				$pagination = new Pagination([
+						'page' => $page,
+						'defaultPageSize' => 12,
+						'validatePage' => false,
+						'totalCount' => $query,
+				]);
+				$third = ThirdPartyService::find()
+						->offset($pagination->offset)
+						->limit($pagination->limit)
+						->all();
+				$para = [];
+				$para['third'] = Json::encode($third);
+				$para['page'] = $page;
+				$para['pageSize'] = $pagination->defaultPageSize;
+				$para['totalCount'] = $pagination->totalCount;
+
+				return Json::encode($para);
 			}else{
+				$query = ThirdPartyService::find()
+						->count();
+				$pagination = new Pagination([
+						'page' => $page,
+						'defaultPageSize' => 12,
+						'validatePage' => false,
+						'totalCount' => $query,
+				]);
 				$third = ThirdPartyService::find()
 						->where("companyName like '%" . $tag . "%'")
+						->offset($pagination->offset)
+						->limit($pagination->limit)
 						->all();
-				return Json::encode($third);
+				$para = [];
+				$para['third'] = Json::encode($third);
+				$para['page'] = $page;
+				$para['pageSize'] = $pagination->defaultPageSize;
+				$para['totalCount'] = $pagination->totalCount;
+
+				return Json::encode($para);
 			}
 		}else{
+			$query = ThirdPartyService::find()
+					->count();
+			$pagination = new Pagination([
+					'page' => $page,
+					'defaultPageSize' => 12,
+					'validatePage' => false,
+					'totalCount' => $query,
+			]);
 			$third = ThirdPartyService::find()
 					->where('category = :cat',[":cat"=>$cat])
+					->offset($pagination->offset)
+					->limit($pagination->limit)
 					->all();
-			return Json::encode($third);
+			$para = [];
+			$para['third'] = Json::encode($third);
+			$para['page'] = $page;
+			$para['pageSize'] = $pagination->defaultPageSize;
+			$para['totalCount'] = $pagination->totalCount;
+			return Json::encode($para);
 		}
 
 	}

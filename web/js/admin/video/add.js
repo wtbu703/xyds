@@ -1,8 +1,6 @@
 // 加载字典信息
 $(document).ready(function(){
-
-	generateDict('DICT_STATE','state','状态');
-	generateDict('DICT_SIGN','sign','来源种类');
+	generateDict('DICT_SIGN','sign','视频类别');
 });
 //页面校验
 $(function(){
@@ -18,21 +16,14 @@ $(function(){
 		onfocus:"请输入名字！"})
 		.inputValidator({               //校验不能为空
 			min:1,
-			onerror:"请输入名字！"})
+			onerror:"请输入名字！"});
 	$("#content").formValidator({
 				onshow:"请输入介绍！",
 				onfocus:"请输入介绍！"})
 			.inputValidator({               //校验不能为空
 				min:1,
-				onerror:"请输入介绍！"})
-	$("#picUrl").formValidator({
-				onshow:"请上传图片！",
-				onfocus:"请上传图片！"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请上传图片！"})
-
-})
+				onerror:"请输入介绍！"});
+});
 
 /**
  * 添加过滤
@@ -44,12 +35,9 @@ function add(){
 		paraStr += "sign=" + $("#sign").val();
 		paraStr += "&name=" + $("#name").val();
 		paraStr += "&source=" + $("#source").val();
-		paraStr += "&url=" + $("#url").val();
 		paraStr += "&attachUrls=" + $("#attachUrls").val();
-		paraStr += "&attachNames=" + $("#attachNames").val();
 		paraStr += "&content=" + $("#content").val();
 		paraStr += "&picUrl=" + $("#picUrl").val();
-		paraStr += "&duration=" + $("#duration").val();
 		$.ajax({
 			url: insertUrl,
 			type: "post",

@@ -35,6 +35,22 @@ $this->title = '添加培训详情';
                         <td><input type="text" style="width:250px;" name="companyPaid" id="companyPaid" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万元</td>
                     </tr>
                     <tr>
+                        <th>企业网商总数：</th>
+                        <td><input type="text" style="width:250px;" name="companyNum" id="companyNum" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>个</td>
+                    </tr>
+                    <tr>
+                        <th>当月新孵化企业网商：</th>
+                        <td><input type="text" style="width:250px;" name="newCompanyThisM" id="newCompanyThisM" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>个</td>
+                    </tr>
+                    <tr>
+                        <th>个人网商总数：</th>
+                        <td><input type="text" style="width:250px;" name="singleNum" id="singleNum" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>个</td>
+                    </tr>
+                    <tr>
+                        <th>当月新孵化个人网商：</th>
+                        <td><input type="text" style="width:250px;" name="newSingleThisM" id="newSingleThisM" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>个</td>
+                    </tr>
+                    <tr>
                         <th>项目承办单位：</th>
                         <td><input type="text" style="width:250px;" name="organizer" id="organizer"  class="input-text"/></td>
                     </tr>
@@ -68,6 +84,22 @@ $this->title = '添加培训详情';
                             <input type="text" style="display:none;" name="signSheetUrl" id="signSheetUrl" class="input-text"/>
                             <input type="text" style="display:none;" name="signSheetName" id="signSheetName" class="input-text"/>
                             <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('ectrain-info/uploads')?>"></iframe>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>培训时间：</th>
+                        <td><input id="published" name="published" type="text" value="" class="date">
+                            <script type="text/javascript">
+                                Calendar.setup({
+                                    weekNumbers: true,
+                                    inputField : "published",
+                                    trigger    : "published",
+                                    dateFormat: "%Y-%m-%d %k:%M:%S",
+                                    showTime: true,
+                                    minuteStep: 1,
+                                    onSelect   : function() {this.hide();}
+                                });
+                            </script>
                         </td>
                     </tr>
                 </table>

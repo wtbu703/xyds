@@ -211,10 +211,6 @@
 .full_li {
   color: #6c6565;
 }
-.full_li:hover {
-  background-color: #1da297;
-  color: #ffffff;
-}
 .full_active {
   background-color: #1da297;
   color: #ffffff;
@@ -288,14 +284,15 @@
   font-size: 16px;
   font-family: '微软雅黑';
   color: #117ada;
+  padding:3px 0;
 }
 .detail_p{
-  height:90px;
+  /*height:90px;
   overflow:hidden;
   display:-webkit-box;
   -webkit-line-clamp:3;
   -moz-box-orient:vertical;
-  -webkit-box-orient:vertical;
+  -webkit-box-orient:vertical;*/
   font-size: 14px;
   font-family: '微软雅黑';
   color:#777575;
@@ -333,7 +330,20 @@
 }
 .down_:hover {
   text-decoration: none;
+  cursor:pointer ;
 }
 .down_:hover .down_more {
   background-color: #e6e7ea;
+}
+.tipinfo{
+  margin-left:25%;
+  height:400px;
+  background:url(../../images/images_common/tipsinfo.png) no-repeat;
+  background-size:324px 348px;
+}
+.infoo{
+  font-size:20px;
+  position: relative;
+  top:150px;
+  left:80px;
 }

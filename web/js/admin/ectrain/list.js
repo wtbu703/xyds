@@ -20,7 +20,15 @@ function openadd(){
 //查询功能
 function search(){
 	if(str_is_null($('#name').val())&&str_is_null($('#category').val())&&str_is_null($('#period').val())&&str_is_null($('#ectraindateTime_1').val())&&str_is_null($('#ectraindateTime_2').val())) {
-        $('.checkTip').html('查询条件不为空');
+
+		window.top.art.dialog({
+			content: '至少有一个查询条件不为空！',
+			lock: true,
+			width: 250,
+			height: 100,
+			border: false,
+			time: 2
+		});
 		return ;
 	}
 	var paraStr = "&name="+$('#name').val()+"&category="+$('#category').val()+"&period="+$('#period').val()+"&ectraindateTime_1="+$('#ectraindateTime_1').val()+"&ectraindateTime_2="+$('#ectraindateTime_2').val();

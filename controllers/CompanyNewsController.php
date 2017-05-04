@@ -5,6 +5,7 @@ namespace app\controllers;
 use yii;
 use yii\web\Controller;
 use app\models\CompanyNews;
+use app\models\Dictitem;
 use yii\data\Pagination;
 use app\common\Common;
 use yii\helpers\json;
@@ -39,8 +40,10 @@ class CompanyNewsController extends Controller
     {
         $companyNews = new CompanyNews();
         $companyNews->id = Common::create40ID();
-        $companyNews->companyId = Yii::$app->request->post('companyId');
+        $companyNews->companyId = Yii::$app->session['companyId'];
         $companyNews->title = Yii::$app->request->post('title');
+        $companyNews->author = Yii::$app->request->post('author');
+        $companyNews->category = Yii::$app->request->post('category');
         $companyNews->content = Yii::$app->request->post('content');
         $companyNews->keyword = Yii::$app->request->post('keyword');
         $companyNews->attachUrl = Yii::$app->request->post('attachUrl');
@@ -62,8 +65,10 @@ class CompanyNewsController extends Controller
     public function actionUpdate(){
         $id = Yii::$app->request->get('id');
         $companyNews = CompanyNews::findOne($id);
+        $category = Dictitem::find()->where(['dictCode'=>'DICT_COMPANY_CATEGORY'])->all();
         return $this->render('edit',[
             'companyNews'=>$companyNews,
+            'category'=>$category,
         ]);
     }
 
@@ -89,8 +94,10 @@ class CompanyNewsController extends Controller
         if($picUrl != '') {
             $companyNews->picUrl = $picUrl;
         }
-        $companyNews->companyId = Yii::$app->request->post('companyId');
+        $companyNews->companyId = Yii::$app->session['companyId'];
         $companyNews->title = Yii::$app->request->post('title');
+        $companyNews->author = Yii::$app->request->post('author');
+        $companyNews->category = Yii::$app->request->post('category');
         $companyNews->content = Yii::$app->request->post('content');
         $companyNews->keyword = Yii::$app->request->post('keyword');
 
@@ -148,6 +155,12 @@ class CompanyNewsController extends Controller
     public function actionFindOne(){
         $id = Yii::$app->request->get('id');
         $companyNews = CompanyNews::findOne($id);
+        $category = Dictitem::find()->where(['dictCode' => 'DICT_COMPANY_CATEGORY'])->all();
+        foreach ($category as $index => $value) {
+            if ($companyNews->category == $value->dictItemCode) {
+                $companyNews->category = $value->dictItemName;
+            }
+        }
         return $this->render('detail',[
             'companyNews'=>$companyNews
         ]);
@@ -160,6 +173,7 @@ class CompanyNewsController extends Controller
     public function actionFindByAttri(){
         $title = Yii::$app->request->get('title');
         $keyword = Yii::$app->request->get('keyword');
+        $companyId = Yii::$app->session['companyId'];
         $newsdateTime_1 = Yii::$app->request->get('newsdateTime_1');
         $newsdateTime_2 = Yii::$app->request->get('newsdateTime_2');
 
@@ -169,7 +183,7 @@ class CompanyNewsController extends Controller
         $para['newsdateTime_1'] = $newsdateTime_1;
         $para['newsdateTime_2'] = $newsdateTime_2;
 
-        $whereStr = '1=1';
+        $whereStr = 'companyId = "' . $companyId . '"';
         if($title != ''){
             $whereStr = $whereStr . " and title like '%" . $title . "%'" ;
         }
@@ -226,7 +240,7 @@ class CompanyNewsController extends Controller
             $isThumb = Yii::$app->request->get('isThumb');
             $views = 'uploads';
             if(is_null($isThumb)){
-                $fileArg = Common::upload($_FILES,true,false);
+                $fileArg = Common::upload($_FILES,true,false,'company_news',2048000);
             }else{
                 $fileArg = Common::upload($_FILES,true,true);
                 $views = 'uploads';
@@ -274,12 +288,43 @@ class CompanyNewsController extends Controller
 	 */
 	public function actionAllNews(){
 		$newsType = Yii::$app->request->post('newsType');
+        $newsType = $newsType-1;
 		$companyId = Yii::$app->request->post('companyId');
-		$articles = CompanyNews::find()
-			->where('category = :type and companyId = :companyId',[":type"=>$newsType,":companyId" => $companyId])
-			->limit(6)
-			->orderBy(['datetime'=>SORT_DESC])
-			->all();
-		return Json::encode($articles);
+        $page = Yii::$app->request->post('page');
+        if($newsType == -1){
+            $query = CompanyNews::find()
+                ->count();
+        }else{
+            $query = CompanyNews::find()
+                ->where('category=:category', [':category' => $newsType])
+                ->count();
+        }
+        $pagination = new Pagination([
+            'page' => $page,
+            'defaultPageSize' => 10,
+            'validatePage' => false,
+            'totalCount' => $query,
+        ]);
+        if($newsType == -1) {
+            $articles = CompanyNews::find()
+                ->orderBy(['published' => SORT_DESC])
+                ->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
+        }else{
+            $articles = CompanyNews::find()
+                ->where('category = :type and companyId = :companyId', [":type" => $newsType, ":companyId" => $companyId])
+                ->orderBy(['published' => SORT_DESC])
+                ->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
+        }
+
+        $para = [];
+        $para['news'] = Json::encode($articles);
+        $para['page'] = $page;
+        $para['pageSize'] = $pagination->defaultPageSize;
+        $para['totalCount'] = $pagination->totalCount;
+		return Json::encode($para);
 	}
 }

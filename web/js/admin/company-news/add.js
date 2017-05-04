@@ -1,4 +1,8 @@
+// 加载字典信息
+$(document).ready(function(){
 
+	generateDict('DICT_NEW_CATEGORY','category','企业类别');
+})
 //页面校验
 $(function(){
 	$.formValidator.initConfig({
@@ -20,6 +24,9 @@ $(function(){
 			.inputValidator({               //校验不能为空
 				min:1,
 				onerror:"请输入新闻内容！"})
+	$("#keyword").formValidator({
+				onshow:"关键词请用空格隔开",
+				onfocus:"关键词请用空格隔开！"})
 
 })
 
@@ -33,6 +40,8 @@ function add(){
 		var paraStr = "";
 		paraStr += "companyId=" + $("#companyId").val();
 		paraStr += "&title=" + $("#title").val();
+		paraStr += "&category=" + $("#category").val();
+		paraStr += "&author=" + $("#author").val();
 		paraStr += "&content=" + encodeURIComponent(contentEditor.getData());
 		paraStr += "&keyword=" + $("#keyword").val();
 		paraStr += "&attachUrl=" + $("#attachUrls").val();

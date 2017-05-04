@@ -22,9 +22,6 @@ $this->title =  '文章管理';
         <?php if($add){?>
         <a class="add fb" href="javascript:openadd();void(0);"><em>添加文章</em></a>
         <?php }?>
-        <?php if($excel){ ?>
-        <a class="add fb" href="<?=yii::$app->urlManager->createUrl('article/excel')?>"><em>导出为Excel文件</em></a>
-        <?php }?>
     </div>
 </div>
 <div class="pad-lr-10">

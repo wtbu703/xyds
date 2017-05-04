@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\MenuRole;
 use Yii;
 use yii\web\Controller;
 use app\models\Admin;
@@ -81,6 +82,13 @@ class AdminController extends Controller{
 	            if (!empty($admin_role->roleId)) {
 		            Yii::$app->session['roleId'] = $admin_role->roleId;
 	            }
+
+	            if(!empty($admin->siteId)){//服务站点Id存入session
+		            Yii::$app->session['siteId'] = $admin->siteId;
+	            }
+	            if(!empty($admin->companyId)){//企业ID存入session
+		            Yii::$app->session['companyId'] = $admin->companyId;
+	            }
                 Yii::$app->session->remove('checkCode');
                 return 'success';
 
@@ -139,11 +147,8 @@ class AdminController extends Controller{
      */
     public function actionLogout(){
 
-        Yii::$app->session->remove('username');
-        Yii::$app->session->remove('userId');
-        Yii::$app->session->remove('truename');
-        Yii::$app->session->remove('userType');
-        Yii::$app->session->remove('roleId');
+	    //Yii::$app->session->clear();
+	    Yii::$app->session->destroy();
         Yii::$app->cache->flush();
         return $this->render('index');
 
@@ -335,17 +340,19 @@ class AdminController extends Controller{
         $menuId = Yii::$app->request->post('menuId');
         $backendMenuOne = Menu::findOne($menuId);
         if($backendMenuOne->menuLevel == "1"){
-            $this->backendMenus =  Menu::find()
-                ->where('upLevelMenu = :id',[':id'=>$backendMenuOne->id])
+            $menus =  Menu::find()
+                ->where('upLevelMenu = :id',[':id'=>$menuId])
                 ->all();
-            foreach($this->backendMenus as $key=>$value){
+            foreach($menus as $key=>$value){
                 Menu::deleteAll('upLevelMenu = :id',[':id'=>$value->id]);
             }
-            Menu::deleteAll('uplevelMenu = :id',[':id'=>$backendMenuOne->id]);
+            Menu::deleteAll('uplevelMenu = :id',[':id'=>$menuId]);
+
         }elseif($backendMenuOne->menuLevel == "2") {
-            Menu::deleteAll('upLevelMenu = :id', [':id' => $backendMenuOne->id]);
+            Menu::deleteAll('upLevelMenu = :id', [':id' => $menuId]);
         }
         if(Menu::findOne($menuId)->delete()){
+	        MenuRole::deleteAll('menuId = :menuId',[':menuId'=>$menuId]);
             return "success";
         }else{
             return "fail";

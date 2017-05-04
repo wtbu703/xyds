@@ -1,5 +1,5 @@
-$(document).ready(function(){
-     /*公司店铺链接*/
+function companyStore(){
+
     var store = $('.store_link');//定位到需要插入的DIV
     var store_html = [];//新建一个数组变量
     $.ajax({
@@ -10,10 +10,15 @@ $(document).ready(function(){
         async: false,
         success:function(data){//如果成功即执行
             store_html.push('<div class="link_title clearfix"><img class="img-responsive " src="images/images_enterprisedetail/icon1.png" alt="图标"><h4>公司店铺链接</h4></div>');
+
+            if(data == '')
+            {
+                store_html.push('<div class="empty"><span class="empty1">主人太懒，<br>暂无相关消息</span></div>');
+            }
             store_html.push('<ul>');
             $.each(data,function(i,n){//遍历返回的数据
                 {
-                   if(i==0){
+                    if(i==0){
                         store_html.push('<li class="link_name clearfix"><img class="img-responsive" src="images/images_enterprisedetail/JD.png" alt="京东"><a href="'+n.shopLink+'"><span>京东</span></a></li>');
                     }
                     else if(i==1){
@@ -34,12 +39,13 @@ $(document).ready(function(){
             store_html.push('</ul>');
             store.append(store_html.join(''));//把数组插入到已定位的DIV
         },
-    
+
         error:function(){
-            
+
         }
     });
-    /*公司新闻 循环9次*/
+}
+function companyNews(){
     var news = $('.company_news');//定位到需要插入的DIV
     var news_html = [];//新建一个数组变量
     $.ajax({
@@ -49,25 +55,31 @@ $(document).ready(function(){
         data : "companyId="+companyId,
         async: false,
         success:function(data){//如果成功即执行
-            news_html.push('<div class="link_title clearfix"><img class="img-responsive " src="images/images_enterprisedetail/icon1.png" alt="图标"><h4>公司新闻</h4></div>');
-            $.each(data,function(i,n){//遍历返回的数据 
+            if(data == '')
+            {
+                news_html.push('<div class="link_title clearfix"><img class="img-responsive " src="images/images_enterprisedetail/icon1.png" alt="图标"><h4>公司新闻</h4></div>');
+                news_html.push('<div class="empty"><span class="empty1">主人太懒，<br>暂无相关消息</span></div>');
+            }
+            else{
+                news_html.push('<div class="link_title clearfix"><img class="img-responsive " src="images/images_enterprisedetail/icon1.png" alt="图标"><h4>公司新闻</h4><a href="'+newsallUrl+'&companyId='+companyId+'">>>更多</a></div>');
+            }
+            $.each(data,function(i,n){//遍历返回的数据
                 {
-                    news_html.push('<div class="news clearfix"><div></div><a href="enterprisedisplay_detailnews.html">'+n.content+'</a></div>');
+                    news_html.push('<div class="news clearfix"><div></div><a href="'+newsDetailUrl+'&newsId='+n.id+'&companyId='+n.companyId+'">'+n.content+'</a></div>');
                 }
                 //以原格式组装好数组
             });
             news.append(news_html.join(''));//把数组插入到已定位的DIV
         },
-    
+
         error:function(){
-            
+
         }
     });
-
-    /*公司招聘 循环9次*/
+}
+function companyRecruit(){
     var recruit = $('.company_recruit');//定位到需要插入的DIV
     var recruit_html = [];//新建一个数组变量
-    recruit_html.push('<div class="link_title clearfix"><img class="img-responsive " src="images/images_enterprisedetail/icon1.png" alt="图标"><h4>公司招聘</h4></div>');
     $.ajax({
         url: recruitUrl,//后台给的
         type: "post",//发送方法
@@ -75,21 +87,38 @@ $(document).ready(function(){
         data : "companyId="+companyId,
         async: false,
         success:function(data){//如果成功即执行
-            $.each(data,function(i,n){//遍历返回的数据 
+            if(data == '')
+            {
+                recruit_html.push('<div class="link_title clearfix"><img class="img-responsive " src="images/images_enterprisedetail/icon1.png" alt="图标"><h4>公司招聘</h4></div>');
+                recruit_html.push('<div class="empty"><span class="empty1">主人太懒，<br>暂无相关消息</span></div>');
+            }
+            else{
+                recruit_html.push('<div class="link_title clearfix"><img class="img-responsive " src="images/images_enterprisedetail/icon1.png" alt="图标"><h4>公司招聘</h4><a href="'+lineUrl+'">>>更多</a></div>');
+            }
+            $.each(data,function(i,n){//遍历返回的数据
                 {
-                    var arry = split(n.demand);
-                    recruit_html.push('<div class="recruit clearfix"><div></div><a href="'+onlineUrl+'">'+n.position+'</a>');
-                    recruit_html.push('<h5>'+arry[0]+'<span>|</span>'+arry[1]+'<span>|</span>'+arry[2]+'</h5>');
+                    recruit_html.push('<div class="recruit clearfix"><div></div><a href="'+onlineUrl+'&id='+n.id+'&companyId='+companyId+'">'+n.position+'</a>');
+                    recruit_html.push('<h5>'+n.workPlace+'<span>|</span>'+n.record+'<span>|</span>'+n.salary+'<span>|</span>'+n.exp+'</h5>');
                     recruit_html.push('</div>');
-                }   
+
+                }
                 //以原格式组装好数组
             });
             recruit.append(recruit_html.join(''));//把数组插入到已定位的DIV
         },
-    
+
         error:function(){
-            
+
         }
     });
-    
+}
+$(document).ready(function(){
+    /*公司店铺链接*/
+    companyStore();
+    /*公司新闻 循环9次*/
+    companyNews();
+
+    /*公司招聘 循环9次*/
+    companyRecruit();
+
 });

@@ -59,7 +59,7 @@
   /*webkit*/
   box-shadow: -2px 2px 5px #d2d2d2;
   /*opera或ie9*/
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   /* 字体颜色 */
 }
 .store_link .link_title {
@@ -121,8 +121,8 @@
   /*webkit*/
   box-shadow: -2px 2px 5px #d2d2d2;
   /*opera或ie9*/
-  margin-top: 20px;
   padding-bottom: 20px;
+  margin-top: 20px;
   /* 字体颜色 */
   /* 新闻字体 */
 }
@@ -139,6 +139,15 @@
   font-family: "微软雅黑";
   font-weight: bold;
   color: #585858;
+  display: inline-block;
+}
+.company_news .link_title a {
+  float: right;
+  font-family: "微软雅黑";
+  font-weight: bold;
+  color: #585858;
+  margin-top: 10px;
+  margin-right: 10px;
 }
 .company_news .news {
   margin-top: 10px;
@@ -178,11 +187,11 @@
   /*webkit*/
   box-shadow: -2px 2px 5px #d2d2d2;
   /*opera或ie9*/
+  padding-bottom: 20px;
   /* 字体颜色 */
   /* 职位颜色 */
   /* 分割线颜色 */
   margin-top: 20px;
-  padding-bottom: 20px;
 }
 .company_recruit .link_title {
   padding-top: 25px;
@@ -197,10 +206,19 @@
   font-family: "微软雅黑";
   font-weight: bold;
   color: #585858;
+  display: inline-block;
+}
+.company_recruit .link_title a {
+  float: right;
+  font-family: "微软雅黑";
+  font-weight: bold;
+  color: #585858;
+  margin-top: 10px;
+  margin-right: 10px;
 }
 .company_recruit .recruit {
   margin-top: 10px;
-  border-bottom: 2px solid #7d7d7d;
+  border-bottom: 2px solid #efefef;
 }
 .company_recruit .recruit div {
   background: #000000;
@@ -213,12 +231,12 @@
 .company_recruit .recruit a {
   font-size: 16px;
   font-family: "微软雅黑";
-  color: #c62f2f;
+  color: #313131;
   text-decoration: none;
   padding-left: 10px;
 }
 .company_recruit .recruit h5 {
-  font-family: "宋体";
+  font-family: "微软雅黑";
   margin-left: 20px;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
@@ -229,4 +247,25 @@
 .company_recruit .recruit h5 span {
   margin-left: 5px;
   margin-right: 5px;
+}
+.empty {
+  background-image: url(../../images/images_common/tipsinfo.png);
+  height: 348px;
+  background-size: 324px 348px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+span.empty1 {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  color: #484a4a;
+  font-size: 18px;
+}
+span.empty2 {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  color: #484a4a;
+  font-size: 18px;
 }

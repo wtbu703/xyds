@@ -5,6 +5,23 @@ $this->title = '添加培训信息';
 <script type="text/javascript">
     var listallUrl = "<?=yii::$app->urlManager->createUrl('ectrain/find-by-attri')?>";
     var insertUrl = "<?=yii::$app->urlManager->createUrl('ectrain/add-one')?>";
+    function pic(){
+        var a;
+        a = document.myform.picUrl.value;
+        arr = a.split(';');
+        for(i in arr) {
+            ar = "<img src='" + arr[i] + "'  width='60%'>";
+            var timeText = $('.pic_text'+i);
+            timeText.html(ar);
+        }
+    }
+    function bigPic(){
+        var a;
+        var timeText = $('.pic_text4');
+        a = document.myform.thumbnailUrl.value;
+        a = "<img src='"+a+"'  width='60%'>";
+        timeText.html(a);
+    }
 </script>
 <script type="text/javascript" src="js/admin/ectrain/add.js"></script>
 
@@ -75,6 +92,22 @@ $this->title = '添加培训信息';
                         <td><input type="text" style="width:250px;"  name="publisher" id="publisher" class="input-text"></td>
                     </tr>
                     <tr>
+                        <th>培训开始时间：</th>
+                        <td><input id="time" name="time" type="text" value="" class="date">
+                            <script type="text/javascript">
+                                Calendar.setup({
+                                    weekNumbers: true,
+                                    inputField : "time",
+                                    trigger    : "time",
+                                    dateFormat: "%Y-%m-%d %k:%M:%S",
+                                    showTime: true,
+                                    minuteStep: 1,
+                                    onSelect   : function() {this.hide();}
+                                });
+                            </script>
+                        </td>
+                    </tr>
+                    <tr onmouseout="pic()">
                         <th>缩略图：</th>
                         <td>
                             <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
@@ -82,11 +115,27 @@ $this->title = '添加培训信息';
                         </td>
                     </tr>
                     <tr>
+                        <th>图片预览：</th>
+                        <td class="pic_text0"></td>
+                    </tr>
+                    <tr>
+                        <th>图片预览：</th>
+                        <td class="pic_text1"></td>
+                    </tr>
+                    <tr>
+                        <th>图片预览：</th>
+                        <td class="pic_text2"></td>
+                    </tr>
+                    <tr onmouseout="bigPic()">
                         <th>大图：</th>
                         <td>
                             <input type="text" style="display:none;" name="thumbnailUrl" id="thumbnailUrl" class="input-text"/>
-                            <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl(['ectrain/upload','detail'=>'detail'])?>"></iframe>
+                            <iframe frameborder=0 width="100%" height=40px scrolling=no src="<?=yii::$app->urlManager->createUrl(['ectrain/upload','detail'=>'detail'])?>"></iframe>
                         </td>
+                    </tr>
+                    <tr>
+                        <th>大图预览：</th>
+                        <td class="pic_text4"></td>
                     </tr>
                 </table>
             </div>

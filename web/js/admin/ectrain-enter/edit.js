@@ -1,8 +1,4 @@
-// 加载字典信息
-$(document).ready(function(){
 
-	generateDict('DICT_SEX','gender','性别');
-})
 $(function(){
 	$.formValidator.initConfig({
 		formid:"myform",

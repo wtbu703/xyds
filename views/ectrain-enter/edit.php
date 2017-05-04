@@ -42,6 +42,18 @@ $this->title = "修改培训报名信息";
                             <th width="100">年龄</th>
                             <td><input type="text" id="age"  class="input-text" style="width:270px;" value="<?=$ectrainEnter->age?>" /></td>
                         </tr>
+                        <tr>
+                            <th width="100px">性别</th>
+                            <td><select style="width:270px;" id="gender">
+                                    <?foreach($sex as $key => $val){?>
+                                        <?if(intval($val->dictItemCode) == $ectrainEnter->gender){?>
+                                            <option name="gender" value="<?=$val->dictItemCode?>" selected><?=$val->dictItemName?></option>
+                                        <?}else{?>
+                                            <option name="gender" value="<?=$val->dictItemCode?>"><?=$val->dictItemName?></option>
+                                        <?}?>
+                                    <?}?>
+                                </select></td>
+                        </tr>
 
                         </tbody>
                     </table>

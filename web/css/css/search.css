@@ -17,6 +17,9 @@
   font-size: 14px;
   font-family: '微软雅黑';
 }
+.searchcon{
+  margin-left:25px;
+}
 .content_con {
   padding: 0;
   font-size: 14px;
@@ -29,19 +32,26 @@
 .content_box {
   padding: 0 15px;
 }
-.content_con h4 {
+.content_con h4 a{
+  text-decoration: none;
+  color:#000;
   font-size: 18px;
   font-weight: bold;
 }
 .content_con span {
   padding-right: 8px;
 }
-.content_con p {
+.content_con p a{
+  text-decoration: none;
+  color:#000;
   font-size: 16px;
   font-weight: Regular;
   font-family: '微软雅黑';
   margin-top: 10px;
-}
+}.content_con h4 a:hover,
+ .content_con p a:hover{
+   color:#c62f2f;
+ }
 .content_line {
   margin: 0;
   margin-top: 20px;
@@ -50,19 +60,15 @@
 .row_page {
   margin-top: 20px;
 }
-.pagination > li > a:hover,
-.pagination > li > span:hover,
-.pagination > li > a:focus,
-.pagination > li > span:focus {
-  color: #d73455;
-  background-color: #fff;
-  border-color: #d73455;
+.tipinfo{
+  margin-left:25%;
+  height:400px;
+  background:url(../../images/images_common/tipsinfo.png) no-repeat;
+  background-size:324px 348px;
 }
-.pagination li a {
-  margin-left: 10px;
-  border-radius: 6px;
-  color: #8c8c8c;
-}
-.pagination li a.fen {
-  border-style: none;
+.infoo{
+  font-size:20px;
+  position: relative;
+  top:150px;
+  left:80px;
 }

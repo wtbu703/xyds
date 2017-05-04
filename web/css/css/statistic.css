@@ -97,10 +97,22 @@ hr {
   display: block;
   padding: 10px 35px;
 }
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: #1c8bd9;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+  cursor: default;
+}
 /* 右侧切换 */
 .nav_right {
   border-radius: 4px 4px 0 0;
   border: 1px solid #e5e5e5;
+}
+ul.nav_right li:hover a {
+  color: #1c8bd9;
 }
 .tab-content .tab-pane {
   margin: 5px auto;
@@ -166,24 +178,25 @@ hr {
   display: none;
 }
 /* 底部表格 */
+ul.nav li a {
+  cursor: pointer;
+  color: #555;
+}
 .row_bottom {
   margin-top: 40px;
 }
-.row_bottom table {
-  margin: 10px auto;
-  filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
-  /*for ie6,7,8*/
-  background-color: #fff;
-  -moz-box-shadow: 0px 0px 5px #d2d2d2;
-  /*firefox*/
-  -webkit-box-shadow: 0px 0px 5px #d2d2d2;
-  /*webkit*/
-  box-shadow: 0px 0px 5px #d2d2d2;
-  /*opera或ie9*/
+.doubleColumn,
+.cover,
+.expressCompany,
+.expressAdressee,
+.netBussiness,
+.netPerson,
+.basicStruct {
+  width: 100%;
+  max-width: 800px;
 }
-.row_bottom table caption {
-  margin-top: 10px ;
-  margin-bottom: 10px ;
-  font-family: "微软雅黑";
-  font-size: 16px;
+.ecAll,
+.ecBussiness {
+  width: 100%;
+  max-width: 400px;
 }

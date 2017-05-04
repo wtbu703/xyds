@@ -1,9 +1,4 @@
-// 加载字典信息
-$(document).ready(function(){
 
-	generateDict('DICT_STATE','state','状态');
-	generateDict('DICT_SIGN','sign','来源种类');
-})
 //页面校验
 $(function(){
 	$.formValidator.initConfig({
@@ -33,10 +28,9 @@ function edit(){
 		paraStr += "&sign=" + $("#sign").val();
 		paraStr += "&name=" + $("#name").val();
 		paraStr += "&source=" + $("#source").val();
-		paraStr += "&url=" + $("#url").val();
+		paraStr += "&url=" + $("#attachUrls").val();
 		paraStr += "&content=" + $("#content").val();
 		paraStr += "&picUrl=" + $("#picUrl").val();
-		paraStr += "&duration=" + $("#duration").val();
 		$.ajax({
 			url: updateUrl,
 			type: "post",

@@ -34,7 +34,7 @@
 /* 公司店铺链接 */
 .store_link{
 	.shadow;
-	padding-bottom:30px;
+	padding-bottom: 20px;
 	@focolor:#000;/* 字体颜色 */
 	@focolor1:#585858;
 	@linkbg:#e6e7ea;
@@ -93,8 +93,8 @@
 /* 公司新闻 */
 .company_news{
 	.shadow;
+	padding-bottom: 20px;
 	margin-top:20px;
-	padding-bottom:20px;
 	@focolor:#585858;/* 字体颜色 */
 	@fohover:#c62f2f;
 	@newscolor:#000000;/* 新闻字体 */
@@ -107,11 +107,13 @@
 			margin-right: 5px;
 		}
 		h4{
-			
 			font-family: "微软雅黑";
 			font-weight: bold;
 			color:@focolor;
+			display: inline-block;
 		}
+		a{.header_r;font-family: "微软雅黑";
+			font-weight: bold;color:@focolor;margin-top: 10px;margin-right:10px;}
 	}
 	.news{
 		margin-top:10px;
@@ -140,12 +142,12 @@
 /* 公司招聘 */
 .company_recruit{
 	.shadow;
+	padding-bottom: 20px;
 	@focolor1:#585858;
 	@newscolor:#000000;/* 字体颜色 */
-	@recruitco:#c62f2f;/* 职位颜色 */
-	@borderc:#7d7d7d;/* 分割线颜色 */
+	@recruitco:#313131;/* 职位颜色 */
+	@borderc:#efefef;/* 分割线颜色 */
 	margin-top:20px;
-	padding-bottom:20px;
 	.link_title{
 		padding-top:25px;
 		margin-left: 25px;
@@ -159,7 +161,10 @@
 			font-family: "微软雅黑";
 			font-weight: bold;
 			color:@focolor1;
+			display: inline-block;
 		}
+		a{.header_r;font-family: "微软雅黑";
+			font-weight: bold;color:@focolor1;margin-top: 10px;margin-right:10px;}
 	}
 	.recruit{
 		margin-top:10px;
@@ -180,7 +185,7 @@
 			padding-left:10px;
 		}
 		h5{
-			font-family: "宋体";
+			font-family: "微软雅黑";
 			margin-left:20px;
 			.article_title(20px);
 			span{
@@ -190,3 +195,7 @@
 		}
 	}
 }
+//标签样式
+.empty{background-image:url(../../images/images_common/tipsinfo.png); height:348px;background-size: 324px 348px;background-repeat:no-repeat;background-position: center;}
+span.empty1{position: absolute;top:50%;left:25%;color:#484a4a;font-size:18px;}
+span.empty2{position: absolute;top:40%;left:45%;color:#484a4a;font-size:18px;}

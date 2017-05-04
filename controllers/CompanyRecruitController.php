@@ -35,13 +35,18 @@ class CompanyRecruitController extends Controller{
     public function actionAddOne(){
         $companyRecruit = new CompanyRecruit();
         $companyRecruit->id = Common::create40ID();
-        $companyRecruit->companyId = Yii::$app->request->post('companyId');
+        $companyRecruit->companyId = Yii::$app->session['companyId'];
         $companyRecruit->position = Yii::$app->request->post('position');
         $companyRecruit->demand = Yii::$app->request->post('demand');
         $companyRecruit->mobile = Yii::$app->request->post('mobile');
         $companyRecruit->tel = Yii::$app->request->post('tel');
         $companyRecruit->email = Yii::$app->request->post('email');
         $companyRecruit->contacts = Yii::$app->request->post('contacts');
+        $companyRecruit->workPlace = Yii::$app->request->post('workPlace');
+        $companyRecruit->record = Yii::$app->request->post('record');
+        $companyRecruit->salary = Yii::$app->request->post('salary');
+        $companyRecruit->contacts = Yii::$app->request->post('contacts');
+        $companyRecruit->datetime = date('Y-m-d H:i:s');
 
         if($companyRecruit->save()){
             return "success";
@@ -56,11 +61,12 @@ class CompanyRecruitController extends Controller{
      */
     public function actionFindByAttri(){
         $position = Yii::$app->request->get('position');
+        $companyId = Yii::$app->session['companyId'];
 
         $para = [];
         $para['position'] = $position;
 
-        $whereStr = '1=1';
+        $whereStr = 'companyId = "' . $companyId . '"';
         if($position != ''){
             $whereStr = $whereStr . " and position like '%" . $position ."%'";
         }
@@ -94,13 +100,18 @@ class CompanyRecruitController extends Controller{
     public function actionUpdateOne(){
         $id = Yii::$app->request->post('id');
         $companyRecruit = CompanyRecruit::findOne($id);
-        $companyRecruit->companyId = Yii::$app->request->post('companyId');
+        $companyRecruit->companyId = Yii::$app->session['companyId'];
         $companyRecruit->position = Yii::$app->request->post('position');
         $companyRecruit->demand = Yii::$app->request->post('demand');
         $companyRecruit->mobile = Yii::$app->request->post('mobile');
         $companyRecruit->tel = Yii::$app->request->post('tel');
         $companyRecruit->email = Yii::$app->request->post('email');
         $companyRecruit->contacts = Yii::$app->request->post('contacts');
+        $companyRecruit->workPlace = Yii::$app->request->post('workPlace');
+        $companyRecruit->record = Yii::$app->request->post('record');
+        $companyRecruit->salary = Yii::$app->request->post('salary');
+        $companyRecruit->contacts = Yii::$app->request->post('contacts');
+        $companyRecruit->datetime = date('Y-m-d H:i:s');
 
         if($companyRecruit->save()){
             return "success";

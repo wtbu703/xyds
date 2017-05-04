@@ -1,3 +1,7 @@
+// 加载字典信息
+$(document).ready(function(){
+	generateDict('DICT_COMPANY_CATEGORY','category','企业类别');
+})
 //页面校验
 $(function() {
     $.formValidator.initConfig({
@@ -41,11 +45,16 @@ function add(){
 		paraStr = "companyName=" + $('#companyName').val()
             + "&logoUrl=" + $('#attachUrls').val()
             + "&introduction=" + $('#introduction').val()
+ 			+ "&content=" + encodeURIComponent(contentEditor.getData())
             + "&tel=" + $('#tel').val()
             + "&email=" + $('#email').val()
             + "&address=" + $('#address').val()
             + "&fax=" + $('#fax').val()
-            + "&postcode=" + $('#postcode').val();
+            + "&postcode=" + $('#postcode').val()
+			+ "&publicTime=" + $('#publicTime').val()
+			+ "&contact=" + $('#contact').val()
+			+ "&sources=" + $('#sources').val()
+			+ "&category=" + $('#category').val();
 		$.ajax({
 			url: saveUrl,
 			type: "post",

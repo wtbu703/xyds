@@ -12,6 +12,7 @@
 	                <th width="80px" align="left"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th>
 		            <th width="30px">序号</th>
 		            <th width="160px">企业名</th>
+                    <th width="160px">企业类别</th>
 		            <th width="160px">简介</th>
 		            <th>操作</th>
 	            </tr>
@@ -23,6 +24,7 @@
 	                    <td align="left"><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
 	                    <td><?=$index+$pages->page*$pages->pageSize+1?></td>
 	                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->companyName?>')"><?=$val->companyName?></a></td>
+                        <td><?=$val->category?></td>
 		                <td><?=$val->introduction?></td>
 	                    <td align="center">
 	                        <?/*if($edit){*/?><a href="javascript:update('<?=$val->id?>','<?=$val->companyName?>')">修改</a>&nbsp;&nbsp;|<?/*}*/?>

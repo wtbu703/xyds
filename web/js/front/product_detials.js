@@ -1,31 +1,8 @@
 $(document).ready(function(){
-
-    /*公司新闻 循环9次*/
-    var news = $('.company_news');//定位到需要插入的DIV
-    var news_html = [];//新建一个数组变量
-    $.ajax({
-        url: newsUrl,//后台给的
-        type: "post",//发送方法
-        dataType: "json",//返回的数据格式
-        data : "companyId="+companyId,
-        async: false,
-        success:function(data){//如果成功即执行
-            news_html.push('<div class="link_title clearfix"><img class="img-responsive " src="images/images_enterprisedetail/icon1.png" alt="图标"><h4>公司新闻</h4></div>');
-            $.each(data,function(i,n){//遍历返回的数据 
-                {
-                    news_html.push('<div class="news clearfix"><div></div><a href="enterprisedisplay_detailnews.html">'+n.content+'</a></div>');
-                }
-                //以原格式组装好数组
-            });
-            news.append(news_html.join(''));//把数组插入到已定位的DIV
-        },
-
-        error:function(){
-
-        }
-    });
-
-     /*公司店铺链接*/
+    companyStore();//右边栏店铺链接，公司新闻
+    companyNews();//更多产品
+});
+function companyStore(){
     var store = $('.store_link');//定位到需要插入的DIV
     var store_html = [];//新建一个数组变量
     $.ajax({
@@ -36,6 +13,11 @@ $(document).ready(function(){
         async: false,
         success:function(data){//如果成功即执行
             store_html.push('<div class="link_title clearfix"><img class="img-responsive " src="images/images_enterprisedetail/icon1.png" alt="图标"><h4>公司店铺链接</h4></div>');
+
+            if(data == '')
+            {
+                store_html.push('<div class="empty"><span class="empty1">主人太懒，<br>暂无相关消息</span></div>');
+            }
             store_html.push('<ul>');
             $.each(data,function(i,n){//遍历返回的数据
                 {
@@ -65,5 +47,36 @@ $(document).ready(function(){
 
         }
     });
-   
-});
+}
+function companyNews(){
+    var news = $('.company_news');//定位到需要插入的DIV
+    var news_html = [];//新建一个数组变量
+    $.ajax({
+        url: productAllUrl,//后台给的
+        type: "post",//发送方法
+        dataType: "json",//返回的数据格式
+        data : "companyId="+companyId,
+        async: false,
+        success:function(data){//如果成功即执行
+            if(data == '')
+            {
+                news_html.push('<div class="link_title clearfix"><img class="img-responsive " src="images/images_enterprisedetail/icon1.png" alt="图标"><h4>更多产品</h4></div>');
+                news_html.push('<div class="empty"><span class="empty1">主人太懒，<br>暂无相关消息</span></div>');
+            }
+            else{
+                news_html.push('<div class="link_title clearfix"><img class="img-responsive " src="images/images_enterprisedetail/icon1.png" alt="图标"><h4>更多产品</h4><a href="'+productUrl+'&id='+companyId+'">>>更多</a></div>');
+            }
+            $.each(data,function(i,n){//遍历返回的数据
+                {
+                    news_html.push('<div class="news clearfix"><div></div><a href="'+productDetailUrl+'&productId='+n.id+'&companyId='+companyId+'">'+n.name+'</a></div>');
+                }
+                //以原格式组装好数组
+            });
+            news.append(news_html.join(''));//把数组插入到已定位的DIV
+        },
+
+        error:function(){
+
+        }
+    });
+}

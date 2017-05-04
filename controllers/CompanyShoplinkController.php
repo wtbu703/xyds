@@ -5,7 +5,9 @@ namespace app\controllers;
 use yii;
 use yii\web\Controller;
 use app\models\CompanyShoplink;
+use app\models\Company;
 use app\models\Dictitem;
+use yii\db\Query;
 use yii\data\Pagination;
 use app\common\Common;
 use yii\helpers\Json;
@@ -35,17 +37,26 @@ class CompanyShoplinkController extends Controller{
      * 添加一条记录
      */
     public function actionAddOne(){
-        $companyShoplink = new CompanyShoplink();
-        $companyShoplink->id = Common::create40ID();
-        $companyShoplink->companyId = Yii::$app->request->post('companyId');
-        $companyShoplink->shopName = Yii::$app->request->post('shopName');
-        $companyShoplink->shopLink = Yii::$app->request->post('shopLink');
-        $companyShoplink->platform = Yii::$app->request->post('platform');
-        if($companyShoplink->save()){
-            return "success";
-        }else{
-            return "fail";
+        $companyId = Yii::$app->session['companyId'];
+        $shopName = Yii::$app->request->post('shopName');
+        $shopLink = Yii::$app->request->post('shopLink');
+        $platform = Yii::$app->request->post('platform');
+        //$dictItemOrders_arry = explode('-',$dictItemOrders);
+        $shopName_arry = explode('-',$shopName);
+        $shopLink_arry = explode('-',$shopLink);
+        $platform_arry = explode('-',$platform);
+
+        foreach($shopName_arry as $key=>$data)
+        {
+            $companyShoplink = new CompanyShoplink();
+            $companyShoplink->id = Common::generateID();
+            $companyShoplink->companyId = $companyId;
+            $companyShoplink->shopName = $shopName_arry[$key];
+            $companyShoplink->shopLink = $shopLink_arry[$key];
+            $companyShoplink->platform = $platform_arry[$key];
+            $companyShoplink->save();
         }
+        return "success";
     }
 
     /**
@@ -56,12 +67,13 @@ class CompanyShoplinkController extends Controller{
     {
         $shopName = Yii::$app->request->get('shopName');
         $platform = Yii::$app->request->get('platform');
+        $companyId = Yii::$app->session['companyId'];
 
         $para = [];
         $para['shopName'] = $shopName;
         $para['platform'] = $platform;
 
-        $whereStr = '1=1';
+        $whereStr = 'companyId = "' . $companyId . '"';
         if ($shopName != '') {
             $whereStr = $whereStr . " and shopName like '%" . $shopName . "%'";
         }
@@ -110,7 +122,6 @@ class CompanyShoplinkController extends Controller{
     public function actionUpdateOne(){
         $id = Yii::$app->request->post('id');
         $companyShoplink = CompanyShoplink::findOne($id);
-        $companyShoplink->companyId = Yii::$app->request->post('companyId');
         $companyShoplink->shopName = Yii::$app->request->post('shopName');
         $companyShoplink->shopLink = Yii::$app->request->post('shopLink');
         $companyShoplink->platform = Yii::$app->request->post('platform');

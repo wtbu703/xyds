@@ -8,23 +8,27 @@ $this->title = '联系信息详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100">姓名</th>
+                        <th width="100px">姓名</th>
                         <td id="truename"><?=$contact->truename?></td>
                     </tr>
                     <tr>
-                        <th width="100">手机</th>
+                        <th>性别</th>
+                        <td id="gender"><?=$contact->gender?></td>
+                    </tr>
+                    <tr>
+                        <th >手机</th>
                         <td id="mobile"><?=$contact->mobile?></td>
                     </tr>
                     <tr>
-                        <th width="100">邮箱</th>
+                        <th >邮箱</th>
                         <td id="email"><?=$contact->email?></td>
                     </tr>
                     <tr>
-                        <th width="100">QQ</th>
+                        <th>QQ</th>
                         <td id="QQ"><?=$contact->QQ?></td>
                     </tr>
                     <tr>
-                        <th width="100">内容</th>
+                        <th>内容</th>
                         <td id="content"><?=$contact->content?></td>
                     </tr>
                 </table>

@@ -17,6 +17,10 @@ $this->title = '添加联系信息';
                         <td><input type="text" style="width:250px;" name="truename" id="truename"  class="input-text"/></td>
                     </tr>
                     <tr>
+                        <th width="100px">性别：</th>
+                        <td><input type="text" style="width:250px;" name="gender" id="gender"  class="input-text"/></td>
+                    </tr>
+                    <tr>
                         <th>手机：</th>
                         <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="mobile" id="mobile"  class="input-text"/></td>
                     </tr>

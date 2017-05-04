@@ -24,6 +24,7 @@ function edit(){
 		var paraStr = "";
 		paraStr += "id="+$("#id").val();
 		paraStr += "&truename=" + $("#truename").val();
+		paraStr += "&gender=" + $("#gender").val();
 		paraStr += "&mobile=" + $("#mobile").val();
 		paraStr += "&QQ=" + $("#QQ").val();
 		paraStr += "&email=" + $("#email").val();

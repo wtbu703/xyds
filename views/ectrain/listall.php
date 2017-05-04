@@ -4,9 +4,10 @@ $this->title = '培训信息列表';
 <script type="text/javascript">
     var pageUrl = "<?=yii::$app->urlManager->createUrl('ectrain/find-by-attri')?>";
     var editUrl = "<?=yii::$app->urlManager->createUrl('ectrain/update')?>";
-    var deleteUrl = "<?=yii::$app->urlManager->createUrl('ectrain/delete-one')?>"
-    var deleteallUrl = "<?=yii::$app->urlManager->createUrl('ectrain/delete-more')?>"
-    var detailUrl = "<?=yii::$app->urlManager->createUrl('ectrain/find-one')?>"
+    var deleteUrl = "<?=yii::$app->urlManager->createUrl('ectrain/delete-one')?>";
+    var deleteallUrl = "<?=yii::$app->urlManager->createUrl('ectrain/delete-more')?>";
+    var detailUrl = "<?=yii::$app->urlManager->createUrl('ectrain/find-one')?>";
+    var manageUrl = "<?=yii::$app->urlManager->createUrl('ectrain-enter/list')?>";
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/ectrain/listall.js" charset="utf-8"></script>
 
@@ -15,7 +16,7 @@ $this->title = '培训信息列表';
         <table width="100%" cellspacing="0" id="user_list">
             <thead id="dict_list_head">
             <tr align="left">
-                <th width="80px"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th><th width="30px">序号</th><th width="160px">培训名</th><th width="160px">培训类别</th><th width="160px">天数</th><th width="160px">人数</th><th align="center">操作</th>
+                <th width="80px"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th><th width="30px">序号</th><th width="220px">培训名</th><th width="120px">培训类别</th><th width="60px">天数</th><th width="60px">人数</th><th align="center">操作</th>
             </tr>
             </thead>
             <tbody id="user_list_body">
@@ -24,11 +25,17 @@ $this->title = '培训信息列表';
                 <tr align="left">
                     <td><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
                     <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->name?>')"><?=$val->name?></a></td>
+                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->name?>')"><?php if(strlen($val->name)>24) {
+                                echo substr($val->name, 0, 24) . '...';
+                            }else{
+                                echo $val->name;
+                            }?></a></td>
                     <td><?=$val->category?></td>
                     <td><?=$val->dayNum?></td>
                     <td><?=$val->peopleNum?></td>
                     <td align="center">
+                        <a href="javascript:manage('<?=$val->id?>','<?=$val->name?>')">管理</a>&nbsp;&nbsp;
+                        |&nbsp;&nbsp;
                         <a href="javascript:openedit('<?=$val->id?>','<?=$val->name?>')">修改</a>&nbsp;&nbsp;
                         |&nbsp;&nbsp;<a href="javascript:deleteEctrain('<?=$val->id?>')">删除</a>
                     </td>

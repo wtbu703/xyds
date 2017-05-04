@@ -5,7 +5,7 @@ function openedit(userId,userName) {
 	$.dialog.open(url,{
 		title: '修改管理员信息--'+userName,
 		width: 700,
-		height:500,
+		height:300,
 		lock: true,
 		border: false,
 		id: 'admin_update',
@@ -46,7 +46,7 @@ function delopt() {
 					border: false,
 					time: 2
 				}, function () {
-					$('#pageForm').submit();
+                    art.dialog.parent.$('#pageForm').submit();
 				});
 			},
 			error:function(data){
@@ -116,16 +116,7 @@ function deleteUser(userId) {
 			data:paraStr ,
 			async: "false",
 			success: function (data) {
-				window.top.art.dialog({
-					content: '删除成功！',
-					lock: true,
-					width: 250,
-					height: 80,
-					border: false,
-					time: 2
-				}, function () {
-					$('#pageForm').submit();
-				});
+                $('#pageForm').submit();
 			},
 			error:function(data){
 				window.top.art.dialog({

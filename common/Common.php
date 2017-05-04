@@ -123,9 +123,11 @@ class Common
 	 * @param $files
 	 * @param boolean $isPic 是否是上传图片
 	 * @param boolean $isDetailPic 是否是上传细节图
+	 * @param string $image_size 图片尺寸
+	 * @param int $upload_size 文件最大大小，默认1G
 	 * @return array $fileArg 文件上传结果
 	 */
-    public static function upload($files,$isPic,$isDetailPic){
+    public static function upload($files,$isPic,$isDetailPic,$image_size=null,$upload_size=1024000){
 
         $ALL_UPLOAD_TYPE = ['image/gif','image/jpeg','image/pjpeg', 'image/png','image/x-png',
             'video/mp4','video/rm','video/rmvb','video/wmv','video/avi','video/3gp','video/mkv','video/flv',
@@ -135,14 +137,29 @@ class Common
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 	        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         ];//配置允许上传文件的类型
-        $ALL_UPLOAD_SIZE = 1024000 * 1024 * 2; //配置允许上传文件的大小 1G
+        $ALL_UPLOAD_SIZE = $upload_size; //配置默认允许上传文件的大小
         $SAVEURL = "upload/";//文件保存路径
         $ALL_PIC_TYPE = ['gif','jpeg','png','jpg'];//允许上传的图片后缀
         $ALL_DOC_TYPE = ['doc','pdf','txt','ppt','xls','docx','xlsx','pptx'];//允许上传的文件后缀
         $ALL_VIDEO_TYPE = ['mp4','rm','rmvb','wmv','avi','3gp','mkv','flv '];//允许上传的视频后缀
-
-        $new_image = ['width'=>460,'heigth'=>300];//上传图片切割成符合网站的格式
-        $new_thum_image = ['width'=>650,'heigth'=>500];//上传图片切压缩符合网站的格式160,150
+	    $arr = [
+		    'index_banner'=>['width'=>1920,'heigth'=>600],
+		    'index_ecinfo'=>['width'=>355,'heigth'=>220],
+		    'index_ectrain'=>['width'=>400,'heigth'=>250],
+		    'index_company'=>['width'=>290,'heigth'=>250],
+		    'ecinfo_info'=>['width'=>250,'heigth'=>170],
+		    'ectrain_notice'=>['width'=>400,'heigth'=>250],
+		    'ectrain_video'=>['width'=>340,'heigth'=>180],
+		    'company_company'=>['width'=>380,'heigth'=>240],
+		    'company_product'=>['width'=>290,'heigth'=>190],
+		    'company_news'=>['width'=>250,'heigth'=>170],
+		    'third_company'=>['width'=>300,'heigth'=>190],
+		    'other_banner'=>['width'=>1920,'heigth'=>400]
+	    ];
+	    if(!empty($image_size)){
+		    $new_image = $arr[$image_size];//获取指定宽高
+	    }
+        $new_thum_image = ['width'=>150,'heigth'=>150];//缩略图尺寸
 
         $fileArg = [];
         if (in_array($files["file"]["type"],$ALL_UPLOAD_TYPE) && ($files["file"]["size"] < $ALL_UPLOAD_SIZE)){
@@ -150,10 +167,14 @@ class Common
             if(in_array($fileName[1],$ALL_PIC_TYPE) && $isPic){//图片处理方式
                 $fileNameRandom =  date("YmdHis") . mt_rand(10,99) . '.' . $fileName[1];
                 if($isDetailPic){
-                    //Common::resize($files["file"]["tmp_name"],$new_thum_image['width'],$new_thum_image['heigth']);
+	                if(isset($new_thum_image)){
+		                Common::resize($files["file"]["tmp_name"],$new_thum_image['width'],$new_thum_image['heigth']);//切割
+	                }
                     $fileArg['fileSaveUrl'] = $SAVEURL . 'pic/thumb_' . $fileNameRandom;
                 }else{
-                   // Common::resize($files["file"]["tmp_name"],$new_image['width'],$new_image['heigth']);
+	                if(isset($new_image)){
+		                Common::resize($files["file"]["tmp_name"],$new_image['width'],$new_image['heigth']);//切割
+	                }
                     $fileArg['fileSaveUrl'] = $SAVEURL . 'pic/' . $fileNameRandom;
                 }
                 move_uploaded_file($files["file"]["tmp_name"],$fileArg['fileSaveUrl']);
@@ -187,14 +208,6 @@ class Common
     }
 
 
-	/**
-	 * @param $src
-	 * @return array
-	 */
-	public static function getImageInfo($src)
-    {
-        return getimagesize($src);
-    }
     /**
      * 创建图片，返回资源类型
      * @param string $src 图片路径
@@ -202,7 +215,7 @@ class Common
      * **/
     public static function create($src)
     {
-        $info=Common::getImageInfo($src);
+        $info=getimagesize($src);
         switch ($info[2])
         {
             case 1:
@@ -236,7 +249,7 @@ class Common
         $savepath="{$dir}/{$name}";//缩略图保存路径,新的文件名为*.thumb.jpg
 
         //获取图片的基本信息
-        $info=Common::getImageInfo($src);
+        $info=getimagesize($src);
         $width=$info[0];//获取图片宽度
         $height=$info[1];//获取图片高度
         $per1=round($width/$height,2);//计算原图长宽比
@@ -296,7 +309,7 @@ class Common
         imagefill($bg,0,0,$white);//填充背景
 
         //获取目标图片信息
-        $info=Common::getImageInfo($src);
+        $info=getimagesize($src);
         $width=$info[0];//目标图片宽度
         $height=$info[1];//目标图片高度
         $img=Common::create($src);

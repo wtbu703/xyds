@@ -32,11 +32,9 @@ $this->title = '图片管理';
             <tbody>
             <tr>
                 <td>
-	                <div class="explain-col"> 图片大类名称：
-                        <input id="categoryName" name="categoryName" type="text" value="" class="input-text" />
-                        &nbsp;<select id="categoryState" style='width:135px' name="categoryState"></select>
+	                <div class="explain-col"> 前台栏目：
+                        <select id="category" style='width:135px' name="category"></select>
                         <input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询" />
-                        <div class = "checkTip" style="float:right;margin-right:65%;color:red;">
                     </div>
                 </td>
             </tr>

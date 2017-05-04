@@ -31,7 +31,7 @@ function edit(){
 		paraStr += "&state=" + $("#state").val();
 		paraStr += "&attachUrl=" + $("#attachUrls").val();
 		paraStr += "&attachName=" + $("#attachNames").val();
-		paraStr += "&picUrl=" + $("#picUrl").val();
+		paraStr += "&datetime=" + $("#datetime").val();
 
 		$.ajax({
 			url: updateUrl,

@@ -41,7 +41,7 @@ $this->title = '企业详情';
                     </tr>
                     <tr>
                         <th width="100">企业简介</th>
-                        <td id="introduction"><textarea style="width:500px;height:100px;"><?=$company->introduction?></textarea></td>
+                        <td id="introduction"><?=$company->introduction?></td>
                     </tr>
                     <tr>
                         <th width="100">企业图片</th>

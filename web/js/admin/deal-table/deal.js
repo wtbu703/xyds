@@ -40,7 +40,6 @@ function saveDealTable(){
         var buyCodes = $("select[name=categoryFullBuy]");
         var sells = $("input[name='sellSum']");
         var sellCodes = $("select[name=categoryFullSell]");
-
         var buysStr = buys[0].value;
         var buyCodesStr = buyCodes[0].value;
         var sellsStr = sells[0].value;
@@ -53,7 +52,7 @@ function saveDealTable(){
             sellCodesStr += ";" + sellCodes[i].value;
         }
 		var paraStr;
-		paraStr = "id=" + $('#id').val() + "&categoryFullBuy=" + buyCodesStr + "&buySum=" + buysStr + "&buyTotal=" + $('#buyTotal').val()+ "&categoryFullSell=" + sellCodesStr + "&sellSum=" + sellsStr + "&sellTotal=" + $('#sellTotal').val();
+		paraStr = "id=" + $('#id').val()+"&datetime="+$('#created').val()+ "&categoryFullBuy=" + buyCodesStr + "&buySum=" + buysStr + "&buyTotal=" + $('#buyTotal').val()+ "&categoryFullSell=" + sellCodesStr + "&sellSum=" + sellsStr + "&sellTotal=" + $('#sellTotal').val();
 		$.ajax({
 			url: saveUrl,
 			type: "post",

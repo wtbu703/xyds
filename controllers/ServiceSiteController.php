@@ -92,7 +92,8 @@ class ServiceSiteController extends Controller{
 		$serviceSiteInfo->chargeMobile = Yii::$app->request->post('chargeMobile');
 		$serviceSiteInfo->address = Yii::$app->request->post('address');
 		$serviceSiteInfo->picUrl = Yii::$app->request->post('attachUrls');
-
+		$serviceSiteInfo->longitude = Yii::$app->request->post('longitude');
+		$serviceSiteInfo->latitude = Yii::$app->request->post('latitude');
 		if($serviceSite->save() && $serviceSiteInfo->save())//两个表都成功插入
 		{
 			return "success";
@@ -273,8 +274,10 @@ class ServiceSiteController extends Controller{
 			->one();
 		$picUrl = $serviceSiteInfo['picUrl'];//获取表中图片路径字段
 
-		if(!is_null($picUrl)){//如果有图片文件
-			unlink($picUrl);//删除图片
+		if(!is_null($picUrl)||$picUrl!=''){//如果有图片文件
+			if(is_file($picUrl)){
+				unlink($picUrl);//删除图片
+			}
 		}
 		//根据ID删除site,siteinfo,并根据路径删除图片文件
 		if(ServiceSite::findOne($siteId)->delete()&&$serviceSiteInfo->delete()){
@@ -300,8 +303,10 @@ class ServiceSiteController extends Controller{
 				->where('siteId = :id',[':id' => $data])
 				->one();
 			$picUrl = $serviceSiteInfo['picUrl'];
-			if(!is_null($picUrl)){//如果有图片
-				unlink($picUrl);//根据路径删除图片文件
+			if(!is_null($picUrl||$picUrl!='')){//如果有图片
+				if(is_file($picUrl)) {
+					unlink($picUrl);//根据路径删除图片文件
+				}
 			}
 			$serviceSiteInfo->delete();//根据ID删除siteinfo
 		}
@@ -366,6 +371,20 @@ class ServiceSiteController extends Controller{
 	 */
 	public function actionAjax(){
 		$serviceSites = ServiceSite::find()->all();
+		return yii\helpers\Json::encode($serviceSites);
+	}
+
+	/**
+	 * 服务站点页接口
+	 * @return string
+	 */
+	public function actionServiceSite(){
+		//连接查询站点的基础信息
+		$query = new Query();
+		$serviceSites = $query->select('a.id as id,a.name as name,b.chargeName as chargeName,b.chargeMobile as chargeMobile,b.address as address,b.picUrl as picUrl,b.longitude as longitude,b.latitude as latitude')
+			->from('servicesite a')
+			->leftJoin('servicesiteinfo b','a.id = b.siteId')
+			->all();
 		return yii\helpers\Json::encode($serviceSites);
 	}
 

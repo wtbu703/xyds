@@ -356,11 +356,11 @@ XML;
 	 * 查看一个站点的交易信息
 	 * @return string
 	 */
-	public function actionShowDealTable(){
+	/*public function actionShowDealTable(){
 
 		$siteId = Yii::$app->request->get('id');
-		//$date = date("Y-m-d");//查看当天
-		$date = "2017-01-31";
+		$date = date("Y-m-d");//查看当天
+		//$date = "2017-01-31";
 		$dealTable = ServiceSiteDealTable::find()
 			->where('siteId = :siteId and date = :date and state = "0"',[
 				":siteId" => $siteId,
@@ -414,7 +414,7 @@ XML;
 			'sellSums' => $sellSums,
 			'sellOrderTotal' => $sellOrderTotal
 		]);
-	}
+	}*/
 
 	/**
 	 * 多选站点生成日报表
@@ -437,50 +437,54 @@ XML;
 		$sellGoodCategorys = '';
 		$sellMoneySums = '';
 		$sellOrderTotals = '';
-		foreach($ids_array as $key => $value){
+		foreach($ids_array as $key => $value) {
 
 			$serviceSite = ServiceSite::findOne($value);
-			if($key == 0){
-				$codes = $codes.$serviceSite->code;
-				$names = $names.$serviceSite->name;
-				$countyTypes = $countyTypes.$serviceSite->countyType;
-			}else{
-				$codes = $codes.'-'.$serviceSite->code;
-				$names = $names.'-'.$serviceSite->name;
-				$countyTypes = $countyTypes.'-'.$serviceSite->countyType;
+			if ($key == 0) {
+				$codes = $codes . $serviceSite->code;
+				$names = $names . $serviceSite->name;
+				$countyTypes = $countyTypes . $serviceSite->countyType;
+			} else {
+				$codes = $codes . '-' . $serviceSite->code;
+				$names = $names . '-' . $serviceSite->name;
+				$countyTypes = $countyTypes . '-' . $serviceSite->countyType;
 			}
 
 
 
 
-			$dealTable = ServiceSiteDealTable::find()
+
+			$dealTables = ServiceSiteDealTable::find()
 				->where('siteId = :siteId and date = :date and state = "0"',[
 					":siteId" => $value,
 					":date" => $date//选择生成的时间
 				])
-				->one();
-			$dealTable->state = '1';
-			$dealTable->save();
-			if($key == 1){
-				$dealIds = $dealIds.$dealTable->id;
-				$buyGoodCategorys = $buyGoodCategorys.$dealTable->buyGoodCategory;
-				$buyMoneySums = $buyMoneySums.$dealTable->buyMoneySum;
-				$sellGoodCategorys = $sellGoodCategorys.$dealTable->sellGoodCategory;
-				$sellMoneySums = $sellMoneySums.$dealTable->sellMoneySum;
-				$buyOrderTotals = $buyOrderTotals.$dealTable->buyOrderTotal;
-				$sellOrderTotals = $sellOrderTotals.$dealTable->sellOrderTotal;
-			}else{
-				$dealIds = $dealIds.'-'.$dealTable->id;
-				$buyGoodCategorys = $buyGoodCategorys.';'.$dealTable->buyGoodCategory;
-				$buyMoneySums = $buyMoneySums.$dealTable->buyMoneySum.';';
-				$sellGoodCategorys = $sellGoodCategorys.';'.$dealTable->sellGoodCategory;
-				$sellMoneySums = $sellMoneySums.';'.$dealTable->sellMoneySum;
-				$buyOrderTotals = $buyOrderTotals.'-'.$dealTable->buyOrderTotal;
-				$sellOrderTotals = $sellOrderTotals.'-'.$dealTable->sellOrderTotal;
+				->all();
+			foreach($dealTables as $index => $dealTable){
+				$dealTable->state = '1';
+				$dealTable->save();
+				if($key == 0 && $index== 0){
+					$dealIds = $dealIds.$dealTable->id;
+					$buyGoodCategorys = $buyGoodCategorys.$dealTable->buyGoodCategory;
+					$buyMoneySums = $buyMoneySums.$dealTable->buyMoneySum;
+					$sellGoodCategorys = $sellGoodCategorys.$dealTable->sellGoodCategory;
+					$sellMoneySums = $sellMoneySums.$dealTable->sellMoneySum;
+					$buyOrderTotals = $buyOrderTotals.$dealTable->buyOrderTotal;
+					$sellOrderTotals = $sellOrderTotals.$dealTable->sellOrderTotal;
+				}else{
+					$dealIds = $dealIds.'-'.$dealTable->id;
+					$buyGoodCategorys = $buyGoodCategorys.';'.$dealTable->buyGoodCategory;
+					$buyMoneySums = $buyMoneySums.';'.$dealTable->buyMoneySum;
+					$sellGoodCategorys = $sellGoodCategorys.';'.$dealTable->sellGoodCategory;
+					$sellMoneySums = $sellMoneySums.';'.$dealTable->sellMoneySum;
+					$buyOrderTotals = $buyOrderTotals.'-'.$dealTable->buyOrderTotal;
+					$sellOrderTotals = $sellOrderTotals.'-'.$dealTable->sellOrderTotal;
+				}
 			}
 
-
 		}
+
+
 
 		$dailySheet = new DailySheet();
 		$dailySheet->id = Common::create40ID();

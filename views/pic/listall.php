@@ -9,26 +9,24 @@
         <table width="100%" cellspacing="0" id="dict_list">
             <thead>
 	            <tr align="center">
-	                <th width="80px" align="left"><input type="checkbox" id='check_box' onclick="selectall('categoryCode')"/>全选/取消</th>
+	                <th width="80px" align="left"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th>
 		            <th width="30px">序号</th>
-		            <th width="220px">图片大类标识</th>
-		            <th width="160px">图片大类名称</th>
-		            <th width="80px">图片大类状态</th>
+		            <th width="220px">前台栏目</th>
+		            <th width="160px">图片地址</th>
 		            <th>操作</th>
 	            </tr>
             </thead>
             <tbody>
-            <?if(!is_null($categorys)){?>
-	            <?php foreach ($categorys as $index => $val){?>
+            <?if(!is_null($pics)){?>
+	            <?php foreach ($pics as $index => $val){?>
 	                <tr align="center">
-		                <td align="left"><input type="checkbox" id="categoryCode" name="categoryCode" value="<?=$val->picCode?>"/></td>
+		                <td align="left"><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
 	                    <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-	                    <td><a href="javascript:detail('<?=$val->picCode?>','<?=$val->picName?>')"><?=$val->picCode?></a></td>
-	                    <td><?=$val->picName?></td>
-	                    <td><?=$val->state?></td>
+		                <td><?=$val->category?></td>
+	                    <td><a href="javascript:detail('<?=$val->id?>')"><?=$val->url?></a></td>
 	                    <td>
-	                        <a href="javascript:update('<?=$val->picCode?>','<?=$val->picName?>')">修改</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-		                    <a href="javascript:deleteOne('<?=$val->picCode?>')">删除</a>
+	                        <a href="javascript:update('<?=$val->id?>')">修改</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		                    <a href="javascript:deleteOne('<?=$val->id?>')">删除</a>
 	                    </td>
 	                </tr>
 	            <?}?>
@@ -63,6 +61,5 @@
     <input type="hidden" id="page" name="page" value="<?=$pages->page?>"/>
     <input type="hidden" name="r" value="pic/find-by-attri"/>
     <input type="hidden" id="pre-page" name="pre-page" value="<?=$pages->pageSize?>"/>
-    <input type="hidden" id="categoryName" name="categoryName" value="<?=$para['picName']?>"/>
-    <input type="hidden" id="state" name="state" value="<?=$para['state']?>"/>
+    <input type="hidden" id="category" name="category" value="<?=$para['category']?>"/>
 </form>

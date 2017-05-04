@@ -17,6 +17,8 @@
 					<div class="col-xs-12 nav_s">
 						<span><a href="<?=Yii::$app->urlManager->createUrl('front/index')?>">首页</a></span>
 						<span>></span>
+						<span><a href="<?=Yii::$app->urlManager->createUrl('front/ectrain')?>">电商培训</a></span>
+						<span>></span>
 						<span><a href="<?=Yii::$app->urlManager->createUrl('front/online-video')?>">在线视频</a></span>
 						<span>></span>
 						<span>视频播放</span>
@@ -29,9 +31,20 @@
 					<div class="col-xs-12">
 						<h5><?=$video->name?></h5>
 						<div class="train_media">
-							<video controls="controls">
-							    <source src="<?=$video->url?>" type="video/mp4" />
-							</video>
+							<?php
+							$url = substr($video->url,0,6);
+							if($url == 'upload'){?>
+								<video controls = "controls">
+									<source src = "<?=$video->url?>" >
+								</video >
+							<?}else{?>
+								<embed class="urlVdieo" src="http://player.youku.com/player.php/sid/<?=$video->url?>/v.swf"
+									   allowFullScreen="true" quality="high"
+									   controls="controls"
+									   allowScriptAccess="always"
+									   type="application/x-shockwave-flash">
+								</embed>
+							<?}?>
 						</div>
 					</div>
 					<?}?>
@@ -42,8 +55,20 @@
 					</div>
 					<div class="col-xs-12">
 						<ul class="page">
-							<li><h5><a href="#">上一篇：如何装修网店</a></h5><span>2017-02-08</span></li>
-							<li><h5><a href="#">下一篇：如何正确认识互联网s</a></h5><span>2017-02-08</span></li>
+							<?php
+							if($sname != ''){?>
+							<?php
+							$stime = substr($sdatetime,0,10);
+							?>
+							<li><h5><a href="<?=Yii::$app->urlManager->createUrl('front/video-detail')?>&videoId=<?=$sid?>">上一篇：<?=$sname?></a></h5><span><?=$stime?></span></li>
+							<?}?>
+							<?php
+							if($names != ''){?>
+							<?php
+							$times = substr($datetimes,0,10);
+							?>
+							<li><h5><a href="<?=Yii::$app->urlManager->createUrl('front/video-detail')?>&videoId=<?=$ids?>">下一篇：<?=$names?></a></h5><span><?=$times?></span></li>
+							<?}?>
 						</ul>
 					</div>
 				</div>		
@@ -54,7 +79,7 @@
 					<div class="col-xs-12 column">	
 						<div class="redbar">
 						</div>
-						<span class="">热点新闻</span>
+						<span class="">热点新闻<a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>">>>更多</a></span>
 					</div>
 				</div>
 				<div class="hot">
@@ -70,7 +95,7 @@
 					<div class="col-xs-12 column">	
 						<div class="redbar">
 						</div>
-						<span class="">热门企业</span>
+						<span class="">热门企业<a href="<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>">>>更多</a></span>
 					</div>
 				</div>
 				<div class="hot hotCompany">

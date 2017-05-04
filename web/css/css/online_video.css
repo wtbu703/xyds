@@ -46,7 +46,15 @@
   margin-top: 3.5px;
   margin-right: 15px;
 }
-.column a:hover {
+.tabH:hover{
+  border-color: #00ccff;
+  background-color: #ffffff;
+}
+/* .column a:hover {
+  border-color: #00ccff;
+  background-color: #ffffff;
+}  */
+.column .hover{
   border-color: #d73455;
   background-color: #ffffff;
 }

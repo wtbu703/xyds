@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-//use app\models\Resource;
 use yii;
 use yii\web\Controller;
 use app\models\Role;
@@ -11,7 +10,6 @@ use app\models\Dictitem;
 use yii\data\Pagination;
 use app\models\Menu;
 use app\models\MenuRole;
-//use app\models\Admin;
 use app\models\AdminRole;
 use yii\db\Query;
 use app\models\RoleResource;
@@ -162,6 +160,9 @@ class RoleController extends Controller{
         $id = Yii::$app->request->post("id");
         $role =Role::findOne($id);
         if($role->delete()){
+	        AdminRole::deleteAll('roleId = :roleId',[':roleId'=>$id]);
+	        MenuRole::deleteAll('roleId = :roleId',[':roleId'=>$id]);
+	        RoleResource::deleteAll('roleId = :roleId',[':roleId'=>$id]);
             return "success";
         }else{
             return "fail";
@@ -179,6 +180,9 @@ class RoleController extends Controller{
         $id_array = explode('-',$id);
         foreach($id_array as $key => $data){
             Role::deleteAll('id = :id',[':id'=>$data]);
+	        AdminRole::deleteAll('roleId = :roleId',[':roleId'=>$id]);
+	        MenuRole::deleteAll('roleId = :roleId',[':roleId'=>$id]);
+	        RoleResource::deleteAll('roleId = :roleId',[':roleId'=>$id]);
         }
         return 'success';
     }
@@ -248,7 +252,10 @@ class RoleController extends Controller{
                 $rolemenu->save();
             }
         }
-        return $this->render('list');
+	    $add = Common::resource('ROLE','ADD');
+	    return $this->render('list',[
+		    'add' => $add
+	    ]);
 
     }
 
@@ -479,4 +486,8 @@ class RoleController extends Controller{
     /*public function actionExcel(){
         Common::Excel(new Role());
     }*/
+
+	public function actionSelectAll(){
+		return yii\helpers\Json::encode(Role::find()->all());
+	}
 }

@@ -14,10 +14,7 @@
 <script type="text/javascript" src="js/admin/daily-sheet/generate.js"></script>
 <div class="subnav" id="display" >
 	<div class="content-menu ib-a blue line-x">
-		<a class="add fb" href="javascript:;"><em>生成日报表</em></a>
-	</div>
-	<div>
-		选择生成日期：
+		<a class="fb"><em>选择生成日期：</em></a>
 		<input id="date" name="date" type="text" value="" class="date">
 		<script type="text/javascript">
 			Calendar.setup({
@@ -42,7 +39,7 @@
 					<th width="160px">站点编码</th>
 					<th width="160px">站点名称</th>
 					<th width="160px">站点类型</th>
-					<th>操作</th>
+					<!--<th>操作</th>-->
 				</tr>
 			</thead>
 			<tbody>
@@ -54,9 +51,9 @@
 						<td><?=htmlspecialchars($val->code)?></td>
 						<td><a href="javascript:detail('<?=$val->id?>','<?=$val->name?>')"><?=htmlspecialchars($val->name)?></a></td>
 						<td><?=$val->countyType?></td>
-						<td>
-							<a href="javascript:showDealTable('<?=$val->id?>','<?=$val->name?>')">查看日交易信息</a>
-						</td>
+						<!--<td>
+							<a href="javascript:showDealTable('<?/*=$val->id*/?>','<?/*=$val->name*/?>')">查看日交易信息</a>
+						</td>-->
 					</tr>
 				<?}?>
 			<?}?>

@@ -21,6 +21,23 @@
 			                <td><?=$serviceSite['name']?></td>
 		                </tr>
 		                <tr>
+			                <th>时间：</th>
+			                <td>
+				                <input id="created" name="created" type="text" value="" class="date">
+				                <script type="text/javascript">
+					                Calendar.setup({
+						                weekNumbers: true,
+						                inputField : "created",
+						                trigger    : "created",
+						                dateFormat: "%Y-%m-%d",
+						                showTime: true,
+						                minuteStep: 1,
+						                onSelect   : function() {this.hide();}
+					                });
+				                </script>
+			                </td>
+		                </tr>
+		                <tr>
 			                <th>代买商品类别：</th>
 			                <td>
 				                <select name="categoryBuy">
@@ -43,7 +60,7 @@
 
 		                <tr>
 			                <th></th>
-			                <td><input type="button" style="width:100px;height: 30px;color: #44ff19;" value="增加商品类别" onclick="addRow()"/></td>
+			                <td><input type="button" style="width:100px;height: 30px;color: blue;" value="增加商品类别" onclick="addRow()"/></td>
 		                </tr>
 		                <tr>
 			                <th>代买总订单数：</th>
@@ -71,7 +88,7 @@
 		                </tr>
 		                <tr>
 			                <th></th>
-			                <td><input type="button" style="width:100px;height: 30px;color: #44ff19;" value="增加商品类别" onclick="addRow2()"/></td>
+			                <td><input type="button" style="width:100px;height: 30px;color: blue;" value="增加商品类别" onclick="addRow2()"/></td>
 		                </tr>
 		                <tr>
 			                <th>销售总订单数：</th>
@@ -188,7 +205,7 @@
 	    html.push('<td><input type="button" style="width:100px;height: 30px;color: #ff1f30;" value="删除商品类别" onclick="deleteRow(\''+rowId+'\')"/></td>');
 	    html.push('</tr>');
 
-	    var addButton = categoryAdd.children('tr').eq(4);
+	    var addButton = categoryAdd.children('tr').eq(5);
 	    $(html.join('')).insertBefore(addButton);
 
 		$("select[name=categoryBuy]").change(function(){

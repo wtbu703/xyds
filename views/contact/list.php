@@ -18,9 +18,6 @@ $this->title = '联系信息管理';
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/contact/list.js" charset="utf-8"></script>
 <div class="subnav" id="display" >
-    <div class="content-menu ib-a blue line-x">
-        <a class="add fb" href="javascript:openadd();"><em>添加联系信息</em></a>
-    </div>
 </div>
 <div class="pad-lr-10">
     <form name="searchform" id="searchform" action="" method="post" target="iframeId">

@@ -23,13 +23,16 @@ function edit(){
 	if($.formValidator.pageIsValid()){ // 表单提交进行校验
 		var paraStr = "";
 		paraStr += "id="+$("#id").val();
-		paraStr += "&companyId=" + $("#companyId").val();
 		paraStr += "&position=" + $("#position").val();
 		paraStr += "&demand=" + encodeURIComponent(contentEditor.getData());
 		paraStr += "&mobile=" + $("#mobile").val();
 		paraStr += "&tel=" + $("#tel").val();
 		paraStr += "&email=" + $("#email").val();
 		paraStr += "&contacts=" + $("#contacts").val();
+		paraStr += "&workPlace=" + $("#workPlace").val();
+		paraStr += "&record=" + $("#record").val();
+		paraStr += "&salary=" + $("#salary").val();
+		paraStr += "&exp=" + $("#exp").val();
 
 		$.ajax({
 			url: updateUrl,

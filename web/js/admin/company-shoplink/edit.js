@@ -15,6 +15,12 @@ $(function(){
 			.inputValidator({               //校验不能为空
 				min:1,
 				onerror:"请输入网店名称！"})
+	$("#shopLink").formValidator({
+				onshow:"请输入网店链接！以http://开头",
+				onfocus:"请输入网店链接！以http://开头"})
+			.inputValidator({               //校验不能为空
+				min:1,
+				onerror:"请输入网店链接！"})
 
 
 })
@@ -24,7 +30,6 @@ function edit(){
 	if($.formValidator.pageIsValid()){ // 表单提交进行校验
 		var paraStr = "";
 		paraStr += "id=" + $("#id").val();
-		paraStr += "&companyId=" + $("#companyId").val();
 		paraStr += "&shopName=" + $("#shopName").val();
 		paraStr += "&shopLink=" + $("#shopLink").val();
 		paraStr += "&platform=" + $("#platform").val();

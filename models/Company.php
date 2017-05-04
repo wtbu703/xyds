@@ -41,8 +41,9 @@ class Company extends \yii\db\ActiveRecord
             [['count', 'category'], 'integer'],
             [['datetime'], 'safe'],
             [['id'], 'string', 'max' => 40],
-            [['name', 'tel'], 'string', 'max' => 16],
+            [['name'], 'string', 'max' => 48],
             [['logoUrl', 'webSite'], 'string', 'max' => 64],
+            [['tel'], 'string', 'max' => 16],
             [['address'], 'string', 'max' => 32],
             [['corporate', 'sources'], 'string', 'max' => 8],
         ];
@@ -61,11 +62,11 @@ class Company extends \yii\db\ActiveRecord
             'tel' => '联系电话',
             'address' => '地址',
             'corporate' => '法人',
-            'sources' => 'Sources',
-            'count' => 'Count',
-            'datetime' => 'Datetime',
-            'webSite' => 'Web Site',
-            'category' => 'Category',
+            'sources' => '内容来源',
+            'count' => '点击次数',
+            'datetime' => '更新时间',
+            'webSite' => '公司网站',
+            'category' => '企业类别',
         ];
     }
 }

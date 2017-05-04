@@ -28,20 +28,12 @@ $this->title = '信息详情';
                         <td id="state"><?=$publicInfo->state?></td>
                     </tr>
                     <tr>
-                        <th width="100">状态</th>
-                        <td id="state"><?=$publicInfo->state?></td>
-                    </tr>
-                    <tr>
                         <th width="100"><?=$publicInfo->state?>时间</th>
-                        <td id="time"><?=$publicInfo->state?></td>
+                        <td id="time"><?=$time?></td>
                     </tr>
                     <tr>
                         <th width="100">附件名称</th>
                         <td id="attachName"><?=$publicInfo->attachName?></td>
-                    </tr>
-                    <tr>
-                        <th width="100">图片</th>
-                        <td id="state"><img src="<?=$publicInfo->picUrl?>" width="60%"></td>
                     </tr>
                 </table>
             </div>

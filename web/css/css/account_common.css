@@ -1,4 +1,4 @@
-@charset utf-8;
+@charset "utf-8";
 .shadow {
   margin-top: 27px;
   box-shadow: -2px 2px 5px 0px #d2d2d2;
@@ -17,14 +17,6 @@
 .remind4 {
   background: url('../../images/images_contactus/remind.png') no-repeat 5% 69%;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-align: center;
-}
 .clearfloat {
   zoom: 1;
 }
@@ -37,33 +29,63 @@ ul,
 ol {
   padding: 0px;
 }
+.BG {
+  background-image: linear-gradient(180deg, #fcfcfc 0px, #fcfcfc 150px, transparent 5px);
+}
 /*表单主体*/
 .content {
-  margin-top: 27px;
-  box-shadow: -2px 2px 5px 0px #d2d2d2;
-  -moz-box-shadow: -2px 2px 5px 0px #d2d2d2;
-  -webkit-box-shadow: -2px 2px 5px 0px #d2d2d2;
-  -o-box-shadow: -2px 2px 5px 0px #d2d2d2;
-  -ms-box-shadow: -2px 2px 5px 0px #d2d2d2;
   padding: 2%;
-  /*表单头部快速导航*/
 }
-.content .nav_s {
-  margin-left: 15px;
-  background: url('../../images/images_contactus/home.png') no-repeat 0 50%;
-  padding-left: 25px;
-  font-family: '宋体';
+.content .row_top .signup {
+  height: 100px;
+  border: 2px solid #cfcdcd;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  zoom: 1;
 }
-.content .nav_s span a {
-  color: #000;
+.content .row_top .signup:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.content .row_top .signup img {
+  margin-left: 6%;
+  float: left;
+}
+.content .row_top .signup h2 {
+  margin-left: 25px;
+  font-size: 30px;
+  color: #1da297;
+  margin-top: 10px;
+}
+.bottom {
+  border-left: 2px solid #cfcdcd;
+  border-bottom: 2px solid #cfcdcd;
+  border-right: 2px solid #cfcdcd;
+  background: #fff;
 }
 .registerform {
   margin-top: 30px;
+}
+.registerform .A {
+  margin-top: 5px;
+}
+.registerform .form-group label {
+  font-family: "微软雅黑";
+  font-weight: 500;
 }
 .registerform div input[type=button] {
   display: block;
   width: 80px;
   margin: 30px auto;
+  border-color: #646464;
+  background-color: #FFF;
+}
+.registerform div input[type=button]:hover {
+  color: #fff;
+  background-color: #40b5d3;
+  border-color: #40b5d3;
 }
 .register-gray {
   font: 14px "微软雅黑";
@@ -73,31 +95,6 @@ ol {
   color: red;
   font-size: 20px;
   margin-right: 5px;
-}
-.column {
-  margin-top: 30px;
-  zoom: 1;
-}
-.column:after {
-  content: '';
-  display: block;
-  clear: both;
-}
-.column .redbar,
-.column span,
-.column a {
-  float: left;
-}
-.column .redbar {
-  width: 6px;
-  height: 46px;
-  background-color: #d73455;
-  margin-right: 5px;
-}
-.column span {
-  font-size: 20px;
-  line-height: 46px;
-  margin-right: 20px;
 }
 .Validform_checktip {
   overflow: visible;

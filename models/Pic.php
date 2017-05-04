@@ -8,10 +8,8 @@ use Yii;
  * This is the model class for table "pic".
  *
  * @property string $id
- * @property string $picCode
- * @property string $picName
- * @property string $intro
- * @property string $state
+ * @property integer $category
+ * @property string $url
  */
 class Pic extends \yii\db\ActiveRecord
 {
@@ -30,10 +28,9 @@ class Pic extends \yii\db\ActiveRecord
     {
         return [
             [['id'], 'required'],
+            [['category'], 'integer'],
             [['id'], 'string', 'max' => 40],
-            [['picCode', 'picName'], 'string', 'max' => 32],
-            [['intro'], 'string', 'max' => 128],
-            [['state'], 'string', 'max' => 4],
+            [['url'], 'string', 'max' => 64],
         ];
     }
 
@@ -44,10 +41,8 @@ class Pic extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'picCode' => 'Pic Code',
-            'picName' => 'Pic Name',
-            'intro' => 'Intro',
-            'state' => 'State',
+            'category' => '图片类别',
+            'url' => '图片路径',
         ];
     }
 }

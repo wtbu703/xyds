@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Company;
 use yii;
 use yii\web\Controller;
 use app\models\CompanyProduct;
@@ -40,11 +41,10 @@ class CompanyProductController extends Controller
     {
         $companyProduct = new CompanyProduct();
         $companyProduct->id = Common::create40ID();
-        $companyProduct->companyId = Yii::$app->request->post('companyId');
+        $companyProduct->companyId = Yii::$app->session['companyId'];
         $companyProduct->name = Yii::$app->request->post('name');
         $companyProduct->introduction = Yii::$app->request->post('introduction');
         $companyProduct->price = Yii::$app->request->post('price');
-        $companyProduct->stock = Yii::$app->request->post('stock');
         $companyProduct->discount = Yii::$app->request->post('discount');
         $companyProduct->state = Yii::$app->request->post('state');
         $companyProduct->thumbnailUrl = Yii::$app->request->post('thumbnailUrl');
@@ -64,12 +64,13 @@ class CompanyProductController extends Controller
     {
         $name = Yii::$app->request->get('name');
         $state = Yii::$app->request->get('state');
+        $companyId = Yii::$app->session['companyId'];
 
         $para = [];
         $para['name'] = $name;
         $para['state'] = $state;
 
-        $whereStr = '1=1';
+        $whereStr = 'companyId = "' . $companyId . '"';
         if ($name != '') {
             $whereStr = $whereStr . " and name like '%" . $name . "%'";
         }
@@ -124,11 +125,10 @@ class CompanyProductController extends Controller
 
         }
         $companyProduct->thumbnailUrl = $thumbnailUrl;
-        $companyProduct->companyId = Yii::$app->request->post('companyId');
+        $companyProduct->companyId = Yii::$app->session['companyId'];
         $companyProduct->name = Yii::$app->request->post('name');
         $companyProduct->introduction = Yii::$app->request->post('introduction');
         $companyProduct->price = Yii::$app->request->post('price');
-        $companyProduct->stock = Yii::$app->request->post('stock');
         $companyProduct->discount = Yii::$app->request->post('discount');
         $companyProduct->state = Yii::$app->request->post('state');
 
@@ -162,13 +162,26 @@ class CompanyProductController extends Controller
      */
     public function actionDeleteMore(){
         $ids = Yii::$app->request->post('ids');
+        $cat = Yii::$app->request->post('cat');
         $ids_array = explode('-',$ids);
-        foreach($ids_array as $key=>$data){
-            $companyProduct = CompanyProduct::findOne($data);
-            if(!is_null($companyProduct->thumbnailUrl)&&file_exists($companyProduct->thumbnailUrl)){
-                unlink($companyProduct->thumbnailUrl);
+        if($cat == 0) {
+            foreach ($ids_array as $key => $data) {
+                $companyProduct = CompanyProduct::findOne($data);
+                if (!is_null($companyProduct->thumbnailUrl) && file_exists($companyProduct->thumbnailUrl)) {
+                    unlink($companyProduct->thumbnailUrl);
+                }
+                CompanyProduct::deleteAll('id=:id', [':id' => $data]);
             }
-            CompanyProduct::deleteAll('id=:id',[':id'=>$data]);
+        }else{
+            foreach($ids_array as $key=>$data) {
+                $companyProduct = CompanyProduct::findOne($data);
+                if($cat == 1) {
+                    $companyProduct->state = 0;
+                }else{
+                    $companyProduct->state = 1;
+                }
+                $companyProduct->save();
+            }
         }
         return "success";
     }
@@ -203,7 +216,7 @@ class CompanyProductController extends Controller
             $isThumb = Yii::$app->request->get('isThumb');
             $views = 'upload';
             if(is_null($isThumb)){
-                $fileArg = Common::upload($_FILES,true,false);
+                $fileArg = Common::upload($_FILES,true,false,'company_product',2048000);
             }else{
                 $fileArg = Common::upload($_FILES,true,true);
                 $views = 'uploads';
@@ -240,8 +253,36 @@ class CompanyProductController extends Controller
 	 */
 	public function actionCompanyProduct(){
 	    $companyId = Yii::$app->request->post('companyId');
+        $company = Company::findOne($companyId);
+        $companyName = $company->name;
+        $page = Yii::$app->request->post('page');
+        $query = CompanyProduct::find()
+            ->where('companyId = :companyId',[":companyId" => $companyId])
+            ->count();
+        $pagination = new Pagination([
+            'page' => $page,
+            'defaultPageSize' => 12,
+            'validatePage' => false,
+            'totalCount' => $query,
+        ]);
         $companyProduct = CompanyProduct::find()
 	        ->where('companyId = :companyId',[":companyId" => $companyId])->all();
-        return Json::encode($companyProduct);
+
+        $para = [];
+        $para['companyName'] = $companyName;
+        $para['product'] = Json::encode($companyProduct);
+        $para['page'] = $page;
+        $para['pageSize'] = $pagination->defaultPageSize;
+        $para['totalCount'] = $pagination->totalCount;
+        return Json::encode($para);
+    }
+
+    public function actionProductDisplay(){
+        $companyId = Yii::$app->request->post('companyId');
+        $product = CompanyProduct::find()
+            ->select('id,name,companyId')
+            ->where('companyId = :id',[':id'=>$companyId])
+            ->all();
+        return Json::encode($product);
     }
 }

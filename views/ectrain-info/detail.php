@@ -28,6 +28,22 @@ $this->title = '培训详情';
                         <td id="companyPaid"><?=$ectrainInfo->companyPaid?>万元</td>
                     </tr>
                     <tr>
+                        <th>企业网商总数：</th>
+                        <td id="companyNum"><?=$ectrainInfo->companyNum?>万元</td>
+                    </tr>
+                    <tr>
+                        <th>当月新孵化企业网商：</th>
+                        <td id="newCompanyThisM"><?=$ectrainInfo->newCompanyThisM?>万元</td>
+                    </tr>
+                    <tr>
+                        <th>个人网商总数：</th>
+                        <td id="singleNum"><?=$ectrainInfo->singleNum?>万元</td>
+                    </tr>
+                    <tr>
+                        <th>当月新孵化个人网商：</th>
+                        <td id="newSingleThisM"><?=$ectrainInfo->newSingleThisM?>万元</td>
+                    </tr>
+                    <tr>
                         <th>项目承办单位：</th>
                         <td id="organizer"><?=$ectrainInfo->organizer?></td>
                     </tr>

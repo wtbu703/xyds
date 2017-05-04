@@ -69,7 +69,6 @@ function add(){
 		paraStr += "&category=" + $("#category").val();
 		paraStr += "&attachUrl=" + $("#attachUrls").val();
 		paraStr += "&attachName=" + $("#attachNames").val();
-		paraStr += "&picUrl=" + $("#picUrl").val();
 		paraStr += "&datetime=" + $("#datetime").val();
 
 		$.ajax({

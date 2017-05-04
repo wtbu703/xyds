@@ -7,10 +7,6 @@ $this->title = '产品详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100">企业ID</th>
-                        <td id="companyId"><?=$companyProduct->companyId?></td>
-                    </tr>
-                    <tr>
                         <th width="100">产品名称</th>
                         <td id="name"><?=$companyProduct->name?></td>
                     </tr>

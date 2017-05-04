@@ -1,7 +1,5 @@
 @charset"utf-8";
 //本页面公用css
-
-
 .header_f{
 		float:left;
 	}
@@ -90,12 +88,24 @@ hr{
     position: relative;
     display: block;
     padding: 10px 35px;
+
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+	color: #1c8bd9;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-bottom-color: transparent;
+	cursor: default;
 }
 /* 右侧切换 */
 .nav_right{
 	@nav_border:#e5e5e5;
 	border-radius: 4px 4px 0 0;
 	border:1px solid @nav_border;
+
+}
+ul.nav_right li:hover a{
+		color:#1c8bd9;
 }
 .tab-content{
 	.tab-pane{
@@ -123,20 +133,11 @@ hr{
 }  
 .anchorBL{  
     display:none;   
-} 
-
-/* 底部表格 */
-.row_bottom{
-	margin-top:40px;
-	table{
-		margin:10px auto;
-		.shadow1;
-		caption{
-			margin-top:10px ;
-			margin-bottom:10px ;
-
-			font-family: "微软雅黑";
-			font-size:16px;
-		}
-	}
 }
+/* 底部表格 */
+ul.nav li a{cursor:pointer;color:#555;}
+.row_bottom {
+	margin-top: 40px;
+}
+.doubleColumn,.cover,.expressCompany,.expressAdressee,.netBussiness,.netPerson,.basicStruct{width:100%;max-width:800px;}
+.ecAll,.ecBussiness{width:100%;max-width:400px;}

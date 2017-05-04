@@ -46,6 +46,7 @@ use yii\helpers\Html;
     <link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
     <script>
         var updateUrl = "<?=yii::$app->urlManager->createUrl('role/update-one')?>";
+        var listallUrl  = "<?=yii::$app->urlManager->createUrl('role/find-all')?>";
     </script>
     <script language="javascript" type="text/javascript" src="js/admin/role/edit.js" charset="utf-8"></script>
 </head>

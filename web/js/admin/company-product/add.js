@@ -19,11 +19,14 @@ $(function(){
 			min:1,
 			onerror:"请输入产品名称！"})
 	$("#price").formValidator({
-				onshow:"请输入产品价格！",
-				onfocus:"请输入产品价格！"})
+				onshow:"请输入产品价格！单位（元）",
+				onfocus:"请输入产品价格！单位（元）"})
 			.inputValidator({               //校验不能为空
 				min:1,
 				onerror:"请输入产品价格！"})
+	$("#discount").formValidator({
+				onshow:"请输入产品折扣！范围：0-1",
+				onfocus:"请输入产品折扣！范围：0-1"})
 	$("#state").formValidator({
 				onshow:"请输入产品状态！",
 				onfocus:"请输入产品状态！"})
@@ -40,11 +43,9 @@ $(function(){
 function add(){
 	if($.formValidator.pageIsValid()){ // 表单提交进行校验
 		var paraStr = "";
-		paraStr += "&companyId=" + $("#companyId").val();
 		paraStr += "&name=" + $("#name").val();
 		paraStr += "&introduction=" + encodeURIComponent(contentEditor.getData());
 		paraStr += "&price=" + $("#price").val();
-		paraStr += "&stock=" + $("#stock").val();
 		paraStr += "&discount=" + $("#discount").val();
 		paraStr += "&state=" + $("#state").val();
 		paraStr += "&thumbnailUrl=" + $("#picUrl").val();

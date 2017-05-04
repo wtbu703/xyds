@@ -69,13 +69,6 @@ $this->title = '添加信息';
                             <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('public-info/upload')?>"></iframe>
                         </td>
                     </tr>
-                    <tr>
-                        <th>上传图片：</th>
-                        <td>
-                            <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
-                            <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('article/uploads')?>"></iframe>
-                        </td>
-                    </tr>
                 </table>
             </div>
             <div class="bk10"></div>

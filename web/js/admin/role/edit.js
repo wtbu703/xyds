@@ -11,13 +11,13 @@ $(function(){
 
 	//验证真实姓名是否为空
 	$("#name").formValidator({
-				onshow:"请输入名称！",
-				onfocus:"请输入名称！"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请输入名称！"})
+        onshow:"请输入名称！",
+        onfocus:"请输入名称！"})
+    .inputValidator({//校验不能为空
+        min:1,
+        onerror:"请输入名称！"})
 
-})
+});
 
 /**
  * 添加过滤

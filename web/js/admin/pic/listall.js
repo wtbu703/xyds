@@ -1,9 +1,9 @@
 //打开修改页面
-function update(categoryCode,categoryName) {
+function update(id) {
 	$.dialog({id:'category_update'}).close();
-	var url = findOneUrl+'&picCode='+categoryCode+'&action=update';
+	var url = findOneUrl+'&id='+id+'&action=update';
 	$.dialog.open(url,{
-		title: '修改图片类别--'+categoryName,
+		title: '修改图片',
 		width: 800,
 		height:500,
 		lock: true,
@@ -14,11 +14,11 @@ function update(categoryCode,categoryName) {
 }
 
 //查看详情
-function detail(categoryCode,categoryName) {
+function detail(id) {
 	$.dialog({id:'category_detail'}).close();
-	var url = findOneUrl+'&picCode='+categoryCode+'&action=detail';
+	var url = findOneUrl+'&id='+id+'&action=detail';
 	$.dialog.open(url,{
-		title: categoryName+'详情',
+		title: '图片详情',
 		width: 800,
 		height:500,
 		lock: true,
@@ -29,8 +29,8 @@ function detail(categoryCode,categoryName) {
 }
 
 // 单一删除
-function deleteOne(categoryCode){
-    var paraStr = 'picCode='+categoryCode;
+function deleteOne(id){
+    var paraStr = 'id='+id;
     if (confirm('您确定要删除吗？')) {
         $.ajax({
             url: deleteOneUrlUrl,
@@ -58,16 +58,16 @@ function deleteOne(categoryCode){
 
 //多选删除操作
 function deleteMore(){
-	var len=$("input[name='categoryCode']:checked").size()-1;
-	var categoryCodes='';
-	$("input[name='categoryCode']:checked").each(function(i, n){
+	var len=$("input[name='id']:checked").size();
+	var ids='';
+	$("input[name='id']:checked").each(function(i, n){
 		if(i<len-1){
-            categoryCodes += $(n).val() + '-';
+            ids += $(n).val() + '-';
 		}else{
-            categoryCodes += $(n).val();
+            ids += $(n).val();
 		}
 	});
-	if(categoryCodes=='') {
+	if(ids=='') {
 		window.top.art.dialog({
             content:'请选择至少一条数据',
             lock:true,
@@ -79,7 +79,7 @@ function deleteMore(){
         );
 		return false;
 	}else{
-		var paraStr = 'picCodes='+categoryCodes;
+		var paraStr = 'ids='+ids;
 		$.ajax({
 			url: deleteMoreUrl,
 			type: "post",

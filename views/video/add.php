@@ -2,9 +2,32 @@
 $this->title =  '添加视频';
 ?>
 
+
 <script type="text/javascript">
     var listallUrl = "<?=yii::$app->urlManager->createUrl('video/findbyattri')?>";
     var insertUrl = "<?=yii::$app->urlManager->createUrl('video/addone')?>";
+    $(function(){
+        //$('#uploadVideo').hide();
+        $('#videoUrl').hide();
+    })
+    function getpush(category) {
+        if (category == '本站') {
+            $('#uploadVideo').show();
+            $('#videoUrl').hide();
+        }
+        else {
+
+            $('#videoUrl').show();
+            $('#uploadVideo').hide();
+        }
+    }
+    function pic(){
+        var a;
+        var timeText = $('.pic_text');
+        a = document.myform.picUrl.value;
+        a = "<img src='"+a+"'  width='60%'>";
+        timeText.html(a);
+    }
 </script>
 <script type="text/javascript" src="js/admin/video/add.js"></script>
 
@@ -14,16 +37,19 @@ $this->title =  '添加视频';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100">种&nbsp;类&nbsp;：</th>
+                        <th width="100px">来源类型：</th>
+                        <td><select style='width:250px;height:25px; ' id="category"  name="category" class="input-text" onChange="getpush(this.value)">
+                                <option name="category" value="本站" selected>本站</option>
+                                <option name="category"  value="外网" >外网</option>
+                            </select></td>
+                    </tr>
+                    <tr>
+                        <th width="100">类&nbsp;别&nbsp;：</th>
                         <td><select style='width:250px;height:25px; ' id="sign"  name="sign" class="input-text"></select></td>
                     </tr>
                     <tr>
                         <th width="100">名&nbsp;字&nbsp;：</th>
                         <td><input type="text" style="width:250px;" name="name" id="name"  class="input-text"/></td>
-                    </tr>
-                    <tr>
-                        <th width="100">时&nbsp;长&nbsp;：</th>
-                        <td><input type="text" style="width:250px;" name="duration" id="duration"  class="input-text"/></td>
                     </tr>
                     <tr>
                         <th width="100">介&nbsp;绍&nbsp;：</th>
@@ -33,25 +59,29 @@ $this->title =  '添加视频';
                         <th>来&nbsp;源&nbsp;：</th>
                         <td><input type="text" style="width:250px;" name="source" id="source"  class="input-text"/></td>
                     </tr>
-                    <tr>
-                        <th>地&nbsp;址&nbsp;：</th>
-                        <td><input type="text" style="width:250px;" name="url" id="url"  class="input-text"/></td>
-
+                    <tr id="videoUrl">
+                        <th>视频链接：</th>
+                        <td><input type="text" style="width:250px;" name="attachUrls" id="attachUrls"  class="input-text"/></td>
                     </tr>
-                    <tr>
-                        <th>附&nbsp;件&nbsp;：</th>
+
+                    <tr id="uploadVideo">
+                        <th>上传视频：</th>
                         <td>
                             <input type="text" style="display:none;" name="attachUrls" id="attachUrls" class="input-text"/>
                             <input type="text" style="display:none;" name="attachNames" id="attachNames" class="input-text"/>
                             <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('video/upload')?>"></iframe>
                         </td>
                     </tr>
-                    <tr>
+                    <tr onmouseout="pic()">
                         <th>上传图片：</th>
                         <td>
                             <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
-                            <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('video/uploads')?>"></iframe>
+                            <iframe frameborder=0 width="100%" height=40px scrolling=no src="<?=yii::$app->urlManager->createUrl('video/uploads')?>"></iframe>
                         </td>
+                    </tr>
+                    <tr>
+                        <th>图片预览：</th>
+                        <td class="pic_text"></td>
                     </tr>
                 </table>
             </div>
@@ -65,3 +95,5 @@ $this->title =  '添加视频';
         </div>
     </div>
 </div>
+
+

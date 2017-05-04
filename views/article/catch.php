@@ -17,7 +17,7 @@ $this->title =  '文章抓取';
 <script type="text/javascript" src="js/admin/article/catch.js"></script>
 
 <div class="subnav" id="display" >
-    <div class="content-menu ib-a blue line-x"> <a class="add fb" href="#"><em>文章抓取</em></a> </div>
+    <div class="content-menu ib-a blue line-x"><em></em></div>
 </div>
 <div class="pad-lr-10">
     <form name="searchform" id="searchform" action="" method="post" target="iframeId">

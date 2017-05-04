@@ -3,7 +3,7 @@ $this->title = '联系我们'
 ?>
 <link rel="stylesheet" type="text/css" href="css/css/contactus.css">
 <link href="css/common_css/style.css" rel="stylesheet">
-
+<link rel="stylesheet" type="text/css" href="css/css/details_common.css">
 <script type="text/javascript" >
 	var insertUrl = "<?=Yii::$app->urlManager->createUrl('front/con-add')?>";
 </script>
@@ -34,28 +34,27 @@ $this->title = '联系我们'
 	</div>
 </div>
 <div class="container">
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-3">
-			<div class="leftsidebar">
-				<ul class="leftsidebar_list">
-					<li><span class="redbar"></span><a href="#">关于我们</a></li>
-					<li class="sidebar_li"><a href="#">个人资料上传</a></li>
-				</ul>
-			</div>
+	<div class="row row_top">
+		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+			<ul class="list-group content_left public_shadow " id="content_left">
+				<li class="list_first"><img src="images/third_details/xinxi_icon1.png"><span>&nbsp;联系我们</span></li>
+				<li class="list_item1 "><a href="<?=Yii::$app->urlManager->createUrl('front/about')?>">关于我们</a></li>
+				<li class="list_item1 list_on"><a href="<?=Yii::$app->urlManager->createUrl('front/contactus')?>">个人资料上传</a></li>
+			</ul>
 		</div>
-		<div class="col-xs-12 col-sm-12 col-md-9">
-			<div class="content">
-				<div class="row">
-					<ul class="col-xs-12 nav_s">
-						<span><a href="#">首页</a></span>
-						<span>></span>
-						<span><a href="#">联系我们</a></span>
-						<span>></span>
-						<span><a href="#">个人资料上传</a></span>
+
+		<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+			<div class="box clearfix">
+				<div class="right_head">
+					<div class="list_head">
+						<span class="lh_index"><img class="img-responsive home" src="images/images_common/home.png" alt="首页图标"><a href="<?=Yii::$app->urlManager->createUrl('front/index')?>">首页</a>&nbsp;></span>
+						<span class="lh_index"><a href="<?=Yii::$app->urlManager->createUrl('front/contactus')?>">联系我们</a>&nbsp;></span>
+						<span class="lh_index">个人资料上传</span>
 					</div>
 				</div>
-				<hr />
-				<div class="row">
+			</div>
+			<hr />
+			<div class="row">
 					<div class="col-xs-12 ">
 						<form class="form-horizontal registerform" role="form">
 							<div class="form-group has-feedback">
@@ -108,15 +107,16 @@ $this->title = '联系我们'
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
-									<button type="button" class="btn btn-default" id="add">提交</button>
-									<button type="submit" class="btn btn-default">重新填写</button>
+									<button type="button" class="btn btn_common1" id="add">提交</button>
+									<button type="submit" class="btn btn_common1">重新填写</button>
 								</div>
 							</div>
 						</form>
 					</div>
 				</div>
-			</div>
 		</div>
 	</div>
 </div>
+
+
 

@@ -3,6 +3,19 @@ $this->title = "修改网店";
 ?>
 <script>
     var updateUrl = "<?=yii::$app->urlManager->createUrl('company-shoplink/update-one')?>";
+    //正则表达式验证公司网址
+    function IsUrl(str){
+        if(str != '') {
+            var regUrl = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/;
+            var result = str.match(regUrl);
+            if (result != null) {
+                //alert("网址输入正确 ");
+            }
+            else {
+                alert('网址输入不正确');
+            }
+        }
+    }
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/company-shoplink/edit.js" charset="utf-8"></script>
 
@@ -18,20 +31,16 @@ $this->title = "修改网店";
                     <table width="90%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-                            <th width="100">企业</th>
-                            <td><input type="text" id="companyId"  class="input-text" style="width:270px;" value="<?=$companyShoplink->companyId?>" /></td>
-                        </tr>
-                        <tr>
-                            <th width="100">名称</th>
-                            <td><input type="text" id="shopName"  class="input-text" style="width:270px;" value="<?=$companyShoplink->shopName?>"/></td>
+                            <th width="50px">名称</th>
+                            <td><input type="text" id="shopName"  class="input-text" value="<?=$companyShoplink->shopName?>"/></td>
                             <input type="hidden" id="id" value="<?=$companyShoplink->id?>" />
                         </tr>
                         <tr>
-                            <th width="100">链接</th>
-                            <td><input type="text" style="width:500px;height:100px;" id="shopLink" value="<?=$companyShoplink->shopLink?>" ></td>
+                            <th width="50px">链接</th>
+                            <td><input type="text" id="shopLink" style="width:270px;"  value="<?=$companyShoplink->shopLink?>"  onmouseout= "IsUrl(document.myform.shopLink.value)" ></td>
                         </tr>
                         <tr>
-                            <th width="100">平台</th>
+                            <th width="50px">平台</th>
                             <td><select style="width:270px;" id="platform">
                                     <?foreach($platform as $key => $val){?>
                                         <?if(intval($val->dictItemCode) == $companyShoplink->shopLink){?>

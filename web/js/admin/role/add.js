@@ -1,9 +1,3 @@
-// 加载字典信息
-$(document).ready(function(){
-	//generateState();
-})
-
-
 //页面校验
 $(function(){
 	$.formValidator.initConfig({

@@ -2,12 +2,10 @@
 
 namespace app\controllers;
 
-//use app\models\Role;
-use Yii;
+use yii;
 use yii\web\Controller;
 use app\models\Resource;
 use app\models\RoleResource;
-//use yii\db\Query;
 use yii\data\Pagination;
 use app\common\Common;
 
@@ -17,37 +15,42 @@ use app\common\Common;
  */
 class ResourceController extends Controller{
 
-    public $layout = false;
     public $enableCsrfValidation = false;
 
+
+	/**
+	 * 前往首页
+	 * @return string
+	 */
+	public function actionIndex(){
+		$add = Common::resource('RESOURCE','ADD');
+		return $this->render('list',[
+			'add' => $add
+		]);
+	}
     /**
      * 列表页
      * @return string
      */
     public function actionFindByAttri(){
-        /*$roleId = yii::$app->request->get('id');
-
-        $query = new Query();
-        $resources = $query->select('a.id as id,a.tableName as tableName,a.tableOpreate as tableOpreate,a.note as note')
-            ->from('resource a')
-            ->where("b.roleId = :id",[':id' => $roleId])
-            ->leftJoin('role_resource b','a.id = b.resourceId');*/
-
-        $resources = Resource::find()->where('1=1');
+	    $tableName = Yii::$app->request->get('tableName');
+	    $para= [];
+	    $para['tableName'] = $tableName;
+	    $whereStr = '1=1';
+	    if($tableName != ''){
+		    $whereStr = $whereStr." and tableName='".$tableName."'";
+	    }
+        $resources = Resource::find()->where($whereStr);
 
         $pages = new Pagination(['totalCount' =>$resources->count(), 'pageSize' => Common::PAGESIZE]);
         $models = $resources->offset($pages->offset)->limit($pages->limit)->all();
 
-        $add = Common::resource('RESOURCE','ADD');
-        $excel = Common::resource('RESOURCE','EXCEL');
         $delete = Common::resource('RESOURCE','DELETE');
-        return $this->render('list',[
+        return $this->render('listall',[
             'resources' => $models,
             'pages' => $pages,
-            'add' => $add,
-            'excel' => $excel,
-            'delete' => $delete,
-            //'roleId' => $roleId
+	        'para' => $para,
+            'delete' => $delete
         ]);
     }
 
@@ -56,8 +59,6 @@ class ResourceController extends Controller{
      * @return string
      */
     public function actionAdd(){
-
-        //$roleId = yii::$app->request->get('roleId');
 
         return $this->render('add');
     }
@@ -185,24 +186,115 @@ class ResourceController extends Controller{
         'admin/backend',
         'admin/logincheck',
         'admin/captcha',
+	    'admin/main',
 
-        /*'admin/main',
         'admin/menu', //打开菜单
         'admin/lock',
         'admin/unlock',
-        'admin/changepwd',*/
+        'admin/changepwd',
 
         'debug',
         'default/index',
         'default/view',
         'dict/findall',
+        'dict/info',
+        'dict/dict',
+
+	    'front/index',
+	    'front/contactus',
+        'front/about',
+	    'front/con-add',
+	    'front/enterprise-display',
+	    'front/enterprise-detail',
+	    'front/third',
+	    'front/third-detail',
+	    'front/line',
+	    'front/detail',
+	    'front/public-info',
+	    'front/info-detail',
+	    'front/ectrain',
+	    'front/train-notice',
+	    'front/train-detail',
+	    'front/online-video',
+	    'front/video-detail',
+	    'front/product-display',
+	    'front/product-detail',
+	    'front/ec-info',
+	    'front/ec-info-detail',
+	    'front/search',
+	    'front/find-more',
+	    'front/company-news',
+	    'front/news-detail',
+	    'front/signup',
+	    'front/sign',
+	    'front/data-statistic',
+	    'front/service-site',
+	    'article/index-article',
+	    'ectrain/ectrain-index',
+
+        'article/hot-news',
+        'article/article',
+
+	    'video/video-index',
+        'video/ectrain-video',
+        'video/video-all',
+
+	    'public-info/info-one',
+        'public-info/info',
+        'public-info/state',
+	    'public-info/index-info',
+	    'public-info/state',
+
+        'company/company-index',
+        'company/hot-company',
+        'company/dict',
+        'company/company',
+
+        'company-recruit/search',
+        'company-recruit/positions',
+        'company-recruit/company-recruit',
+
+        'company-news/company-news',
+        'company-news/all-news',
+
+        'company-shoplink/company-shoplink',
+
+        'company-product/company-product',
+        'company-product/product-display',
+
+        'ectrain-enter/examine',
+
+        'ectrain/ectrain',
+        'ectrain/ec-category',
+        'ectrain/list',
+        'ectrain/listall',
+        'ectrain/add',
+        'ectrain/add-one',
+        'ectrain/delete',
+        'ectrain/delete-more',
+        'ectrain/ectrain-index',
+        'ectrain/dict',
+        'ectrain/ectrain-all',
+        'ectrain/uploadss',
+        'ectrain/upload',
+        'ectrain/find-one',
+        'ectrain/find-by-attri',
+        'ectrain/update',
+        'ectrain/update-one',
+		//数据统计
+	    'service-site/ajax',
+	    'service-site/generate-pic',
+	    'county-economic/ajax',
+	    'ectrain-info/ajax',
+	    'ectrain-enter/ajax',
+	    'logistics-build/ajax'
     ];
 
     /**
      * 导出数据库数据为excel表
      */
-    public function actionExcel(){
+    /*public function actionExcel(){
         Common::Excel(new Resource());
-    }
+    }*/
 
 }

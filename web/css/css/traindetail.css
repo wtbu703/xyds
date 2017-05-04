@@ -79,12 +79,14 @@ li {
   display: inline;
   zoom: 1;
 }
-p.subhead {
+.subhead {
   font-size: 14px;
   font-family: "微软雅黑";
   margin-top: 25px;
+  width: 400px;
+  margin: 0 auto;
 }
-p.row_text {
+.row_text {
   font-size: 14px;
   font-family: "宋体";
   margin-top: 25px;
@@ -92,4 +94,17 @@ p.row_text {
 .down {
   margin-top: 100px;
   padding-bottom: 180px;
+}
+.down .btn_common1 {
+  border-color: #646464;
+  background-color: #FFF;
+  color: #000;
+}
+.down .btn_common1:hover {
+  color: #fff;
+  background-color: #40b5d3;
+  border-color: #40b5d3;
+}
+.footer .container {
+  margin-top: 0px;
 }

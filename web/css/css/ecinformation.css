@@ -17,13 +17,17 @@
 /* END less变量的公共部分css */
 .information_list {
   margin: 30px auto;
+
 }
 .information_list a {
   color: #555555;
+  font-size: 20px;
+  cursor:pointer;
 }
-.information_list li.active a {
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
   color: #428bca;
 }
+
 .news h5 {
   margin: 0px auto;
   font-size: 20px;
@@ -39,6 +43,7 @@
 .news h5 a,
 .news p a {
   color: #000;
+  text-decoration:none;
 }
 .news span {
   float: right;
@@ -56,6 +61,12 @@
   background-color: #c62f2f;
   margin-right: 5px;
   float: left;
+}
+.column span a{
+  font-size:14px;
+  color:#585858;
+  float:right;
+  font-weight:bold;
 }
 .column span {
   font-size: 20px;
@@ -110,6 +121,7 @@
 .hot_company h5 a,
 .hot_company p a {
   color: #000;
+  text-decoration:none;
 }
 .hot_company p {
   text-overflow: clip;
@@ -132,26 +144,4 @@
 }
 .row_page {
   margin-top: 20px;
-}
-.pagination > li > a {
-  border: 1px solid #b5b5b5;
-}
-.pagination > li > a:hover,
-.pagination > li > span:hover,
-.pagination > li > a:focus,
-.pagination > li > span:focus {
-  color: #d73455;
-  background-color: #fff;
-  border-color: #d73455;
-}
-.pagination li a {
-  margin-left: 10px;
-  border-radius: 6px;
-  color: #000000;
-}
-.pagination li a.fen {
-  border-style: none;
-}
-.information_list li{
-  cursor: pointer;
 }

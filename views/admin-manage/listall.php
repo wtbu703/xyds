@@ -12,21 +12,22 @@
         <table width="100%" cellspacing="0" id="user_list">
             <thead id="dict_list_head">
             <tr align="left">
-                <th width="80px"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th><th width="30px">序号</th><th width="160px">用户名</th><th width="160px">真实姓名</th><th width="160px">电话号码</th><th width="80px" align="center">用户状态</th><th align="center">操作</th>
+                <th width="80px"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th><th width="30px">序号</th><th width="100px">用户名</th><th width="160px">真实姓名</th><th width="120px">角色</th><th width="120px">电话号码</th><th width="80px" align="center">用户状态</th><th align="center">操作</th>
             </tr>
             </thead>
             <tbody id="user_list_body">
             <?if(!is_null($users)){?>
             <?php foreach ($users as $index => $val){?>
                 <tr align="left">
-                    <td><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
+                    <td><input type="checkbox" id="id" name="id" value="<?=$val['id']?>"/></td>
                     <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->username?>')"><?=$val->username?></a></td>
-                    <td><?=$val->truename?></td>
-                    <td><?=$val->telephone?></td>
-                    <td align="center"><?=$val->state?></td>
+                    <td><a href="javascript:detail('<?=$val['id']?>','<?=$val['username']?>')"><?=$val['username']?></a></td>
+                    <td><?=$val['truename']?></td>
+	                <td><?=$val['roleId']?$val['roleId']:'无'?></td>
+                    <td><?=$val['telephone']?></td>
+                    <td align="center"><?=$val['state']?></td>
                     <td align="center">
-                        <?if($edit){?><a href="javascript:openedit('<?=$val->id?>','<?=$val->username?>')">修改</a>&nbsp;&nbsp;<?}?>|<?if($delete){?>&nbsp;&nbsp;<a href="javascript:deleteUser('<?=$val->id?>')">删除</a><?}?><!--&nbsp;&nbsp;
+                        <?if($edit){?><a href="javascript:openedit('<?=$val['id']?>','<?=$val['username']?>')">修改</a>&nbsp;&nbsp;<?}?>|<?if($delete){?>&nbsp;&nbsp;<a href="javascript:deleteUser('<?=$val['id']?>')">删除</a><?}?><!--&nbsp;&nbsp;
                         |&nbsp;&nbsp;<a href="javascript:resetPass('<?/*=$val->id*/?>')">重置密码</a>-->
                     </td>
                </tr>
@@ -67,4 +68,5 @@
     <input type="hidden" id="username" name="username" value="<?=$para['username']?>"/>
     <input type="hidden" id="truename" name="truename" value="<?=$para['truename']?>"/>
     <input type="hidden" id="state" name="state" value="<?=$para['state']?>"/>
+	<input type="hidden" id="role" name="role" value="<?=$para['role']?>"/>
 </form>

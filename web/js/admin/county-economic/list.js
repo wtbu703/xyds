@@ -28,7 +28,14 @@ function openadd(){
 //查询功能
 function search(){
 	if(str_is_null($('#year').val())) {
-        $('.checkTip').html('查询条件不为空');
+		window.top.art.dialog({
+			content: '至少有一个查询条件不为空！',
+			lock: true,
+			width: 250,
+			height: 100,
+			border: false,
+			time: 2
+		});
 		return ;
 	}
 	var paraStr = "&year="+$('#year').val();

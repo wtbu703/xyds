@@ -299,17 +299,18 @@ class css ============================ class css ========
 .Validform_right{
 	color:#71b83d;
 	padding-left:20px;
-	background:url(../images/right.png) no-repeat left center;
+	background:url(../../images/images_contactus/right.png) no-repeat left center;
 }
 .Validform_wrong{
 	color:red;
 	padding-left:20px;
+	margin-top: 5px;
 	white-space:nowrap;
-	background:url(../images/error.png) no-repeat left center;
+	background:url(../../images/images_contactus/error.png) no-repeat left center;
 }
 .Validform_loading{
 	padding-left:20px;
-	background:url(../images/onLoad.gif) no-repeat left center;
+	background:url(../../images/images_contactus/onLoad.gif) no-repeat left center;
 }
 .Validform_error{
 	background-color:#ffe7e7;

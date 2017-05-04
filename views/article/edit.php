@@ -7,6 +7,13 @@ $this->title =  '修改文章';
 
 <script>
     var updateUrl = "<?=yii::$app->urlManager->createUrl('article/updateone')?>";
+    function pic(){
+        var a;
+        var timeText = $('.pic_text');
+        a = document.myform.picUrl.value;
+        a = "<img src='"+a+"'  width='60%'>";
+        timeText.html(a);
+    }
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/article/edit.js" charset="utf-8"></script>
 
@@ -22,7 +29,7 @@ $this->title =  '修改文章';
                     <table width="90%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-                            <th>文章分类：</th>
+                            <th width="60px">文章分类：</th>
                             <td><select style="width:270px;" id="category">
                                     <?foreach($cateGory as $key => $val){?>
                                         <?if(intval($val->dictItemCode) == $article->category){?>
@@ -59,11 +66,19 @@ $this->title =  '修改文章';
                             </td>
                         </tr>
                         <tr>
+                            <th width="100">原始图片：</th>
+                            <td><img src="<?=$article->picUrl?>" width="60%" /></td>
+                        </tr>
+                        <tr onmouseout="pic()">
                             <th>上传图片：</th>
                             <td>
                                 <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
-                                <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('article/uploads')?>"></iframe>
+                                <iframe frameborder=0 width="100%" height=60px scrolling=no src="<?=yii::$app->urlManager->createUrl('article/uploads')?>"></iframe>
                             </td>
+                        </tr>
+                        <tr>
+                            <th>图片预览：</th>
+                            <td class="pic_text"></td>
                         </tr>
                         </tbody>
                     </table>

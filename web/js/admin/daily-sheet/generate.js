@@ -14,7 +14,7 @@ function detail(siteId,siteName){
 }
 
 //打开展示日交易信息页面
-function showDealTable(siteId,siteName) {
+/*function showDealTable(siteId,siteName) {
      $.dialog({id:'site_deal'}).close();
      var url = showDealTableUrl + '&id='+siteId;
      $.dialog.open(url,{
@@ -26,11 +26,11 @@ function showDealTable(siteId,siteName) {
          id: 'site_deal',
          drag:true
      });
- }
+ }*/
 
 //多选生成操作
 function generate(){
-    var len=$("input[name='id']:checked").size()-1;
+    var len=$("input[name='id']:checked").size();
     var ids='';
     var date = $('#date').val();
     $("input[name='id']:checked").each(function(i, n){

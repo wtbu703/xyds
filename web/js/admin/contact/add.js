@@ -31,6 +31,7 @@ function add(){
 	if($.formValidator.pageIsValid()){ // 表单提交进行校验
 		var paraStr = "";
 		paraStr += "&truename=" + $("#truename").val();
+		paraStr += "&gender=" + $("#gender").val();
 		paraStr += "&mobile=" + $("#mobile").val();
 		paraStr += "&email=" + $("#email").val();
 		paraStr += "&QQ=" + $("#QQ").val();

@@ -1,11 +1,11 @@
 //打开修改页面
-function openedit(id,shopName) {
+function openedit(id,name) {
 	$.dialog({id:'shoplink_update'}).close();
 	var url = editUrl + '&id='+id;
 	$.dialog.open(url,{
-		title: '修改网店链接--'+shopName,
+		title: '修改网店链接--'+name,
 		width: 700,
-		height:500,
+		height:400,
 		lock: true,
 		border: false,
 		id: 'shoplink_update',
@@ -114,8 +114,8 @@ function detail(id,shopName){
 	var url = detailUrl+'&id='+id;
 	$.dialog.open(url,{
 		title: '网店详情--'+shopName,
-		width: 800,
-		height:600,
+		width: 500,
+		height:400,
 		lock: true,
 		border: false,
 		id: 'shoplink_detail',

@@ -26,6 +26,22 @@ $this->title = "修改招聘信息";
                             <td><input type="text" id="position"  class="input-text" style="width:270px;" value="<?=$companyRecruit->position?>" /></td>
                         </tr>
                         <tr>
+                            <th>工作地点：</th>
+                            <td><input type="text" style="width:250px;" name="workPlace" id="workPlace"  value="<?=$companyRecruit->workPlace?>"  class="input-text"/></td>
+                        </tr>
+                        <tr>
+                            <th>学历要求：</th>
+                            <td><input type="text" style="width:250px;" name="record" id="record"  value="<?=$companyRecruit->record?>"  class="input-text"/></td>
+                        </tr>
+                        <tr>
+                            <th>薪资：</th>
+                            <td><input type="text" style="width:250px;" name="salary" id="salary"  value="<?=$companyRecruit->salary?>"  class="input-text"/></td>
+                        </tr>
+                        <tr>
+                            <th>经验要求：</th>
+                            <td><input type="text" style="width:250px;" name="exp" id="exp"  value="<?=$companyRecruit->exp?>"  class="input-text"/></td>
+                        </tr>
+                        <tr>
                             <th width="100">要求</th>
                             <td><textarea style="width:500px;height:100px;" name="demand" id="demand" ><?=$companyRecruit->demand?></textarea></td>
                         </tr>

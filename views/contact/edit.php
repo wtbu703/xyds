@@ -23,6 +23,10 @@ $this->title = "修改联系信息";
                             <input type="hidden" id="id" value="<?=$contact->id?>" />
                         </tr>
                         <tr>
+                            <th width="100">性别</th>
+                            <td><input type="text" id="gender" class="input-text" style="width:270px;" value="<?=$contact->gender?>" /></td>
+                        </tr>
+                        <tr>
                             <th width="100">手机</th>
                             <td><input type="text" id="mobile" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"   class="input-text" style="width:270px;" value="<?=$contact->mobile?>" /></td>
                         </tr>
