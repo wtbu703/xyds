@@ -48,6 +48,10 @@ $this->title = '培训详情';
                         <td id="published"><?=$ectrain->published?></td>
                     </tr>
                     <tr>
+                        <th>培训开始时间：</th>
+                        <td id="time"><?=$ectrain->time?></td>
+                    </tr>
+                    <tr>
                         <th>大图：</th>
                         <td id="thumbnailUrl"> <img src="<?=$ectrain->thumbnailUrl?>" width="60%"></td>
                     </tr>

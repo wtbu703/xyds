@@ -8,12 +8,12 @@ $this->title = '报名详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100">培训ID:</th>
-                        <td id="trainId"><?=$ectrainEnter->trainId?></td>
-                    </tr>
-                    <tr>
                         <th width="100">真实姓名:</th>
                         <td id="truename"><?=$ectrainEnter->truename?></td>
+                    </tr>
+                    <tr>
+                        <th width="100">状态:</th>
+                        <td id="state"><?=$ectrainEnter->state?></td>
                     </tr>
                     <tr>
                         <th width="100">身份证号:</th>
@@ -34,6 +34,10 @@ $this->title = '报名详情';
                     <tr>
                         <th width="100">年龄:</th>
                         <td id="age"><?=$ectrainEnter->age?></td>
+                    </tr>
+                    <tr>
+                        <th width="100">报名时间:</th>
+                        <td id="created"><?=$ectrainEnter->created?></td>
                     </tr>
                 </table>
             </div>

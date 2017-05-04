@@ -70,17 +70,17 @@ use yii\helpers\Html;
                     <?if(!is_null($roles)){?>
                         <?php foreach ($roles as $index => $val){?>
                         <tr align="left">
-                                <td><input type="checkbox" id="id" name="id" value="<?=htmlspecialchars($val->id)?>"/></td>
-                                <td><a href="javascript:detail('<?=$val->id?>','<?=$val->name?>')"><?=htmlspecialchars($val->name)?></a></td>
-                                <td align="center"><?=htmlspecialchars($val->state)?></td>
-                                <td align="center">
-                                    <?if($edit){?>
-                                    <a href="javascript:openedit('<?=$val->id?>','<?=$val->name?>')">修改</a>&nbsp;&nbsp;<?}?>
-                                    |<?if($delete){?>&nbsp;&nbsp;<a href="javascript:deleteRole('<?=$val->id?>')">删除</a>&nbsp;&nbsp;<?}?>
-                                    |<?if($fq){?>&nbsp;&nbsp;<a href="javascript:accesscontrol('<?=$val->id?>')">分配权限</a>&nbsp;&nbsp;<?}?>
-                                    |<?if($fy){?>&nbsp;&nbsp;<a href="javascript:usercontrol('<?=$val['id']?>')">分配用户</a>&nbsp;&nbsp;<?}?>
-                                    |<?if($fz){?>&nbsp;&nbsp;<a href="javascript:ResourceControl('<?=$val['id']?>')">分配资源</a><?}?>
-                                </td>
+                            <td><input type="checkbox" id="id" name="id" value="<?=htmlspecialchars($val->id)?>"/></td>
+                            <td><a href="javascript:detail('<?=$val->id?>','<?=$val->name?>')"><?=htmlspecialchars($val->name)?></a></td>
+                            <td align="center"><?=htmlspecialchars($val->state)?></td>
+                            <td align="center">
+                                <?if($edit){?>
+                                <a href="javascript:openedit('<?=$val->id?>','<?=$val->name?>')">修改</a>&nbsp;&nbsp;<?}?>
+                                |<?if($delete){?>&nbsp;&nbsp;<a href="javascript:deleteRole('<?=$val->id?>')">删除</a>&nbsp;&nbsp;<?}?>
+                                |<?if($fq){?>&nbsp;&nbsp;<a href="javascript:accesscontrol('<?=$val->id?>')">分配权限</a>&nbsp;&nbsp;<?}?>
+                                |<?if($fy){?>&nbsp;&nbsp;<a href="javascript:usercontrol('<?=$val->id?>')">分配用户</a>&nbsp;&nbsp;<?}?>
+                                |<?if($fz){?>&nbsp;&nbsp;<a href="javascript:ResourceControl('<?=$val->id?>')">分配资源</a><?}?>
+                            </td>
                        </tr>
                         <?}?>
                     <?}?>
@@ -89,7 +89,7 @@ use yii\helpers\Html;
                 <div class="btn">
                     <label for="check_box"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</label>
                     <?if($delete){?>
-                    <input type="button" class="buttondel" name="dosubmit" value="删除" onclick="if (confirm('您确定要删除吗？')) delopt();"/>
+                    <input type="button" class="buttondel" name="dosubmit" value="删除" onclick="if (confirm('您确定要删除吗？')) deleteMore();"/>
                     <?}?>
                 </div>
 

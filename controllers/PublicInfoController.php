@@ -51,7 +51,6 @@ class PublicInfoController extends Controller
         $publicInfo->state = Yii::$app->request->post('state');
         $publicInfo->attachUrl = Yii::$app->request->post('attachUrl');
         $publicInfo->attachName = Yii::$app->request->post('attachName');
-        $publicInfo->picUrl = Yii::$app->request->post('picUrl');
         $publicInfo->published = date("Y-m-d H:i:s");
 
         $infoState = new InfoState();
@@ -74,12 +73,18 @@ class PublicInfoController extends Controller
     public function actionUpdate(){
         $id = Yii::$app->request->get('id');
         $publicInfo = PublicInfo::findOne($id);
+        $whereStr = "infoId = '" . $publicInfo->id . "' and state = '" . $publicInfo->state . "'";
+        $info = InfoState::find()
+            ->select('time')
+            ->where($whereStr)
+            ->one();
         $cateGory = Dictitem::find()->where(['dictCode' => 'DICT_CATEGORY'])->all();
         $state = Dictitem::find()->where(['dictCode' => 'DICT_PUBLICINFO_STATE'])->all();
         return $this->render('edit',[
             'publicInfo'=>$publicInfo,
             'cateGory'=>$cateGory,
             'state'=>$state,
+            'info'=>$info,
         ]);
     }
 
@@ -99,20 +104,19 @@ class PublicInfoController extends Controller
             $publicInfo->attachUrl = $attachUrl;
             $publicInfo->attachName = Yii::$app->request->post('attachName');
         }
-        if($publicInfo->picUrl != $picUrl&&$publicInfo->picUrl != ''&&$picUrl!=''&&file_exists($publicInfo->picUrl)){
-            unlink($publicInfo->picUrl );
-        }
-        if($picUrl != '') {
-            $publicInfo->picUrl = $picUrl;
-        }
         $publicInfo->author = Yii::$app->request->post('author');
         $publicInfo->title = Yii::$app->request->post('title');
         $publicInfo->content = Yii::$app->request->post('content');
         $publicInfo->category = Yii::$app->request->post('category');
+        $publicInfo->state = Yii::$app->request->post('state');
 
+        $infoState = new InfoState();
+        $infoState->id = Common::create40ID();
+        $infoState->infoId = $id;
+        $infoState->state = $publicInfo->state;
+        $infoState->time = Yii::$app->request->post('datetime');
 
-
-        if($publicInfo->save()) {
+        if($publicInfo->save()&&$infoState->save()) {
             return "success";
         }else{
             return "fail";
@@ -166,6 +170,8 @@ class PublicInfoController extends Controller
     public function actionFindOne(){
         $id = Yii::$app->request->get('id');
         $publicInfo = PublicInfo::findOne($id);
+        $infoState = InfoState::find()->where('infoId = :id and state = :state',[':id'=>$publicInfo->id,':state'=>$publicInfo->state])->one();
+        $time = $infoState->time;
         //字典反转
         $cateGory = Dictitem::find()->where(['dictCode'=>'DICT_CATEGORY'])->all();
         $state = Dictitem::find()->where(['dictCode'=>'DICT_PUBLICINFO_STATE'])->all();
@@ -180,7 +186,8 @@ class PublicInfoController extends Controller
             }
         }
         return $this->render('detail',[
-            'publicInfo'=>$publicInfo
+            'publicInfo'=>$publicInfo,
+            'time'=>$time,
         ]);
     }
 
@@ -293,6 +300,15 @@ class PublicInfoController extends Controller
         }
     }
 
+    public function actionIndexInfo(){
+        $info = PublicInfo::find()
+            ->select('title,published,id')
+            ->orderBy(['published' => SORT_DESC])
+            ->limit(11)
+            ->all();
+        return Json::encode($info);
+    }
+
     /**
      * @return string
      * 信息公开的接口
@@ -310,7 +326,7 @@ class PublicInfoController extends Controller
         }
         $pagination = new Pagination([
             'page' => $page,
-            'defaultPageSize' => 21,
+            'defaultPageSize' => 14,
             'validatePage' => false,
             'totalCount' => $query,
         ]);

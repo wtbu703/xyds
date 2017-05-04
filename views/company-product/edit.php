@@ -4,6 +4,13 @@ $this->title = "修改产品";
 
 <script>
     var updateUrl = "<?=yii::$app->urlManager->createUrl('company-product/update-one')?>";
+    function pic(){
+        var a;
+        var timeText = $('.pic_text');
+        a = document.myform.picUrl.value;
+        a = "<img src='"+a+"'  width='60%'>";
+        timeText.html(a);
+    }
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/company-product/edit.js" charset="utf-8"></script>
 <div class="pad-lr-10">
@@ -17,10 +24,6 @@ $this->title = "修改产品";
                 <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                     <table width="90%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
-                        <tr>
-                            <th width="100px">企业</th>
-                            <td><input type="text" id="companyId"  class="input-text" style="width:270px;" value="<?=$companyProduct->companyId?>" /></td>
-                        </tr>
                         <tr>
                             <th width="100">名称</th>
                             <td><input type="text" id="name"  class="input-text" style="width:270px;" value="<?=$companyProduct->name?>"/></td>
@@ -55,11 +58,19 @@ $this->title = "修改产品";
                                 </select></td>
                         </tr>
                         <tr>
-                            <th>产品图片：</th>
+                            <th width="100">原始图片：</th>
+                            <td><img src="<?=$companyProduct->thumbnailUrl?>" width="60%" /></td>
+                        </tr>
+                        <tr onmouseout="pic()">
+                            <th>修改图片：</th>
                             <td>
-                                <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text" "/>
-                                <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('company-product/upload')?>"></iframe>
+                                <input type="text" style="display:none;" name="picUrl" id="picUrl" value="" class="input-text" "/>
+                                <iframe frameborder=0 width="100%" height=40px scrolling=no src="<?=yii::$app->urlManager->createUrl('company-product/upload')?>"></iframe>
                             </td>
+                        </tr>
+                        <tr>
+                            <th>图片预览：</th>
+                            <td class="pic_text"></td>
                         </tr>
                         </tbody>
                     </table>

@@ -8,7 +8,7 @@
             ifm.height = subWeb.body.scrollHeight;
         }
     }
-    var listdictUrl  = "<?=yii::$app->urlManager->createUrl('dict/findall')?>";
+    var listRoleUrl  = "<?=yii::$app->urlManager->createUrl('role/select-all')?>";
     var addUrl = "<?=yii::$app->urlManager->createUrl('admin-manage/add')?>";
     var listallUrl  = "<?=yii::$app->urlManager->createUrl('admin-manage/find-by-attri')?>";
 </script>
@@ -17,9 +17,6 @@
     <div class="content-menu ib-a blue line-x">
         <?php if($add){?>
         <a class="add fb" href="javascript:openadd();void(0);"><em>添加管理员</em></a>
-        <?php }?>
-        <?php if($excel){ ?>
-        <a class="add fb" href="<?=yii::$app->urlManager->createUrl('admin-manage/excel')?>"><em>导出为Excel文件</em></a>
         <?php }?>
     </div>
 </div>
@@ -35,11 +32,11 @@
                             <input id="username" name="username" type="text" value="" class="input-text" />
                             真实姓名：
                             <input id="truename" type="text" name="truename" value="" class="input-text" />
+	                        角色：
+	                        <select name="role" id="role" style="width:140px;"></select>&nbsp;
                             状态：
-                            <select name="state" id="state" style="width:140px;"></select>
-                            &nbsp;<input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
-                            <div class = "checkTip" style="float:right;margin-right:50%;color:red;">
-                            </div>
+                            <select name="state" id="state" style="width:140px;"></select>&nbsp;
+                            <input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
                         </div>
                     </div>
                 </td>

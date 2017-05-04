@@ -33,8 +33,8 @@
 					</div>
 					<div class="col-xs-12 article_msg">
 						<div>
+							<span>来源：<?=$article->author?></span>
 							<span>发布者：<?=$article->author?></span>
-							<span>文章来源：<?=$article->sourceUrl?></span>
 							<span>点击次数：<?=$article->count?></span>
 							<span>更新时间：<?=$article->datetime?></span>
 							<span>关键字：<?=$article->keyword?></span>
@@ -58,18 +58,18 @@
 					<div class="col-xs-12">
 						<ul class="page">
 							<?php
-							if(!is_null($stitle)){?>
+							if($stitle != ''){?>
 								<?php
-								$time = substr($sdatetime,6,-9);
+								$time = substr($sdatetime,0,10);
 								?>
-								<li><div></div><a href="<?=Yii::$app->urlManager->createUrl('front/ec-info-detail')?>&id=<?=$sid?>"><span>上一篇: <?=$stitle?> <h>&nbsp;2017-02-08</h></span></a></li>
+								<li><div></div><a href="<?=Yii::$app->urlManager->createUrl('front/ec-info-detail')?>&articleId=<?=$sid?>"><span>上一篇: <?=$stitle?>&nbsp;<?=$time?></span></a></li>
 							<?}?>
 							<?php
-							if(!is_null($titles)){?>
+							if($titles != ''){?>
 								<?php
-								$time = substr($datetimes,6,-9);
+								$time = substr($datetimes,0,10);
 								?>
-								<li><div></div><a href="<?=Yii::$app->urlManager->createUrl('front/ec-info-detail')?>&id=<?=$ids?>"><span>下一篇：<?=$titles?> <h>&nbsp;2017-02-08</h></span></a></li>
+								<li><div></div><a href="<?=Yii::$app->urlManager->createUrl('front/ec-info-detail')?>&articleId=<?=$ids?>"><span>下一篇 ：<?=$titles?> <h>&nbsp;<?=$time?></h></span></a></li>
 							<?}?>
 						</ul>
 					</div>
@@ -83,7 +83,7 @@
 					<div class="col-xs-12 column">	
 						<div class="redbar">
 						</div>
-						<span class="">热点新闻</span>
+						<span class="">热点新闻<a href="/xyds1/web/index.php?r=front%2Fec-info">>>更多</a></span>
 					</div>
 				</div>
 				<div class="hot">
@@ -99,7 +99,7 @@
 					<div class="col-xs-12 column">	
 						<div class="redbar">
 						</div>
-						<span class="">热门企业</span>
+						<span class="">热门企业<a href="/xyds1/web/index.php?r=front%2Fenterprise-display">>>更多</a></span>
 					</div>
 				</div>
 				<div class="hot hotCompany">

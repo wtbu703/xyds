@@ -144,7 +144,7 @@ class CompanyController extends Controller{
             $isThumb = Yii::$app->request->get('isThumb');
             $views = 'upload';
             if(is_null($isThumb)){
-                $fileArg = Common::upload($_FILES,true,false);
+                $fileArg = Common::upload($_FILES,true,false,'company_company',2048000);
             }else{
                 $fileArg = Common::upload($_FILES,true,true);
                 $views = 'uploads';
@@ -225,8 +225,9 @@ class CompanyController extends Controller{
 	 */
 	public function actionCompany(){
         $type = Yii::$app->request->post('newsType');
+        $type = $type-1;
         $page = Yii::$app->request->post('page');
-        if($type == 0){
+        if($type == -1){
             $query = Company::find()
                 ->count();
         }else{
@@ -240,7 +241,7 @@ class CompanyController extends Controller{
             'validatePage' => false,
             'totalCount' => $query,
         ]);
-        if($type == 0) {
+        if($type == -1) {
             $company = Company::find()
                 ->select('name,category,id,logoUrl')
                 ->orderBy(['datetime' => SORT_DESC])

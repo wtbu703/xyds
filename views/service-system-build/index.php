@@ -43,7 +43,6 @@ $this->title = '公共服务体系建设情况';
 							项目建设名称：
 							<input id="name" name="name" type="text" value="" class="input-text" />
 							&nbsp;<input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
-							<div class = "checkTip" style="float:right;margin-right:50%;color:red;">
 							</div>
 						</div>
 					</div>

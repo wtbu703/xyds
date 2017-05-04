@@ -13,31 +13,7 @@ $(function(){
         .inputValidator({                  //校验不能为空
             min:1,
             onerror:"控制器名称不能为空！"});
-        /*.ajaxValidator({					// 校验不许重复
-            type:"get",
-            url:checkUrl,
-            async:false,
-            data:{
-                'tableName':$("#tableName").val(),
-            },
-            datatype:"text", //必须是html
-            success : function(data){
-                if(data == "exist"){
-                    return false;
-                }else{
-                    return true;
-                }
-            },
-            buttons: $("#dosubmit"),  // 页面提示----"输入正确"
-            onerror : "控制器名称已存在",
-            onwait : "正在连接，请稍候。"});
-    // 校验操作名称
-    $("#tableOpreate").formValidator({
-            onshow:"请输入操作名称",
-            onfocus:"操作名称必须是英文字母！"})
-        .inputValidator({               //校验不能为空
-            min:1,
-            onerror:"操作名称不能为空"});*/
+
 });
 
 
@@ -51,7 +27,7 @@ function add(){
         if(ids != null && ids.length != 0 && typeof(ids.val())!= "undefined"){
             var tableOpreates = $("input[name='tableOpreate']");
             //var notes = $("input[name='note']");
-            var narry = new Array();
+            var narry = [];
             for(var i=0;i<tableOpreates.length;i++){
                 narry[i] = tableOpreates[i].value;
             }
@@ -136,7 +112,7 @@ function add(){
 function addrow(){
     var modelTplBody=$('#modelTplTB');
     var rowId=Math.random();
-    var html = new Array();
+    var html = [];
     html.push('<tr id="'+rowId+'">');
     html.push(' <td align="left"><input name="opreateOrders" type="text" value="0" size="5" /></td>');
     html.push(' <td align="left"><input name="tableOpreate" type="text" value="" size="15" /></td>');

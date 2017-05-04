@@ -1,5 +1,12 @@
 <script>
     var updateUrl = "<?=Yii::$app->urlManager->createUrl('third-party-service/update-one')?>";
+    function pic(){
+        var a;
+        var timeText = $('.pic_text');
+        a = document.myform.attachUrls.value;
+        a = "<img src='"+a+"'  width='60%'>";
+        timeText.html(a);
+    }
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/third-party-service/update.js" charset="utf-8"></script>
 <div class="pad-lr-10">
@@ -19,19 +26,46 @@
                             <input type="hidden" id="id" value="<?=$ThirdPartyService['id']?>" />
                         </tr>
                         <tr>
-	                        <th>LOGO：</th>
-	                        <td><img src="<?=$ThirdPartyService['logoUrl']?>"></td>
+                            <th width="100px">状态</th>
+                            <td><select style="width:270px;" id="category">
+                                    <?foreach($category as $key => $val){?>
+                                        <?if(intval($val->dictItemCode) == $ThirdPartyService->category){?>
+                                            <option name="category" value="<?=$val->dictItemCode?>" selected><?=$val->dictItemName?></option>
+                                        <?}else{?>
+                                            <option name="category" value="<?=$val->dictItemCode?>"><?=$val->dictItemName?></option>
+                                        <?}?>
+                                    <?}?>
+                                </select></td>
                         </tr>
                         <tr>
+	                        <th>原始图片：</th>
+	                        <td><img src="<?=$ThirdPartyService['logoUrl']?>" width="60%"></td>
+                        </tr>
+                        <tr onmouseout="pic()">
 	                        <th>重新上传：</th>
 	                        <td><input type="text" style="display:none;" name="attachUrls" id="attachUrls" class="input-text"/>
 		                        <input type="text" style="display:none;" name="attachNames" id="attachNames" class="input-text"/>
-		                        <iframe frameborder="0" width="100%" height="20px" scrolling="no" src="<?=Yii::$app->urlManager->createUrl('company/upload')?>"></iframe>
+		                        <iframe frameborder="0" width="100%" height="40px" scrolling="no" src="<?=Yii::$app->urlManager->createUrl('company/upload')?>"></iframe>
 	                        </td>
                         </tr>
                         <tr>
-                            <th>简介：</th>
+                            <th>图片预览：</th>
+                            <td class="pic_text"></td>
+                        </tr>
+                        <tr>
+                            <th>服务名称：</th>
                             <td><input type="text" style="width:400px;height: 30px;" name="introduction" id="introduction"  class="input-text" value="<?=$ThirdPartyService['introduction']?>"/></td>
+                        </tr>
+                        <tr>
+                            <th>内容来源：</th>
+                            <td><input type="text" style="width:400px;height: 30px;" name="sources" id="sources"  class="input-text" value="<?=$ThirdPartyService['sources']?>"/></td>
+                        </tr>
+                        <tr>
+                            <th>内容：</th>
+                            <td><textarea style="width:450px;height:200px;" name="content" id="content"> <?=$ThirdPartyService['content']?> </textarea></td>
+                        </tr><tr>
+                            <th>联系人：</th>
+                            <td><input type="text" style="width:250px;height: 30px;" name="contact" id="contact" value="<?=$ThirdPartyService['contact']?>"  class="input-text"/></td>
                         </tr>
                         <tr>
 	                        <th>电话：</th>
@@ -53,7 +87,22 @@
 	                        <th>邮编：</th>
 	                        <td><input type="text" style="width:250px;height: 30px;" name="postcode" id="postcode"  class="input-text" value="<?=$ThirdPartyService['postcode']?>"/></td>
                         </tr>
-
+                        <tr>
+                            <th>发布时间：</th>
+                            <td><input id="publicTime" name="publicTime" type="text" value="<?=$ThirdPartyService['publicTime']?>" class="date">
+                                <script type="text/javascript">
+                                    Calendar.setup({
+                                        weekNumbers: true,
+                                        inputField : "publicTime",
+                                        trigger    : "publicTime",
+                                        dateFormat: "%Y-%m-%d %k:%M:%S",
+                                        showTime: true,
+                                        minuteStep: 1,
+                                        onSelect   : function() {this.hide();}
+                                    });
+                                </script>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -64,7 +113,13 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
             </div>
+            </br>
+            </br>
+            </br>
         </div>
     </div>
 </form>
 </div>
+<script type="text/javascript">
+    var contentEditor=genEditor('','content','');
+</script>

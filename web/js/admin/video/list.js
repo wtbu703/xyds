@@ -21,7 +21,15 @@ function openadd(){
 //查询功能
 function search(){
 	if(str_is_null($('#name').val()) && str_is_null($('#source').val()) && str_is_null($('#sign').val()) && str_is_null($('#state').val()) ) {
-        $('.checkTip').html('至少有一个查询条件不为空');
+
+		window.top.art.dialog({
+			content: '至少有一个查询条件不为空！',
+			lock: true,
+			width: 250,
+			height: 100,
+			border: false,
+			time: 2
+		});
 		return ;
 	}
 	var paraStr = "&name="+$('#name').val()+"&source="+$('#source').val()+"&sign="+$('#sign').val()+"&state="+$('#state').val();

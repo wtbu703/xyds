@@ -13,7 +13,7 @@ $(document).ready(function(){
         success:function(data){//如果成功即执行  
              lefthtml.push('<li class="list_first"><img src="../images/third_details/xinxi_icon1.png"><span>&nbsp;职位列表</span></li>');
             $.each(data,function(i,n){//遍历返回的数据 有几个循环几个
-                lefthtml.push('<li class="list_item1 "><a href='#'></a></li>');//未选中样式 跳转不知名 缺职位
+                lefthtml.push('<li class="list_item1 "><a></a></li>');//未选中样式 跳转不知名 缺职位
                 //以原格式组装好数组
             });
             left.append(html.join(''));//把数组插入到已定位的DIV

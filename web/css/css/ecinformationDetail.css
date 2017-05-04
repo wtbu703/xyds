@@ -105,9 +105,9 @@ hr {
   font-weight: normal;
 }
 .article .page li span {
-  float: right;
+  float: left;
   font-size: 12px;
-  margin-top: 7px;
+ 
 }
 .column {
   margin: 27px auto;
@@ -123,6 +123,12 @@ hr {
   font-size: 20px;
   line-height: 46px;
   margin-right: 20px;
+}
+.column span a{
+  font-size:14px;
+  color:#585858;
+  float:right;
+  font-weight:bold;
 }
 .hot {
   border: 1px solid #d2d2d2;
@@ -172,6 +178,7 @@ hr {
 .hot_company h5 a,
 .hot_company p a {
   color: #000;
+  text-decoration:none;
 }
 .hot_company p {
   text-overflow: clip;
@@ -193,26 +200,26 @@ hr {
   border: 1px solid #d2d2d2;
 }
 @media (max-width: 767px) {
-  .train_media video {
+  .train_media video, .train_media .urlVdieo{
     width: 100%;
-    height: auto;
+    height: 500px;
   }
 }
 @media (min-width: 768px) {
-  .train_media video {
+  .train_media video, .train_media .urlVdieo {
     width: 100%;
-    height: auto;
+    height: 500px;
   }
 }
 @media (min-width: 992px) {
-  .train_media video {
+  .train_media video, .train_media .urlVdieo {
     width: 100%;
-    height: auto;
+    height: 500px;
   }
 }
 @media (min-width: 1200px) {
-  .train_media video {
+  .train_media video, .train_media .urlVdieo {
     width: 100%;
-    height: auto;
+    height: 500px;
   }
 }

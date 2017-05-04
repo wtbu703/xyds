@@ -34,12 +34,14 @@ function ziXun1(newsType,page){
             rowNews_html.push('</div>');
             rowNews.append(rowNews_html.join(''));
             getPage(data.pageSize,data.page,data.totalCount,newsType);
+            getMaodian();
         },
         error:function(){
             
         }
     });
 }
+//分页
 function getPage(pageSize,page,totalCount,cat){
     var totalPage = Math.ceil(totalCount/pageSize);
     var next = parseInt(page)+1; //下一页
@@ -48,26 +50,56 @@ function getPage(pageSize,page,totalCount,cat){
     var pagediv = $('.pagination');//定位到需要插入的DIV
     var pagehtml = [];//新建一个数组变量
     pagediv.html('');
-    pagehtml.push('<li><a>'+totalCount+'条/'+totalPage+'页</a></li>');
-    if(page > 0) {
-        pagehtml.push('<li><a href="javascript:ziXun1('+cat+',\'0\')">首页</a></li>');
-        pagehtml.push('<li><a href="javascript:ziXun1('+cat+','+prev+')" aria-label="Previous">上一页</a></li>');
+    if(totalPage >1) {
+        pagehtml.push('<li><a>' + totalCount + '条/' + totalPage + '页</a></li>');
+        if (page > 0) {
+            pagehtml.push('<li><a href="javascript:ziXun1(' + cat + ',\'0\')" class="maodian">首页</a></li>');
+            pagehtml.push('<li><a href="javascript:ziXun1(' + cat + ',' + prev + ')" aria-label="Previous" class="maodian">上一页</a></li>');
+        }
+        pagehtml.push('<li><a class="maodian" href="javascript:ziXun1(' + cat + ',' + page + ')">' + next + '</a></li>');
+        if (page < last && totalPage > 1) {
+            pagehtml.push('<li><a href="javascript:ziXun1(' + cat + ',' + next + ')" aria-label="Next" class="maodian">下一页</a></li>');
+            pagehtml.push('<li><a href="javascript:ziXun1(' + cat + ',' + last + ')">尾页</a></li>');//跳转到信息公开详情页
+        }
+        if (totalPage > 1) {
+            pagehtml.push('<input class="numInput" type="text" name="page"  id="pagevalue" value="' + next + '"/>');
+            //var p = "parseInt($('#pagevalue').val())-1";
+            pagehtml.push('<a class="pagego maodian">GO</a>');
+        }
     }
-    pagehtml.push('<li><a href="javascript:ziXun1('+cat+','+page+')">'+next+'</a></li>');
-    if(page < last&&totalPage > 1) {
-        pagehtml.push('<li><a href="javascript:ziXun1('+cat+','+next+')" aria-label="Next">下一页</a></li>');
-        pagehtml.push('<li><a href="javascript:ziXun1('+cat+','+last+')">尾页</a></li>');//跳转到信息公开详情页
-    }
-    if(totalPage > 1) {
-        pagehtml.push('<input type="text" name="page"  id="pagevalue" value="'+next+'"/>');
-        var p = "$('#pagevalue').val()";
-        pagehtml.push('<a class="pagego" href="javascript:ziXun1('+cat+','+p+')">GO</a>');
-    }
-
     //以原格式组装好数组
 
     pagediv.append(pagehtml.join(''));//把数组插入到已定位的DIV
+    inputNum(pageSize,totalCount,cat);
+}
 
+//搜索框为数字
+function inputNum(pageSize,totalCount,cat){
+    var totalpage = Math.ceil(totalCount/pageSize);
+    $('.numInput').keyup(function(event){
+        if(this.value.length==1){
+            this.value=this.value.replace(/[^1-9]/g,'');
+        }else{
+            this.value=this.value.replace(/\D/g,'');
+        }
+        var p = this.value-1;
+        $('.pagego').click(function(){
+            if(p<=totalpage){
+                ziXun1(cat,p);
+            }else{
+                ziXun1(cat,0);
+            }
+        });
+    });
+}
+//点击分页回到顶部
+function getMaodian(){
+    $('.maodian').each(function(){
+        $(this).click(function(){
+            $('body,html').animate({scrollTop:10},100);
+            // location.href = "#001";
+        });
+    });
 }
 function hotNews(){
     var hotnews = $('.hotNews');
@@ -80,17 +112,21 @@ function hotNews(){
         success:function(data){
             hotnews_html.push('<ul >');
             $.each(data,function(i,n){
-                if(i>=0&&i<=2)
-                {
-                    hotnews_html.push('<li class="news_arrow">');
-                    hotnews_html.push('<a href="'+detailUrl+'&articleId='+n.id+'"><span>·</span>'+ n.title +' </a>');
-                    hotnews_html.push('</li>');
+                if(data == ''){
+                    hotnews_html.push('<p>主人太懒,暂无相关消息</p>');
+                }else{
+                    if(i>=0&&i<=2)
+                    {
+                        hotnews_html.push('<li class="news_arrow">');
+                        hotnews_html.push('<a href="'+detailUrl+'&articleId='+n.id+'"><span>·</span>'+ n.title +' </a>');
+                        hotnews_html.push('</li>');
+                    }
+                    else{
+                        hotnews_html.push('<li>');
+                        hotnews_html.push('<a href="'+detailUrl+'&articleId='+n.id+'"><span>·</span>'+ n.title +' </a>');
+                        hotnews_html.push('</li>');
+                    }  
                 }
-                else{
-                    hotnews_html.push('<li>');
-                    hotnews_html.push('<a href="'+detailUrl+'&articleId='+n.id+'"><span>·</span>'+ n.title +' </a>');
-                    hotnews_html.push('</li>');
-                }  
             });
             hotnews_html.push('</ul >');
             hotnews.append(hotnews_html.join(''));
@@ -110,14 +146,19 @@ function hotCompany(){
         async: false,
         success:function(data){
             $.each(data,function(i,n){
-                hotcompany_html.push('<div class="row company">');
-                hotcompany_html.push('<div class="col-xs-5 ">');
-                hotcompany_html.push('<a href="'+companyDetailUrl+'&id='+n.id+'"><img class="img-responsive " src="'+ n.logoUrl +'" alt="新闻图片"></a>');
-                hotcompany_html.push('</div>');
-                hotcompany_html.push('<div class="col-xs-7 hot_company">');
-                hotcompany_html.push('<h5><a href="'+companyDetailUrl+'&id='+n.id+'">'+ n.name +'</a> </h5><p><a href="'+companyDetailUrl+'&id='+n.id+'">'+ n.introduction +'</a></p>');
-                hotcompany_html.push('</div>');
-                hotcompany_html.push('</div>');
+                if(data == ''){
+                    hotcompany_html.push('<p>主人太懒,暂无相关消息</p>');
+                }else{
+                    var content = rhtml(n.introduction);
+                    hotcompany_html.push('<div class="row company">');
+                    hotcompany_html.push('<div class="col-xs-5 ">');
+                    hotcompany_html.push('<a href="'+companyDetailUrl+'&id='+n.id+'"><img class="img-responsive " src="'+ n.logoUrl +'" alt="新闻图片"></a>');
+                    hotcompany_html.push('</div>');
+                    hotcompany_html.push('<div class="col-xs-7 hot_company">');
+                    hotcompany_html.push('<h5><a href="'+companyDetailUrl+'&id='+n.id+'">'+ n.name +'</a> </h5><p><a href="'+companyDetailUrl+'&id='+n.id+'">'+ content +'</a></p>');
+                    hotcompany_html.push('</div>');
+                    hotcompany_html.push('</div>');
+                }
             });
             hotcompany.append(hotcompany_html.join(''));
         },
@@ -145,4 +186,7 @@ $(document).ready(function(){
     //热们企业
     hotCompany();
     
+    //鼠标点击事件
+
+
 });

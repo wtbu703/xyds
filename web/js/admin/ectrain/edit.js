@@ -35,6 +35,7 @@ function edit(){
 		paraStr += "&thumbnailUrl=" + $("#thumbnailUrl").val();
 		paraStr += "&beginTime=" + $('#beginTime').val();
 		paraStr += "&endTime=" + $('#endTime').val();
+		paraStr += "&time=" + $('#time').val();
 
 		$.ajax({
 			url: updateUrl,

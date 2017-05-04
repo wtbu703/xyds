@@ -10,6 +10,7 @@ namespace yii\web;
 use Yii;
 use yii\base\InlineAction;
 use yii\helpers\Url;
+use app\controllers\ResourceController;
 
 /**
  * Controller is the base class of web controllers.
@@ -105,14 +106,18 @@ class Controller extends \yii\base\Controller
      */
     public function beforeAction($action)
     {
-        if (parent::beforeAction($action)) {
-            if ($this->enableCsrfValidation && Yii::$app->getErrorHandler()->exception === null && !Yii::$app->getRequest()->validateCsrfToken()) {
-                throw new BadRequestHttpException(Yii::t('yii', 'Unable to verify your data submission.'));
-            }
-            return true;
-        }
-        
-        return false;
+	    if (parent::beforeAction($action)) {
+		    $str = Yii::$app->controller->id.'/'.Yii::$app->controller->action->id;
+		    if(in_array(Yii::$app->controller->id == 'front' || $str,ResourceController::$NoCheckArray) || ResourceController::findBy(Yii::$app->controller->id,Yii::$app->controller->action->id,yii::$app->session['roleId'])){
+			    return true;
+		    }else{
+			    throw new BadRequestHttpException(Yii::t('yii', '对不起，您没有操作'.$str.'的权限！'));
+		    }
+
+	    }
+
+	    return false;
+	    //return true;
     }
 
     /**

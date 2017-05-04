@@ -3,37 +3,54 @@
 @import url('account_common.less');
 
 
-@ls_bgc:#f5f5f7; //左侧背景颜色
-.leftsidebar{
-	.shadow;
-	background-color:@ls_bgc;
+/* 企业展示导航 */
+.column{
+	@border_c:#00ccff;
+	@borderhover_c:#c62f2f;
+	@background_c:#c62f2f;
+	@btnbackground_c:#fff;
+
+	.clearfloat;
+	margin-top: 35px;
+	.redbar, span, a{
+		.header_f;
+	}
+	.redbar{
+		width:6px;
+		height:46px;
+		background-color:@background_c;
+		margin-right:5px;
+	}
+	span{
+		font-size:@font_m;
+		line-height:46px;
+		margin-right:20px;
+	}
+
 }
-
-//左导航
-.leftsidebar_list{
-  	list-style:none;
-  	text-decoration:none;
-  	height:400px;
-  	padding-top:80px;
-  	text-align:center;
-  	li{
-  		background-color:@fbgc;
-  		padding:2%;
-  	}
-
-  	li a{
-  		color:@list_fc;
-  		text-decoration:none;
-  		font-size:18px;
-  		&:hover{
-  			color:@list_fch;
-  		}
-  	}
-  	.sidebar_li a{
-		color:@list_fch;
+.row_top{margin-top:26px;}
+.box{
+	@topborder:#e2e2e2;
+	@font_color:#000;/* 字体颜色 */
+	.shadow;
+	.right_head{
+		margin-left: 15px;
+		margin-right:15px;
+		margin-top:10px;
+		height:37px;border-bottom:2px solid @topborder ;
+		.home{display:inline-block;display: inline;zoom:1;margin-top: -3px;}
+		.lh_index{
+			font-size:14px;
+			font-family:"宋体";
+			color:@font_color;
+			line-height:22px;
+			width:auto;
+		}
+		.lh_index a{color:@font_color;padding-left:5px;margin-top: 5px;}
 	}
 }
-.sidebar_li{
-	margin-top:40px;
-	background:url('../../images/images_contactus/bar.jpg') no-repeat 0 50%;
-}
+.btn_common1{border-color: #646464;
+	background-color: #FFF;color:#000;}
+.btn_common1:hover{ color: #fff;background-color: #40b5d3;border-color: #40b5d3;}
+
+

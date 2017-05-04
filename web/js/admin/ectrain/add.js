@@ -30,12 +30,6 @@ $(function(){
 			.inputValidator({               //校验不能为空
 				min:1,
 				onerror:"请输入培训期数！"})
-	$("#content").formValidator({
-				onshow:"请输入培训内容！",
-				onfocus:"请输入培训内容！"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请输入培训内容！"})
 	$("#dayNum").formValidator({
 				onshow:"请输入培训天数！",
 				onfocus:"请输入培训天数！"})
@@ -84,6 +78,7 @@ function add(){
 		paraStr += "&thumbnailUrl=" + $("#thumbnailUrl").val();
 		paraStr += "&beginTime=" + $('#beginTime').val();
 		paraStr += "&endTime=" + $('#endTime').val();
+		paraStr += "&time=" + $('#time').val();
 
 		$.ajax({
 			url: insertUrl,

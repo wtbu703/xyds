@@ -13,8 +13,8 @@ $(function(){
 		}});
 	// 校验模型名称					
 	$("#name").formValidator({
-		onshow:"请输入企业名称！",
-		onfocus:"请输入企业名称！"})
+		onshow:"请输入企业名称！最大16个字",
+		onfocus:"请输入企业名称！最大16个字"})
 		.inputValidator({               //校验不能为空
 			min:1,
 			onerror:"请输入企业名称！"})
@@ -24,18 +24,15 @@ $(function(){
 			.inputValidator({               //校验不能为空
 				min:1,
 				onerror:"请输入企业法人！"})
-	$("#picUrl").formValidator({
-				onshow:"请上传企业logo！",
-				onfocus:"请上传企业logo！"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请上传企业logo！"})
 	$("#category").formValidator({
 				onshow:"请输入企业类别！",
 				onfocus:"请输入企业类别！"})
 			.inputValidator({               //校验不能为空
 				min:1,
 				onerror:"请输入企业类别！"})
+	$("#webSite").formValidator({
+				onshow:"以http://开头",
+				onfocus:"以http://开头"})
 })
 
 /**

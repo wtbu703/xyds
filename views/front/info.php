@@ -3,6 +3,7 @@ $this->title = '信息公开';
 ?>
 <link rel="stylesheet" type="text/css" href="css/css/details_common.css">
 <link rel="stylesheet" type="text/css" href="css/css/info.css">
+<link rel="stylesheet" type="text/css" href="css/css/common.css">
 <script type="text/javascript">
     var dictUrl = "<?=yii::$app->urlManager->createUrl('dict/info')?>";
     var infoUrl = "<?=yii::$app->urlManager->createUrl('public-info/info')?>";
@@ -11,7 +12,6 @@ $this->title = '信息公开';
     var stateUrl = "<?=yii::$app->urlManager->createUrl('public-info/state')?>";
 </script>
 <script src="js/front/info.js"></script>
-<script src="js/front/info_page.js"></script>
 <img src="images/info/banner_xxgk.jpg" class="img-responsive"/>
 
 <div class="container">
@@ -25,8 +25,9 @@ $this->title = '信息公开';
     <!-- 主要内容 -->
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 ">  
+            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 ">
                 <ul class="list-group content_left public_shadow" id="content_left">
+                    <li class="list_first"><img src="images/third_details/xinxi_icon1.png"><span>&nbsp;公告类型</span></li>
 
                 </ul>
             </div>
@@ -47,17 +48,14 @@ $this->title = '信息公开';
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 ">
                         <img class="img-responsive icon2" src="images/info/icon3.png">
                         <h3>&nbsp;招标最新进展</h3>
-                        <div class="carousel-inner zixun_banner " >
-
-                        </div>  
-                          <div class="col-xs-12 col-sm-12 col-md-12 row_public">
+                        <div class="col-xs-12 col-sm-12 col-md-12 row_public">
                             <div class="row">
-                                <div class="col-xs-12 tender_title">
-                                    <img class="" src="images/images_index/xinxi_icon1.png" alt="">
-                                    <span>招标最新进展</span>
-                                </div>
                             </div>
                         </div>
+                    <div class="carousel-inner zixun_banner " >
+
+
+                    </div>
                 </div>     
         </div>
         </div>

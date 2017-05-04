@@ -16,7 +16,17 @@ function openedit(id,name) {
 /**
  * 删除用户
  */
-function delopt(){
+function delopt(cat){
+	var a;
+	if(cat == 0){
+		a = "删除";
+	}
+	if(cat == 1){
+		a = "上架";
+	}
+	if(cat == 2){
+		a = "下架";
+	}
 	var len = $("input[name='id']:checked").size();
 	var ids = '';
 	$("input[name='id']:checked").each(function(i, n){
@@ -30,7 +40,7 @@ function delopt(){
 		window.top.art.dialog({content:'请选择至少一条数据',lock:true,width:'200',height:'50',border: false,time:1.5},function(){});
 		return;
 	} else {
-		var paraStr = 'ids='+ids;
+		var paraStr = 'ids='+ids+'&cat='+cat;
 		$.ajax({
 			url: deleteallUrl,
 			type: "post",
@@ -39,7 +49,7 @@ function delopt(){
 			async: "false",
 			success: function (data) {
 				window.top.art.dialog({
-					content: '删除成功！',
+					content: a+'成功！',
 					lock: true,
 					width: 250,
 					height: 80,
@@ -51,7 +61,7 @@ function delopt(){
 			},
 			error:function(data){
 				window.top.art.dialog({
-					content: '删除失败！',
+					content: a+'失败！',
 					lock: true,
 					width: 250,
 					height: 80,

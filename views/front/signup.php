@@ -3,91 +3,89 @@ $this->title = "电商培训报名";
 ?>
 <link rel="stylesheet" type="text/css" href="css/css/account_common.css">
 <link rel="stylesheet" type="text/css" href="css/common_css/style.css">
+
 <script type="text/javascript">
 	var addUrl = "<?=Yii::$app->urlManager->createUrl('front/sign')?>";
 </script>
 
 <script type="text/javascript" src="js/front/signup.js"></script>
-
+<img class="img-responsive hidden-xs" src="images/images_contactus/banner.jpg" alt="banner">
 <!-- 主体 -->
-<div class="container">
+<div class="fluid-container BG">
 	<div class="content">
-		<div class="row">
-			<div class="col-xs-12 nav_s">
-				<span><a href="index.html">首页</a></span>
-				<span>></span>
-				<span><a href="ectrain.html">电商培训</a></span>
-				<span>></span>
-				<span><a href="signup.html">报名</a></span>
+		<div class="row row_top">
+			<div class="col-md-1 col-lg-2"></div>
+			<div class="col-xs-12 col-md-10 col-lg-8 signup">
+				<img class="img-responsive" src="images/images_contactus/signup.png" alt="baomonglogo">
+				<h2>欢迎报名</h2>
 			</div>
+			<div class="col-md-1 col-lg-2"></div>
 		</div>
-		<hr/>
-		<h2>报名注册</h2>
 		<div class="row">
-			<div class="col-md-2 col-lg-3"></div>
-			<div class="col-xs-12 col-md-8 col-lg-7">
+			<div class="col-md-1 col-lg-2"></div>
+			<div class="col-xs-12 col-md-10 col-lg-8 bottom">
 				<form class="form-horizontal registerform" role="form" action="<?=Yii::$app->urlManager->createUrl('front/xxx')?>">
 					<div class="form-group">
-						<label for="" class="col-sm-3 control-label"><sub class="redstar">*</sub>姓名:</label>
-						<div class="col-sm-5">
+						<label for="" class="col-sm-4 col-md-4 control-label"><sub class="redstar">*</sub>姓名:</label>
+						<div class="col-sm-4 col-md-4">
 							<input type="hidden" value="<?=$trainId?>" id="trainId" name="trainId" />
 							<input type="text" value="" id="name" name="name" class="form-control" datatype="/^[\u4e00-\u9fa5]+$/"  nullmsg="请输入姓名！" errormsg="昵称应为2至18个字符的中文！" placeholder="请输入您的真实姓名" />
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-4 col-md-4">
 							<div class="Validform_checktip"></div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="" class="col-sm-3 control-label"><sub class="redstar">*</sub>性别:</label>
-						<div class="col-sm-5">
+						<label for="" class="col-sm-4 col-md-4 control-label"><sub class="redstar">*</sub>性别:</label>
+						<div class="col-sm-4 col-md-4">
 							<input class="radio-inline" type="radio" id="gender" name="gender" value="0"  datatype="*" errormsg="请选择性别！" /><label>男</label> &nbsp;<input class="radio-inline" type="radio" value="1" id="gender" name="gender"/><label>女</label>
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-4 col-md-4">
 							<div class="Validform_checktip"></div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="" class="col-sm-3 control-label"><sub class="redstar">*</sub>年龄:</label>
-						<div class="col-sm-5">
+						<label for="" class="col-sm-4 col-md-4 control-label"><sub class="redstar">*</sub>年龄:</label>
+						<div class="col-sm-4 col-md-4">
 							<input type="text" datatype="/^(?:[1-9][0-9]?|1[01][0-9]|120)$/" class="form-control" name="age" id="age" errormsg="请输入正确的年龄" nullmsg="请输入年龄">
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-4 col-md-4">
 							<div class="Validform_checktip"></div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="" class="col-sm-3 control-label"><sub class="redstar">*</sub>身份证号码:</label>
-						<div class="col-sm-5">
+						<label for="" class="col-sm-4 col-md-4 control-label"><sub class="redstar">*</sub>身份证号码:</label>
+						<div class="col-sm-4 col-md-4">
 							<input type="text" datatype="idcard" class="form-control" id="idCardNo" name="idCardNo" errormsg="请输入正确的身份证号码！" nullmsg="请输入身份证号码！">
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-4 col-md-4">
 							<div class="Validform_checktip"></div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="" class="col-sm-3 control-label"><sub class="redstar">*</sub>手机号:</label>
-						<div class="col-sm-5">
+						<label for="" class="col-sm-4 col-md-4 control-label"><sub class="redstar">*</sub>手机号:</label>
+						<div class="col-sm-4 col-md-4">
 							<input type="text" datatype="m" class="form-control" id="mobile" name="mobile" errormsg="请输入正确的手机号！" nullmsg="请输入手机号！">
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-4 col-md-4">
 							<div class="Validform_checktip"></div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="" class="col-sm-3 control-label">联系地址:</label>
-						<div class="col-sm-5">
+						<label for="" class="col-sm-4 col-md-4 control-label">联系地址:</label>
+						<div class="col-sm-4 col-md-4">
 							<input type="text" id="address" name="address" class="form-control">
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-4 col-md-4">
 							<div class="Validform_checktip"><span class="register-gray">此空为选填项</span></div>
 						</div>
 					</div>
 					<div>
-						<input type="button" name="" value="提交" onclick="add()" class="btn btn-info">
+						<input type="button" name="" value="立即报名" onclick="add()" class="btn">
 					</div>
 				</form>
 			</div>
-			<div class="col-md-2 col-lg-2"></div>
+			<div class="col-md-1 col-lg-2"></div>
 		</div>
 	</div>
 </div>

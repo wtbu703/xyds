@@ -5,6 +5,7 @@ namespace app\controllers;
 use yii;
 use yii\web\Controller;
 use app\models\Video;
+use app\models\Dictitem;
 use app\common\Common;
 use yii\data\Pagination;
 use yii\helpers\Json;
@@ -85,18 +86,6 @@ class VideoController extends Controller
      * @return string
      */
     public function actionAddone(){
-        if(Yii::$app->request->post('sign')==1) {
-            $video = new Video();
-            $video->id = Common::generateID();
-            $video->sign = Yii::$app->request->post('sign');
-            $video->source = Yii::$app->request->post('source');
-            $video->datetime = date("Y-m-d H:i:s");
-            $video->name = Yii::$app->request->post('name');
-            $video->url = Yii::$app->request->post('url');
-            $video->content = Yii::$app->request->post('content');
-            $video->picUrl = Yii::$app->request->post('picUrl');
-            $video->duration = Yii::$app->request->post('duration');
-        }else {
             $video = new Video();
             $video->id = Common::generateID();
             $video->sign = Yii::$app->request->post('sign');
@@ -106,15 +95,14 @@ class VideoController extends Controller
             $video->name = Yii::$app->request->post('name');
             $video->content = Yii::$app->request->post('content');
             $video->picUrl = Yii::$app->request->post('picUrl');
-            $video->duration = Yii::$app->request->post('duration');
-        }
-
+            $video->duration = Common::getTime(Yii::$app->request->post('attachUrls'));
         if($video->save()){
             return "success";
         }else{
             return "fail";
         }
     }
+
 
     /**
      * 上传一个视频
@@ -147,8 +135,10 @@ class VideoController extends Controller
     public function actionUpdate(){
         $id = Yii::$app->request->get('id');
         $video = Video::findOne($id);
+        $sign = Dictitem::find()->where(['dictCode'=>'DICT_SIGN'])->all();
         return $this->render('edit',[
             'video' => $video,
+            'sign' => $sign,
         ]);
     }
 
@@ -157,18 +147,6 @@ class VideoController extends Controller
      * @return string
      */
     public function actionUpdateone(){
-
-        if(Yii::$app->request->post('sign')==1) {
-            $id = Yii::$app->request->post('id');
-            $video = Video::findOne($id);
-            $video->sign = Yii::$app->request->post('sign');
-            $video->source = Yii::$app->request->post('source');
-            $video->name = Yii::$app->request->post('name');
-            $video->url = Yii::$app->request->post('url');
-            $video->content = Yii::$app->request->post('content');
-            $video->picUrl = Yii::$app->request->post('picUrl');
-            $video->duration = Yii::$app->request->post('duration');
-        }else {
             $id = Yii::$app->request->post('id');
             $url = Yii::$app->request->post('url');
             $picUrl = Yii::$app->request->post('picUrl');
@@ -187,10 +165,9 @@ class VideoController extends Controller
             }
             $video->sign = Yii::$app->request->post('sign');
             $video->source = Yii::$app->request->post('source');
-            $video->name = Yii::$app->request->post('attachNames');
+            $video->name = Yii::$app->request->post('name');
             $video->content = Yii::$app->request->post('content');
-            $video->duration = Yii::$app->request->post('duration');
-        }
+
         if($video->save()){
             return "success";
         }else{
@@ -264,7 +241,7 @@ class VideoController extends Controller
             $isThumb = Yii::$app->request->get('isThumb');
             $views = 'uploads';
             if(is_null($isThumb)){
-                $fileArg = Common::upload($_FILES,true,false);
+                $fileArg = Common::upload($_FILES,true,false,'ectrain_video',2048000);
             }else{
                 $fileArg = Common::upload($_FILES,true,true);
                 $views = 'uploads';
@@ -324,10 +301,43 @@ class VideoController extends Controller
 	 * @return string
 	 */
 	public function actionVideoAll(){
-		$video = Video::find()
-			->orderBy(['datetime' => SORT_DESC])
-			->all();
-		return Json::encode($video);
+        $newsType = Yii::$app->request->post('newsType');
+        $page = Yii::$app->request->post('page');
+        $newsType = $newsType-1;
+        if($newsType == -1){
+            $query = Video::find()
+                ->count();
+        }else{
+            $query = Video::find()
+                ->where('sign=:sign', [':sign' => $newsType])
+                ->count();
+        }
+        $pagination = new Pagination([
+            'page' => $page,
+            'defaultPageSize' => 5,
+            'validatePage' => false,
+            'totalCount' => $query,
+        ]);
+        if($newsType == -1){
+            $video = Video::find()
+                ->orderBy(['datetime' => SORT_DESC])
+                ->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
+        }else{
+            $video = Video::find()
+                ->where('sign=:sign', [':sign' => $newsType])
+                ->orderBy(['datetime' => SORT_DESC])
+                ->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
+        }
+        $para = [];
+        $para['video'] = Json::encode($video);
+        $para['page'] = $page;
+        $para['pageSize'] = $pagination->defaultPageSize;
+        $para['totalCount'] = $pagination->totalCount;
+        return Json::encode($para);
 	}
 }
 

@@ -2,41 +2,56 @@
 $this->title = '添加网店链接';
 ?>
 <script type="text/javascript">
-    var listallUrl = "<?=yii::$app->urlManager->createUrl('company-shoplink/find-by-attri')?>";
-    var insertUrl = "<?=yii::$app->urlManager->createUrl('company-shoplink/add-one')?>";
+    window.top.$('#display_center_id').css('display','none');
+    var addUrl = '<?=yii::$app->urlManager->createUrl('company-shoplink/add')?>';
+    var saveUrl = '<?=yii::$app->urlManager->createUrl('company-shoplink/add-one')?>';
+    var listUrl = '<?=yii::$app->urlManager->createUrl('company-shoplink/list')?>';
+    //正则表达式验证公司网址
+    function IsUrl(str){
+        if(str != '') {
+            var regUrl = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/;
+            var result = str.match(regUrl);
+            if (result != null) {
+                //alert("网址输入正确 ");
+            }
+            else {
+                alert('网址输入不正确');
+            }
+        }
+    }
 </script>
 <script type="text/javascript" src="js/admin/company-shoplink/add.js"></script>
 
 <div class="pad-lr-10">
-    <form name="myform" action="" method="post" id="myform" target="iframeId">
+    <form action="<?=yii::$app->urlManager->createUrl('company-shoplink/add-one')?>" id="dictForm" name="dictForm" method="post" target="iframeId">
         <div class="pad_10">
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
-                    <tr>
-                        <th >企业ID：</th>
-                        <td><input type="text" style="width:250px;" name="companyId" id="companyId"  class="input-text"/></td>
-                    </tr>
-                    <tr>
-                        <th>网店名：</th>
-                        <td><input type="text" style="width:250px;" name="shopName" id="shopName"  class="input-text"/></td>
-                    </tr>
-                    <tr>
-                        <th>网店链接：</th>
-                        <td><textarea style="width:500px;height:100px;" name="shopLink" id="shopLink" ></textarea></td>
-                    </tr>
-                    <tr>
-                        <th>网店平台：</th>
-                        <td><select style='width:250px;height:25px; ' id="platform"  name="platform" class="input-text"></select></td>
-                    </tr>
                 </table>
             </div>
             <div class="bk10"></div>
         </div>
-    </form>
-    <div class="table-list">
-        <div class="rightbtn">
-            <input type="button" class="buttonsave" value="增加" name="dosubmit" onclick="add()" />
-            <input type="button" class="buttonclose" value="关闭" name="dosubmit"  onclick="window.top.$.dialog.get('shoplink_add').close();"/>
+        <!--列表-->
+        <div class="table-list">
+            <table id="modelTplTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th align="left">网店名称</th>
+                    <th align="left">网店平台</th>
+                    <th align="left">网店链接</th>
+                    <th align="left">操作</th>
+                </tr>
+                </thead>
+                <tbody id="modelTplTB">
+
+                </tbody>
+            </table>
+            <div class="btn">
+                <!--  <label for="check_box">全选/取消</label>-->
+                <input type="button" class="buttonadd" name="dosubmit" value="增加" onclick="addrow()"/>
+                <input type="button" class="buttonsave" name="dosubmit" value="保存" onclick="add()"/>
+                <input type="button" class="buttonclose" name="dosubmit" value="关闭" onclick="window.top.$.dialog.get('shoplink_add').close();"/>
+            </div>
         </div>
-    </div>
+    </form>
 </div>

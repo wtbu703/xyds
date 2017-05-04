@@ -15,7 +15,6 @@ $this->title = "修改信息";
         }
         <?}?>
         a = a+'时间';
-
         timeText.html(a);
     }
 </script>
@@ -71,7 +70,7 @@ $this->title = "修改信息";
                         </tr>
                         <tr>
                             <th class="time_text"></th>
-                            <td><input id="datetime" name="datetime" type="text" value="" class="date">
+                            <td><input id="datetime" name="datetime" type="text" <?php if(!is_null($info)){?> value="<?=$info->time?>" <?}?> class="date">
                                 <script type="text/javascript">
                                     Calendar.setup({
                                         weekNumbers: true,
@@ -85,18 +84,15 @@ $this->title = "修改信息";
                                 </script></td>
                         </tr>
                         <tr>
-                            <th width="100">附件：</th>
+                            <th width="100">附件名称：</th>
+                            <td><?=$publicInfo->attachName?></td>
+                        </tr>
+                        <tr>
+                            <th width="100">修改附件：</th>
                             <td>
                                 <input type="text" style="display:none;" name="attachUrls" id="attachUrls" class="input-text"/>
                                 <input type="text" style="display:none;" name="attachNames" id="attachNames" class="input-text"/>
                                 <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('public-info/upload')?>"></iframe>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>上传图片：</th>
-                            <td>
-                                <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
-                                <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('public-info/uploads')?>"></iframe>
                             </td>
                         </tr>
                         </tbody>

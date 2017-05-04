@@ -13,13 +13,13 @@ $this->title = '培训报名管理';
         }
     }
     var listdictUrl  = "<?=yii::$app->urlManager->createUrl('dict/findall')?>";
-    var addUrl = "<?=yii::$app->urlManager->createUrl('ectrain-enter/add')?>";
+    var excelAllUrl = "<?=Yii::$app->urlManager->createUrl('ectrain-enter/excel-all')?>";
     var listallUrl  = "<?=yii::$app->urlManager->createUrl('ectrain-enter/find-by-attri')?>";
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/ectrain-enter/list.js" charset="utf-8"></script>
 <div class="subnav" id="display" >
     <div class="content-menu ib-a blue line-x">
-        <a class="add fb" href="javascript:openadd();"><em>添加培训报名</em></a>
+        <a class="add fb" href="javascript:excelAll('<?=$id?>');"><em>全部导出到Excel</em></a>
     </div>
 </div>
 
@@ -33,9 +33,10 @@ $this->title = '培训报名管理';
                         <div>
                             姓名：
                             <input id="truename" name="truename" type="text" value="" class="input-text" />
+                            &nbsp;
+                            状态：
+                            <select id="state" name="state" style="height: 25px;" class="input-text"></select>
                             &nbsp;<input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
-                            <div class = "checkTip" style="float:right;margin-right:40%;color:red;">
-                            </div>
                         </div>
                     </div>
                 </td>
@@ -44,6 +45,6 @@ $this->title = '培训报名管理';
         </table>
     </form>
     <div class="table-list">
-        <iframe id="iframeId" name="iframeId" src="<?=yii::$app->urlManager->createUrl('ectrain-enter/find-by-attri')?>"  frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()"></iframe>
+        <iframe id="iframeId" name="iframeId" src="<?=yii::$app->urlManager->createUrl('ectrain-enter/find-by-attri')?>&trainId=<?=$id?>"  frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()"></iframe>
     </div>
 </div>

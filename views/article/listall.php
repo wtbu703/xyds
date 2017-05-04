@@ -25,7 +25,12 @@ $this->title =  '添加文章';
                 <tr align="left">
                     <td><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
                     <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->title?>')"><?=$val->title?></a></td>
+                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->title?>')"><?php if(strlen($val->title)>24) {
+                                echo substr($val->title, 0, 24) . '...';
+                            }else{
+                                echo $val->title;
+                            }?></a></td>
+
                     <td><?=$val->author?></td>
                     <td><?=$val->category?></td>
                     <td align="center">

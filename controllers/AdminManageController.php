@@ -2,13 +2,15 @@
 
 namespace app\controllers;
 
-use app\models\Resource;
+use app\models\AdminRole;
+use app\models\Role;
 use yii;
 use yii\web\Controller;
 use app\models\Admin;
 use app\models\Dictitem;
 use app\common\Common;
 use yii\data\Pagination;
+use yii\db\Query;
 
 /**
  * Class AdminmanageController
@@ -49,35 +51,51 @@ class AdminManageController extends Controller{
         $username = Yii::$app->request->get('username');
         $truename = Yii::$app->request->get('truename');
         $state = Yii::$app->request->get('state');
+	    $role = Yii::$app->request->get('role');
         $para= [];
         $para['username'] = $username;
         $para['truename'] = $truename;
         $para['state'] = $state;
+	    $para['role'] = $role;
         $whereStr = '1=1';
         if($username != ''){
-            $whereStr = $whereStr." and username like '%".$username."%'";
+            $whereStr = $whereStr." and a.username like '%".$username."%'";
         }
         if($truename != ''){
-            $whereStr = $whereStr." and truename like '%".$truename."%'";
+            $whereStr = $whereStr." and a.truename like '%".$truename."%'";
         }
         if($state != ''){
-            $whereStr = $whereStr." and state=".$state;
+            $whereStr = $whereStr." and a.state=".$state;
         }
-        $users = Admin::find()->where($whereStr);
+	    if($role != ''){
+		    $whereStr = $whereStr." and b.roleId= '".$role."'";
+	    }
+	    $query = new Query();
+	    $users = $query->select('a.id as id,a.username as username,a.truename as truename,a.telephone as telephone,a.state as state,b.roleId as roleId')
+		    ->from('admin a')
+		    ->where($whereStr)
+		    ->leftJoin('admin_role b','a.id = b.userId');
+        //$users = Admin::find()->where($whereStr);
         $pages = new Pagination(['totalCount' =>$users->count(), 'pageSize' => Common::PAGESIZE]);
         $models = $users->offset($pages->offset)->limit($pages->limit)->all();
         $dictItem = Dictitem::find()
             ->where(['dictCode' => 'DICT_STATE'])
             ->all();
+	    $roles = Role::find()->all();
 
         foreach($models as $key=>$data) {
             foreach ($dictItem as $index => $value) {
-	            /** @noinspection PhpUndefinedFieldInspection */
-	            if ($data->state == $value->dictItemCode) {
-		            /** @noinspection PhpUndefinedFieldInspection */
-		            $models[$key]->state = $value->dictItemName;
+	            if ($data['state'] == $value->dictItemCode) {
+		            $models[$key]['state'] = $value->dictItemName;
                 }
             }
+	        if(!is_null($data['roleId'])){
+				foreach($roles as $index => $value){
+					if($data['roleId'] == $value->id){
+						$models[$key]['roleId'] = $value->name;
+					}
+				}
+	        }
 
         }
         $edit = Common::resource('ADMIN','EDIT1');
@@ -118,6 +136,7 @@ class AdminManageController extends Controller{
         $user->password = Common::hashMD5(Yii::$app->request->post('password'));
         $user->telephone = Yii::$app->request->post('mobilephone');
         $user->state = '1';
+	    $user->created_at = date("Y-m-d H:i:s");
         if($user->save()){
             return "success";
         }else{
@@ -151,6 +170,7 @@ class AdminManageController extends Controller{
         $user->truename = Yii::$app->request->post('truename');
         $user->telephone = Yii::$app->request->post('mobilephone');
         $user->state = Yii::$app->request->post('userState');
+	    $user->updated_at = date("Y-m-d H:i:s");
         if ($user->save()){
             return 'success';
         }else{
@@ -183,6 +203,7 @@ class AdminManageController extends Controller{
         $id = Yii::$app->request->post("id");
         $user = Admin::findOne($id);
         if($user->delete()){
+	        AdminRole::deleteAll('userId = :userId',[':userId'=>$id]);
             return "success";
         }else{
             return "fail";
@@ -199,6 +220,7 @@ class AdminManageController extends Controller{
         $ids_array = explode('-',$ids);
         foreach($ids_array as $key => $data){
             Admin::deleteAll('id = :id',[':id'=>$data]);
+	        AdminRole::deleteAll('userId = :userId',[':userId'=>$data]);
         }
         return 'success';
     }
@@ -235,7 +257,7 @@ class AdminManageController extends Controller{
     /**
      * 导出数据库数据为excel表
      */
-    public function actionExcel(){
+    /*public function actionExcel(){
         Common::Excel(new Admin());
-    }
+    }*/
 }

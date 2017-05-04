@@ -12,6 +12,9 @@
 .header_f {
   float: left;
 }
+.form-group{
+  margin-top:40px;
+}
 .header_r {
   float: right;
 }
@@ -51,6 +54,11 @@
 }
 .header .btn_text:hover {
   background-color: #109085;
+}
+.index_nav{
+  border-bottom:1px solid #ccc;
+  border-top:1px solid #ccc;
+   box-shadow: 0px 0px 20px #ccc;
 }
 .nav_c {
   background-color: #ffffff;
@@ -148,6 +156,7 @@
 .copyright span {
   color: #41e0d8;
 }
+
 /*logo*/
 .top_title {
   cursor: default;
@@ -186,3 +195,60 @@
   }
 }
 /*logo*/
+
+/*分页开始*/
+.pagination {
+  margin-top: 50px;
+  margin-left:0;
+  padding:0px;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus{
+  color: #c62f2f;
+  background-color: #ffffff;
+  border-color: #c62f2f;
+}
+.pagination li a{
+  padding:0px 3px;
+  margin-left: 5px;
+  border-radius: 2px;
+  color: #000000;
+  font-size: 12px;
+  font-weight: 100;
+  height:40px;
+  line-height:40px;
+}
+.pagination input{
+  width:40px;
+  height:40px;
+  margin-left: 5px;
+  color: #000000;
+  font-size: 12px;
+  font-weight: 100;
+  text-align: center;
+}
+ .pagego{
+   border-radius: 2px;
+  width:40px;
+  height:40px;
+  border:#ddd 1px solid;
+  padding:10px 5px;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 100;
+  margin-left:10px;
+   cursor: pointer;
+}
+.pagination .pagego:hover,
+.pagination .pagego:focus{
+  text-decoration: none;
+  color: #c62f2f;
+  background-color: #ffffff;
+  border-color: #c62f2f;
+}
+.pagination li a.fen {
+  border-style: none;
+}
+/*分页结束*/

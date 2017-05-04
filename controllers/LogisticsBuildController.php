@@ -13,6 +13,11 @@ use app\common\Common;
 use app\models\LogisticsBuild;
 use yii\data\Pagination;
 
+/**
+ * 物流配送体系
+ * Class LogisticsBuildController
+ * @package app\controllers
+ */
 class LogisticsBuildController extends Controller{
 
 	/**
@@ -181,15 +186,15 @@ class LogisticsBuildController extends Controller{
 	public function actionAjax(){
 		$type = Yii::$app->request->post('type');
 		if($type==2){//快递覆盖率，月，村、行政村
-			$sql = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(published,'%Y-%m')AS months,COUNT(townCover)AS townCover,COUNT(villageCover)AS villageCover FROM logisticsbuild GROUP BY DATE_FORMAT(published,'%Y-%m')");
+			$sql = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(published,'%Y-%m')AS months,SUM(townCover)AS townCover,SUM(villageCover)AS villageCover FROM logisticsbuild GROUP BY DATE_FORMAT(published,'%Y-%m')");
 			$res = $sql->queryAll();
 			return yii\helpers\Json::encode($res);
 		}else if($type==3){//快递企业数量，县到乡、乡到村
-			$sql = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(published,'%Y-%m')AS months,COUNT(countyToVillage)AS countyToVillage,COUNT(villageToHamlet)AS villageToHamlet FROM logisticsbuild GROUP BY DATE_FORMAT(published,'%Y-%m')");
+			$sql = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(published,'%Y-%m')AS months,SUM(countyToVillage)AS countyToVillage,SUM(villageToHamlet)AS villageToHamlet FROM logisticsbuild GROUP BY DATE_FORMAT(published,'%Y-%m')");
 			$res = $sql->queryAll();
 			return yii\helpers\Json::encode($res);
 		}else if($type==4){//县快递量，收、发
-			$sql = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(published,'%Y-%m')AS months,COUNT(receiveNum)AS receiveNum,COUNT(sendNum)AS sendNum FROM logisticsbuild GROUP BY DATE_FORMAT(published,'%Y-%m')");
+			$sql = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(published,'%Y-%m')AS months,SUM(receiveNum)AS receiveNum,SUM(sendNum)AS sendNum FROM logisticsbuild GROUP BY DATE_FORMAT(published,'%Y-%m')");
 			$res = $sql->queryAll();
 			return yii\helpers\Json::encode($res);
 		}else{

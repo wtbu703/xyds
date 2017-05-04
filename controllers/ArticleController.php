@@ -106,7 +106,15 @@ class ArticleController extends Controller{
         $articles = Article::find()->where($whereStr);
         $page = new Pagination(['totalCount' => $articles->count(), 'pageSize' => Common::PAGESIZE]);
         $models = $articles->offset($page->offset)->limit($page->limit)->all();
-
+//字典反转
+        $category = Dictitem::find()->where(['dictCode'=>'DICT_ARTICLE_CATEGORY'])->all();
+        foreach($models as $key=>$data) {
+            foreach ($category as $index => $value) {
+                if ($data->category == $value->dictItemCode) {
+                    $models[$key]->category = $value->dictItemName;
+                }
+            }
+        }
         $edit = Common::resource('ARTICLE','EDIT');
         $delete = Common::resource('ARTICLE','DELETE');
         return $this->render('listall',[
@@ -265,7 +273,8 @@ class ArticleController extends Controller{
             $isThumb = Yii::$app->request->get('isThumb');
             $views = 'uploads';
             if(is_null($isThumb)){
-                $fileArg = Common::upload($_FILES,true,false);
+                $fileArg = Common::upload($_FILES,true,false,'ecinfo_info',2048000
+                );
             }else{
                 $fileArg = Common::upload($_FILES,true,true);
                 $views = 'uploads';
@@ -437,14 +446,28 @@ class ArticleController extends Controller{
         print_r($data);exit;
     }
 
+    /**
+     * @return string
+     * 首页电商资讯的接口
+     */
+    public function actionIndexArticle(){
+        $type = Yii::$app->request->post('newsType');
+        $article = Article::find()
+            ->select('id,title,content,datetime,picUrl')
+            ->where('category = :category',[':category'=>$type])
+            ->limit(13)
+            ->all();
+        return Json::encode($article);
+    }
 	/**
 	 * 资讯接口
 	 * @return string
 	 */
 	public function actionArticle(){
 		$type = Yii::$app->request->post('newsType');
+        $type = $type-1;
         $page = Yii::$app->request->post('page');
-        if($type == 0){
+        if($type == -1){
             $query = Article::find()
                 ->count();
         }else{
@@ -458,7 +481,7 @@ class ArticleController extends Controller{
             'validatePage' => false,
             'totalCount' => $query,
         ]);
-        if($type == 0) {
+        if($type == -1) {
             $article = Article::find()
                 ->select('title,datetime,id,content,picUrl')
                 ->orderBy(['datetime' => SORT_DESC])

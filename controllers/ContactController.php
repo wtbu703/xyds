@@ -34,6 +34,7 @@ class ContactController extends Controller{
         $contact = new Contact();
         $contact->id = Common::create40ID();
         $contact->truename = Yii::$app->request->post('truename');
+        $contact->gender = Yii::$app->request->post('gender');
         $contact->mobile = Yii::$app->request->post('mobile');
         $contact->QQ = Yii::$app->request->post('QQ');
         $contact->email = Yii::$app->request->post('email');
@@ -91,6 +92,7 @@ class ContactController extends Controller{
         $id = Yii::$app->request->post('id');
         $contact = Contact::findOne($id);
         $contact->truename = Yii::$app->request->post('truename');
+        $contact->gender = Yii::$app->request->post('gender');
         $contact->mobile = Yii::$app->request->post('mobile');
         $contact->QQ = Yii::$app->request->post('QQ');
         $contact->email = Yii::$app->request->post('email');

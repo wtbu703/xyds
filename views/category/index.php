@@ -36,7 +36,6 @@ $this->title = '商品类别管理';
                         <input id="categoryName" name="categoryName" type="text" value="" class="input-text" />
                         &nbsp;<select id="categoryState" style='width:135px' name="categoryState"></select>
                         <input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询" />
-                        <div class = "checkTip" style="float:right;margin-right:65%;color:red;">
                     </div>
                 </td>
             </tr>

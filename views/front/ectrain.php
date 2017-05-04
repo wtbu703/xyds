@@ -16,7 +16,7 @@
 				<div class="colum_border">
 					<div class="redbar">
 					</div>
-					<span>培训通知</span>
+					<span><a>培训通知</a></span>
 					<a href="<?=Yii::$app->urlManager->createUrl('front/train-notice')?>">更多>></a>
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 				<div class="colum_border">
 					<div class="redbar">
 					</div>
-					<span>在线视频</span>
+					<span><a>在线视频</a></span>
 					<a href="<?=Yii::$app->urlManager->createUrl('front/online-video')?>">更多>></a>
 				</div>
 			</div>

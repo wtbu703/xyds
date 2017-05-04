@@ -23,6 +23,11 @@ use yii\helpers\Html;
 
 	<script src="js/front/common_js/jquery-1.11.3.min.js"></script>
 	<script src="js/front/common_js/bootstrap.min.js"></script>
+	<script type="javascript">
+		var index = parseInt("<?=$this->context->layout_data?>");
+		$('.nav_fontc li').eq(index).addClass('actived').sibling().removeClass('actived');
+
+	</script>
 	<script src="js/front/common_js/common.js"></script>
 
 
@@ -45,17 +50,17 @@ use yii\helpers\Html;
 				<div class="col-xs-12 col-sm-6 col-md-5">	
 					<div class="header_left header_r">
 						<div class="loginbar header_r">
-							<div class="header_f">
-								<a href="<?=yii::$app->urlManager->createUrl('admin/index')?>">登录</a>
+							<div class="header_f ">
+								<a target="_Blank" href="<?=yii::$app->urlManager->createUrl('admin/index')?>" >登录</a>
 								<span>|</span>
-								<a href="<?=yii::$app->urlManager->createUrl('front/contactus')?>">加入我们</a>
+								<a target="_Blank" href="<?=yii::$app->urlManager->createUrl('front/contactus')?>">加入我们</a>
 							</div>		
 						</div>
 						<!--<form class="navbar-form header_r" role="search" action="">-->
-		                    <div class="form-group">
-		                        <input type="text" class="form-control form_text form_long" id ="title" placeholder="请输入搜索内容">
-								<button type="submit" id="search" class="btn btn-default btn_text">搜索</button>
-		                    </div>               
+	                    <div class="form-group">
+	                        <input type="text" class="form-control form_text form_long" id ="title" placeholder="请输入搜索内容">
+							<button type="submit" id="search" class="btn btn-default btn_text">搜索</button>
+	                    </div>               
 		                <!--</form>-->
 
 						<script type="text/javascript">
@@ -64,6 +69,14 @@ use yii\helpers\Html;
 								var title = "title="+$('#title').val();
 								location.href ="<?=Yii::$app->urlManager->createUrl('front/search')?>&"+title+"";
 							})
+							//回车搜索
+							$("#title").focus(function(){							
+								$("#title").keypress(function(e){	
+									if(e.which == 13) {  
+							   			$('.btn_text').click();  
+							        }; 
+							 	}); 
+							})		
 						})
 						</script>
 					</div>	
@@ -72,33 +85,35 @@ use yii\helpers\Html;
 		</div>
 	</div>
 	<!-- 导航栏 -->
-	<div class="container">
-		<div class="row">
-            <div class="col-xs-12 col-sm-12 col-lg-12"> 
-                <div class="navbar navbar-default nav_c" role="navigation">
-                    <div class="navbar-header">
-                        <button class="navbar-toggle navbar_btn" type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                            <span class="sr-only">Toggle Navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-					<div class="collapse navbar-collapse navbar-responsive-collapse ">
-						<ul class="nav navbar-nav nav_fontc">
-							<li class="actived"><a href="<?=yii::$app->urlManager->createUrl('front/index')?>">首页</a></li>
-							<li><a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>">电商资讯</a></li>
-							<li><a href="<?=Yii::$app->urlManager->createUrl('front/train-notice')?>">电商培训</a></li>
-							<li><a href="<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>">企业展示</a></li>
-							<li><a href="#">服务站点</a></li>
-							<li><a href="<?=yii::$app->urlManager->createUrl('front/third')?>">第三方服务</a></li>
-							<li><a href="<?=yii::$app->urlManager->createUrl('front/public-info')?>">信息公开</a></li>
-							<li><a href="<?=Yii::$app->urlManager->createUrl('front/data-statistic')?>">数据统计</a></li>
-							<li><a href="<?=yii::$app->urlManager->createUrl('front/line')?>">在线招聘</a></li>
-						</ul>
-					</div>
-                </div>
-            </div>
+	<div class="index_nav">
+		<div class="container">
+			<div class="row">
+	            <div class="col-xs-12 col-sm-12 col-lg-12"> 
+	                <div class="navbar navbar-default nav_c" role="navigation">
+	                    <div class="navbar-header">
+	                        <button class="navbar-toggle navbar_btn" type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+	                            <span class="sr-only">Toggle Navigation</span>
+	                            <span class="icon-bar"></span>
+	                            <span class="icon-bar"></span>
+	                            <span class="icon-bar"></span>
+	                        </button>
+	                    </div>
+						<div class="collapse navbar-collapse navbar-responsive-collapse ">
+							<ul class="nav navbar-nav nav_fontc">
+								<li <?if($this->context->layout_data == '0'){?> class="actived"<?}?>><a href="<?=yii::$app->urlManager->createUrl('front/index')?>">首页</a></li>
+								<li <?if($this->context->layout_data == '1'){?> class="actived"<?}?>><a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>">电商资讯</a></li>
+								<li <?if($this->context->layout_data == '2'){?> class="actived"<?}?>><a href="<?=Yii::$app->urlManager->createUrl('front/ectrain')?>">电商培训</a></li>
+								<li <?if($this->context->layout_data == '3'){?> class="actived"<?}?>><a href="<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>">企业展示</a></li>
+								<li <?if($this->context->layout_data == '4'){?> class="actived"<?}?>><a href="<?=yii::$app->urlManager->createUrl('front/third')?>">第三方服务</a></li>
+								<li <?if($this->context->layout_data == '5'){?> class="actived"<?}?>><a href="<?=yii::$app->urlManager->createUrl('front/public-info')?>">信息公开</a></li>
+								<li <?if($this->context->layout_data == '6'){?> class="actived"<?}?>><a href="<?=Yii::$app->urlManager->createUrl('front/data-statistic')?>">数据统计</a></li>
+								<li <?if($this->context->layout_data == '7'){?> class="actived"<?}?>><a href="<?=yii::$app->urlManager->createUrl('front/line')?>">在线招聘</a></li>
+								<li <?if($this->context->layout_data == '8'){?> class="actived"<?}?>><a href="<?=yii::$app->urlManager->createUrl('front/service-site')?>">服务站点</a></li>
+							</ul>
+						</div>
+	                </div>
+	            </div>
+			</div>
 		</div>
 	</div>
     <!-- End header -->
@@ -121,26 +136,26 @@ use yii\helpers\Html;
 				<div class="col-xs-6 col-sm-3 col-md-2">	
 					<ul>
 						<li><span>网站导航</span></li>
-						<li><a href="<?=yii::$app->urlManager->createUrl('front/ec-info')?>">电商资讯</a></li>
-						<li><a href="<?=Yii::$app->urlManager->createUrl('front/train-notice')?>">电商培训</a></li>
-						<li><a href="<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>">企业展示</a></li>
-						<li><a href="">服务站点</a></li>
-						<li><a href="<?=yii::$app->urlManager->createUrl('front/third')?>">第三方服务</a></li>
-						<li><a href="<?=yii::$app->urlManager->createUrl('front/public-info')?>">信息公开</a></li>
-						<li><a href="<?=Yii::$app->urlManager->createUrl('front/data-statistic')?>">数据统计</a></li>
-						<li><a href="<?=yii::$app->urlManager->createUrl('front/line')?>">在线招聘</a></li>
+						<li <?if($this->context->layout_data == '1'){?> class="actived"<?}?>><a target="_Blank" href="<?=yii::$app->urlManager->createUrl('front/ec-info')?>">电商资讯</a></li>
+						<li <?if($this->context->layout_data == '2'){?> class="actived"<?}?>><a target="_Blank" href="<?=Yii::$app->urlManager->createUrl('front/ectrain')?>">电商培训</a></li>
+						<li <?if($this->context->layout_data == '3'){?> class="actived"<?}?>><a target="_Blank" href="<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>">企业展示</a></li>
+						<li <?if($this->context->layout_data == '4'){?> class="actived"<?}?>><a target="_Blank" href="<?=yii::$app->urlManager->createUrl('front/third')?>">第三方服务</a></li>
+						<li <?if($this->context->layout_data == '5'){?> class="actived"<?}?>><a target="_Blank" href="<?=yii::$app->urlManager->createUrl('front/public-info')?>">信息公开</a></li>
+						<li <?if($this->context->layout_data == '6'){?> class="actived"<?}?>><a target="_Blank" href="<?=Yii::$app->urlManager->createUrl('front/data-statistic')?>">数据统计</a></li>
+						<li <?if($this->context->layout_data == '7'){?> class="actived"<?}?>><a target="_Blank" href="<?=yii::$app->urlManager->createUrl('front/line')?>">在线招聘</a></li>
+						<li <?if($this->context->layout_data == '8'){?> class="actived"<?}?>><a target="_Blank" href="<?=yii::$app->urlManager->createUrl('front/service-site')?>">服务站点</a></li>
 					</ul>
 				</div>
 				<div class="col-xs-6 col-sm-3 col-md-2">	
 					<ul>
 						<li><span>友情链接</span></li>
-						<li><a href="">武汉市政府</a></li>
-						<li><a href="">电商在线</a></li>
-						<li><a href="">703工作室</a></li>
-						<li><a href="">湖北省政府</a></li>
-						<li><a href="">武汉工商局</a></li>
-						<li><a href="">武汉电商网</a></li>
-						<li><a href="">中国电商企业</a></li>
+						<li><a target="_Blank" href="">武汉市政府</a></li>
+						<li><a target="_Blank" href="">电商在线</a></li>
+						<li><a target="_Blank" href="">703工作室</a></li>
+						<li><a target="_Blank" href="">湖北省政府</a></li>
+						<li><a target="_Blank" href="">武汉工商局</a></li>
+						<li><a target="_Blank" href="">武汉电商网</a></li>
+						<li><a target="_Blank" href="">中国电商企业</a></li>
 					</ul>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4">	
@@ -149,7 +164,7 @@ use yii\helpers\Html;
 							<span>联系我们</span>
 						</div>
 						<div class="col-xs-8 contect">	
-							<a class="btn btn-default" href="contactus.php" role="button">点击填写个人信息</a>
+							<a target="_Blank" class="btn btn-default" href="<?=Yii::$app->urlManager->createUrl('front/contactus')?>" role="button">点击填写个人信息</a>
 						</div>
 					</div>
 					<div class="row address">
@@ -158,8 +173,8 @@ use yii\helpers\Html;
 						</div>
 						<div class="col-xs-8 address_img">	
 							<p>湖北省武汉市 黄家湖西路3号</p>
-							<p>电话：17786417595</p>
-							<p>E-mail：liph77@163.com</p>
+							<p>电话：110</p>
+							<p>E-mail：暂无</p>
 							<img class="img-responsive" src="images/images_index/weixin1.png" alt="二维码">
 							<img class="img-responsive" src="images/images_index/weixin2.png" alt="二维码">
 						</div>
@@ -177,5 +192,6 @@ use yii\helpers\Html;
     </div>
     <!-- End footer -->
 </body>
+
 </html>
 <?php $this->endPage() ?>

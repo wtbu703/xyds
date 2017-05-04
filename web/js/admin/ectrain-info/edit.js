@@ -38,6 +38,10 @@ function edit(){
 		paraStr += "&signSheetUrl=" + $("#signSheetUrl").val();
 		paraStr += "&signSheetName=" + $("#signSheetName").val();
 		paraStr += "&published=" + $("#published").val();
+		paraStr += "&companyNum=" + $("#companyNum").val();
+		paraStr += "&newCompanyThisM=" + $("#newCompanyThisM").val();
+		paraStr += "&singleNum=" + $("#singleNum").val();
+		paraStr += "&newSingleThisM=" + $("#newSingleThisM").val();
 
 		$.ajax({
 			url: updateUrl,

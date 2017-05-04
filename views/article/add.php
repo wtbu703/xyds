@@ -4,6 +4,13 @@ $this->title =  '添加文章';
 <script type="text/javascript">
     var listallUrl = "<?=yii::$app->urlManager->createUrl('article/findbyattri')?>";
     var insertUrl = "<?=yii::$app->urlManager->createUrl('article/addone')?>";
+    function pic(){
+        var a;
+        var timeText = $('.pic_text');
+        a = document.myform.picUrl.value;
+        a = "<img src='"+a+"'  width='60%'>";
+        timeText.html(a);
+    }
 </script>
 <script type="text/javascript" src="js/admin/article/add.js"></script>
 
@@ -40,12 +47,16 @@ $this->title =  '添加文章';
                             <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('article/upload')?>"></iframe>
                         </td>
                     </tr>
-                    <tr>
+                    <tr onmouseout="pic()">
                         <th>上传图片：</th>
                         <td>
                             <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
-                            <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('article/uploads')?>"></iframe>
+                            <iframe frameborder=0 width="100%" height=60px scrolling=no src="<?=yii::$app->urlManager->createUrl('article/uploads')?>"></iframe>
                         </td>
+                    </tr>
+                    <tr>
+                        <th>图片预览：</th>
+                        <td class="pic_text"></td>
                     </tr>
                 </table>
             </div>

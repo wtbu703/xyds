@@ -16,7 +16,7 @@ function openedit(Id,Name) {
 }
 
 //删除多个角色
-function delopt() {
+function deleteMore() {
 	var len = $("input[name='id']:checked").size();
 	var id = '';
 	$("input[name='id']:checked").each(function(i, n){
@@ -28,7 +28,6 @@ function delopt() {
 	});
 	if(id=='') {
 		window.top.art.dialog({content:'请选择至少一条数据',lock:true,width:'200',height:'50',border: false,time:1.5},function(){});
-		return;
 	} else {
 	var paraStr = 'id='+id;
 		$.ajax({
@@ -48,8 +47,7 @@ function delopt() {
 				}, function () {
 				});
 
-				art.dialog.parent.location.href = listallUrl+'&id='+id;
-				window.top.$.dialog.get('role_listall').close();
+				art.dialog.parent.location.href = listallUrl;
 			},
 			error:function(data){
 				window.top.art.dialog({
@@ -92,8 +90,7 @@ function deleteRole(Id) {
 				}, function () {
 				});
 
-				art.dialog.parent.location.href = listallUrl+'&id='+Id;
-				window.top.$.dialog.get('role_listall').close();
+				art.dialog.parent.location.href = listallUrl;
 			},
 			error:function(data){
 				window.top.art.dialog({

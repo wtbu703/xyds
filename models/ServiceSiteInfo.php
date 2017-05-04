@@ -13,6 +13,8 @@ use Yii;
  * @property string $chargeMobile
  * @property string $address
  * @property string $picUrl
+ * @property string $longitude
+ * @property string $latitude
  */
 class ServiceSiteInfo extends \yii\db\ActiveRecord
 {
@@ -31,6 +33,7 @@ class ServiceSiteInfo extends \yii\db\ActiveRecord
     {
         return [
             [['id'], 'required'],
+            [['longitude', 'latitude'], 'number'],
             [['id', 'siteId'], 'string', 'max' => 40],
             [['chargeName'], 'string', 'max' => 8],
             [['chargeMobile'], 'string', 'max' => 11],
@@ -51,6 +54,8 @@ class ServiceSiteInfo extends \yii\db\ActiveRecord
             'chargeMobile' => '负责人手机',
             'address' => '站点位置',
             'picUrl' => '站点预览图路径',
+            'longitude' => '经度',
+            'latitude' => '纬度',
         ];
     }
 }

@@ -1,3 +1,4 @@
+
 $(function(){
 	$.formValidator.initConfig({
 		formid:"myform",
@@ -14,6 +15,9 @@ $(function(){
 			.inputValidator({               //校验不能为空
 				min:1,
 				onerror:"请输入新闻名称！"})
+	$("#keyword").formValidator({
+		onshow:"关键词请用空格隔开",
+		onfocus:"关键词请用空格隔开！"})
 
 
 })
@@ -24,6 +28,8 @@ function edit(){
 		var paraStr = "";
 		paraStr += "id="+$("#id").val();
 		paraStr += "&title="+$("#title").val();
+		paraStr += "&category=" + $("#category").val();
+		paraStr += "&author=" + $("#author").val();
 		paraStr += "&companyId="+$("#companyId").val();
 		paraStr += "&content=" + encodeURIComponent(contentEditor.getData());
 		paraStr += "&keyword=" + $("#keyword").val();

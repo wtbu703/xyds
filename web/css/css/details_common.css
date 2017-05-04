@@ -1,5 +1,4 @@
 @charset "utf-8";
-
 /*内容部分背景颜色*/
 /*阴影颜色*/
 .content_body {
@@ -36,7 +35,7 @@ ul li {
 }
 .form_2 {
   width: 237px;
-  height: 37px;
+  height: 35px;
   border: solid 1px #2eb4a9;
   float: left;
   outline: none;
@@ -45,7 +44,7 @@ ul li {
 }
 .search_bg {
   width: 50px;
-  height: 37px;
+  height: 35px;
   background-color: #2eb4a9;
   border: 0;
   float: right;
@@ -65,14 +64,11 @@ ul li {
   -moz-box-shadow: -2px 2px 5px 0px #d2d2d2;
 }
 .content_left {
+  height:580px;
   position: relative;
   display: block;
-  padding-bottom: 5px;
+  margin-bottom: 5px;
   background-color: #f5f5f7;
-}
-.content_left a{
-  color: #000000;
-
 }
 .list_first {
   font-size: 18px;
@@ -84,47 +80,42 @@ ul li {
   margin-top: -2px;
   margin-left: 15px;
 }
-
-.list-group a {
-  color: #000000;
-  margin-left: 5%;
+.list_item1 {
+  margin-left: 4.8%;
   width: 95%;
-  height: 30px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  height: 50px;
   text-align: center;
-  line-height: 30px;
+  line-height: 50px;
   font-family: '微软雅黑';
   font-size: 18px;
   font-weight: 500;
 }
-.list_item1 {
-  width: 95%;
-  margin-left: 5%;
-  background-color: #e6e7ea;
-}
-.list-group a:hover{
+.list-group a {
   text-decoration: none;
-  border-left: solid #c62f2f 2.5px none;
+  color: #000000;
 }
-.list-group a:active{
-  border-left: solid #c62f2f 2.5px none;
-}
-.list-group a:focus{
+.list_on a {
   text-decoration: none;
-  border-left: solid #c62f2f 2.5px none;
-  outline:0;
-}
-.list-group a:visited{
-  border-left: solid #c62f2f 2.5px none;
-
-}
-.list-group a:hover li{
   color: #c62f2f;
-  border-left: solid #c62f2f 2.5px;
-  margin-left: 4.6%;
 }
-.list_on{color: #c62f2f;
-  border-left: solid #c62f2f 2.5px;
-  margin-left: 4.6%;}
+.list_on {
+  background:#fff;
+  border-left: solid #c62f2f 5px;
+  box-shadow: 2px 2px 0px 0px #d2d2d2;
+  -moz-box-shadow: 2px 2px 0px 0px #d2d2d2;
+}
+.list_item1 a:hover {
+  text-decoration: none;
+}
+.list_item1:hover {
+  background:#e6f6ff;
+  text-decoration: none;
+}
+.list_item1 a:active {
+  text-decoration: none;
+}
 .right_head {
   margin-top: 10px;
 }

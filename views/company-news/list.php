@@ -33,7 +33,7 @@ $this->title = '新闻管理';
                             新闻标题：
                             <input id="title" name="title" type="text" value="" class="input-text" />
                             关键词：
-                            <input id="keyword" name="keyword" type="text" value="" class="input-text" /></br>
+                            <input id="keyword" name="keyword" type="text" value="" class="input-text" />
                             时间：
                             <input id="newsdateTime_1" name="newsdateTime_1" type="text" value="" class="date">
                             <script type="text/javascript">

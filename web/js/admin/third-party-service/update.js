@@ -1,3 +1,4 @@
+
 //页面校验
 $(function() {
     $.formValidator.initConfig({
@@ -36,11 +37,16 @@ function save(){
 		paraStr +="&companyName="+$("#companyName").val();
 		paraStr +="&logoUrl="+$("#attachUrls").val();
 		paraStr +="&introduction="+$("#introduction").val();
+        paraStr +="&content=" + encodeURIComponent(contentEditor.getData())
         paraStr +="&tel="+$("#tel").val();
         paraStr +="&email="+$("#email").val();
         paraStr +="&address="+$("#address").val();
         paraStr +="&fax="+$("#fax").val();
         paraStr +="&postcode="+$("#postcode").val();
+        paraStr +="&publicTime=" + $('#publicTime').val();
+        paraStr += "&contact=" + $('#contact').val();
+        paraStr +="&sources=" + $('#sources').val();
+        paraStr +="&category=" + $('#category').val();
 		$.ajax({
 			url: updateUrl,
 			type: "post",

@@ -3,6 +3,13 @@ $this->title = "修改新闻";
 ?>
 <script>
     var updateUrl = "<?=yii::$app->urlManager->createUrl('company-news/update-one')?>";
+    function pic(){
+        var a = '';
+        var timeText = $('.pic_text');
+        a = document.myform.picUrl.value;
+        a = "<img src='"+a+"'  width='60%'>";
+        timeText.html(a);
+    }
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/company-news/edit.js" charset="utf-8"></script>
 
@@ -18,24 +25,36 @@ $this->title = "修改新闻";
                     <table width="90%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-                            <th width="100">企业ID</th>
-                            <td><input type="text" id="companyId"  class="input-text" style="width:270px;" value="<?=$companyNews->companyId?>" /></td>
-                        </tr>
-                        <tr>
-                            <th width="100">标题</th>
+                            <th width="100">标题：</th>
                             <td><input type="text" id="title"  class="input-text" style="width:270px;" value="<?=$companyNews->title?>"/></td>
                             <input type="hidden" id="id" value="<?=$companyNews->id?>" />
                         </tr>
                         <tr>
-                            <th width="100">内容</th>
+                            <th width="100">类别：</th>
+                            <td><select style="width:270px;" id="category">
+                                    <?foreach($category as $key => $val){?>
+                                        <?if(intval($val->dictItemCode) == $companyNews->category){?>
+                                            <option name="category" value="<?=$val->dictItemCode?>" selected><?=$val->dictItemName?></option>
+                                        <?}else{?>
+                                            <option name="category" value="<?=$val->dictItemCode?>"><?=$val->dictItemName?></option>
+                                        <?}?>
+                                    <?}?>
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <th >来源：</th>
+                            <td><input type="text" style="width:250px;" name="author" id="author"  value="<?=$companyNews->author?>" class="input-text"/></td>
+                        </tr>
+                        <tr>
+                            <th width="100">内容：</th>
                             <td><textarea style="width:500px;height:100px;" name="content" id="content" ><?=$companyNews->content?></textarea></td>
                         </tr>
                         <tr>
-                            <th width="100">关键词</th>
+                            <th width="100">关键词：</th>
                             <td><input type="text" id="keyword"  class="input-text" style="width:270px;" value="<?=$companyNews->keyword?>" /></td>
                         </tr>
                         <tr>
-                            <th width="100">附件</th>
+                            <th width="100">修改附件：</th>
                             <td>
                                 <input type="text" style="display:none;" name="attachUrls" id="attachUrls" class="input-text"/>
                                 <input type="text" style="display:none;" name="attachNames" id="attachNames" class="input-text"/>
@@ -43,11 +62,19 @@ $this->title = "修改新闻";
                             </td>
                         </tr>
                         <tr>
-                            <th>上传图片：</th>
+                            <th width="100">原始图片：</th>
+                            <td><img src="<?=$companyNews->picUrl?>" width="60%" /></td>
+                        </tr>
+                        <tr onmouseout="pic()">
+                            <th>修改图片：</th>
                             <td>
                                 <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
-                                <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('company-news/uploads')?>"></iframe>
+                                <iframe frameborder=0 width="100%" height=40px scrolling=no src="<?=yii::$app->urlManager->createUrl('company-news/uploads')?>"></iframe>
                             </td>
+                        </tr>
+                        <tr>
+                            <th>图片预览：</th>
+                            <td class="pic_text"></td>
                         </tr>
                         </tbody>
                     </table>

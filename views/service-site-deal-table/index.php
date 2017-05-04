@@ -12,9 +12,7 @@
 </script>
 <script type="text/javascript" src="js/admin/deal-table/index.js"></script>
 <div class="subnav" id="display" >
-	<div class="content-menu ib-a blue line-x">
-		<a class="add fb" href="javascript:;"><em>填写日交易信息</em></a>
-	</div>
+
 </div>
 <div class="pad-lr-10">
 	<div class="table-list">

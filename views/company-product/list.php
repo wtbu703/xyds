@@ -33,7 +33,7 @@ $this->title = '产品管理';
                             产品名称：
                             <input id="name" name="name" type="text" value="" class="input-text" />
                             状态：
-                            <select id="state" style='width:135px' name="state"></select></br>
+                            <select id="state" style='width:135px' name="state"></select>
                             &nbsp;<input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
                             <div class = "checkTip" style="float:right;margin-right:40%;color:red;">
                             </div>

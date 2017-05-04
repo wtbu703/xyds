@@ -72,6 +72,8 @@
 .news h5 a,
 .news p a {
   color: #000;
+  text-decoration: none;
+ 
 }
 .news span {
   float: right;
@@ -114,12 +116,13 @@
   border-color: #00ccff;
   margin-top: 3.5px;
   margin-right: 15px;
-  cursor: default;
+ 
 }
-.column a:hover {
-  border-color: #d73455;
+
+.tabH:hover{
+   border-color: #00ccff;
   background-color: #ffffff;
-}
+   }
 .column a:focus {
   border-color: #d73455;
   background-color: #ffffff;

@@ -1,3 +1,4 @@
+
 //左侧高度
 function height_change(){
     var a = $("#content_left").height();
@@ -20,7 +21,7 @@ function height_change(){
 //时间格式转换为 [12-02]
 function time(d){
     var dateday = new Date(d);
-    var out =  "[" + (parseInt(dateday.getMonth()) + 1) +"-"+ ((dateday.getDate() > 9) ? dateday.getDate() : "0" + dateday.getDate())+"]";
+    var out =  "[" + ((parseInt(dateday.getMonth()) + 1) > 10 ? dateday.getMonth() : "0" + dateday.getMonth()) +"-"+ ((dateday.getDate() > 9) ? dateday.getDate() : "0" + dateday.getDate())+"]";
     return out;
 }
 
@@ -50,6 +51,13 @@ function texthtml(b){
     var btn_text = $(b).removeAttr("style").text();
     return btn_text;
 }
+
+//转换为纯文本2
+function rhtml(p){
+    var dd=p.replace(/<\/?.+?>/g,""); 
+    var dds=dd.replace(/&nbsp;/g,"");//dds为得到后的内容 
+    return dds
+}     
 
 //获取json长度
 function length(a){

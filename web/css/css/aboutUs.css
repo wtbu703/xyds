@@ -1,0 +1,121 @@
+@charset "utf-8";
+.shadow {
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
+  /*for ie6,7,8*/
+  background-color: #fff;
+  -moz-box-shadow: -2px 2px 5px #d2d2d2;
+  /*firefox*/
+  -webkit-box-shadow: -2px 2px 5px #d2d2d2;
+  /*webkit*/
+  box-shadow: -2px 2px 5px #d2d2d2;
+  /*opera或ie9*/
+}
+.clearfloat {
+  zoom: 1;
+}
+.clearfloat:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.header_f {
+  float: left;
+}
+.header_r {
+  float: right;
+}
+ul.public_shadow {
+  height: 992px;
+}
+/* 企业展示导航 */
+.column {
+  zoom: 1;
+  margin-top: 35px;
+}
+.column:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.column .redbar,
+.column span,
+.column a {
+  float: left;
+}
+.column .redbar {
+  width: 6px;
+  height: 46px;
+  background-color: #c62f2f;
+  margin-right: 5px;
+}
+.column span {
+  font-size: 20px;
+  line-height: 46px;
+  margin-right: 20px;
+}
+.row_top {
+  margin-top: 26px;
+}
+.box {
+  /* 字体颜色 */
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
+  /*for ie6,7,8*/
+  background-color: #fff;
+  -moz-box-shadow: -2px 2px 5px #d2d2d2;
+  /*firefox*/
+  -webkit-box-shadow: -2px 2px 5px #d2d2d2;
+  /*webkit*/
+  box-shadow: -2px 2px 5px #d2d2d2;
+  /*opera或ie9*/
+}
+.box .right_head {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 10px;
+  height: 37px;
+  border-bottom: 2px solid #e2e2e2;
+}
+.box .right_head .home {
+  display: inline-block;
+  display: inline;
+  zoom: 1;
+  margin-top: -3px;
+}
+.box .right_head .lh_index {
+  font-size: 14px;
+  font-family: "宋体";
+  color: #000000;
+  line-height: 22px;
+  width: auto;
+}
+.box .right_head .lh_index a {
+  color: #000000;
+  padding-left: 5px;
+  margin-top: 5px;
+}
+.box h2 {
+  width: 500px;
+  margin: 0 auto;
+  font-family: "黑体";
+  margin-top: 30px;
+  margin-bottom: 35px;
+}
+.box h5 {
+  font-family: "微软雅黑";
+  margin-left: 25px;
+}
+.box .text {
+  font-family: "宋体";
+  text-indent: 2em ;
+  margin: 22px 25px;
+}
+.box .text_2 {
+  font-family: "宋体";
+  text-indent: 2em ;
+  margin: 8px 25px;
+}
+.box .text1 {
+  font-family: "宋体";
+  text-indent: 2em ;
+  margin: 22px 67px;
+}

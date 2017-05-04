@@ -54,7 +54,6 @@ $this->title = '农村电子商务物流配送体系建设情况';
 								});
 							</script>
 							&nbsp;<input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
-							<div class = "checkTip" style="float:right;margin-right:50%;color:red;">
 							</div>
 						</div>
 					</div>

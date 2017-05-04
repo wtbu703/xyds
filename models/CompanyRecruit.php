@@ -17,6 +17,10 @@ use Yii;
  * @property string $contacts
  * @property integer $count
  * @property string $datetime
+ * @property string $workPlace
+ * @property string $record
+ * @property string $salary
+ * @property string $exp
  */
 class CompanyRecruit extends \yii\db\ActiveRecord
 {
@@ -42,6 +46,8 @@ class CompanyRecruit extends \yii\db\ActiveRecord
             [['position', 'tel', 'email'], 'string', 'max' => 16],
             [['mobile'], 'string', 'max' => 11],
             [['contacts'], 'string', 'max' => 8],
+            [['workPlace', 'exp'], 'string', 'max' => 64],
+            [['record', 'salary'], 'string', 'max' => 32],
         ];
     }
 
@@ -61,6 +67,10 @@ class CompanyRecruit extends \yii\db\ActiveRecord
             'contacts' => '联系人',
             'count' => '点击次数',
             'datetime' => '时间',
+            'workPlace' => '工作地点',
+            'record' => '学历要求',
+            'salary' => '薪资，待遇',
+            'exp' => '经验要求',
         ];
     }
 }

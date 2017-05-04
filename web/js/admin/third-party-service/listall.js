@@ -5,7 +5,7 @@ function update(siteId,siteName) {
 	$.dialog.open(url,{
 		title: '修改'+siteName+'信息',
 		width: 800,
-		height:500,
+		height:600,
 		lock: true,
 		border: false,
 		id: 'site_update',
@@ -20,7 +20,7 @@ function detail(siteId,siteName){
     $.dialog.open(url,{
         title: siteName+'信息',
         width: 800,
-        height:500,
+        height:600,
         lock: true,
         border: false,
         id: 'site_detail',

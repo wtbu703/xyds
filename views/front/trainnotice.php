@@ -4,6 +4,9 @@
 	var ectrainUrl = "<?=yii::$app->urlManager->createUrl('ectrain/ectrain')?>";
 	var dictUrl = "<?=yii::$app->urlManager->createUrl('ectrain/dict')?>";
 	var detailUrl = "<?=yii::$app->urlManager->createUrl('front/train-detail')?>";
+	var singupUrl = "<?=Yii::$app->urlManager->createUrl('front/signup')?>";
+	var ecUrl = "<?=Yii::$app->urlManager->createUrl('front/ectrain')?>";
+	var type = "<?=$type?>";
 </script>
 <img class="img-responsive hidden-xs" src="images/images_trainingnotice/banner.jpg" alt="banner">
 
@@ -27,8 +30,8 @@
 <div class="container">
 <!--分页 -->
 	<div class="row row_page">
-		<div class="col-md-2 col-sm-1 col-xs-0 col-lg-3"></div>
-		<nav aria-label="Page navigation" class="col-md-8 col-sm-10 col-xs-12">
+		<div class="col-md-3 col-sm-1 col-xs-0 col-lg-4"></div>
+		<nav aria-label="Page navigation" class="col-lg-5 col-md-7 col-sm-10 col-xs-12">
 		  <ul class="pagination pagination-lg">
 
 		  </ul>

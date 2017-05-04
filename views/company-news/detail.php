@@ -8,12 +8,16 @@ $this->title = '新闻详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100">企业ID</th>
-                        <td id="companyId"><?=$companyNews->companyId?></td>
-                    </tr>
-                    <tr>
                         <th width="100">新闻标题</th>
                         <td id="title"><?=$companyNews->title?></td>
+                    </tr>
+                    <tr>
+                        <th width="100">新闻类别</th>
+                        <td id="category"><?=$companyNews->category?></td>
+                    </tr>
+                    <tr>
+                        <th width="100">新闻来源</th>
+                        <td id="author"><?=$companyNews->author?></td>
                     </tr>
                     <tr>
                         <th width="100">新闻内容</th>

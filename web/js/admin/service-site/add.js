@@ -5,7 +5,7 @@ $(document).ready(function(){
 });
 //生成状态下拉框
 /*function generateState(){
-    var dictArray = new Array();
+    var dictArray = [];
     dictArray.push("<option value=''><--请选择类型--></option>");
     $.ajax({
         url:listdictUrl,
@@ -113,7 +113,7 @@ $(function() {
 function add(){
 	if($.formValidator.pageIsValid()){ // 表单提交进行校验
 		var paraStr;
-		paraStr = "code=" + $('#code').val() + "&name=" + $('#name').val() + "&type=" + $('#type').val() + "&chargeName=" + $('#chargeName').val()+ "&chargeMobile=" + $('#chargeMobile').val()+ "&address=" + $('#address').val()+ "&attachUrls=" + $('#attachUrls').val();
+		paraStr = "code=" + $('#code').val() + "&name=" + $('#name').val() + "&type=" + $('#type').val() + "&chargeName=" + $('#chargeName').val()+ "&chargeMobile=" + $('#chargeMobile').val()+ "&address=" + $('#address').val()+ "&attachUrls=" + $('#attachUrls').val()+"&longitude="+x+"&latitude="+y;
 		$.ajax({
 			url: saveUrl,
 			type: "post",
@@ -160,3 +160,40 @@ function add(){
 
 	}
 }
+
+/*百度地图*/
+    var map = new BMap.Map("allmap");
+    map.setDefaultCursor("default");
+    map.enableScrollWheelZoom();//启动鼠标滚轮缩放地图
+    map.enableKeyboard();//启动键盘操作地图
+    var point = new BMap.Point(115.405112,30.79078);
+    map.centerAndZoom(point, 14);
+    map.disableDoubleClickZoom(true);
+    var temPoi;
+    var name = document.getElementById('name');
+    var chargeName = document.getElementById('chargeName');
+    var chargeMobile = document.getElementById('chargeMobile');
+    var address = document.getElementById('address');
+    var addInfo = document.getElementsByClassName('buttonsave')[0];
+    var x,y;
+
+        
+    map.addEventListener("click", function(e) {
+        temPoi = new BMap.Point(e.point.lng, e.point.lat);
+        var marker = new BMap.Marker(temPoi); // 创建点
+        map.addOverlay(marker); 
+        marker.setLabel(new BMap.Label(e.point.lng+"-"+e.point.lat,{offset:new BMap.Size(20,-10)}));
+        //alert(e.point.lng+"+"+e.point.lat);
+        x = e.point.lng;
+        y = e.point.lat;
+
+        //右键删除
+        var removeMarker = function(e,ee,marker){
+            map.removeOverlay(marker);
+        };
+        var markerMenu=new BMap.ContextMenu();
+        markerMenu.addItem(new BMap.MenuItem('删除',removeMarker.bind(marker)));
+        marker.addContextMenu(markerMenu);
+
+    });
+

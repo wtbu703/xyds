@@ -8,12 +8,24 @@ $this->title = '职位详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100">企业ID</th>
-                        <td id="companyId"><?=$companyRecruit->companyId?></td>
-                    </tr>
-                    <tr>
                         <th width="100">职位</th>
                         <td id="position"><?=$companyRecruit->position?></td>
+                    </tr>
+                    <tr>
+                        <th width="100">工作地点</th>
+                        <td id="position"><?=$companyRecruit->workPlace?></td>
+                    </tr>
+                    <tr>
+                        <th width="100">学历要求</th>
+                        <td id="position"><?=$companyRecruit->record?></td>
+                    </tr>
+                    <tr>
+                        <th width="100">薪资</th>
+                        <td id="position"><?=$companyRecruit->salary?></td>
+                    </tr>
+                    <tr>
+                        <th width="100">经验要求</th>
+                        <td id="position"><?=$companyRecruit->exp?></td>
                     </tr>
                     <tr>
                         <th width="100">要求</th>
@@ -34,6 +46,10 @@ $this->title = '职位详情';
                     <tr>
                         <th width="100">联系人</th>
                         <td id="contacts"><?=$companyRecruit->contacts?></td>
+                    </tr>
+                    <tr>
+                        <th width="100">发布时间</th>
+                        <td id="contacts"><?=$companyRecruit->datetime?></td>
                     </tr>
                 </table>
             </div>

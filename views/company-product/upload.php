@@ -18,6 +18,6 @@
 
 <form id="uploadForm" name="form1" method="post" action="<?=yii::$app->urlManager->createUrl('company-product/upload')?>" enctype="multipart/form-data">
     <input type="file" id="fileName" name="file" style="height:18px;border:1px #ff9900;width:250px;"/>
-    <input type="button" class="buttonsave" onClick="uploadPic();"  value="上传"/><div id="productPWDAgainTip"></div>
+    <input type="button" class="buttonsave" onClick="uploadPic();"  value="上传"/>限制分辨率为290*190（宽*高），大小不超过2M！<div id="productPWDAgainTip"></div>
 </form>
 

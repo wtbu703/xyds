@@ -13,6 +13,11 @@ use app\common\Common;
 use app\models\SupportLaunch;
 use yii\data\Pagination;
 
+/**
+ * 支持开展
+ * Class SupportLaunchController
+ * @package app\controllers
+ */
 class SupportLaunchController extends Controller{
 
 	/**

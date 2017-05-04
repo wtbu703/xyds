@@ -5,6 +5,13 @@ $this->title = '添加新闻';
 <script type="text/javascript">
     var listallUrl = "<?=yii::$app->urlManager->createUrl('company-news/find-by-attri')?>";
     var insertUrl = "<?=yii::$app->urlManager->createUrl('company-news/add-one')?>";
+    function pic(){
+        var a;
+        var timeText = $('.pic_text');
+        a = document.myform.picUrl.value;
+        a = "<img src='"+a+"'  width='60%'>";
+        timeText.html(a);
+    }
 </script>
 <script type="text/javascript" src="js/admin/company-news/add.js"></script>
 
@@ -14,12 +21,16 @@ $this->title = '添加新闻';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100px">企业ID：</th>
-                        <td><input type="text" style="width:250px;" name="companyId" id="companyId"  class="input-text"/></td>
-                    </tr>
-                    <tr>
                         <th >新闻标题：</th>
                         <td><input type="text" style="width:250px;" name="title" id="title"  class="input-text"/></td>
+                    </tr>
+                    <tr>
+                        <th width="100px">新闻类别：</th>
+                        <td><select id="category"  style='width:250px;height:25px; ' class="input-text"/></select></td>
+                    </tr>
+                    <tr>
+                        <th >新闻来源：</th>
+                        <td><input type="text" style="width:250px;" name="author" id="author"  class="input-text"/></td>
                     </tr>
                     <tr>
                         <th>新闻内容：</th>
@@ -37,12 +48,16 @@ $this->title = '添加新闻';
                             <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('company-news/upload')?>"></iframe>
                         </td>
                     </tr>
-                    <tr>
+                    <tr onmouseout="pic()">
                         <th>上传图片：</th>
                         <td>
                             <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
-                            <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('company-news/uploads')?>"></iframe>
+                            <iframe frameborder=0 width="100%" height=40px scrolling=no src="<?=yii::$app->urlManager->createUrl('company-news/uploads')?>"></iframe>
                         </td>
+                    </tr>
+                    <tr>
+                        <th>图片预览：</th>
+                        <td class="pic_text"></td>
                     </tr>
                 </table>
             </div>

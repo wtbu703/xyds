@@ -60,7 +60,6 @@ $this->title = '日报表管理';
 			                });
 		                </script>
                         <input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询" />
-                        <div class = "checkTip" style="float:right;margin-right:65%;color:red;">
                     </div>
                 </td>
             </tr>

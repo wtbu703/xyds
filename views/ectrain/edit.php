@@ -4,6 +4,23 @@ $this->title = "修改培训信息";
 
 <script>
     var updateUrl = "<?=yii::$app->urlManager->createUrl('ectrain/update-one')?>";
+    function pic(){
+        var a;
+        a = document.myform.picUrl.value;
+        arr = a.split(';');
+        for(i in arr) {
+            ar = "<img src='" + arr[i] + "'  width='60%'>";
+            var timeText = $('.pic_text'+i);
+            timeText.html(ar);
+        }
+    }
+    function bigPic(){
+        var a;
+        var timeText = $('.pic_text4');
+        a = document.myform.thumbnailUrl.value;
+        a = "<img src='"+a+"'  width='60%'>";
+        timeText.html(a);
+    }
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/ectrain/edit.js" charset="utf-8"></script>
 
@@ -62,7 +79,7 @@ $this->title = "修改培训信息";
                         </tr>
                         <tr>
                             <th>报名时间：</th>
-                            <td><input id="beginTime" name="beginTime" type="text" value="" class="date">
+                            <td><input id="beginTime" name="beginTime" type="text" value="<?=$ectrain->beginTime?>" class="date">
                                 <script type="text/javascript">
                                     Calendar.setup({
                                         weekNumbers: true,
@@ -75,7 +92,7 @@ $this->title = "修改培训信息";
                                     });
                                 </script>
                                 &nbsp;至&nbsp;&nbsp;
-                                <input id="endTime" name="endTime" type="text" value="" class="date">
+                                <input id="endTime" name="endTime" type="text" value="<?=$ectrain->endTime?>" class="date">
                                 <script type="text/javascript">
                                     Calendar.setup({
                                         weekNumbers: true,
@@ -98,18 +115,63 @@ $this->title = "修改培训信息";
                             <td><input type="text" style="width:250px;"  name="publisher" id="publisher" value="<?=$ectrain->publisher?>" ></td>
                         </tr>
                         <tr>
-                            <th>产品缩略图：</th>
+                            <th>培训开始时间：</th>
+                            <td><input id="time" name="time" type="text" value="<?=$ectrain->time?>" class="date">
+                                <script type="text/javascript">
+                                    Calendar.setup({
+                                        weekNumbers: true,
+                                        inputField : "time",
+                                        trigger    : "time",
+                                        dateFormat: "%Y-%m-%d %k:%M:%S",
+                                        showTime: true,
+                                        minuteStep: 1,
+                                        onSelect   : function() {this.hide();}
+                                    });
+                                </script>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>原始缩略图：</th>
+                            <td id="picUrl">
+                                <?$picUrl_array = explode(';',$ectrain->picUrl);
+                                foreach($picUrl_array as $key=>$data){?>
+                                    <img src="<?=$data?>"  width="60%">
+                                <?} ?>
+                            </td>
+                        </tr>
+                        <tr onmouseout="pic()">
+                            <th>修改缩略图：</th>
                             <td>
                                 <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
                                 <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('ectrain/upload')?>"></iframe>
                             </td>
                         </tr>
                         <tr>
-                            <th>产品大图：</th>
+                            <th>图片预览：</th>
+                            <td class="pic_text0"></td>
+                        </tr>
+                        <tr>
+                            <th>图片预览：</th>
+                            <td class="pic_text1"></td>
+                        </tr>
+                        <tr>
+                            <th>图片预览：</th>
+                            <td class="pic_text2"></td>
+                        </tr>
+                        <tr>
+                            <th>原始大图：</th>
+                            <td id="thumbnailUrl"> <img src="<?=$ectrain->thumbnailUrl?>" width="60%"></td>
+                        </tr>
+                        <tr onmouseout="bigPic()">
+                            <th>修改大图：</th>
                             <td>
                                 <input type="text" style="display:none;" name="thumbnailUrl" id="thumbnailUrl" class="input-text"/>
-                                <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl(['ectrain/upload','detail'=>'detail'])?>"></iframe>
+                                <iframe frameborder=0 width="100%" height=40px scrolling=no src="<?=yii::$app->urlManager->createUrl(['ectrain/upload','detail'=>'detail'])?>"></iframe>
                             </td>
+                        </tr>
+                        <tr>
+                            <th>大图预览：</th>
+                            <td class="pic_text4"></td>
                         </tr>
                         </tbody>
                     </table>

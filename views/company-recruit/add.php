@@ -13,12 +13,24 @@ $this->title = '添加招聘信息';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100px">企业ID：</th>
-                        <td><input type="text" style="width:250px;" name="companyId" id="companyId"  class="input-text"/></td>
-                    </tr>
-                    <tr>
                         <th>职位：</th>
                         <td><input type="text" style="width:250px;" name="position" id="position"  class="input-text"/></td>
+                    </tr>
+                    <tr>
+                        <th>工作地点：</th>
+                        <td><input type="text" style="width:250px;" name="workPlace" id="workPlace"  class="input-text"/></td>
+                    </tr>
+                    <tr>
+                        <th>学历要求：</th>
+                        <td><input type="text" style="width:250px;" name="record" id="record"  class="input-text"/></td>
+                    </tr>
+                    <tr>
+                        <th>薪资：</th>
+                        <td><input type="text" style="width:250px;" name="salary" id="salary"  class="input-text"/></td>
+                    </tr>
+                    <tr>
+                        <th>经验要求：</th>
+                        <td><input type="text" style="width:250px;" name="exp" id="exp"  class="input-text"/></td>
                     </tr>
                     <tr>
                         <th>要求：</th>

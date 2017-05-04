@@ -10,7 +10,7 @@
 				<div class="right_head">
                     <div class="list_head">
                         <span class="lh_index"><img class="img-responsive home" src="images/images_common/home.png" alt="首页图标"><a href="<?=yii::$app->urlManager->createUrl('front/index')?>">首页</a>&nbsp;></span>
-                        <span class="lh_index"><a href="#">电商培训</a>&nbsp;></span>
+                        <span class="lh_index"><a href="<?=yii::$app->urlManager->createUrl('front/ectrain')?>">电商培训</a>&nbsp;></span>
                         <span class="lh_index"><a href="<?=yii::$app->urlManager->createUrl('front/train-notice')?>">培训通知</a>&nbsp;></span>
                         <span class="lh_index">详情</span>
                     </div>
@@ -21,18 +21,20 @@
 					<div class="col-md-1 col-sm-0 col-xs-0 col-lg-1"></div>
 					<div class="col-md-10 col-sm-12 col-xs-12">
 						<?if(!is_null($ectrain)){?>
-						 <h2 class="col-md-offset-3 col-sm-offset-2 col-xs-offset-1">第<?=($ectrain->period)+1?>期<?=$ectrain->name?></h2>
-						<p class="col-md-offset-5 col-sm-offset-4 col-xs-offset-3 subhead"><img class="img-responsive clock" src="images/images_traindetail/time.png" alt="时钟图标">&nbsp;<?=$ectrain->published?>&nbsp;发布人&nbsp;:&nbsp;<?=$ectrain->publisher?></p>
-						<p class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text">一、&nbsp;培训时间</p>
-						<p class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text">培训时间：<?=$ectrain->beginTime?>-<?=$ectrain->endTime?></p>
-						<p class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text">二、&nbsp;培训人数</p>
-						<p class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text">人数：<?=$ectrain->peopleNum?>人</p>
-						<p class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text">三、&nbsp;培训对象</p>
-						<p class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text"><?=$ectrain->target?></p>
-						<p class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text">四、&nbsp;培训内容</p>
-						<p class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text"><?=$ectrain->content?></p>
-						<div class="down col-md-3 col-sm-3 col-md-offset-10 col-xs-offset-6"><a href="<?=Yii::$app->urlManager->createUrl('front/signup')?>&id=<?=$ectrain->id?>" class="btn btn-primary btn-lg " role="button">报名入口</a>
+						 <h2 style="text-align: center;">第<?=($ectrain->period)+1?>期<?=$ectrain->name?></h2>
+						<div class="subhead">发布时间：&nbsp;<?=$ectrain->published?>&nbsp;发布人&nbsp;:&nbsp;<?=$ectrain->publisher?></div>
+						<div class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text">一、&nbsp;报名时间</div>
+						<div class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text">报名时间：<?=$ectrain->beginTime?>-<?=$ectrain->endTime?></div>
+						<div class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text">二、&nbsp;培训人数</div>
+						<div class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text">人数：<?=$ectrain->peopleNum?>人</div>
+						<div class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text">三、&nbsp;培训对象</div>
+						<div class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text"><?=$ectrain->target?></div>
+						<div class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text">四、&nbsp;培训内容</div>
+						<div class="col-md-offset-1 col-sm-offset-0 col-xs-offset-0 row_text"><?=$ectrain->content?></div>
+							<?php if($time>$ectrain->beginTime&&$time<$ectrain->endTime){ ?>
+						<div class="down col-md-3 col-sm-3 col-md-offset-10 col-xs-offset-6"><a href="<?=Yii::$app->urlManager->createUrl('front/signup')?>&id=<?=$ectrain->id?>" class="btn btn_common1" role="button">报名入口</a>
 						</div>
+								<? }?>
 						<?}?>
 					</div>
 					<div class="col-md-1 col-sm-0 col-xs-0 col-lg-1"></div>

@@ -12,7 +12,20 @@ function openedit(id,name) {
 		drag:true
 	});
 }
-
+//打开管理页面
+function manage(id,name) {
+	$.dialog({id:'ectrain_manage'}).close();
+	var url = manageUrl + '&id='+id;
+	$.dialog.open(url,{
+		title: '管理培训报名信息--'+name,
+		width: 900,
+		height:600,
+		lock: true,
+		border: false,
+		id: 'ectrain_manage',
+		drag:true
+	});
+}
 /**
  * 删除用户
  */

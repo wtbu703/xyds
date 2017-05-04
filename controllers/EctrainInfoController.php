@@ -52,7 +52,11 @@ class EctrainInfoController extends Controller
         $ectrainInfo->publicInfoUrl = Yii::$app->request->post('publicInfoUrl');
         $ectrainInfo->signSheetUrl = Yii::$app->request->post('signSheetUrl');
         $ectrainInfo->signSheetName = Yii::$app->request->post('signSheetName');
-        $ectrainInfo->published = date('Y-m-d');
+        $ectrainInfo->companyNum = Yii::$app->request->post('companyNum');
+        $ectrainInfo->newCompanyThisM = Yii::$app->request->post('newCompanyThisM');
+        $ectrainInfo->singleNum = Yii::$app->request->post('singleNum');
+        $ectrainInfo->newSingleThisM = Yii::$app->request->post('newSingleThisM');
+        $ectrainInfo->published = Yii::$app->request->post('published');
 
         if ($ectrainInfo->save()) {
             return "success";
@@ -106,6 +110,10 @@ class EctrainInfoController extends Controller
         $ectrainInfo->chargeMobile = Yii::$app->request->post('chargeMobile');
         $ectrainInfo->centralDecisionUnit = Yii::$app->request->post('centralDecisionUnit');
         $ectrainInfo->publicInfoUrl = Yii::$app->request->post('publicInfoUrl');
+        $ectrainInfo->companyNum = Yii::$app->request->post('companyNum');
+        $ectrainInfo->newCompanyThisM = Yii::$app->request->post('newCompanyThisM');
+        $ectrainInfo->singleNum = Yii::$app->request->post('singleNum');
+        $ectrainInfo->newSingleThisM = Yii::$app->request->post('newSingleThisM');
         $ectrainInfo->published = Yii::$app->request->post('published');
 
         if($ectrainInfo->save()) {
@@ -250,8 +258,8 @@ class EctrainInfoController extends Controller
 	public function actionAjax(){
 		$type = Yii::$app->request->post('type');
 		if($type==5){
-			$sql = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(published,'%Y-%m')AS months,COUNT(companyNum)as companyNum,
-count(newCompanyThisM)as newCompanyThisM,count(singleNum)as singleNum,count(newSingleThisM)as newSingleThisM FROM ectraininfo GROUP BY DATE_FORMAT(published,'%Y-%m')");
+			$sql = Yii::$app->getDb()->createCommand("SELECT DATE_FORMAT(published,'%Y-%m')AS months,SUM(companyNum)as companyNum,
+SUM(newCompanyThisM)as newCompanyThisM,SUM(singleNum)as singleNum,SUM(newSingleThisM)as newSingleThisM FROM ectraininfo GROUP BY DATE_FORMAT(published,'%Y-%m')");
 			$res = $sql->queryAll();
 			return yii\helpers\Json::encode($res);
 		}else{

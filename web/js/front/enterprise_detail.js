@@ -1,6 +1,4 @@
-$(document).ready(function(){
-
-
+function product(){
     /*产品类 循环6次*/
     var product = $('.product_display');//定位到需要插入的DIV
     var product_html = [];//新建一个数组变量
@@ -11,17 +9,25 @@ $(document).ready(function(){
         data:"companyId="+companyId,
         async: false,
         success:function(data){//如果成功即执行
-            product_html.push('<div class="col-md-12 col-sm-12 col-xs-12 clearfix">');
-            product_html.push('<h4 class="product_title">产品展示</h4>');
-            product_html.push('<a class="product_all" href="'+productDisplayUrl+'&id='+companyId+'">>>所有产品</a>');
-            product_html.push('</div>');
-            $.each(data,function(i,n){//遍历返回的数据 
+            var productdata = JSON.parse(data.product);
+            if(productdata.length==0){
+                product_html.push('<div class="col-md-12 col-sm-12 col-xs-12 clearfix">');
+                product_html.push('<h4 class="product_title">产品展示</h4>');
+                product_html.push('<div class="empty"><span class="empty2">主人太懒，<br>暂无相关消息</span></div>');
+                product_html.push('</div>');
+            }else{
+                product_html.push('<div class="col-md-12 col-sm-12 col-xs-12 clearfix">');
+                product_html.push('<h4 class="product_title">产品展示</h4>');
+                product_html.push('<a class="product_all" href="'+productDisplayUrl+'&id='+companyId+'">>>所有产品</a>');
+                product_html.push('</div>');
+            }
+            $.each(productdata,function(i,n){//遍历返回的数据
                 {
-                	product_html.push('<div class="col-md-4 col-sm-6 col-xs-12 enterprise">');
-                    product_html.push('<div class="box_shadow">'); 
-                    product_html.push('<a href="'+productDetailUrl+'&productId='+n.id+'"><img class="img-responsive" id="large" src="'+n.thumbnailUrl+'" alt="企业产品"></a>');
+                    product_html.push('<div class="col-md-4 col-sm-6 col-xs-12 enterprise">');
+                    product_html.push('<div class="box_shadow">');
+                    product_html.push('<a href="'+productDetailUrl+'&productId='+n.id+'&companyId='+companyId+'"><img class="img-responsive" id="large" src="'+n.thumbnailUrl+'" alt="企业产品"></a>');
                     product_html.push('<div class="row enterprise_detail col-md-12 col-sm-12 col-xs-12">');
-                    product_html.push('<h5 class="col-md-8 col-sm-8 col-xs-8">'+n.name+'</h5>');
+                    product_html.push('<a href="'+productDetailUrl+'&productId='+n.id+'&companyId='+companyId+'"><h5 class="col-md-8 col-sm-8 col-xs-8">'+n.name+'</h5></a>');
                     product_html.push('<h5 class="col-md-4 col-sm-4 col-xs-4 red">￥'+n.price*n.discount+'</h5>');
                     product_html.push(' <div class="row redline"><div class="col-md-9 col-xs-9 col-sm-9 solid"></div><div class="col-md-3 col-xs-3 col-sm-3 dashed"></div></div>');
                     product_html.push('<div class="belong col-md-8 col-sm-8 col-xs-8"></div>');
@@ -34,9 +40,14 @@ $(document).ready(function(){
             });
             product.append(product_html.join(''));//把数组插入到已定位的DIV
         },
-    
+
         error:function(){
-            
+
         }
     });
+}
+$(document).ready(function(){
+
+    product();
+
 });

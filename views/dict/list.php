@@ -61,9 +61,6 @@ use yii\helpers\Html;
                 <?php if($add){?>
                 <a class="add fb" href="javascript:openadd();void(0);"><em>添加字典组</em></a>
                 <?php }?>
-                <?php if($excel){ ?>
-                <a class="add fb" href="<?=yii::$app->urlManager->createUrl('dict/excel')?>"><em>导出为Excel文件</em></a>
-                <?php }?>
             </div>
         </div>
         <div class="pad-lr-10">
@@ -75,7 +72,6 @@ use yii\helpers\Html;
                                 <input id="dictName" name="dictName" type="text" value="" class="input-text" />
                                 &nbsp;<select id="dictState" style='width:135px' name="dictState"></select>
                                 <input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询" />
-                                <div class = "checkTip" style="float:right;margin-right:65%;color:red;">
                             </div></td>
                     </tr>
                     </tbody>

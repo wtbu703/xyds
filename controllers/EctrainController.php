@@ -1,6 +1,7 @@
 <?php
 namespace app\controllers;
 
+use app\models\EctrainEnter;
 use yii;
 use yii\web\Controller;
 use app\models\Ectrain;
@@ -47,6 +48,7 @@ class EctrainController extends Controller{
         $ectrain->thumbnailUrl = Yii::$app->request->post('thumbnailUrl');
         $ectrain->beginTime = Yii::$app->request->post('beginTime');
         $ectrain->endTime = Yii::$app->request->post('endTime');
+        $ectrain->time = Yii::$app->request->post('time');
         $ectrain->published = date("Y-m-d H:i:s");
 
         if($ectrain->save()){
@@ -94,6 +96,16 @@ class EctrainController extends Controller{
         $page = new Pagination(['totalCount' => $ectrain->count(), 'pageSize' => Common::PAGESIZE]);
         $models = $ectrain->offset($page->offset)->limit($page->limit)->all();
 
+        $category = Dictitem::find()
+            ->where(['dictCode' => 'DICT_ECTRAIN_CATEGORY'])
+            ->all();
+        foreach($models as $key=>$data){
+            foreach($category as $index=>$value){
+                if($data->category == $value->dictItemCode){
+                    $models[$key]->category = $value->dictItemName;
+                }
+            }
+        }
         return $this->render('listall',[
             'ectrain'=>$models,
             'pages' => $page,
@@ -149,6 +161,7 @@ class EctrainController extends Controller{
         $ectrain->publisher = Yii::$app->request->post('publisher');
         $ectrain->beginTime = Yii::$app->request->post('beginTime');
         $ectrain->endTime = Yii::$app->request->post('endTime');
+        $ectrain->time = Yii::$app->request->post('time');
 
         if($ectrain->save()){
             return "success";
@@ -267,7 +280,7 @@ class EctrainController extends Controller{
             $isThumb = Yii::$app->request->get('isThumb');
             $views = 'upload';
             if(is_null($isThumb)){
-                $fileArg = Common::upload($_FILES,true,false);
+                $fileArg = Common::upload($_FILES,true,false,'ectrain_notice',2048000);
             }else{
                 $fileArg = Common::upload($_FILES,true,true);
                 $views = 'uploads';
@@ -304,8 +317,9 @@ class EctrainController extends Controller{
 	 */
 	public function actionEctrain(){
         $type = Yii::$app->request->post('newsType');
+        $type = $type-1;
         $page = Yii::$app->request->post('page');
-        if($type == 0){
+        if($type == -1){
             $query = Ectrain::find()
                 ->count();
         }else{
@@ -319,7 +333,7 @@ class EctrainController extends Controller{
             'validatePage' => false,
             'totalCount' => $query,
         ]);
-        if($type == 0) {
+        if($type == -1) {
             $ectrain = Ectrain::find()
                 ->orderBy(['published' => SORT_DESC])
                 ->offset($pagination->offset)
@@ -334,11 +348,19 @@ class EctrainController extends Controller{
                 ->limit($pagination->limit)
                 ->all();
         }
+        $peopleNum = [];
+        foreach($ectrain as $key=>$data) {
+            $peopleNum[$key] = EctrainEnter::find()
+                ->where('trainId = :trainId', [':trainId' => $ectrain[$key]->id])
+                ->count();
+        }
+
         $para = [];
         $para['ectrain'] = Json::encode($ectrain);
         $para['page'] = $page;
         $para['pageSize'] = $pagination->defaultPageSize;
         $para['totalCount'] = $pagination->totalCount;
+        $para['peopleNum'] = $peopleNum;
         return Json::encode($para);
     }
 
@@ -379,6 +401,49 @@ class EctrainController extends Controller{
             ->limit(3)
             ->all();
         return Json::encode($ectrain);
+    }
+
+    /**
+     * @return string
+     * 首页4个热门培训分类的接口
+     */
+    public function actionEcCategory(){
+        $category = Dictitem::find()
+            ->where([
+                'state' => '1',
+                'dictCode' => 'DICT_ECTRAIN_CATEGORY',
+            ])
+            ->orderBy(['dictItemCode' => SORT_ASC])
+            ->all();
+        $len = Dictitem::find()
+            ->where([
+                'state' => '1',
+                'dictCode' => 'DICT_ECTRAIN_CATEGORY',
+            ])
+            ->count();
+        for ($i = 0; $i < $len; $i++) {
+            $para[$i] = Ectrain::find()
+                ->where('category = :category', [':category' => $category[$i]->dictItemCode])
+                ->count();
+            $cateCode[$i] = $category[$i]->dictItemCode;
+            $cateName[$i] = $category[$i]->dictItemName;
+        }
+        for ($j = 0; $j < $len; $j++) {
+            for ($i = 0; $i < $len - 1 - $j; $i++)
+            {
+                if ($para[$i] < $para[$i + 1])
+                {
+                    $t = $para[$i];
+                    $para[$i] = $para[$i + 1];
+                    $para[$i + 1] = $t;
+
+                    $m = $cateName[$i];
+                    $cateName[$i] = $cateName[$i + 1];
+                    $cateName[$i + 1] = $m;
+                }
+            }
+        }
+        return Json::encode($cateName);
     }
 }
 

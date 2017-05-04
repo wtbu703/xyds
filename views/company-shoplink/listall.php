@@ -25,7 +25,7 @@ $this->title = '产品列表';
                     <td><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
                     <td><?=$index+$pages->page*$pages->pageSize+1?></td>
                     <td><a href="javascript:detail('<?=$val->id?>','<?=$val->shopName?>')"><?=$val->shopName?></a></td>
-                    <td><?=$val->shopLink?></td>
+                    <td><?=substr($val->shopLink,0,40)?>...</td>
                     <td><?=$val->platform?></td>
                     <td align="center">
                         <a href="javascript:openedit('<?=$val->id?>','<?=$val->shopName?>')">修改</a>&nbsp;&nbsp;

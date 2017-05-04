@@ -79,15 +79,11 @@ hr {
   background-color: #e2e2e2;
   margin-top: 3.5px;
   margin-right: 15px;
+  color: black;
 }
-.column a:hover {
+.column .active {
   border-color: #d73455;
-}
-.column .btn-default:hover,
-.column .btn-default:focus,
-.column .btn-default:active,
-.column .btn-default.active {
-  border-color: #d73455;
+  background: #e2e2e2;
 }
 .wrapper {
   background: #e2e2e2;
@@ -130,6 +126,10 @@ hr {
   /*opera或ie9*/
   position: relative;
 }
+.enterprise .box_shadow a {
+  color: black;
+  text-decoration: none;
+}
 .enterprise .box_shadow img {
   position: absolute;
   filter: progid:DXImageTransform.Microsoft.Shadow(color='#7a7475', Direction=135, Strength=10);
@@ -171,6 +171,13 @@ hr {
 }
 .footer .container {
   margin-top: 0px;
+}
+.btn:active,
+.btn.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 /* 分页 */
 .row_page {

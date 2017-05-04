@@ -114,9 +114,9 @@ hr {
   font-weight: normal;
 }
 .article .page li span {
-  float: right;
+  float: left;
   font-size: 12px;
-  margin-top: 7px;
+  
 }
 .information_list {
   margin: 30px auto;

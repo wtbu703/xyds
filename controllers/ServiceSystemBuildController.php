@@ -7,6 +7,11 @@ use app\common\Common;
 use app\models\ServiceSystemBuild;
 use yii\data\Pagination;
 
+/**
+ * 公共服务体系建设
+ * Class ServiceSystemBuildController
+ * @package app\controllers
+ */
 class ServiceSystemBuildController extends Controller{
 
 	/**

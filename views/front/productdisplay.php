@@ -8,7 +8,12 @@
 		var recruitUrl = "<?=Yii::$app->urlManager->createUrl('company-recruit/company-recruit')?>";
 		var companyId = "<?=$companyId?>";
 		var productDetailUrl = "<?=Yii::$app->urlManager->createUrl('front/product-detail')?>";
-		var onlineUrl = "<?=Yii::$app->urlManager->createUrl('front/online')?>";
+		var lineUrl = "<?=Yii::$app->urlManager->createUrl('front/line')?>";
+		var onlineUrl = "<?=Yii::$app->urlManager->createUrl('front/detail')?>";
+		var newsallUrl = "<?=Yii::$app->urlManager->createUrl('front/company-news')?>";
+		var newsDetailUrl = "<?=Yii::$app->urlManager->createUrl('front/news-detail')?>";
+		var companyUrl = "<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>";
+		var companyDetailUrl = "<?=Yii::$app->urlManager->createUrl('front/enterprise-detail')?>";
 	</script>
 	<script src="js/front/product_display.js"></script>
 	<script src="js/front/common_js/company.js"></script>
@@ -21,10 +26,6 @@
 				<div class="redbar">
 				</div>
 				<span class="">企业展示</span>
-			</div>
-			<div class="col-xs-12 col-md-4 col-md-offset-1 enterprise_search">
-				<input type="text" name="search" class="search_input col-md-9">
-				<button class="btn btn-default btn-sm btn_search" type="submit"><img src="images/images_enterprise/search.png" alt="搜索图标"></button>
 			</div>
 		</div>
 		<!-- end 二级导航 -->
@@ -43,7 +44,6 @@
 			<!-- 右侧链接 -->
 			<div class="col-md-3 col-sm-3 col-xs-12">
 				<div class="store_link">
-
 				</div>
 				<div class="company_news">
 
@@ -56,25 +56,12 @@
 		</div>
 		<!--分页 -->
 		<div class="row row_page">
-			<nav aria-label="Page navigation" class="col-md-9 col-sm-9 col-xs-12 col-md-offset-1">
+			<div class="col-md-3 col-sm-1 col-xs-0 col-lg-4"></div>
+			<nav aria-label="Page navigation" class="col-lg-5 col-md-7 col-sm-10 col-xs-12">
 			  <ul class="pagination pagination-lg">
-			    <li><a href="#" aria-label="Previous">
-			        上一页</a>
-			    </li>
-			    <li><a href="#">1</a></li>
-			    <li><a href="#">2</a></li>
-			    <li><a href="#">3</a></li>
-			    <li><a href="#">4</a></li>
-			    <li><a href="#">5</a></li>
-			    <li><a class="fen" href="#">...</a></li>
-			    <li><a href="#">25</a></li>
-			    <li>
-			      <a href="#" aria-label="Next">
-			        下一页
-			      </a>
-			    </li>
+
 			  </ul>
 			</nav>
-			<div class="col-md-3 col-sm-3 col-xs-0 col-lg-3"></div>
+			<div class="col-md-2 col-sm-1 col-xs-0 col-lg-3"></div>
 		</div>
 	</div>

@@ -128,7 +128,7 @@ use yii\helpers\Html;
             </div>
         </div>
         <div class="header">
-            <div class="logo lf"><span class="invisible">考试管理系统</span></div>
+            <div class="logo lf"><span class="invisible">后台管理系统</span></div>
             <div class="rt">
                 <div class="tab_style white cut_line text-r"><a href="javascript:;" onclick="lock_screen();"><img src="images/icon/lockscreen.png" /> 锁屏</a>
                     <ul id="Skin">
@@ -142,7 +142,7 @@ use yii\helpers\Html;
             </div>
             <div class="col-auto" style="overflow: visible">
                 <div class="log white cut_line">
-                    您好！<?=Yii::$app->session['username']?>  [<?=Yii::$app->session['truename']?>]<span>|</span><a href="javascript:showBg();">[修改密码]</a><span>|</span><a href="<?=Yii::$app->urlManager->createUrl('admin/logout')?>">[退出]</a><span>|</span><a href="<?=Yii::$app->urlManager->createUrl('site/index')?>" target="_blank">[前台主页]</a>
+                    您好！<?=Yii::$app->session['username']?>  [<?=Yii::$app->session['truename']?>]<span>|</span><a href="javascript:showBg();">[修改密码]</a><span>|</span><a href="<?=Yii::$app->urlManager->createUrl('admin/logout')?>">[退出]</a><span>|</span><a href="<?=Yii::$app->urlManager->createUrl('front/index')?>" target="_blank">[前台主页]</a>
                 </div>
                 <input type="hidden" value="${sessionScope.SITE.siteName }" id="defaultSite" />
                 <ul class="nav white" id="top_menu" name="top_menu">
@@ -177,9 +177,7 @@ use yii\helpers\Html;
                     <div class="tabpanel_content">
                         <iframe class="rightMain" id="rightMain"  src="<?= Yii::$app->urlManager->createUrl('admin/main')?>" frameborder="false" scrolling="auto" style="border:none" width="100%" height="auto" allowtransparency="true"></iframe>
                     </div>
-                    <div class="fav-nav">
-                        <div id="panellist"></div>
-                    </div>
+
                 </div>
             </div>
         </div>
