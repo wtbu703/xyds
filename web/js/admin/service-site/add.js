@@ -2,6 +2,13 @@
 $(document).ready(function(){
     generateDict('DICT_COUNTYTYPE','type','类型');
     //generateState();
+    var map = new BMap.Map("allmap");
+    map.setDefaultCursor("default");
+    var pointz = new BMap.Point(116.404,39.915);
+    map.centerAndZoom(pointz,15);
+    var marker = new BMap.Marker(pointz); // 创建点
+        map.addOverlay(marker);
+
 });
 //生成状态下拉框
 /*function generateState(){

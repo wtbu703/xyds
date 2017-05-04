@@ -1,11 +1,12 @@
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=4cXNyMR23iSxTmEEzcyNcjdd6GuBvaef"></script>
 <script type="text/javascript">
     var listdictUrl = "<?=Yii::$app->urlManager->createUrl('dict/findall')?>";
     var checkCodeUrl = "<?=Yii::$app->urlManager->createUrl('service-site/check-code')?>";
     var saveUrl = "<?=Yii::$app->urlManager->createUrl('service-site/add-one')?>";
     var indexUrl = "<?=Yii::$app->urlManager->createUrl('service-site/index')?>";
 </script>
-<script type="text/javascript" src="js/admin/service-site/add.js"></script>
 
+<div id="allmap" style="height:600px;width: 100%"></div>
 <div class="pad-lr-10">
     <form name="myform" action="" method="post" id="myform" target="iframeId">
         <div class="pad_10">
@@ -54,3 +55,4 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="js/admin/service-site/add.js"></script>
