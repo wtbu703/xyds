@@ -31,13 +31,11 @@ $this->title = '培训管理';
                     <div class="explain-col">
                         <div>
                             培训名：
-                            <input id="name" name="name" type="text" value="" class="input-text" />&nbsp;&nbsp;
+                            <input id="name" name="name" type="text" value="" style="width: 175px;" class="input-text" />&nbsp;&nbsp;
                             类别：
-                            <select id="category" style="width:135px" name="category" ></select>&nbsp;&nbsp;
-                            期数：
-                            <select id="period" style="width:135px" name="period"></select></br>
-                            时间：
-                            <input id="ectraindateTime_1" name="ectraindateTime_1" type="text" value="" class="date">
+                            <select id="category" style="width: 180px;"  name="category" ></select>&nbsp;&nbsp;</br>
+                            时&nbsp;&nbsp;&nbsp;间：
+                            <input id="ectraindateTime_1" name="ectraindateTime_1"  type="text" value="" class="date">
                                     <script type="text/javascript">
                                         Calendar.setup({
                                             weekNumbers: true,
@@ -49,7 +47,7 @@ $this->title = '培训管理';
                                             onSelect   : function() {this.hide();}
                                         });
                                     </script>
-                            &nbsp;至&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;&nbsp;
                             <input id="ectraindateTime_2" name="ectraindateTime_2" type="text" value="" class="date">
                                     <script type="text/javascript">
                                         Calendar.setup({

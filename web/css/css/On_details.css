@@ -1,5 +1,16 @@
 @charset "utf-8";
+.con_body{
+  background-color:#f5f7fa;
+  padding-bottom:5%;
+}
+.right_line{
+  background-color: #cdcdcd;
+  height:2px;
+  width:98%;
+  margin-left:1%;
+}
 #content_right{
+  background-color:#fff;
   margin-top:80px;
 }
 .onicon{
@@ -12,24 +23,42 @@
   margin-left:15px;
 }
 .job_info{
+  width:100%;
+  height:38px;
   margin-top:30px;
+  margin-left:0%;
   margin-bottom:20px;
+  line-height: 38px;
   font-size:18px;
+  font-family: "微软雅黑";
   color:#000;
+  background-color:#fcfcfc;
+  border:#f0f6f6 1px solid;
 }
 .infoline{
   width:3px;
   height:16px;
-  background-color:#ff0000;
+  background-color:#c62f2f;
   float:left;
-  margin-left:-30px;
-  margin-top:3px;
+  margin-left:-1.5%;
+  margin-top:8px;
 }
 .onsalary{
   margin-left:50px;
   font-size:18px;
-  color:#ff0000;
+  color:#c62f2f;
+}
+.onsalary1{
+  margin-left:10px;
+  font-size:18px;
+  color:#c62f2f;
 }
 .description .company_info{
   font-family: "微软雅黑";
+}
+.footer .container{
+  margin-top:0;
+}
+.online{
+  margin-left:10px;
 }

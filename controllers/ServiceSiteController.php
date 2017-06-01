@@ -54,7 +54,7 @@ class ServiceSiteController extends Controller{
 
 		if (Yii::$app->request->isPost) {
 
-			$fileArg = Common::upload($_FILES,true,false);
+			$fileArg = Common::upload($_FILES,true,false,'zhandian',2*1024000);
 			return $this->render('upload',[
 				"fileArg" => $fileArg,
 				"tag" => $fileArg['tag'],
@@ -220,7 +220,7 @@ class ServiceSiteController extends Controller{
 
 		//连接查询站点的基础信息
 		$query = new Query();
-		$serviceSite = $query->select('a.id as id,a.code as code,a.name as name,a.countyType as countyType,b.chargeName as chargeName,b.chargeMobile as chargeMobile,b.address as address,b.picUrl as picUrl')
+		$serviceSite = $query->select('a.id as id,a.code as code,a.name as name,a.countyType as countyType,b.chargeName as chargeName,b.chargeMobile as chargeMobile,b.address as address,b.picUrl as picUrl,b.longitude as longitude,b.latitude as latitude')
 			->from('servicesite a')
 			->where("a.id = :id",[':id' => $siteId])
 			->leftJoin('servicesiteinfo b','a.id = b.siteId')
@@ -381,10 +381,21 @@ class ServiceSiteController extends Controller{
 	public function actionServiceSite(){
 		//连接查询站点的基础信息
 		$query = new Query();
-		$serviceSites = $query->select('a.id as id,a.name as name,b.chargeName as chargeName,b.chargeMobile as chargeMobile,b.address as address,b.picUrl as picUrl,b.longitude as longitude,b.latitude as latitude')
+		$serviceSites = $query->select('a.id as id,a.code as code,a.countyType as countyType,a.name as name,b.chargeName as chargeName,b.chargeMobile as chargeMobile,b.address as address,b.picUrl as picUrl,b.longitude as longitude,b.latitude as latitude')
 			->from('servicesite a')
 			->leftJoin('servicesiteinfo b','a.id = b.siteId')
 			->all();
+
+		//字典反转
+		$countyType = Dictitem::find()->where(['dictCode'=>'DICT_COUNTYTYPE'])->all();
+		foreach($serviceSites as $key=>$data) {
+			foreach ($countyType as $index => $value) {
+				if ($data['countyType'] == $value->dictItemCode) {
+					$serviceSites[$key]['countyType'] = $value->dictItemName;
+				}
+			}
+		}
+
 		return yii\helpers\Json::encode($serviceSites);
 	}
 

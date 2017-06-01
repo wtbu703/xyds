@@ -10,7 +10,7 @@ $this->title = "在线招聘";
 </script>
 <script src="js/front/Online.js"></script>
 
-<img src="images/On_details/banner.jpg" class="img-responsive"/>
+<img src="<?=$pic?>" class="img-responsive"/>
 
 <div class="container">
     <div class="row">
@@ -25,11 +25,14 @@ $this->title = "在线招聘";
     <div class="row">
         <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 ">
             <ul class="list-group content_left public_shadow " id="content_left">
-                <li class="list_first"><img src="images/third_details/xinxi_icon1.png"><span>&nbsp;职位列表</span></li>
                 <a href="javascript:positionMessage('0')"><li class="list_item1 list_on">全部职位</li></a>
                 <a href="javascript:positionMessage('1')"><li class="list_item1 ">最新职位</li></a>
                 <a href="javascript:positionMessage('2')"><li class="list_item1 ">热门职位</li></a>
             </ul>
+            <div class="gongao">职位列表</div>
+            <img class="xsj" src="images/images_common/xsjtop.png">
+
+
         </div>
 <!--右边部分-->
     <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 content_right public_shadow" id="content_right">
@@ -39,6 +42,7 @@ $this->title = "在线招聘";
                 <ul class="full_ul ">
                     <li class="full_li full_active ">全文</li>
                     <li class="full_li">职位</li>
+                    <li class="full_li">公司</li>
                 </ul>
                 <div class="full_search col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
@@ -56,10 +60,19 @@ $this->title = "在线招聘";
           <div class="detial col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
         </div>
-
+        <!--分页-->
          <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <a  class="down_" id="get_more"><div class="down_more">点击加载更多</div></a>
+             <div class="row row_page">
+                 <div class="col-md-3 col-sm-1 col-xs-0 col-lg-3"></div>
+                 <nav aria-label="Page navigation" class="col-lg-6 col-md-7 col-sm-10 col-xs-12">
+                     <ul class="pagination pagination-lg col-md-12 col-sm-12 col-xs-12">
+
+                     </ul>
+                 </nav>
+                 <div class="col-md-2 col-sm-1 col-xs-0 col-lg-3"></div>
+             </div>
         </div>
+        <!--分页-->
     </div>
     </div>
 </div>

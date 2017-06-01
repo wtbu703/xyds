@@ -37,7 +37,7 @@
 }
 .con_ul span {
   float: left;
-  width: 85%;
+  width: 84%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -55,6 +55,7 @@
 .zixun_banner {
   background-color: #f5f5f5;
   margin-top:20px;
+  margin-bottom:10px;
 }
 .zixun_banner img {
   width: 100%;
@@ -158,4 +159,6 @@
 }
 .tender_img {
   text-align: center;
+  margin-top:10px;
+  margin-bottom:10px;
 }

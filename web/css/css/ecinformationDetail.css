@@ -42,6 +42,14 @@ hr {
   font-size: 22px;
   font-weight: 600;
 }
+.article p {
+    text-indent: 2em;
+    font-family: '宋体';
+}
+/* .article p img{
+  width: auto;
+  max-width:90%;
+} */
 .article .article_msg {
   text-align: center;
   margin: 24px auto;
@@ -55,10 +63,7 @@ hr {
   width: 100%;
   padding-bottom: 15px;
 }
-.article p {
-  text-indent: 2em;
-  font-family: '宋体';
-}
+
 .article .article_hr {
   height: 30px;
   background: #f2f2f2;

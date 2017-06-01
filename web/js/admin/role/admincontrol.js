@@ -1,3 +1,16 @@
+function chooseCompany(Id){
+    $.dialog({id:'choose_company'}).close();
+    var url = chooseCompanyUrl+'&id='+Id;
+    $.dialog.open(url,{
+        title: '选择企业',
+        width: 500,
+        height:150,
+        lock: true,
+        border: false,
+        id: 'choose_company',
+        drag:true
+    });
+}
 /**
  * 删除多个用户对应角色关系
  */

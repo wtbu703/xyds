@@ -36,11 +36,9 @@ class Contact extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['datetime'], 'safe'],
             [['id'], 'string', 'max' => 40],
-            [['truename'], 'string', 'max' => 8],
+            [['truename', 'mobile', 'email'], 'string', 'max' => 32],
             [['gender'], 'string', 'max' => 2],
-            [['mobile'], 'string', 'max' => 11],
-            [['email'], 'string', 'max' => 16],
-            [['QQ'], 'string', 'max' => 12],
+            [['QQ'], 'string', 'max' => 16],
         ];
     }
 

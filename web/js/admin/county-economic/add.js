@@ -1,23 +1,192 @@
-
-//页面校验
 $(function(){
-	$.formValidator.initConfig({
-		formid:"myform",
-		autotip:true,			//是否显示提示信息
-		onerror:function(msg,obj){
-		window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})
-		}});
-	// 校验模型名称					
+	$.formValidator.initConfig({ formID: "myform",autotip:true, onError: function () { alert("校验没有通过，具体错误请看错误提示") } });
+
+	$("#GRP").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20.1",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#socialConsumerTotal").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20.1",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#area").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20.1",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#townNum").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#villageNum").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#permanentPopulation").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20.1",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#urbanPopulation").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20.1",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#ruralPopulation").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20.1",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#disposableIncome").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#urbanDisposableIncome").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#ruralDisposableIncome").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#ruralRoadMileage").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20.1",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#telUser").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20.1",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#mobileUser").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20.1",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#34GUser").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20.1",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#internetAccess").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20.1",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#individualHousehold").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#registeredCompany").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#onlineStore").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#mobileStore").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#ecTurnover").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20.1",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	$("#netRetailSales").formValidator({
+		onshow: "请输入数据",
+		onfocus: "例如：20.1",
+		oncorrect: "输入正确"
+	}).inputValidator({               //校验不能为空
+		min: 1,
+		onerror: "请输入数据！"
+	});
+	//年份类别下拉框
 	$("#year").formValidator({
-		onshow:"请输入年份！",
-		onfocus:"请输入年份！"})
-		.inputValidator({               //校验不能为空
-			min:1,
-			onerror:"请输入年份！"})
-
-
-})
-
+		onshow: "选择不能为空",
+		onfocus: "（必填）请选择选项",
+		oncorrect: "输入正确"
+	}).inputValidator({
+		min: 1,  //开始索引
+		onerror: "你是不是忘记选择年份了!"
+	});
+});
 /**
  * 添加过滤
  * @param path

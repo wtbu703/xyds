@@ -42,11 +42,11 @@ $this->title =  '修改视频';
             </ul>
             <div id="div_setting_1" class="contentList pad-10">
                 <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
-                    <table width="90%" cellspacing="0" class="table_form contentWrap">
+                    <table width="100%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-                            <th width="100px">来源类型：</th>
-                            <td><select style='width:250px;height:25px; ' id="category"  name="category" class="input-text" onChange="getpush(this.value)">
+                            <th width="120px" align="right"><sub class="redstar">*</sub>来源类型：</th>
+                            <td colspan="2"><select style='width:200px;height:25px; ' id="category"  name="category" class="input-text" onChange="getpush(this.value)">
                                     <?php if(substr($video->url,0,6) == 'upload'){?>
                                         <option name="category" value="本站" selected>本站</option>
                                         <option name="category"  value="外网" >外网</option>
@@ -57,8 +57,8 @@ $this->title =  '修改视频';
                                 </select></td>
                         </tr>
                         <tr>
-                            <th width="100">类别：</th>
-                            <td><select style="width:270px;" id="sign">
+                            <th align="right"><sub class="redstar">*</sub>类别：</th>
+                            <td><select style="width:250px;" id="sign">
                                     <?foreach($sign as $key => $val){?>
                                         <?if(intval($val->dictItemCode) == $video->sign){?>
                                             <option name="sign" value="<?=$val->dictItemCode?>" selected><?=$val->dictItemName?></option>
@@ -67,47 +67,49 @@ $this->title =  '修改视频';
                                         <?}?>
                                     <?}?>
                                 </select></td>
+                            <td class="one"><div id="signTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">名字</th>
-                            <td><input type="text" id="name" value="<?=$video->name?>"/></td>
+                            <th align="right"><sub class="redstar">*</sub>名字：</th>
+                            <td colspan="2"><input type="text" id="name" value="<?=$video->name?>"/></td>
                             <input type="hidden" id="id"value="<?=$video->id?>" />
                         </tr>
                         <tr>
-                            <th width="100">介&nbsp;绍&nbsp;：</th>
-                            <td><textarea type="text" style="width:500px;height:200px;" name="content" id="content" value=""><?=$video->content?></textarea></td>
+                            <th align="right">介&nbsp;绍&nbsp;：</th>
+                            <td colspan="2"><textarea type="text" style="width:400px;height:200px;" name="content" id="content" value=""><?=$video->content?></textarea></td>
                         </tr>
                         <tr>
-                            <th width="100">来源</th>
-                            <td><input type="text" id="source"  class="input-text" style="width:270px;" value="<?=$video->source?>" /></td>
+                            <th align="right"><sub class="redstar">*</sub>来源：</th>
+                            <td><input type="text" id="source"  class="input-text" style="width:250px;" value="<?=$video->source?>" /></td>
+                            <td class="one"><div id="sourceTip"></div></td>
                         </tr>
                         <tr id="videoUrl">
-                            <th>视频链接：</th>
-                            <td><input type="text" style="width:250px;" name="attachUrls" id="attachUrls"  class="input-text"/></td>
+                            <th align="right"><sub class="redstar">*</sub>视频链接：</th>
+                            <td colspan="2"><input type="text" style="width:250px;" name="attachUrls" id="attachUrls" value="<?=$video->url?>" class="input-text"/></td>
                         </tr>
 
                         <tr id="uploadVideo">
-                            <th>修改视频：</th>
-                            <td>
+                            <th align="right">修改视频：</th>
+                            <td colspan="2">
                                 <input type="text" style="display:none;" name="attachUrls" id="attachUrls" class="input-text"/>
                                 <input type="text" style="display:none;" name="attachNames" id="attachNames" class="input-text"/>
                                 <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('video/upload')?>"></iframe>
                             </td>
                         </tr>
                         <tr>
-                            <th width="100">原始图片：</th>
-                            <td><img src="<?=$video->picUrl?>" width="60%" /></td>
+                            <th align="right">原始图片：</th>
+                            <td colspan="2"><img src="<?=$video->picUrl?>" width="60%" /></td>
                         </tr>
                         <tr onmouseout="pic()">
-                            <th>上传图片：</th>
-                            <td>
+                            <th align="right">上传图片：</th>
+                            <td colspan="2">
                                 <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
                                 <iframe frameborder=0 width="100%" height=40px scrolling=no src="<?=yii::$app->urlManager->createUrl('video/uploads')?>"></iframe>
                             </td>
                         </tr>
                         <tr>
-                            <th>图片预览：</th>
-                            <td class="pic_text"></td>
+                            <th align="right">图片预览：</th>
+                            <td class="pic_text" colspan="2"></td>
                         </tr>
                         </tbody>
                     </table>

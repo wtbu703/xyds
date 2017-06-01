@@ -1,24 +1,41 @@
 
 //页面校验
 $(function(){
-	$.formValidator.initConfig({
-		formid:"myform",
-		autotip:true,			//是否显示提示信息
-		onerror:function(msg,obj){
-		window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})
-		}});
-	// 校验模型名称
+	$.formValidator.initConfig({ formID: "myform",autotip:true, onError: function () { alert("校验没有通过，具体错误请看错误提示") } });
 
-	//验证标题是否为空
-	$("#title").formValidator({
-				onshow:"请选择来源种类！",
-				onfocus:"请选择来源种类！"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请选择来源种类！"})
-
-
-})
+	$("#source").formValidator({
+		onshow: "请输入来源",
+		onfocus: "不超过16个字",
+		oncorrect: "输入正确"
+	}).regexValidator({
+		regexp:"^[\\u4E00-\\u9FA5A-Za-z0-9]{1,16}$",
+		onerror: "来源不超过16个字!"
+	});
+	$("#category").formValidator({
+		onshow: "选择不能为空",
+		onfocus: "（必填）请选择选项",
+		oncorrect: "输入正确"
+	}).inputValidator({
+		min: 0,  //开始索引
+		onerror: "你是不是忘记选择来源类型了!"
+	});
+	$("#sign").formValidator({
+		onshow: "选择不能为空",
+		onfocus: "（必填）请选择选项",
+		oncorrect: "输入正确"
+	}).inputValidator({
+		min: 0,  //开始索引
+		onerror: "你是不是忘记选择文章类别了!"
+	});
+	$("#name").formValidator({
+		onshow: "请输入名字",
+		onfocus: "不超过32个字",
+		oncorrect: "输入正确"
+	}).regexValidator({
+		regexp:"^.{1,32}$",
+		onerror: "名字不超过32个字!"
+	});
+});
 
 
 function edit(){

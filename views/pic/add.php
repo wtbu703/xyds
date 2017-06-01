@@ -10,7 +10,7 @@
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100">前台栏目</th>
+                        <th width="100px">前台栏目</th>
                         <td><select id="category" style='width:135px' name="category"></select></td>
                     </tr>
 	                <tr>
@@ -18,7 +18,7 @@
 		                <td>
 			                <input type="text" style="display:none;" name="attachUrls" id="attachUrls" class="input-text"/>
 			                <input type="text" style="display:none;" name="attachNames" id="attachNames" class="input-text"/>
-			                <iframe frameborder="0" width="100%" height="20px" scrolling="no" src="<?=Yii::$app->urlManager->createUrl('third-party-service/upload')?>"></iframe>
+			                <iframe frameborder="0" width="100%" height="20px" scrolling="no" src="<?=Yii::$app->urlManager->createUrl('pic/upload')?>"></iframe>
 		                </td>
 	                </tr>
                 </table>

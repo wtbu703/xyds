@@ -13,19 +13,19 @@ li{list-style-type:none;}
 	-webkit-box-shadow:0px 0px 10px #000000;/*webkit*/ 
 	box-shadow:0px 0px 10px #000000;/*opera或ie9*/ 
 }
-@bg:#e2e2e2;/*正文大背景颜色*/
+@bg:#fff;/*正文大背景颜色*/
 @cbg:#fff;/*正文颜色*/
 @topborder:#e2e2e2;
 .wrapper{background-color:@bg;width:100%;height:auto;}
 .content{margin-top:30px;padding-bottom:50px;}
-.article{background:@cbg;.shadow;}
+.article{background:@cbg;}
 .home{display:inline-block;display: inline;zoom:1;margin-top: -3px;}
 
 @font_color:#000;/* 字体颜色 */
 @font_hover_color:#c62f2f;/* 字体变化颜色 */
 .right_head{
 			margin-top:10px;
-			height:37px;border-bottom:4px solid @topborder ;
+			height:37px;
 }
 .lh_index{
 		  font-size:14px;
@@ -35,15 +35,47 @@ li{list-style-type:none;}
 		  width:auto;
 }
 .lh_index a{color:@font_color;padding-left:5px;}
+.clearfloat{
+	zoom:1;
+	&:after{
+		content:'';
+		display: block;
+		clear:both;
+	}
+}
+.row_top{
+	.signup{
+		height:100px;
+		border:2px solid #cfcdcd;
+		background:#fff;
+		display: flex;
+		align-items: center;
+		.clearfloat;
+		img{
+			margin-left: 2%;
+			float:left;
+
+		}
+		h2{margin-left:25px;font-size: 30px;color:#1da297;margin-top: 10px;}
+	}
+}
 /* 文章正文 */
-.row_text{margin-top:40px;font-family: "微软雅黑";}
+.row_text1{font-family: "微软雅黑";background-color: #fcfcfc;border-left: 2px solid #cfcdcd;
+	border-bottom: 2px solid #cfcdcd;
+	border-right: 2px solid #cfcdcd;}
 .clock{display: inline-block;display: inline;zoom:1;}
 .subhead{font-size: 14px;font-family: "微软雅黑";margin-top:25px; width:400px;margin:0 auto;}
 .row_text{font-size: 14px;font-family: "宋体";margin-top:25px;}
-.down{margin-top:100px;padding-bottom: 180px;}
-.down .btn_common1{border-color: #646464;
-	background-color: #FFF;color:#000;}
-.down .btn_common1:hover{ color: #fff;background-color: #40b5d3;border-color: #40b5d3;}
+.down{margin-top:100px;padding-bottom: 150px;}
+.down .btn_common1{background-color: #40b5d3;color:#fff;}
+.down .btn_common1:hover{color: #fff;background-color: #40b5d3;opacity:0.8;filter:alpha(opacity=80);  -moz-opacity:0.8;  -khtml-opacity: 0.8;border-color: #40b5d3;}
+.down .btn_common2{border-color: #b5b5b5;
+	background-color: #b5b5b5;color:#fff;cursor: default;}
+.down .btn:active, .btn.active {
+	outline: 0;
+	background-image: none;
+	box-shadow: none;
+}
 .footer .container {
 	margin-top: 0px;
 }

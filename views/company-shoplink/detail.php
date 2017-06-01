@@ -8,19 +8,15 @@ $this->title = '网店详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100">企业ID</th>
-                        <td id="companyId"><?=$companyShoplink->companyId?></td>
-                    </tr>
-                    <tr>
-                        <th width="100">网店名称</th>
+                        <th width="100px" align="right">网店名称</th>
                         <td id="shopName"><?=$companyShoplink->shopName?></td>
                     </tr>
                     <tr>
-                        <th width="100">网店链接</th>
+                        <th  align="right">网店链接</th>
                         <td id="shopLink"><?=$companyShoplink->shopLink?></td>
                     </tr>
                     <tr>
-                        <th width="100">网店平台</th>
+                        <th align="right">网店平台</th>
                         <td id="platform"><?=$companyShoplink->platform?></td>
                     </tr>
                 </table>

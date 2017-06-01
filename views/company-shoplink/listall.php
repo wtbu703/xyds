@@ -15,18 +15,23 @@ $this->title = '产品列表';
         <table width="100%" cellspacing="0" id="user_list">
             <thead id="dict_list_head">
             <tr align="left">
-                <th width="80px"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th><th width="30px">序号</th><th width="160px">网店名称</th><th width="360px">网店链接</th><th width="160px">网店平台</th><th align="center">操作</th>
+                <th width="50px" align="left"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th>
+                <th width="30px" align="left">序号</th>
+                <th width="160px" align="left">网店名称</th>
+                <th width="260px" align="left">网店链接</th>
+                <th width="100px" align="left">网店平台</th>
+                <th width="100px" align="center">操作</th>
             </tr>
             </thead>
             <tbody id="user_list_body">
             <?if(!is_null($companyShoplink)){?>
             <?php foreach ($companyShoplink as $index => $val){?>
                 <tr align="left">
-                    <td><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
-                    <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->shopName?>')"><?=$val->shopName?></a></td>
-                    <td><?=substr($val->shopLink,0,40)?>...</td>
-                    <td><?=$val->platform?></td>
+                    <td align="left"><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
+                    <td align="left"><?=$index+$pages->page*$pages->pageSize+1?></td>
+                    <td align="left"><a href="javascript:detail('<?=$val->id?>','<?=$val->shopName?>')"><?=$val->shopName?></a></td>
+                    <td align="left"><?=substr($val->shopLink,0,40)?>...</td>
+                    <td align="left"><?=$val->platform?></td>
                     <td align="center">
                         <a href="javascript:openedit('<?=$val->id?>','<?=$val->shopName?>')">修改</a>&nbsp;&nbsp;
                         |&nbsp;&nbsp;<a href="javascript:deleteCompanyShoplink('<?=$val->id?>')">删除</a>

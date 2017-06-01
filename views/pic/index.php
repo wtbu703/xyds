@@ -22,9 +22,9 @@ $this->title = '图片管理';
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/pic/index.js" charset="utf-8"></script>
 <div class="subnav" id="display" >
-    <div class="content-menu ib-a blue line-x">
+    <!--<div class="content-menu ib-a blue line-x">
         <a class="add fb" href="javascript:openadd();"><em>添加图片大类</em></a>
-    </div>
+    </div>-->
 </div>
 <div class="pad-lr-10">
     <form action="" method="post" id="searchForm" name="searchForm" target="iframeId">

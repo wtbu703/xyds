@@ -1,6 +1,29 @@
 @charset "utf-8";
 #allmap {
-  height: 600px;
+  height: 700px;
   width: 100%;
   border: 1px solid #bcbcbc;
+  margin-top: 30px;
 }
+ .footer .container {
+     margin-top: 30px;
+} 
+.boxC{
+	position:relative;
+}
+#back{
+	position: absolute;
+	bottom:670px;
+	right:1%; 
+	z-index: 99999;
+	border:2px solid #fff;
+	color:#fff;
+	font-size: 12px;
+	font-family: '宋体';
+	background-color: #eb304d;
+	border-radius: 3px;		
+}
+//小信息窗样式
+//左侧信息框
+
+

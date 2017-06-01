@@ -6,54 +6,35 @@ $(document).ready(function(){
 });
 //页面校验
 $(function(){
-	$.formValidator.initConfig({
-		formid:"myform",
-		autotip:true,			//是否显示提示信息
-		onerror:function(msg,obj){
-		window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})
-		}});
+	$.formValidator.initConfig({ formID: "myform",autotip:true, onError: function () { alert("校验没有通过，具体错误请看错误提示") } });
+
 	// 校验模型名称					
 	$("#title").formValidator({
-		onshow:"请输入信息标题！",
-		onfocus:"请输入信息标题！"})
-		.inputValidator({               //校验不能为空
-			min:1,
-			onerror:"请输入信息标题！"})
+				onshow: "请输入信息标题",
+				onfocus: "标题不超过32个字",
+				oncorrect: "输入正确"
+			})
+			.regexValidator({
+				regexp: "^.{1,32}$",
+				onerror: "标题不能超过32个字!"
+			});
 	$("#author").formValidator({
-				onshow:"请输入信息作者！",
-				onfocus:"请输入信息作者！"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请输入信息作者！"})
-	/*$("#content").formValidator({
-				onshow:"请输入信息内容！",
-				onfocus:"请输入信息内容！"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请输入信息内容！"})*/
-	// 校验模型名称
+				onshow: "请输入信息作者",
+				onfocus: "不超过16个字",
+				oncorrect: "输入正确"
+			}).regexValidator({
+				regexp:"^.{1,16}$",
+				onerror: "作者不能超过16个字!"
+			});
 	$("#category").formValidator({
-				onshow:"请输入信息类别！",
-				onfocus:"请输入信息类别！"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请输入信息类别！"})
-	// 校验模型名称
-	$("#state").formValidator({
-				onshow:"请输入信息状态！",
-				onfocus:"请输入信息状态！"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请输入信息状态！"})
-	$("#datetime").formValidator({
-				onshow:"请输入时间！",
-				onfocus:"请输入时间！"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请输入时间！"})
-
-
-})
+				onshow: "选择不能为空",
+				onfocus: "（必填）请选择选项",
+				oncorrect: "输入正确"
+			}).inputValidator({
+		min: 1,  //开始索引
+		onerror: "你是不是忘记选择信息类别了!"
+	});
+});
 /**
  * 添加过滤
  * @param path

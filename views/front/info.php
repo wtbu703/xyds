@@ -12,7 +12,7 @@ $this->title = '信息公开';
     var stateUrl = "<?=yii::$app->urlManager->createUrl('public-info/state')?>";
 </script>
 <script src="js/front/info.js"></script>
-<img src="images/info/banner_xxgk.jpg" class="img-responsive"/>
+<img src="<?=$pic?>" class="img-responsive"/>
 
 <div class="container">
     <div class="row">
@@ -26,10 +26,13 @@ $this->title = '信息公开';
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 ">
-                <ul class="list-group content_left public_shadow" id="content_left">
-                    <li class="list_first"><img src="images/third_details/xinxi_icon1.png"><span>&nbsp;公告类型</span></li>
+                <ul class="list-group content_left public_shadow" id="content_left"><!--
+                    <li class="list_first"><img src="images/third_details/xinxi_icon1.png"><span>&nbsp;公告类型</span></li>-->
 
                 </ul>
+
+                <div class="gongao">公告类型</div>
+                <img class="xsj" src="images/images_common/xsjtop.png">
             </div>
     <!-- 文章 -->
             <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 content_right public_shadow" id="content_right">

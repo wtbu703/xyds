@@ -28,7 +28,14 @@ function generateWeb(){
 
 function search(){
     if(str_is_null($('#web').val()) ) {
-        $('.checkTip').html('网站不能为空');
+        window.top.art.dialog({
+            content: '网站不能为空！',
+            lock: true,
+            width: 250,
+            height: 100,
+            border: false,
+            time: 2
+        });
         return ;
     }
     var paraStr = "&web="+$('#web').val();

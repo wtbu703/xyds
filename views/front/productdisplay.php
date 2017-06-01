@@ -1,4 +1,6 @@
-
+<?
+$this->title = '公司产品';
+?>
 	<link rel="stylesheet" type="text/css" href="css/css/product_display.css">
 	<link rel="stylesheet" type="text/css" href="css/css/company.css">
 	<script>
@@ -8,7 +10,7 @@
 		var recruitUrl = "<?=Yii::$app->urlManager->createUrl('company-recruit/company-recruit')?>";
 		var companyId = "<?=$companyId?>";
 		var productDetailUrl = "<?=Yii::$app->urlManager->createUrl('front/product-detail')?>";
-		var lineUrl = "<?=Yii::$app->urlManager->createUrl('front/line')?>";
+		var lineUrl = "<?=yii::$app->urlManager->createUrl('front/company-recruit')?>";
 		var onlineUrl = "<?=Yii::$app->urlManager->createUrl('front/detail')?>";
 		var newsallUrl = "<?=Yii::$app->urlManager->createUrl('front/company-news')?>";
 		var newsDetailUrl = "<?=Yii::$app->urlManager->createUrl('front/news-detail')?>";
@@ -18,7 +20,7 @@
 	<script src="js/front/product_display.js"></script>
 	<script src="js/front/common_js/company.js"></script>
 
-    <img class="img-responsive hidden-xs" src="images/images_enterprise/2banner.jpg" alt="banner">
+    <img class="img-responsive hidden-xs" src="<?=$pic?>" alt="banner">
 	<div class="container">
 	    <!-- 二级导航 -->
 		<div class="row row_enterprise">

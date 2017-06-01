@@ -25,7 +25,7 @@ li {
 /*正文大背景颜色*/
 /*正文颜色*/
 .wrapper {
-  background-color: #e2e2e2;
+  background-color: #ffffff;
   width: 100%;
   height: auto;
 }
@@ -35,15 +35,6 @@ li {
 }
 .article {
   background: #ffffff;
-  filter: progid:DXImageTransform.Microsoft.Shadow(color='#000000', Direction=135, Strength=10);
-  /*for ie6,7,8*/
-  background-color: #fff;
-  -moz-box-shadow: 0px 0px 10px #000000;
-  /*firefox*/
-  -webkit-box-shadow: 0px 0px 10px #000000;
-  /*webkit*/
-  box-shadow: 0px 0px 10px #000000;
-  /*opera或ie9*/
 }
 .home {
   display: inline-block;
@@ -56,7 +47,6 @@ li {
 .right_head {
   margin-top: 10px;
   height: 37px;
-  border-bottom: 4px solid #e2e2e2;
 }
 .lh_index {
   font-size: 14px;
@@ -69,10 +59,44 @@ li {
   color: #000000;
   padding-left: 5px;
 }
+.clearfloat {
+  zoom: 1;
+}
+.clearfloat:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.row_top .signup {
+  height: 100px;
+  border: 2px solid #cfcdcd;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  zoom: 1;
+}
+.row_top .signup:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.row_top .signup img {
+  margin-left: 2%;
+  float: left;
+}
+.row_top .signup h2 {
+  margin-left: 25px;
+  font-size: 30px;
+  color: #1da297;
+  margin-top: 10px;
+}
 /* 文章正文 */
-.row_text {
-  margin-top: 40px;
+.row_text1 {
   font-family: "微软雅黑";
+  background-color: #fcfcfc;
+  border-left: 2px solid #cfcdcd;
+  border-bottom: 2px solid #cfcdcd;
+  border-right: 2px solid #cfcdcd;
 }
 .clock {
   display: inline-block;
@@ -93,17 +117,32 @@ li {
 }
 .down {
   margin-top: 100px;
-  padding-bottom: 180px;
+  padding-bottom: 150px;
 }
 .down .btn_common1 {
-  border-color: #646464;
-  background-color: #FFF;
-  color: #000;
+  background-color: #40b5d3;
+  color: #fff;
 }
 .down .btn_common1:hover {
   color: #fff;
   background-color: #40b5d3;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  -moz-opacity: 0.8;
+  -khtml-opacity: 0.8;
   border-color: #40b5d3;
+}
+.down .btn_common2 {
+  border-color: #b5b5b5;
+  background-color: #b5b5b5;
+  color: #fff;
+  cursor: default;
+}
+.down .btn:active,
+.btn.active {
+  outline: 0;
+  background-image: none;
+  box-shadow: none;
 }
 .footer .container {
   margin-top: 0px;

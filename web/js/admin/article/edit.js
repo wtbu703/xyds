@@ -1,24 +1,54 @@
 
 //页面校验
 $(function(){
-	$.formValidator.initConfig({
-		formid:"myform",
-		autotip:true,			//是否显示提示信息
-		onerror:function(msg,obj){
-		window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})
-		}});
+	$.formValidator.initConfig({ formID: "myform",autotip:true, onError: function () { alert("校验没有通过，具体错误请看错误提示") } });
+
 	// 校验模型名称
-
-	//验证标题是否为空
 	$("#title").formValidator({
-				onshow:"请输入标题！",
-				onfocus:"请输入标题！"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请输入标题！"})
+				onshow: "请输入文章标题",
+				onfocus: "标题内容不超过32个字",
+				oncorrect: "输入正确"
+			})
+			.regexValidator({
+				regexp: "^.{1,32}$",
+				onerror: "标题内容不超过32个字!"
+			});
+	$("#category").formValidator({
+		onshow: "选择不能为空",
+		onfocus: "（必填）请选择选项",
+		oncorrect: "输入正确"
+	}).inputValidator({
+		min: 0,  //开始索引
+		onerror: "你是不是忘记选择文章类别了!"
+	});
 
+	$("#sourceUrl").formValidator({
+		onshow: "请输入文章来源",
+		onfocus: "不超过16个字",
+		oncorrect: "输入正确"
+	}).regexValidator({
+		regexp:"^.{1,16}$",
+		onerror: "不超过16个字!"
+	});
+	$("#author").formValidator({
+		onshow: "请输入文章作者",
+		onfocus: "不超过16个字",
+		oncorrect: "输入正确"
+	}).regexValidator({
+		regexp:"^.{1,16}$",
+		onerror: "不超过16个字!"
+	});
+	//关键词
+	$("#keyword").formValidator({
+		onshow: "请输入关键词",
+		onfocus: "例如：农村电商 农村创业",
+		oncorrect: "输入正确"
+	}).regexValidator({
+		regexp:"^.{2,18}$",
+		onerror: "您输入的格式错误!"
+	});
 
-})
+});
 
 
 function edit(){
@@ -27,6 +57,8 @@ function edit(){
 		paraStr +="id="+$("#id").val();
 		paraStr +="&title="+$("#title").val();
 		paraStr +="&author="+$("#author").val();
+		paraStr += "&keyword=" + $("#keyword").val();
+		paraStr += "&sourceUrl=" + $("#sourceUrl").val();
 		paraStr +="&content="+encodeURIComponent(contentEditor.getData());
 		paraStr += "&category=" + $("#category").val();
 		paraStr += "&attachUrls=" + $("#attachUrls").val();

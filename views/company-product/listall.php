@@ -15,23 +15,29 @@ $this->title = '产品列表';
         <table width="100%" cellspacing="0" id="user_list">
             <thead id="dict_list_head">
             <tr align="left">
-                <th width="80px"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th><th width="30px">序号</th><th width="220px">产品名称</th><th width="160px">价格</th><th width="160px">折扣</th><th width="160px">状态</th><th align="center">操作</th>
+                <th width="50px" align="left"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th>
+                <th width="30px" align="left">序号</th>
+                <th width="160px" align="left">产品名称</th>
+                <th width="60px" align="left">价格</th>
+                <th width="20px" align="left">折扣</th>
+                <th width="60px" align="left">状态</th>
+                <th width="150px" align="center">操作</th>
             </tr>
             </thead>
             <tbody id="user_list_body">
             <?if(!is_null($companyProduct)){?>
             <?php foreach ($companyProduct as $index => $val){?>
                 <tr align="left">
-                    <td><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
-                    <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->name?>')"><?php if(strlen($val->name)>24) {
+                    <td align="left"><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
+                    <td align="left"><?=$index+$pages->page*$pages->pageSize+1?></td>
+                    <td align="left"><a href="javascript:detail('<?=$val->id?>','<?=$val->name?>')"><?php if(strlen($val->name)>24) {
                                 echo mb_substr($val->name, 0, 8,"utf-8") . '...';
                             }else{
                                 echo $val->name;
                             }?></a></td>
-                    <td><?=$val->price?></td>
-                    <td><?=$val->discount?></td>
-                    <td><?=$val->state?></td>
+                    <td align="left"><?=$val->price?></td>
+                    <td align="left"><?=$val->discount?></td>
+                    <td align="left"><?=$val->state?></td>
                     <td align="center">
                         <a href="javascript:openedit('<?=$val->id?>','<?=$val->name?>')">修改</a>&nbsp;&nbsp;
                         |&nbsp;&nbsp;<a href="javascript:deleteCompanyProduct('<?=$val->id?>')">删除</a>

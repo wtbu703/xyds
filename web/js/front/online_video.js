@@ -98,10 +98,34 @@ function getMaodian(){
     });
 }
 
+//选项卡标题
+	function video_column(){
+		var column = $('.column');
+		var column_html = [];
+		$.ajax({
+	        url:videoDictUrl,
+	        type:"post",
+	        dataType:"json",
+	        data: "newsType",
+	        async: false,
+	        success:function(data){
+	        	$.each(data,function(i,n){
+	        		if(i == 0){
+	        			column_html.push('<a  class="btn btn-default col-xs-12 col-sm-2 col-md-1 tabH tab_btn1 hover" role="button">n.dictItemName</a>');
+	        		}
+	                column_html.push('<a  class="btn btn-default col-xs-12 col-sm-2 col-md-1 tabH tab_btn1" role="button">n.dictItemName</a>');
+	            })
+	        }
+	    })
+	}
+
 $(document).ready(function(){
+
+	//选项卡标题
+    //video_column();
+		
 	//在线视频
     onlineVideo();
-
 
     //选项卡切换 
     var $tab_list = $('.column a');

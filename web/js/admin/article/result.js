@@ -3,7 +3,9 @@
  */
 function addMore(){
 	var len = $("input[name='id']").not("input:checked").size();
+	var slen = $("input[name='id']:checked").size();
 	var ids = '';
+	var sid = '';
 
     $("input[name='id']").not("input:checked").each(function(i, n){
 		if(i<len-1){
@@ -17,11 +19,19 @@ function addMore(){
         urls += $(n).parent().parent().children("td").eq(5).text()+ '|';
         contents += $(n).parent().parent().children("td").eq(6).text()+ '|';*/
     });
+
+	$("input[name='id']:checked").each(function(i, n){
+		if(i<slen-1){
+			sid+= $(n).val() + '-';
+		}else{
+			sid += $(n).val();
+		}
+	});
 	if($("input[name='id']:checked").size()==0) {
 		window.top.art.dialog({content:'请选择至少一条数据',lock:true,width:'200',height:'50',border: false,time:1.5},function(){});
 		return;
 	} else {
-		var paraStr = 'ids='+ids;
+		var paraStr = 'ids='+ids+'&sid='+sid;
 		$.ajax({
 			url: addMoreUrl,
 			type: "post",
@@ -29,6 +39,7 @@ function addMore(){
 			data:paraStr,
 			async: "false",
 			success: function (data) {
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '添加成功！',
 					lock: true,

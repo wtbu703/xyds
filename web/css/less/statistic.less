@@ -31,7 +31,7 @@ hr{
 	margin-top: 10px;
 	margin-bottom: 20px; 
     border: 0;
-    border-top: 2px solid @bg;
+    border-top: 1px solid @bg;
 }
 
 /* 数据统计 */
@@ -59,9 +59,14 @@ hr{
 	}
 }
 /* 左侧子菜单 */
+.serviceTitle{font-size: 20px;
+	width:200px;
+	line-height: 46px;
+	margin-left: 15px;
+	font-family: "微软雅黑";border-bottom:1px solid #e4e4e4;position:relative;bottom:5px;}
 .nav_top{
 	.shadow;
-	padding-bottom: 110px;
+	height:450px;
 	a{
 		color: @acolor;
 		
@@ -74,7 +79,22 @@ hr{
 	}
 	
 }
-/* 取消默认样式 */
+.nav_bottom {
+	.shadow;
+	height: 405px;
+	a {
+		color: @acolor;
+
+		&:hover, &:focus {
+			color: @ahover;
+			background-color: @bgcolor;
+			border-left: 3px solid @ahover;
+			margin-left: -3px;
+		}
+	}
+}
+
+	/* 取消默认样式 */
 .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
     color:@ahover;
 	background-color:@bgcolor;
@@ -116,6 +136,7 @@ ul.nav_right li:hover a{
 }
 /* 中间文章字体 */
 .row_two{margin-top: 40px}
+.mapTitle{height:35px;line-height:35px;font-size: 16px;font-family: "微软雅黑";.shadow1;font-weight:600;  text-align: center;}
 .box_shadow1{
 	.shadow1;
 	span{font-family: "微软雅黑";font-size: 16px;margin-left:20px;}
@@ -124,7 +145,7 @@ ul.nav_right li:hover a{
 .form-inline{position: absolute;z-index: 9999}
 .form-inline .form-group{display: inline-block;}
 #allmap{
-		width:100%;height:400px;.shadow1;
+		width:100%;height:600px;.shadow1;
 
 	}
 .BMap_cpyCtrl  
@@ -141,3 +162,8 @@ ul.nav li a{cursor:pointer;color:#555;}
 }
 .doubleColumn,.cover,.expressCompany,.expressAdressee,.netBussiness,.netPerson,.basicStruct{width:100%;max-width:800px;}
 .ecAll,.ecBussiness{width:100%;max-width:400px;}
+.scrollspy-example {
+	height: 480px;
+	overflow: auto;
+	position: relative;
+}

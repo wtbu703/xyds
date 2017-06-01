@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\Admin;
+use app\models\AdminRole;
 use yii;
 use yii\web\Controller;
 use app\models\Company;
@@ -35,7 +37,8 @@ class CompanyController extends Controller{
      */
     public function actionAddOne(){
         $company = new Company();
-        $company->id = Common::create40ID();
+	    $companyId = Common::create40ID();
+        $company->id = $companyId;
         $company->name = Yii::$app->request->post('name');
         $company->introduction = Yii::$app->request->post('introduction');
         $company->tel = Yii::$app->request->post('tel');
@@ -47,7 +50,21 @@ class CompanyController extends Controller{
         $company->category = Yii::$app->request->post('category');
         $company->datetime = date('Y-m-d H:m:s');
 
-        if($company->save()){
+	    $admin = new Admin();//将管理员添加进去
+	    $adminId = Common::create40ID();
+	    $admin->id = $adminId;
+	    $admin->username = Yii::$app->request->post('username');
+	    $admin->password = Common::hashMD5(Yii::$app->request->post('password'));
+	    $admin->state = '1';
+	    $admin->companyId = $companyId;
+	    $admin->companyName = Yii::$app->request->post('name');
+        $admin->created_at = date('Y-m-d H:m:s');
+
+	    $adminRole = new AdminRole();//为管理员添加角色
+	    $adminRole->id = Common::create40ID();
+	    $adminRole->userId = $adminId;
+	    $adminRole->roleId = 'zsyj58fc5c7c2cc769zsyj43032473';//企业管理员ID
+        if($company->save()&&$admin->save()&&$adminRole->save()){
             return "success";
         }else{
             return "fail";
@@ -59,12 +76,19 @@ class CompanyController extends Controller{
      * 打开企业修改页面
      */
     public function actionUpdate(){
+        $companyId = Yii::$app->session['companyId'];
+        if($companyId == 'admin'||$companyId == 'all'){
+            $type = '1';
+        }else{
+            $type = '0';
+        }
         $id = Yii::$app->request->get('id');
         $company = Company::findOne($id);
         $category = Dictitem::find()->where(['dictCode'=>'DICT_COMPANY_CATEGORY'])->all();
         return $this->render('edit',[
             'company'=>$company,
             'category'=>$category,
+            'type'=>$type,
         ]);
     }
 
@@ -126,8 +150,8 @@ class CompanyController extends Controller{
         $ids_array = explode('-',$ids);
         foreach($ids_array as $key=>$data){
             $company = Company::findOne($data);
-            if($company->logoUrl != ''&&file_exists($company->logoUrl)) {
-                unlink($company->logoUrl);
+            if($company['logoUrl'] != ''&&file_exists($company['logoUrl'])) {
+                unlink($company['logoUrl']);
             }
             Company::deleteall('id=:id',[':id'=>$data]);
         }
@@ -180,17 +204,34 @@ class CompanyController extends Controller{
      * 打开企业的详情页面
      */
     public function actionFindOne(){
-        $id = Yii::$app->request->get('id');
-        $company = Company::findOne($id);
-        $category = Dictitem::find()->where(['dictCode' => 'DICT_COMPANY_CATEGORY'])->all();
-        foreach ($category as $index => $value) {
-            if ($company->category == $value->dictItemCode) {
-                $company->category = $value->dictItemName;
+        $companyId = Yii::$app->session['companyId'];
+        if($companyId == 'admin'||$companyId == 'all') {
+            $id = Yii::$app->request->get('id');
+            $company = Company::findOne($id);
+            $category = Dictitem::find()->where(['dictCode' => 'DICT_COMPANY_CATEGORY'])->all();
+            foreach ($category as $index => $value) {
+                if ($company->category == $value->dictItemCode) {
+                    $company->category = $value->dictItemName;
+                }
             }
+            return $this->render('detail', [
+                'company' => $company,
+                'type'=>1
+            ]);
+        }else{
+            $id = $companyId;
+            $company = Company::findOne($id);
+            $category = Dictitem::find()->where(['dictCode' => 'DICT_COMPANY_CATEGORY'])->all();
+            foreach ($category as $index => $value) {
+                if ($company->category == $value->dictItemCode) {
+                    $company->category = $value->dictItemName;
+                }
+            }
+            return $this->render('detail', [
+                'company' => $company,
+                'type'=>0,
+            ]);
         }
-        return $this->render('detail',[
-            'company'=>$company,
-        ]);
     }
 
     /**
@@ -199,18 +240,23 @@ class CompanyController extends Controller{
      */
     public function actionFindByAttri(){
         $name = Yii::$app->request->get('name');
+        $id = Yii::$app->session['companyId'];
 
         $para = [];
         $para['name'] = $name;
 
-        $whereStr = '1=1';
+        if($id == 'admin'||$id == 'all'){
+            $whereStr = '1=1';
+        }else {
+            $whereStr = 'id="' . $id . '"';
+        }
         if($name != ''){
             $whereStr = $whereStr . " and name like '%" . $name . "%'" ;
         }
 
         $companys = Company::find()->where($whereStr);
         $page = new Pagination(['totalCount' => $companys->count(), 'pageSize' => Common::PAGESIZE]);
-        $models = $companys->offset($page->offset)->limit($page->limit)->all();
+        $models = $companys->offset($page->offset)->limit($page->limit)->orderBy(['datetime'=>SORT_DESC])->all();
 
         return $this->render('listall',[
             'companys' => $models,
@@ -237,7 +283,7 @@ class CompanyController extends Controller{
         }
         $pagination = new Pagination([
             'page' => $page,
-            'defaultPageSize' => 10,
+            'defaultPageSize' => 9,
             'validatePage' => false,
             'totalCount' => $query,
         ]);
@@ -294,7 +340,7 @@ class CompanyController extends Controller{
      */
     public function actionCompanyIndex(){
         $company = Company::find()
-            ->orderBy(['datetime'=>SORT_DESC])
+            ->orderBy(['count'=>SORT_DESC])
             ->limit(4)
             ->all();
         return Json::encode($company);

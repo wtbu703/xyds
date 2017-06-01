@@ -1,12 +1,14 @@
 @charset "utf-8";
 /* less变量的公共部分css */
 .return{
-  width: 44px;height: 44px;position: fixed;right: 1%;bottom: 10%;
+  width: 44px;height: 44px;position: fixed;bottom: 10%;
   background:url('../../images/images_index/top.gif') no-repeat; 
   cursor: pointer;
+  border:solid #fff 2px;
 }
 .return:hover{
   background:url('../../images/images_index/top_after.gif') no-repeat; 
+  border:solid #49dac8 2px;
 }
 .clearfloat {
   zoom: 1;
@@ -42,24 +44,28 @@ hr {
   .train_media video, .train_media .urlVdieo{
     width: 100%;
     height: 400px;
+    background-color: #000;
   }
 }
 @media (min-width: 768px) {
   .train_media video, .train_media .urlVdieo {
     width: 100%;
     height: 400px;
+     background-color: #000;
   }
 }
 @media (min-width: 992px) {
   .train_media video, .train_media .urlVdieo {
     width: 100%;
     height:300px;
+     background-color: #000;
   }
 }
 @media (min-width: 1200px) {
   .train_media video, .train_media .urlVdieo {
     width: 100%;
     height: 400px;
+     background-color: #000;
   }
 }
 .tab2,
@@ -98,7 +104,7 @@ hr {
   background-color: #ffffff;
 } 
 .column span {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 46px;
   margin-right: 20px;
   cursor:pointer;
@@ -110,10 +116,7 @@ hr {
   margin-right: 15px;
   cursor: pointer;
 }
-/* .column a:hover {
-  border-color: #00ccff;
-  background-color: #ffffff;
-} */
+
 .column a:focus {
   border-color: #d73455;
   background-color: #ffffff;
@@ -282,6 +285,28 @@ hr {
   font-size: 16px;
   margin-top: 5px;
 }
+
+@media (max-width: 767px) {
+  .tender span{
+    font-size: 18px;
+    }
+}
+@media (min-width: 768px) {
+    .tender span{
+      font-size: 18px;
+  }
+}
+@media (min-width: 992px) {
+   .tender span{
+    font-size: 16px;
+  }
+}
+@media (min-width: 1200px) {
+    .tender span{
+    font-size: 18px;
+    }
+}
+
 .tender_time .active_time {
   color: #da6f6f;
 }
@@ -304,13 +329,12 @@ hr {
   white-space: nowrap;
 }
 .company_show p {
-  padding-top: 20px;
-  padding-left: 5px;
-  padding-bottom: 20px;
+  
+
   background: #ffffff;
   text-overflow: clip;
   overflow: hidden;
-  height: 160px;
+  height: 90px;
 }
 .company_show p a{
   color:#000;
@@ -322,39 +346,87 @@ hr {
   width: 100%;
 }
 .company_show p {
-  padding-top: 20px;
-  padding-left: 5px;
-  padding-bottom: 20px;
+ padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 20px; 
   background: #ffffff;
 }
 .img_banner2 {
   width: 90%;
   left: 5%;
-  bottom: 160px;
+  bottom: 90px;
   padding-bottom: 0px;
+}
+
+/*电商培训*/
+.train_img{
+  padding:0;
+  position:relative;
 }
 .train_img li{
   list-style:none;
-  width:100px;
-  height:100px;
+  /* width:100px;
+  height:100px; */
   margin:0 auto;
   text-align:center;
 }
-.train_img > .artist_hover{
-  background:url('../../images/images_index/artist0.png') no-repeat;
+.train_img li div{
+  width:100px;
+  position:absolute;
 }
-.train_img > li:nth-child(2){
-  background:url('../../images/images_index/artist1.png') no-repeat;
-}
-.train_img > li:nth-child(3){
-  background:url('../../images/images_index/artist2.png') no-repeat;
-}
-.train_img > li:nth-child(4){
-  background:url('../../images/images_index/artist3.png') no-repeat;
-}
-.train_img li a{
+.train_img li div a{ 
   line-height:100px;
-  display:none;
+  text-align:center;
   text-decoration:none;
   color:#fff;
+  display:none;
 }
+/* 电商培训图片 */
+@media (min-width: 992px) {
+  .train_img li div a{font-size:12px;}
+    .train_img > li:nth-child(1) > div{
+        top:-10px;left:-10px;
+        
+    }
+    .train_img > li:nth-child(2) > div{
+        top: 70px; left: -10px;
+    }
+    .train_img > li:nth-child(3) > div{
+        top: 152px;left: -10px;
+    }
+    .train_img > li:nth-child(4) > div{
+        top: 235px;left: -10px;
+    }
+}
+@media (min-width: 1200px) {
+    .train_img > li:nth-child(1) > div{
+        top: 0px;left: 49px;
+    }
+    .train_img > li:nth-child(2) > div{
+        top: 100px;left: 49px;
+    }
+    .train_img > li:nth-child(3) > div{
+        top: 200px;left: 49px;
+    }
+    .train_img > li:nth-child(4) > div{
+        top: 300px;left: 49px;
+    } 
+}
+/* END电商培训图片 */
+
+/*end电商培训*/
+
+/* 服务站点 */
+.mapShadow{
+  margin-left: 0px;margin-right: 0px; padding:5px;background-color:#fff;
+  -webkit-box-shadow: inset 0 0 10px #b9c4c4;
+}
+#allmap{
+  width:100%;height:600px;/* border: #ccc 1px solid; */overflow: hidden;
+}
+//让百度logo不显示
+.anchorBL{  
+        display:none;  
+    } 
+/* END服务站点 */

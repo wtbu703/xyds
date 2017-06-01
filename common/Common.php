@@ -145,40 +145,54 @@ class Common
 	    $arr = [
 		    'index_banner'=>['width'=>1920,'heigth'=>600],
 		    'index_ecinfo'=>['width'=>355,'heigth'=>220],
-		    'index_ectrain'=>['width'=>400,'heigth'=>250],
+		    'index_ectrain'=>['width'=>540,'heigth'=>300],
 		    'index_company'=>['width'=>290,'heigth'=>250],
-		    'ecinfo_info'=>['width'=>250,'heigth'=>170],
-		    'ectrain_notice'=>['width'=>400,'heigth'=>250],
+		    'ecinfo_info'=>['width'=>750,'heigth'=>510],
+		    'ectrain_notice'=>['width'=>540,'heigth'=>300],
 		    'ectrain_video'=>['width'=>340,'heigth'=>180],
-		    'company_company'=>['width'=>380,'heigth'=>240],
+		    'company_company'=>['width'=>380,'heigth'=>242],
 		    'company_product'=>['width'=>290,'heigth'=>190],
 		    'company_news'=>['width'=>250,'heigth'=>170],
 		    'third_company'=>['width'=>300,'heigth'=>190],
-		    'other_banner'=>['width'=>1920,'heigth'=>400]
+		    'other_banner'=>['width'=>1920,'heigth'=>400],
+            'zhandian'=>['width'=>265,'heigth'=>137]
 	    ];
 	    if(!empty($image_size)){
 		    $new_image = $arr[$image_size];//获取指定宽高
 	    }
-        $new_thum_image = ['width'=>150,'heigth'=>150];//缩略图尺寸
+        if($image_size == 'other_banner'||$image_size == 'index_banner'){
+            $cate = 0;
+        }else{
+            $cate = 1;
+        }
+        //$new_thum_image = ['width'=>150,'heigth'=>150];//缩略图尺寸
 
         $fileArg = [];
         if (in_array($files["file"]["type"],$ALL_UPLOAD_TYPE) && ($files["file"]["size"] < $ALL_UPLOAD_SIZE)){
             $fileName = explode('.',$files["file"]["name"]);
             if(in_array($fileName[1],$ALL_PIC_TYPE) && $isPic){//图片处理方式
-                $fileNameRandom =  date("YmdHis") . mt_rand(10,99) . '.' . $fileName[1];
+                $fileNameRandom =  date("YmdHis") . mt_rand(10,99) . '.' . $fileName[1];//生成随机文件名
                 if($isDetailPic){
 	                if(isset($new_thum_image)){
-		                Common::resize($files["file"]["tmp_name"],$new_thum_image['width'],$new_thum_image['heigth']);//切割
+		                Common::resizes($files["file"]["tmp_name"],$new_thum_image['width'],$new_thum_image['heigth']);//切割
 	                }
                     $fileArg['fileSaveUrl'] = $SAVEURL . 'pic/thumb_' . $fileNameRandom;
                 }else{
 	                if(isset($new_image)){
-		                Common::resize($files["file"]["tmp_name"],$new_image['width'],$new_image['heigth']);//切割
+		                Common::resizes($files["file"]["tmp_name"],$new_image['width'],$new_image['heigth']);//切割
 	                }
-                    $fileArg['fileSaveUrl'] = $SAVEURL . 'pic/' . $fileNameRandom;
+                    if($cate == 0){
+                        $fileArg['fileSaveUrl'] = $SAVEURL . 'bigpic/' . $fileNameRandom;
+                    }else{
+                        $fileArg['fileSaveUrl'] = $SAVEURL . 'pic/' . $fileNameRandom;
+                    }
                 }
                 move_uploaded_file($files["file"]["tmp_name"],$fileArg['fileSaveUrl']);
-                $fileArg['fileName'] = 'pic';
+                if($cate == 0){
+                    $fileArg['fileName'] = 'bigpic';
+                }else{
+                    $fileArg['fileName'] = 'pic';
+                }
                 $fileArg['tag'] = "success";
             }elseif(in_array($fileName[1],$ALL_DOC_TYPE)){//判断文件名后缀是否正确
                 $fileArg['fileName'] = $fileName[0];
@@ -232,6 +246,76 @@ class Common
 		    return $im;
 	    }
     }
+
+    public static function resizes($src,$w,$h) {
+        $temp=pathinfo($src);
+        $name=$temp["basename"];//文件名
+        $dir=$temp["dirname"];//文件所在的文件夹
+        //$extension=$temp["extension"];//文件扩展名
+        $savepath="{$dir}/{$name}";//缩略图保存路径,新的文件名为*.thumb.jpg
+
+        //获取图片的基本信息
+        $info=getimagesize($src);
+        $type=exif_imagetype($src);
+        switch($type) {
+            case IMAGETYPE_JPEG :
+                $src_img=imagecreatefromjpeg($src);
+                break;
+            case IMAGETYPE_PNG :
+                $src_img=imagecreatefrompng($src);
+                break;
+            case IMAGETYPE_GIF :
+                $src_img=imagecreatefromgif($src);
+                break;
+            default:
+                exit();
+        }
+        $width=imagesx($src_img);;//获取图片宽度
+        $height=imagesy($src_img);;//获取图片高度
+        $per1=1.0 * $w/$width;;//计算原图长宽比
+        $per2=1.0 * $h / $height;//计算缩略图长宽比
+
+        if( ($per1 < 1 && $per2 < 1) || ($per1 > 1 && $per2 > 1)) {
+            if ($per1 < $per2) {
+                $ratio = $per2; // 情况一，宽度的比例比高度方向的小，按照高度的比例标准来裁剪或放大
+            } else {
+                $ratio = $per1;
+            }
+            $inter_w=(int)($w / $ratio);
+            $inter_h=(int) ($h / $ratio);
+            $inter_img=imagecreatetruecolor($inter_w , $inter_h);
+            //var_dump($inter_img);
+            imagecopy($inter_img, $src_img, 0,0,0,0,$inter_w,$inter_h);
+
+            $new_img=imagecreatetruecolor($w,$h);
+            //var_dump($new_img);exit();
+            imagecopyresampled($new_img,$inter_img,0,0,0,0,$w,$h,$inter_w,$inter_h);
+            if($w == '1920'){
+                imagejpeg($new_img,$savepath, 80);
+            }else{
+                imagejpeg($new_img,$savepath, 100);
+            }
+            return $savepath;
+        }else{
+            $ratio=$per2>$per1? $per2 : $per1; //取比例大的那个值
+            // 定义一个中间的大图像，该图像的高或宽和目标图像相等，然后对原图放大
+            $inter_w=(int)($width * $ratio);
+            $inter_h=(int) ($height * $ratio);
+            $inter_img=imagecreatetruecolor($inter_w , $inter_h);
+            //将原图缩放比例后裁剪
+            imagecopyresampled($inter_img,$src_img,0,0,0,0,$inter_w,$inter_h,$width,$height);
+            // 定义一个新的图像
+            $new_img=imagecreatetruecolor($w,$h);
+            imagecopy($new_img, $inter_img, 0,0,0,0,$w,$h);
+            if($w == '1920'){
+                imagejpeg($new_img,$savepath, 80);
+            }else{
+                imagejpeg($new_img,$savepath, 100);
+            }
+        }
+}
+
+
     /**
      * 缩略图主函数
      * @param string $src 图片路径

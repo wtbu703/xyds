@@ -168,6 +168,14 @@ hr {
   font-family: "微软雅黑";
   color: #000000;
 }
+.left_content1 .box .company .message a {
+  text-decoration: none;
+  color:black;
+}
+.left_content1 .box .company .message a:hover{
+  text-decoration: none;
+  color:#c62f2f;
+}
 .left_content1 .box .company img {
   float: left;
 }
@@ -219,6 +227,9 @@ hr {
   font-weight: bold;
   color: #757676;
 }
+.product_all:hover {
+  color: #757676;
+}
 .enterprise {
   font-family: "微软雅黑";
   color: #000000;
@@ -250,6 +261,9 @@ hr {
   width: 100%;
   height: 100%;
   cursor: pointer;
+}
+.enterprise .name {
+  height: 30px;
 }
 .enterprise .enterprise_detail {
   background: #ffffff;

@@ -8,7 +8,7 @@ function openadd(){
 	$.dialog.open(addUrl, {
 		title: '添加网店链接',
 		width: 700,
-		height:550,
+		height:500,
 		lock: true,
 		border: false,
 		id: 'shoplink_add',

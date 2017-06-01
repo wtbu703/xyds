@@ -3,18 +3,46 @@ $(function(){
 		formid:"myform",
 		autotip:true,			//是否显示提示信息
 		onerror:function(msg,obj){
-		window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})
+			window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})
 		}});
 	// 校验模型名称
-
-	//验证标题是否为空
 	$("#truename").formValidator({
-				onshow:"请输入姓名！",
-				onfocus:"请输入姓名！"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请输入姓名！"})
+		onshow: "（必填）",
+		onfocus: "（必填）",
+		oncorrect: "（正确）"
+	}).inputValidator({               //校验不能为空
+		min:1,
+		onerror:"请输入姓名！"
+	}).regexValidator({
+		regexp:"^[\\u4E00-\\u9FA5A-Za-z0-9]{1,4}$",
+		onerror:"不能超过4个字"
+	});
+	$("#gender").formValidator({
+		onshow: "（必填）",
+		onfocus: "（必填）",
+		oncorrect: "（正确）"
+	}).inputValidator({               //校验不能为空
+		min:1,
+		onerror:"请输入性别！"
+	}).regexValidator({
+		regexp:"^[\\u4E00-\\u9FA5A-Za-z0-9]{1,1}$",
+		onerror:"不能超过1个字"
+	});
+	$("#mobile").formValidator({
+		onshow: "请输入电话号码",
+		oncorrect: "输入正确"
+	}).regexValidator({
+		regexp:"^1(3|4|5|7|8)\\d{9}$ ",
+		onerror: "您输入的电话号码格式错误!"
+	});
 
+	$("#email").formValidator({
+		onshow: "请输入电子邮箱",
+		oncorrect: "输入正确"
+	}).regexValidator({
+		regexp:"[\\w!#$%&'*+/=?^_`{|}~-]+(?:\\.[\\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?",
+		onerror: "您输入的格式错误!"
+	});
 
 })
 

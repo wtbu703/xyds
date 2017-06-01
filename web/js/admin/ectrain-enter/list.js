@@ -9,7 +9,7 @@ function excelAll(id){
 }
 
 //查询功能
-function search(){
+function search(id){
 	if(str_is_null($('#truename').val())&&str_is_null($('#state').val())) {
         window.top.art.dialog({
             content: '查询条件不能为空',
@@ -21,6 +21,6 @@ function search(){
         }, function () {});
 		return ;
 	}
-	var paraStr = "&truename="+$('#truename').val()+"&state="+$('#state').val();
+	var paraStr = "&truename="+$('#truename').val()+"&state="+$('#state').val()+"&trainId="+id;
 	$('#iframeId').attr('src',listallUrl+paraStr);
 }

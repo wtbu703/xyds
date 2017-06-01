@@ -15,7 +15,7 @@ $this->title = '添加信息';
             a = "<?=$val->dictItemName?>";
         }
         <?}?>
-        a = a+'时间';
+        a = a+'时间：';
         timeText.html(a);
     }
 </script>
@@ -27,28 +27,32 @@ $this->title = '添加信息';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100px">标题：</th>
+                        <th width="100px" align="right"><sub class="redstar">*</sub>标题：</th>
                         <td><input type="text" style="width:250px;" name="title" id="title"  class="input-text"/></td>
+                        <td class="one"><div id="titleTip"></div></td>
                     </tr>
                     <tr>
-                        <th>作者：</th>
+                        <th align="right"><sub class="redstar">*</sub>作者：</th>
                         <td><input type="text" style="width:250px;" name="author" id="author"  class="input-text"/></td>
+                        <td class="one"><div id="authorTip"></div></td>
                     </tr>
                     <tr>
-                        <th>内容：</th>
-                        <td><textarea style="width:500px;height:100px;" name="content" id="content" ></textarea></td>
+                        <th align="right">内容：</th>
+                        <td colspan="2"><textarea style="width:500px;height:100px;" name="content" id="content" ></textarea></td>
                     </tr>
                     <tr>
-                        <th>类别：</th>
+                        <th align="right"><sub class="redstar">*</sub>类别：</th>
                         <td><select type="text" style="width:250px;height:30px;" name="category" id="category"  class="input-text"></select></td>
+                        <td class="one"><div id="categoryTip"></div></td>
                     </tr>
                     <tr>
-                        <th>状态：</th>
+                        <th align="right">状态：</th>
                         <td><select style="width:270px;" id="state" onmouseout="get_status()"></select></td>
+                        <td class="one"><div id="stateTip"></div></td>
                     </tr>
                     <tr>
-                        <th class="time_text"></th>
-                        <td><input id="datetime" name="datetime" type="text" value="" class="date">
+                        <th class="time_text"  align="right"></th>
+                        <td colspan="2"><input id="datetime" name="datetime" type="text" value="" class="date">
                             <script type="text/javascript">
                                 Calendar.setup({
                                     weekNumbers: true,
@@ -62,8 +66,8 @@ $this->title = '添加信息';
                             </script></td>
                     </tr>
                     <tr>
-                        <th>附&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;件：</th>
-                        <td>
+                        <th align="right">附件：</th>
+                        <td colspan="2">
                             <input type="text" style="display:none;" name="attachUrls" id="attachUrls" class="input-text"/>
                             <input type="text" style="display:none;" name="attachNames" id="attachNames" class="input-text"/>
                             <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('public-info/upload')?>"></iframe>

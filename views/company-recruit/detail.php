@@ -8,47 +8,51 @@ $this->title = '职位详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100">职位</th>
+                        <th width="100" align="right">职位：</th>
                         <td id="position"><?=$companyRecruit->position?></td>
                     </tr>
                     <tr>
-                        <th width="100">工作地点</th>
+                        <th align="right">工作地区：</th>
+                        <td id="position"><?=$companyRecruit->place?></td>
+                    </tr>
+                    <tr>
+                        <th align="right">详细地址：</th>
                         <td id="position"><?=$companyRecruit->workPlace?></td>
                     </tr>
                     <tr>
-                        <th width="100">学历要求</th>
+                        <th align="right">学历要求：</th>
                         <td id="position"><?=$companyRecruit->record?></td>
                     </tr>
                     <tr>
-                        <th width="100">薪资</th>
+                        <th align="right">薪资：</th>
                         <td id="position"><?=$companyRecruit->salary?></td>
                     </tr>
                     <tr>
-                        <th width="100">经验要求</th>
+                        <th align="right">经验要求：</th>
                         <td id="position"><?=$companyRecruit->exp?></td>
                     </tr>
                     <tr>
-                        <th width="100">要求</th>
+                        <th align="right">要求：</th>
                         <td id="demand"><?=$companyRecruit->demand?></td>
                     </tr>
                     <tr>
-                        <th width="100">手机</th>
+                        <th align="right">手机：</th>
                         <td id="mobile"><?=$companyRecruit->mobile?></td>
                     </tr>
                     <tr>
-                        <th width="100">座机</th>
+                        <th align="right">座机：</th>
                         <td id="tel"><?=$companyRecruit->tel?></td>
                     </tr>
                     <tr>
-                        <th width="100">邮箱</th>
+                        <th align="right">邮箱：</th>
                         <td id="email"><?=$companyRecruit->email?></td>
                     </tr>
                     <tr>
-                        <th width="100">联系人</th>
+                        <th align="right">联系人：</th>
                         <td id="contacts"><?=$companyRecruit->contacts?></td>
                     </tr>
                     <tr>
-                        <th width="100">发布时间</th>
+                        <th align="right">发布时间：</th>
                         <td id="contacts"><?=$companyRecruit->datetime?></td>
                     </tr>
                 </table>

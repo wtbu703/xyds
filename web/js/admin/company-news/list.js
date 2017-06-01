@@ -5,7 +5,7 @@ function openadd(){
 	$.dialog.open(addUrl, {
 		title: '添加新闻',
 		width: 700,
-		height:550,
+		height:500,
 		lock: true,
 		border: false,
 		id: 'news_add',

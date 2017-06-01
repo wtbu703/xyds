@@ -16,10 +16,12 @@ function ziXun1(newsType,page){
                 //时间格式转换为 2017-12-02
                 var out = daytime(n.datetime);
                 var content = texthtml(n.content);
+                //上传默认图片
+                var picTp = imgTp(n.picUrl,'newsImages');
                 /* 循环6遍  */ 
                 rowNews_html.push('<div class="row">');
                 rowNews_html.push('<div class="col-xs-4">');
-                rowNews_html.push('<a href="'+detailUrl+'&articleId='+n.id+'"><img class="img-responsive" src="'+ n.picUrl +'" alt="新闻图片"></a>');
+                rowNews_html.push('<a href="'+detailUrl+'&articleId='+n.id+'"><img class="img-responsive" src="'+ picTp +'" alt="新闻图片"></a>');
                 rowNews_html.push('</div>');
                 rowNews_html.push('<div class="col-xs-8 news">');
                 rowNews_html.push('<h5><a href="'+detailUrl+'&articleId='+n.id+'">'+ n.title +'</a></h5>');
@@ -41,6 +43,9 @@ function ziXun1(newsType,page){
         }
     });
 }
+
+
+
 //分页
 function getPage(pageSize,page,totalCount,cat){
     var totalPage = Math.ceil(totalCount/pageSize);
@@ -168,6 +173,26 @@ function hotCompany(){
     });
 }
 $(document).ready(function(){
+
+    //选项卡标题
+    var information_list = $('.information_list');
+    var information_list_html = [];
+    $.ajax({
+        url: articleDictUrl,
+        type: "post",
+        dataType: "json",
+        async: false,
+        success:function(data){
+            information_list_html.push('<li role="presentation" class="active"><a>最新</a></li>');
+             $.each(data,function(i,n){
+                information_list_html.push('<li role="presentation" ><a>'+ n.dictItemName +'</a></li>');
+            })
+            information_list.append(information_list_html.join(''));
+        },
+        error:function(){
+            
+        }
+    });
 
     ziXun1(0,0);
     //文章

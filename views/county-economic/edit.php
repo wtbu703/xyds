@@ -32,102 +32,125 @@ $this->title = '添加年表';
             </ul>
             <div id="div_setting_1" class="contentList pad-10">
                 <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
-                    <table width="90%" cellspacing="0" class="table_form contentWrap">
+                    <table width="100%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-                            <th>年份：</th>
+                            <th align="right" width="140px"><sub class="redstar">*</sub>年份：</th>
                             <td><select id="year" style="width:200px;height:25px;" >
-                                    <option name="period" value="" selected><?=$countyEconomic->year?></option>
+                                    <option name="period" value="<?=$countyEconomic->year?>" selected><?=$countyEconomic->year?></option>
                                 </select>年</td>
+                            <td><div id="yearTip"></div></td>
                             <input type="hidden"  name="id" id="id" style="width:250px;" value="<?=$countyEconomic->id?>" />
                         </tr>
                         <tr>
-                            <th >地区生产总值：</th>
-                            <td><input type="text" style="width:250px;" name="GRP" id="GRP" value="<?=$countyEconomic->GRP?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>亿元</td>
+                            <th  align="right"><sub class="redstar">*</sub>地区生产总值：</th>
+                            <td><input type="text" style="width:250px;" name="GRP" id="GRP" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" value="<?=$countyEconomic->GRP?>"  class="input-text"/>亿元</td>
+                            <td><div id="GRPTip"></div></td>
                         </tr>
                         <tr>
-                            <th>社会消费品零售总额：</th>
-                            <td><input type="text" style="width:250px;" name="socialConsumerTotal" id="socialConsumerTotal" value="<?=$countyEconomic->socialConsumerTotal?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>亿元</td>
+                            <th align="right"><sub class="redstar">*</sub>社会消费品零售总额：</th>
+                            <td><input type="text" style="width:250px;" name="socialConsumerTotal" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" id="socialConsumerTotal" value="<?=$countyEconomic->socialConsumerTotal?>" class="input-text"/>亿元</td>
+                            <td><div id="socialConsumerTotalTip"></div></td>
                         </tr>
                         <tr>
-                            <th>面积：</th>
-                            <td><input type="text" style="width:250px;" name="area" id="area" value="<?=$countyEconomic->area?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>平方公里</td>
+                            <th align="right"><sub class="redstar">*</sub>面积：</th>
+                            <td><input type="text" style="width:250px;" name="area" id="area" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" value="<?=$countyEconomic->area?>" class="input-text"/>平方公里</td>
+                            <td><div id="areaTip"></div></td>
                         </tr>
                         <tr>
-                            <th>乡镇数量：</th>
-                            <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="townNum" id="townNum"  value="<?=$countyEconomic->townNum?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>个</td>
+                            <th align="right"><sub class="redstar">*</sub>乡镇数量：</th>
+                            <td><input type="text" style="width:250px;"   name="townNum" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" id="townNum"  value="<?=$countyEconomic->townNum?>" class="input-text"/>个</td>
+                            <td><div id="townNumTip"></div></td>
                         </tr>
                         <tr>
-                            <th>行政村数量：</th>
-                            <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="villageNum" id="villageNum" value="<?=$countyEconomic->villageNum?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>个</td>
+                            <th align="right"><sub class="redstar">*</sub>行政村数量：</th>
+                            <td><input type="text" style="width:250px;"   name="villageNum" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" id="villageNum" value="<?=$countyEconomic->villageNum?>"  class="input-text"/>个</td>
+                            <td><div id="villageNumTip"></div></td>
                         </tr>
                         <tr>
-                            <th>常住人口：</th>
-                            <td><input type="text" style="width:250px;" name="permanentPopulation" id="permanentPopulation" value="<?=$countyEconomic->permanentPopulation?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万人</td>
+                            <th align="right"><sub class="redstar">*</sub>常住人口：</th>
+                            <td><input type="text" style="width:250px;" name="permanentPopulation" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" id="permanentPopulation" value="<?=$countyEconomic->permanentPopulation?>"  class="input-text"/>万人</td>
+                            <td><div id="permanentPopulationTip"></div></td>
                         </tr>
                         <tr>
-                            <th>城镇人口：</th>
-                            <td><input type="text" style="width:250px;" name="urbanPopulation" id="urbanPopulation" value="<?=$countyEconomic->urbanPopulation?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万人</td>
+                            <th align="right"><sub class="redstar">*</sub>城镇人口：</th>
+                            <td><input type="text" style="width:250px;" name="urbanPopulation" id="urbanPopulation" value="<?=$countyEconomic->urbanPopulation?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');"  class="input-text"/>万人</td>
+                            <td><div id="urbanPopulationTip"></div></td>
                         </tr>
                         <tr>
-                            <th>农村人口：</th>
+                            <th align="right"><sub class="redstar">*</sub>农村人口：</th>
                             <td><input type="text" style="width:250px;" name="ruralPopulation" id="ruralPopulation" value="<?=$countyEconomic->ruralPopulation?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万人</td>
+                            <td><div id="ruralPopulationTip"></div></td>
                         </tr>
                         <tr>
-                            <th>居民人均可支配收入：</th>
-                            <td><input type="text" style="width:250px;" name="disposableIncome" id="disposableIncome" value="<?=$countyEconomic->disposableIncome?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>元</td>
+                            <th align="right"><sub class="redstar">*</sub>居民人均可支配收入：</th>
+                            <td><input type="text" style="width:250px;" name="disposableIncome" id="disposableIncome" value="<?=$countyEconomic->disposableIncome?>" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" class="input-text"/>元</td>
+                            <td><div id="disposableIncomeTip"></div></td>
                         </tr>
                         <tr>
-                            <th>城镇居民人均可支配收入：</th>
-                            <td><input type="text" style="width:250px;" name="urbanDisposableIncome" id="urbanDisposableIncome" value="<?=$countyEconomic->urbanDisposableIncome?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>元</td>
+                            <th width="170" align="right"><sub class="redstar">*</sub>城镇居民人均可支配收入：</th>
+                            <td><input type="text" style="width:250px;" name="urbanDisposableIncome" id="urbanDisposableIncome" value="<?=$countyEconomic->urbanDisposableIncome?>" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  class="input-text"/>元</td>
+                            <td><div id="urbanDisposableIncomeTip"></div></td>
                         </tr>
                         <tr>
-                            <th>农村居民人均可支配收入：</th>
-                            <td><input type="text" style="width:250px;" name="ruralDisposableIncome" id="ruralDisposableIncome" value="<?=$countyEconomic->ruralDisposableIncome?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>元</td>
+                            <th align="right"><sub class="redstar">*</sub>农村居民人均可支配收入：</th>
+                            <td><input type="text" style="width:250px;" name="ruralDisposableIncome" id="ruralDisposableIncome" value="<?=$countyEconomic->ruralDisposableIncome?>" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" class="input-text"/>元</td>
+                            <td><div id="ruralDisposableIncomeTip"></div></td>
                         </tr>
                         <tr>
-                            <th>农村公路里程数：</th>
-                            <td><input type="text" style="width:250px;" name="ruralRoadMileage" id="ruralRoadMileage" value="<?=$countyEconomic->ruralRoadMileage?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>公里</td>
+                            <th align="right"><sub class="redstar">*</sub>农村公路里程数：</th>
+                            <td><input type="text" style="width:250px;" name="ruralRoadMileage" id="ruralRoadMileage" value="<?=$countyEconomic->ruralRoadMileage?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');"  class="input-text"/>公里</td>
+                            <td><div id="ruralRoadMileageTip"></div></td>
                         </tr>
                         <tr>
-                            <th>固定电话年末用户：</th>
-                            <td><input type="text" style="width:250px;" name="telUser" id="telUser" value="<?=$countyEconomic->telUser?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万户</td>
+                            <th align="right"><sub class="redstar">*</sub>固定电话年末用户：</th>
+                            <td><input type="text" style="width:250px;" name="telUser" id="telUser" value="<?=$countyEconomic->telUser?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');"  class="input-text"/>万户</td>
+                            <td><div id="telUserTip"></div></td>
                         </tr>
                         <tr>
-                            <th>移动电话年末用户：</th>
-                            <td><input type="text" style="width:250px;" name="mobileUser" id="mobileUser" value="<?=$countyEconomic->mobileUser?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万户</td>
+                            <th align="right"><sub class="redstar">*</sub>移动电话年末用户：</th>
+                            <td><input type="text" style="width:250px;" name="mobileUser" id="mobileUser" value="<?=$countyEconomic->mobileUser?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');"  class="input-text"/>万户</td>
+                            <td><div id="mobileUserTip"></div></td >
                         </tr>
                         <tr>
-                            <th>3G4G移动电话用户：</th>
+                            <th align="right">3<sub class="redstar">*</sub>G4G移动电话用户：</th>
                             <td><input type="text" style="width:250px;" name="34GUser" id="34GUser" value="<?=$countyEconomic->siGUser?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万户</td>
+                            <td><div id="34GUserTip"></div></td >
                         </tr>
                         <tr>
-                            <th>互联网宽带接入用户：</th>
+                            <th align="right"><sub class="redstar">*</sub>互联网宽带接入用户：</th>
                             <td><input type="text" style="width:250px;" name="internetAccess" id="internetAccess" value="<?=$countyEconomic->internetAccess?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万户</td>
+                            <td><div id="internetAccessTip"></div></td >
                         </tr>
                         <tr>
-                            <th>个体工商户数：</th>
-                            <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="individualHousehold" id="individualHousehold"value="<?=$countyEconomic->individualHousehold?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>家</td>
+                            <th align="right"><sub class="redstar">*</sub>个体工商户数：</th>
+                            <td><input type="text" style="width:250px;"  name="individualHousehold" id="individualHousehold" value="<?=$countyEconomic->individualHousehold?>" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  class="input-text"/>家</td>
+                            <td><div id="individualHouseholdTip"></div></td >
                         </tr>
                         <tr>
-                            <th>注册企业数量：</th>
-                            <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="registeredCompany" id="registeredCompany" value="<?=$countyEconomic->registeredCompany?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>家</td>
+                            <th align="right"><sub class="redstar">*</sub>注册企业数量：</th>
+                            <td><input type="text" style="width:250px;"  name="registeredCompany" id="registeredCompany" value="<?=$countyEconomic->registeredCompany?>" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" class="input-text"/>家</td>
+                            <td><div id="registeredCompanyTip"></div></td >
                         </tr>
                         <tr>
-                            <th>网店数量：</th>
-                            <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="onlineStore" id="onlineStore" value="<?=$countyEconomic->onlineStore?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>个</td>
+                            <th align="right"><sub class="redstar">*</sub>网店数量：</th>
+                            <td><input type="text" style="width:250px;"  name="onlineStore" id="onlineStore" value="<?=$countyEconomic->onlineStore?>" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" class="input-text"/>个</td>
+                            <td><div id="onlineStoreTip"></div></td >
                         </tr>
                         <tr>
-                            <th>手机网店、微店数量：</th>
-                            <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="mobileStore" id="mobileStore" value="<?=$countyEconomic->mobileStore?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>个</td>
+                            <th align="right"><sub class="redstar">*</sub>手机网店、微店数量：</th>
+                            <td><input type="text" style="width:250px;"  name="mobileStore" id="mobileStore" value="<?=$countyEconomic->mobileStore?>"  onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" class="input-text"/>个</td>
+                            <td><div id="mobileStoreTip"></div></td >
                         </tr>
                         <tr>
-                            <th>电子商务交易额：</th>
+                            <th align="right"><sub class="redstar">*</sub>电子商务交易额：</th>
                             <td><input type="text" style="width:250px;" name="ecTurnover" id="ecTurnover"  value="<?=$countyEconomic->ecTurnover?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万元</td>
+                            <td><div id="ecTurnoverTip"></div></td >
                         </tr>
                         <tr>
-                            <th>网络零售额：</th>
-                            <td><input type="text" style="width:250px;" name="netRetailSales" id="netRetailSales" value="<?=$countyEconomic->netRetailSales?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/>万元</td>
+                            <th align="right"><sub class="redstar">*</sub>网络零售额：</th>
+                            <td><input type="text" style="width:250px;" name="netRetailSales" id="netRetailSales" value="<?=$countyEconomic->netRetailSales?>" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');"  class="input-text"/>万元</td>
+                            <td><div id="netRetailSalesTip"></div></td >
                         </tr>
                         </tbody>
                     </table>

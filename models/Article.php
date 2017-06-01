@@ -15,7 +15,7 @@ use Yii;
  * @property string $datetime
  * @property string $attachUrls
  * @property string $attachNames
- * @property string $catchtime
+ * @property integer $catchState
  * @property string $keyword
  * @property string $sourceUrl
  * @property string $picUrl
@@ -38,12 +38,11 @@ class Article extends \yii\db\ActiveRecord
     {
         return [
             [['id'], 'required'],
-            [['category', 'count'], 'integer'],
+            [['category', 'catchState', 'count'], 'integer'],
             [['content'], 'string'],
             [['datetime'], 'safe'],
-            [['id', 'sourceUrl', 'picUrl'], 'string', 'max' => 64],
-            [['title', 'attachUrls', 'attachNames', 'keyword'], 'string', 'max' => 32],
-            [['author', 'catchtime'], 'string', 'max' => 16],
+            [['id', 'title', 'author', 'attachUrls', 'attachNames', 'keyword', 'sourceUrl'], 'string', 'max' => 64],
+            [['picUrl'], 'string', 'max' => 128],
         ];
     }
 
@@ -61,9 +60,9 @@ class Article extends \yii\db\ActiveRecord
             'datetime' => 'Datetime',
             'attachUrls' => 'Attach Urls',
             'attachNames' => 'Attach Names',
-            'catchtime' => '抓取时间',
+            'catchState' => '抓取时间',
             'keyword' => '关键词',
-            'sourceUrl' => '来源网址链接，如果有',
+            'sourceUrl' => '来源',
             'picUrl' => 'Pic Url',
             'count' => '点击次数',
         ];

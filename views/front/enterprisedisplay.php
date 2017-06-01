@@ -1,4 +1,6 @@
-
+<?
+$this->title = "企业展示";
+?>
 	<link rel="stylesheet" type="text/css" href="css/css/enterprisedispaly.css">
 	<script src="js/front/enterprise_display.js"></script>
 	<script type="text/javascript">
@@ -7,7 +9,7 @@
 		var companyDetailUrl = "<?=yii::$app->urlManager->createUrl('front/enterprise-detail')?>";
 	</script>
 
-    <img class="img-responsive hidden-xs" src="images/images_enterprise/2banner.jpg" alt="banner">
+    <img class="img-responsive hidden-xs" src="<?=$pic?>" alt="banner">
 	<!-- 企业展示 -->
 	<div class="wrapper">
 	    <div class="container">

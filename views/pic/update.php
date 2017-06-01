@@ -3,6 +3,13 @@
     var listdictUrl = '<?=Yii::$app->urlManager->createUrl('dict/findall')?>';
     var updateUrl = '<?=Yii::$app->urlManager->createUrl('pic/update-one')?>';
     var uploadUrl = '<?=yii::$app->urlManager->createUrl('third-party-service/upload')?>';
+    function pic(){
+        var a;
+        var timeText = $('.pic_text');
+        a = document.categoryForm.attachUrls.value;
+        a = "<img src='"+a+"'  width='50%'>";
+        timeText.html(a);
+    }
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/pic/update.js" charset="utf-8"></script>
 <div class="pad-lr-10">
@@ -11,25 +18,29 @@
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th>前台栏目:</th>
+                        <th width="100px" align="right">前台栏目:</th>
                         <td>
                             <select id="category" name="category" style="width:100px"></select><input type="hidden" id="id" value="<?=$pic->id?>"/>
                         </td>
                     </tr>
 	                <tr>
-		                <th>原图：</th>
+		                <th align="right">原图：</th>
 		                <td>
-			                <img src="<?=$pic->url?>" />
+			                <img src="<?=$pic->url?>" width="50%"/>
 		                </td>
 	                </tr>
-	                <tr>
-		                <th>重新上传：</th>
+	                <tr onmouseout="pic()">
+		                <th align="right">重新上传：</th>
 		                <td>
 			                <input type="text" style="display:none;" name="attachUrls" id="attachUrls" class="input-text"/>
 			                <input type="text" style="display:none;" name="attachNames" id="attachNames" class="input-text"/>
-			                <iframe frameborder="0" width="100%" height="20px" scrolling="no" src="<?=Yii::$app->urlManager->createUrl('third-party-service/upload')?>"></iframe>
+			                <iframe frameborder="0" width="100%" height="20px" scrolling="no" src="<?=Yii::$app->urlManager->createUrl('pic/upload')?>"></iframe>
 		                </td>
 	                </tr>
+                    <tr>
+                        <th align="right">图片预览：</th>
+                        <td class="pic_text" ></td>
+                    </tr>
 
                 </table>
             </div>

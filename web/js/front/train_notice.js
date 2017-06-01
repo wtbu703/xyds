@@ -11,7 +11,7 @@ function train(newsType,page){
         success:function(data){//如果成功即执行
             var ectraindata = JSON.parse(data.ectrain);
             textdiv.html('');
-            html.push('<div class="col-md-12 col-sm-12 col-xs-12 ">');
+
             $.each(ectraindata,function(i,n){//遍历返回的数据
                 {
                     var datetime = getNowFormatDate();
@@ -22,16 +22,19 @@ function train(newsType,page){
                     var end = yeartime(t);
 
                     var shortName = sbuStr(n.name,30);
-                    html.push('<div class="col-md-6 col-sm-6 col-xs-12  content clearfix">');
+                    html.push('<div class="col-md-6 col-sm-6 col-xs-12 content">');
+                    html.push('<div class="boxS">');
                     html.push('<div class="text">');
                     html.push('<h1>第'+(n.period+1)+'期'+shortName+'</h1>');
+                    html.push('<hr>');
                     html.push('<p class="time">培训时间:'+n.dayNum+'天</p>');
                     html.push('<p>人数:<span id="people">'+n.peopleNum+'</span>人</p>');
                     html.push('<p>期数:第'+(n.period+1)+'期</p>');
                     html.push('<p>培训对象:'+n.target+'</p>');
                     html.push('<p>报名时间:'+out+'-'+end+'</p>');
                     html.push('<p>发布时间:'+n.published+'</p>');
-                    html.push('<p class="detail"><a href="'+detailUrl+'&id='+n.id+'" target="_blank">详情&nbsp;&gt;&nbsp;&gt;</a></p>');
+                    html.push('<p class="detail"><a href="'+detailUrl+'&id='+n.id+'" target="_blank">了解详情&nbsp;&gt;&nbsp;&gt;</a></p>');
+
                     html.push('</div>');
                     html.push('<div class="circle col-md-3 hidden-xs"><div class="pie_left"><div class="left1"></div></div><div class="pie_right"><div class="right1" style="transform: rotate(180deg);"></div></div><div class="mask">已报名<span>'+data.peopleNum[i]+'</span>人</div>');
                     html.push('</div>');
@@ -42,10 +45,11 @@ function train(newsType,page){
                     }
                     html.push('');
                     html.push('</div>');
+                    html.push('</div>');
                 }
                 //以原格式组装好数组
             });
-            html.push('</div>');
+
             textdiv.append(html.join(''));//把数组插入到已定位的DIV
             getPage(data.pageSize,data.page,data.totalCount,newsType);
             getMaodian();
@@ -179,7 +183,7 @@ function trainClassify(){
     var texthtml = [];//新建一个数组变量
     texthtml.push('<div class="right_head">');
     texthtml.push('<div class="list_head">');
-    texthtml.push('<span class="lh_index"><img class="img-responsive home" src="images/images_common/home.png" alt="首页图标"><a href="">首页</a>&nbsp;></span>');
+    texthtml.push('<span class="lh_index"><img class="img-responsive home" src="images/images_common/home.png" alt="首页图标"><a href="'+indexUrl+'">首页</a>&nbsp;></span>');
     texthtml.push('<span class="lh_index"><a href="'+ecUrl+'">电商培训</a>&nbsp;>&nbsp;</span>');
     texthtml.push('<span class="lh_index">培训通知&nbsp;</span>');
     texthtml.push('</div>');
@@ -192,16 +196,16 @@ function trainClassify(){
         success:function(data){//如果成功即执行
             texthtml.push('<div class="col-xs-12 col-md-12 column column_mt"><div class="redbar"></div><span>培训通知</span><ul class="nav nav_classify">');
             if(type == '') {
-                texthtml.push('<a class="btn btn-default col-xs-12 col-sm-2 col-md-1 active">全部</a>');
+                texthtml.push('<a class="btn btn-default col-xs-12 col-sm-2 col-md-2 col-lg-1 active">全部</a>');
             }else{
-                texthtml.push('<a class="btn btn-default col-xs-12 col-sm-2 col-md-1 ">全部</a>');
+                texthtml.push('<a class="btn btn-default col-xs-12 col-sm-2 col-md-2 col-lg-1 ">全部</a>');
             }
                 $.each(data,function(i,n){//遍历返回的数据
                 {
                     if(type == i&&type != '') {
-                        texthtml.push('<a class="btn btn-default col-xs-12 col-sm-2 col-md-1 active">' + n.dictItemName + '</a>');
+                        texthtml.push('<a class="btn btn-default col-xs-12 col-sm-2 col-md-2 col-lg-1 active">' + n.dictItemName + '</a>');
                     }else{
-                        texthtml.push('<a class="btn btn-default col-xs-12 col-sm-2 col-md-1">' + n.dictItemName + '</a>');
+                        texthtml.push('<a class="btn btn-default col-xs-12 col-sm-2 col-md-2 col-lg-1">' + n.dictItemName + '</a>');
                     }
                 }
                 //以原格式组装好数组

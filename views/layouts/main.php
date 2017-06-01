@@ -30,15 +30,17 @@ use yii\helpers\Html;
 	<link href="css/tabpanel/Toolbar.css" rel="stylesheet" type="text/css">
 	<link href="css/tabpanel/WindowPanel.css" rel="stylesheet" type="text/css">
 
-	<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="js/admin/company-recruit/jquery-1.8.3.min.js"></script>
 	<!--弹窗-->
 	<script type="text/javascript" src="js/dialog/dialog.js"></script>
 	<script type="text/javascript" src="js/admin/styleswitch.js"></script>
 	<script type="text/javascript" src="js/admin/hotkeys.js"></script>
 	<script type="text/javascript" src="js/admin/jquery.sGallery.js"></script>
 	<!--表单验证-->
+	<link href="css/admin/validator.css" rel="stylesheet">
 	<script language="javascript" type="text/javascript" src="js/admin/formvalidatorregex.js" charset="utf-8"></script>
 	<script language="javascript" type="text/javascript" src="js/admin/formvalidator.js" charset="utf-8"></script>
+	<link href="css/common_css/edit.css" rel="stylesheet">
 	<!--TAB JS-->
 	<script type="text/javascript" src="js/tabpanel/Fader.js"></script>
 	<script type="text/javascript" src="js/tabpanel/TabPanel.js"></script>

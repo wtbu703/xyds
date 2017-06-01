@@ -1,5 +1,5 @@
 <?
-$this->title = '企业新闻';
+$this->title = '企业新闻详情';
 ?>
 	<link href="css/css/enterprisedisplay_detailnews.css" rel="stylesheet">
 	<link href="css/css/company.css" rel="stylesheet">
@@ -9,9 +9,9 @@ $this->title = '企业新闻';
 		var onlineUrl = "<?=Yii::$app->urlManager->createUrl('front/detail')?>";
 		var recruitUrl = "<?=Yii::$app->urlManager->createUrl('company-recruit/company-recruit')?>";
 		var companyId = "<?=$companyId?>";
-		var lineUrl = "<?=Yii::$app->urlManager->createUrl('front/line')?>";
+		var lineUrl = "<?=yii::$app->urlManager->createUrl('front/company-recruit')?>";
 	</script>
-	<img class="img-responsive center-block hidden-xs" src="images/images_enterprisedisplay_news/2banner.jpg" />
+	<img class="img-responsive center-block hidden-xs" src="<?=$pic?>" />
 
 	<!-- content -->
 	<div class="container">

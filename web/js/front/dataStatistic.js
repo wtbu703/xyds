@@ -62,6 +62,20 @@ function column(type,title,jsonData,xTitle,yTitle,toolTip){
                 borderWidth: 0
             }
         },
+        colors:[
+            '#c2fdff',
+            '#f90301',
+            '#febf07',
+            '#fdff00',
+            '#91d344',
+            '#00b34f',
+            '#00b1f3',
+            '#0271bf',
+            '#03205d',
+            '#7030a0',
+            '#bd524b',
+            '#b18661'
+        ],
         series: [{
             name: xTitle,
             data:arr[1],
@@ -157,7 +171,20 @@ function doubleColumn(jsonData){
         title : {
             text: '按月统计培训'
         },
-
+        colors:[
+            '#c2fdff',
+            '#f90301',
+            '#febf07',
+            '#fdff00',
+            '#91d344',
+            '#00b34f',
+            '#00b1f3',
+            '#0271bf',
+            '#03205d',
+            '#7030a0',
+            '#bd524b',
+            '#b18661'
+        ],
         subtitle: {
             text:'(选中月份即可查看累积培训人数和场次)',
             style:{
@@ -280,11 +307,11 @@ function cover(jsonData){
         series: [{
             name: '乡村',
             data: arr[1],
-            fillColor:'#FFF263'
+            fillColor:'#78d6be'
         }, {
             name: '行政村',
             data: arr[2],
-            fillColor:'#6AF9C4'
+            fillColor:'#f5d368'
         }
         ],
         responsive: {
@@ -371,11 +398,11 @@ function expressCompany(jsonData){
         series:[{
             name: '县->乡',
             data: arr[1],
-            fillColor:'#FFF263'
+            fillColor:'#fb7b6c'
         }, {
             name: '乡->村',
             data: arr[2],
-            fillColor:'#6AF9C4'
+            fillColor:'#e4536d'
         }],
         responsive: {
             rules: [{
@@ -442,11 +469,13 @@ function expressAdressee(jsonData){
         series:[{
             type: 'column',
             name: '快递收件量',
-            data: arr[1]
+            data: arr[1],
+            color:'#c0ffff'
         }, {
             type: 'column',
             name: '快递发件量',
-            data: arr[2]
+            data: arr[2],
+            color:'#7cac6e'
         }],
         responsive: {
             rules: [{
@@ -509,6 +538,9 @@ function netBussiness(jsonData){
         credits :{
             enabled: false
         },
+        color:[
+            ''
+        ],
         series:[{
             name: '当月新增孵化数',
             data: arr[3],
@@ -516,15 +548,18 @@ function netBussiness(jsonData){
         }, {
             name: '企业网商',
             data: arr[1],
-            stack: 'male'
+            stack: 'male',
+            color:'#fc9446'
         }, {
             name: '当月新增孵化数',
             data: arr[4],
-            stack: 'female'
+            stack: 'female',
+            color:'#018091'
         }, {
             name: '个人网商',
             data: arr[2],
-            stack: 'female'
+            stack: 'female',
+            color:'#f45d3d'
         }],
         responsive: {
             rules: [{
@@ -585,15 +620,18 @@ function ecAll(jsonData){
         series:[{
             type: 'column',
             name: '生产总值',
-            data: arr[1]//数组-
+            data: arr[1],//数组-
+            color: '#007d93'
         }, {
             type: 'column',
             name: '零售总额',
-            data: arr[2]
+            data: arr[2],
+            color: '#f76959'
         },{
             type: 'column',
             name: '居民人均可支配收入',
-            data: arr[3]
+            data: arr[3],
+            color: '#014c6b'
         }],
         responsive: {
             rules: [{
@@ -653,11 +691,13 @@ function ecBussiness(jsonData){
         series:[{
             type: 'column',
             name: '电商交易额',
-            data: arr[4]
+            data: arr[4],
+            color: '#febc06'
         }, {
             type: 'column',
             name: '网络零售额',
-            data: arr[5]
+            data: arr[5],
+            color: '#e87c1f'
         }],
         responsive: {
             rules: [{
@@ -737,15 +777,18 @@ function netPerson(jsonData){
                 //显示数据列的名称。
                 name: '个体工商户',
                 //显示在图表中的数据列，可以为数组或者JSON格式的数据。
-                data: arr[1]
+                data: arr[1],
+                color:'#7ea97c'
             },
             {
                 name: '注册企业数',
-                data: arr[2]
+                data: arr[2],
+                color:'#ddd321'
             },
             {
                 name: '网店数量',
-                data: arr[3]
+                data: arr[3],
+                color:'#b9ffff'
             }
         ],
         responsive: {
@@ -836,10 +879,12 @@ function basicStruct(jsonData){
 
         series: [{
             name: '农村公路里程数',
-            data: arr[1]
+            data: arr[1],
+            color:'#ebea1b'
         }, {
             name: '互联网接入数',
-            data: arr[2]
+            data: arr[2],
+            color:'#01b0f2'
         }],
         responsive: {
             rules: [{
@@ -884,6 +929,7 @@ function serviceTop(){
         dataType: "json",//返回的数据格式
         async: false,
         success:function(data){//如果成功即执行
+            html.push('<div data-spy="scroll" data-target="#navbarExample" data-offset="50" class="scrollspy-example">');
             html.push('<ul class="nav nav-pills nav-stacked nav_top" role="tablist">');
             $.each(data,function(i,n){//遍历返回的数据 
                 {
@@ -898,6 +944,7 @@ function serviceTop(){
                 //以原格式组装好数组
             });
             html.push('</ul>');
+            html.push('</div>');
             textdiv.append(html.join(''));//把数组插入到已定位的DIV
         },
 
@@ -1020,3 +1067,14 @@ $(document).ready(function(){
     generatePic(Name,1);
 
 });
+
+$(function(){
+//调整位置
+var rwidth = ($(window).width()-$('.container').width())/2-44;
+//回到中心点位置调整
+$('#back').css("right",rwidth+44);
+
+//详情位置调整
+$('.detailBox').css("left",rwidth+64);
+
+})

@@ -15,6 +15,7 @@ use Yii;
  * @property string $telephone
  * @property string $state
  * @property string $siteId
+ * @property string $companyName
  * @property string $companyId
  * @property string $created_at
  * @property string $updated_at
@@ -37,11 +38,12 @@ class Admin extends \yii\db\ActiveRecord
         return [
             [['id'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
-            [['id', 'username', 'truename', 'email'], 'string', 'max' => 32],
+            [['id', 'siteId', 'companyId'], 'string', 'max' => 40],
+            [['username', 'truename', 'email'], 'string', 'max' => 32],
             [['password'], 'string', 'max' => 64],
             [['telephone'], 'string', 'max' => 16],
             [['state'], 'string', 'max' => 4],
-            [['siteId', 'companyId'], 'string', 'max' => 40],
+            [['companyName'], 'string', 'max' => 48],
         ];
     }
 
@@ -59,6 +61,7 @@ class Admin extends \yii\db\ActiveRecord
             'telephone' => '电话',
             'state' => '状态',
             'siteId' => '服务站点ID',
+            'companyName' => '公司名',
             'companyId' => '企业ID',
             'created_at' => '创建时间',
             'updated_at' => '修改时间',

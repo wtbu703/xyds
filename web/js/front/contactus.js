@@ -23,11 +23,13 @@ $(function(){
                 success: function (data) {
                     if (data == "success") {
                         alert('添加成功');
+                        history.go(0);
                     } else {
                         alert('添加失败');
                     }
                 }
-            });
+        });
+
 
     })
-})
+});

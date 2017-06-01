@@ -1,29 +1,34 @@
-
+//页面校验
 $(function(){
-	$.formValidator.initConfig({
-		formid:"myform",
-		autotip:true,			//是否显示提示信息
-		onerror:function(msg,obj){
-		window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})
-		}});
-	// 校验模型名称
-
-	//验证标题是否为空
+	$.formValidator.initConfig({ formID: "myform",autotip:true, onError: function () { alert("校验没有通过，具体错误请看错误提示") } });
+	//网店名称
 	$("#shopName").formValidator({
-				onshow:"请输入网店名称！",
-				onfocus:"请输入网店名称！"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请输入网店名称！"})
+		onshow: "请填写网店名称!",
+		onfocus: "网店名称最多18个字",
+		oncorrect: "输入正确"
+	}).regexValidator({
+		regexp:"^[\\u4E00-\\u9FA5A-Za-z0-9]{1,18}$",
+		onerror: "网店名称最多18个字!"
+	});
+	//网店链接
 	$("#shopLink").formValidator({
-				onshow:"请输入网店链接！以http://开头",
-				onfocus:"请输入网店链接！以http://开头"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请输入网店链接！"})
-
-
-})
+		onshow: "请填写网店链接!",
+		onfocus: "例如：https://www.baidu.com/",
+		oncorrect: "输入正确"
+	}).regexValidator({
+		regexp:"[a-zA-z]+://[^\\s]*",
+		onerror: "您输入的格式错误!"
+	});
+	//网店平台下拉框
+	$("#platform").formValidator({
+		onshow: "选择不能为空!",
+		onfocus: "（必填）请选择选项",
+		oncorrect: "输入正确"
+	}).inputValidator({
+		min: 0,  //开始索引
+		onerror: "你是不是忘记选择平台了!"
+	});
+});
 
 
 function edit(){
@@ -34,37 +39,38 @@ function edit(){
 		paraStr += "&shopLink=" + $("#shopLink").val();
 		paraStr += "&platform=" + $("#platform").val();
 
-		$.ajax({
-			url: updateUrl,
-			type: "post",
-			dataType: "text",
-			data:paraStr ,
-			async: "false",
-			success: function (data) {
-				window.top.art.dialog({
-					content: '修改成功！',
-					lock: true,
-					width: 250,
-					height: 80,
-					border: false,
-					time: 2
-				}, function () {
-				});
-				art.dialog.parent.$('#pageForm').submit();
-				window.top.$.dialog.get('shoplink_update').close();
-			},
-			error:function(data){
-				window.top.art.dialog({
-					content: '修改失败！',
-					lock: true,
-					width: 250,
-					height: 80,
-					border: false,
-					time: 2
-				}, function () {
+				$.ajax({
+					url: updateUrl,
+					type: "post",
+					dataType: "text",
+					data:paraStr ,
+					async: "false",
+					success: function (data) {
+						window.top.art.dialog({
+							content: '修改成功！',
+							lock: true,
+							width: 250,
+							height: 80,
+							border: false,
+							time: 2
+						}, function () {
+						});
+						art.dialog.parent.$('#pageForm').submit();
+						window.top.$.dialog.get('shoplink_update').close();
+					},
+					error:function(data){
+						window.top.art.dialog({
+							content: '修改失败！',
+							lock: true,
+							width: 250,
+							height: 80,
+							border: false,
+							time: 2
+						}, function () {
+						});
+					}
 				});
 			}
-		});
 
-	}
+
 }

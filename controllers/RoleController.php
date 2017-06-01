@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\Admin;
+use app\models\Company;
 use yii;
 use yii\web\Controller;
 use app\models\Role;
@@ -239,18 +241,15 @@ class RoleController extends Controller{
         $ids = Yii::$app->request->get('ids');
         $roleId = Yii::$app->request->get('roleId');
         $ids_array = explode(',',$ids);
+        MenuRole::deleteAll('roleId = :roleId',[":roleId"=>$roleId]);
         foreach($ids_array as $key => $data)
         {
-            if(!(MenuRole::find()
-                ->where('menuId = :menuId and roleId = :roleId',[":menuId" =>$data,":roleId"=>$roleId])
-                ->all()))
-            {
-                $rolemenu = new MenuRole();//新建关系
-                $rolemenu->id = Common::generateID();//生成ID
-                $rolemenu->roleId = $roleId;
-                $rolemenu->menuId = $data;
-                $rolemenu->save();
-            }
+            $rolemenu = new MenuRole();//新建关系
+            $rolemenu->id = Common::generateID();//生成ID
+            $rolemenu->roleId = $roleId;
+            $rolemenu->menuId = $data;
+            $rolemenu->save();
+
         }
 	    $add = Common::resource('ROLE','ADD');
 	    return $this->render('list',[
@@ -293,6 +292,31 @@ class RoleController extends Controller{
             'role' => $role,
         ]);
     }
+
+	/*public function actionChooseCompany(){
+		$adminId = Yii::$app->request->get('id');
+		return $this->render('ChooseCompany',[
+			'adminId' => $adminId
+		]);
+	}*/
+
+	/*public function actionSelectAllCompany(){
+		return yii\helpers\Json::encode(Company::find()->all());
+	}*/
+
+	/*public function actionSaveCompany(){
+		$adminId = Yii::$app->request->post('adminId');
+		$companyId = Yii::$app->request->post('companyId');
+		$admin = Admin::findOne($adminId);
+		$company = Company::findOne($companyId);
+		$admin->companyId = $companyId;
+		$admin->companyName = $company->name;
+		if($admin->save()){
+			return 'success';
+		}else{
+			return false;
+		}
+	}*/
 
     /**
      * 删除单个用户角色对应关系

@@ -21,7 +21,10 @@ class CompanyProductController extends Controller
      */
     public function actionList()
     {
-        return $this->render('list');
+        $companyId = Yii::$app->session['companyId'];
+        return $this->render('list',[
+            'companyId'=>$companyId,
+        ]);
     }
 
     /**
@@ -48,6 +51,7 @@ class CompanyProductController extends Controller
         $companyProduct->discount = Yii::$app->request->post('discount');
         $companyProduct->state = Yii::$app->request->post('state');
         $companyProduct->thumbnailUrl = Yii::$app->request->post('thumbnailUrl');
+        $companyProduct->datetime = date('Y-m-d H:m:s');
 
         if ($companyProduct->save()) {
             return "success";
@@ -70,7 +74,13 @@ class CompanyProductController extends Controller
         $para['name'] = $name;
         $para['state'] = $state;
 
-        $whereStr = 'companyId = "' . $companyId . '"';
+
+        if($companyId == 'admin'||$companyId == 'all'){
+            $whereStr = '1=1';
+        }else{
+            $whereStr = 'companyId = "' . $companyId . '"';
+        }
+
         if ($name != '') {
             $whereStr = $whereStr . " and name like '%" . $name . "%'";
         }
@@ -79,7 +89,7 @@ class CompanyProductController extends Controller
         }
         $companyProduct = CompanyProduct::find()->where($whereStr);
         $page = new Pagination(['totalCount' => $companyProduct->count(), 'pageSize' => Common::PAGESIZE]);
-        $models = $companyProduct->offset($page->offset)->limit($page->limit)->all();
+        $models = $companyProduct->offset($page->offset)->limit($page->limit)->orderBy(['datetime'=>SORT_DESC])->all();
 
         //字典反转
         $productState = Dictitem::find()->where(['dictCode'=>'DICT_PRODUCT_STATE'])->all();
@@ -124,13 +134,16 @@ class CompanyProductController extends Controller
             unlink($companyProduct->thumbnailUrl);
 
         }
-        $companyProduct->thumbnailUrl = $thumbnailUrl;
+        if($thumbnailUrl != ''){
+            $companyProduct->thumbnailUrl = $thumbnailUrl;
+        }
         $companyProduct->companyId = Yii::$app->session['companyId'];
         $companyProduct->name = Yii::$app->request->post('name');
         $companyProduct->introduction = Yii::$app->request->post('introduction');
         $companyProduct->price = Yii::$app->request->post('price');
         $companyProduct->discount = Yii::$app->request->post('discount');
         $companyProduct->state = Yii::$app->request->post('state');
+        $companyProduct->datetime = date('Y-m-d H:m:s');
 
         if($companyProduct->save()){
             return "success";
@@ -257,16 +270,19 @@ class CompanyProductController extends Controller
         $companyName = $company->name;
         $page = Yii::$app->request->post('page');
         $query = CompanyProduct::find()
-            ->where('companyId = :companyId',[":companyId" => $companyId])
+            ->where('companyId = :companyId and state=0',[":companyId" => $companyId])
             ->count();
         $pagination = new Pagination([
             'page' => $page,
-            'defaultPageSize' => 12,
+            'defaultPageSize' => 9,
             'validatePage' => false,
             'totalCount' => $query,
         ]);
         $companyProduct = CompanyProduct::find()
-	        ->where('companyId = :companyId',[":companyId" => $companyId])->all();
+	        ->where('companyId = :companyId and state=0',[":companyId" => $companyId])
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
 
         $para = [];
         $para['companyName'] = $companyName;
@@ -281,7 +297,7 @@ class CompanyProductController extends Controller
         $companyId = Yii::$app->request->post('companyId');
         $product = CompanyProduct::find()
             ->select('id,name,companyId')
-            ->where('companyId = :id',[':id'=>$companyId])
+            ->where('companyId = :id and state=0',[':id'=>$companyId])
             ->all();
         return Json::encode($product);
     }

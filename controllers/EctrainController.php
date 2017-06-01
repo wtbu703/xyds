@@ -44,7 +44,6 @@ class EctrainController extends Controller{
         $ectrain->peopleNum = Yii::$app->request->post('peopleNum');
         $ectrain->target = Yii::$app->request->post('target');
         $ectrain->publisher = Yii::$app->request->post('publisher');
-        $ectrain->picUrl = Yii::$app->request->post('picUrl');
         $ectrain->thumbnailUrl = Yii::$app->request->post('thumbnailUrl');
         $ectrain->beginTime = Yii::$app->request->post('beginTime');
         $ectrain->endTime = Yii::$app->request->post('endTime');
@@ -65,14 +64,12 @@ class EctrainController extends Controller{
     public function actionFindByAttri(){
         $name = Yii::$app->request->get('name');
         $category = Yii::$app->request->get('category');
-        $period = Yii::$app->request->get('period');
         $ectraindateTime_1 = Yii::$app->request->get('ectraindateTime_1');
         $ectraindateTime_2 = Yii::$app->request->get('ectraindateTime_2');
 
         $para = [];
         $para['name'] = $name;
         $para['category'] = $category;
-        $para['period'] = $period;
         $para['ectraindateTime_1'] = $ectraindateTime_1;
         $para['ectraindateTime_2'] = $ectraindateTime_2;
 
@@ -83,31 +80,31 @@ class EctrainController extends Controller{
         if ($category != '') {
             $whereStr = $whereStr . " and category like '%" . $category . "%'";
         }
-        if ($period != '') {
-            $whereStr = $whereStr . " and period='" . $period ."'";
-        }
         if($ectraindateTime_1 != ''){
-            $whereStr = $whereStr." and datetime >= '".$ectraindateTime_1."%'";
+            $whereStr = $whereStr." and published >= '".$ectraindateTime_1."%'";
         }
         if($ectraindateTime_2 != ''){
-            $whereStr = $whereStr." and datetime <= '".$ectraindateTime_2."%'";
+            $whereStr = $whereStr." and published <= '".$ectraindateTime_2."%'";
         }
         $ectrain = Ectrain::find()->where($whereStr);
         $page = new Pagination(['totalCount' => $ectrain->count(), 'pageSize' => Common::PAGESIZE]);
-        $models = $ectrain->offset($page->offset)->limit($page->limit)->all();
+        $models = $ectrain->offset($page->offset)->limit($page->limit)->orderBy(['published'=>SORT_DESC])->all();
 
         $category = Dictitem::find()
             ->where(['dictCode' => 'DICT_ECTRAIN_CATEGORY'])
             ->all();
+        $people = [];
         foreach($models as $key=>$data){
             foreach($category as $index=>$value){
                 if($data->category == $value->dictItemCode){
                     $models[$key]->category = $value->dictItemName;
                 }
             }
+            $people[$key] = EctrainEnter::find()->where('trainId=:id',[':id'=>$models[$key]->id])->count();
         }
         return $this->render('listall',[
             'ectrain'=>$models,
+            'people'=>$people,
             'pages' => $page,
             'para' => $para,
         ]);
@@ -139,16 +136,10 @@ class EctrainController extends Controller{
         $picUrl = Yii::$app->request->post('picUrl');
         $thumbnailUrl = Yii::$app->request->post('thumbnailUrl');
         $ectrain = Ectrain::findOne($id);
-        if($ectrain->picUrl != $picUrl&&$ectrain->picUrl !=''&&$picUrl !=''&&file_exists($ectrain->picUrl)){
-            unlink($ectrain->picUrl);
-        }
-        if($picUrl != ''){
-            $ectrain->picUrl = $picUrl;
-        }
         if($ectrain->thumbnailUrl != $thumbnailUrl&&$ectrain->thumbnailUrl != ''&&$thumbnailUrl !=''&&file_exists($ectrain->thumbnailUrl)){
             unlink($ectrain->thumbnailUrl );
         }
-        if($picUrl != ''){
+        if($thumbnailUrl != ''){
             $ectrain->thumbnailUrl =$thumbnailUrl;
         }
         $ectrain->name = Yii::$app->request->post('name');
@@ -177,9 +168,6 @@ class EctrainController extends Controller{
     public function actionDeleteOne(){
         $id = Yii::$app->request->post('id');
         $ectrain = Ectrain::findOne($id);
-        if(is_null($ectrain->picUrl)&&file_exists($ectrain->picUrl)){
-            unlink($ectrain->picUrl);
-        }
         if(is_null($ectrain->thumbnailUrl)&&file_exists($ectrain->thumbnailUrl)){
             unlink($ectrain->thumbnailUrl );
         }
@@ -200,9 +188,6 @@ class EctrainController extends Controller{
         $ids_array = explode('-',$ids);
         foreach($ids_array as $key=>$data){
             $ectrain = Ectrain::findOne($data);
-            if($ectrain->picUrl !=''&&file_exists($ectrain->picUrl)) {
-                unlink($ectrain->picUrl);
-            }
             if($ectrain->thumbnailUrl !=''&&file_exists($ectrain->thumbnailUrl)) {
                 unlink($ectrain->thumbnailUrl);
             }
@@ -229,8 +214,10 @@ class EctrainController extends Controller{
                 $ectrain->period = $value->dictItemName;
             }
         }
+        $peo = EctrainEnter::find()->where('trainId=:id',[':id'=>$ectrain->id])->count();
         return $this->render('detail',[
-            'ectrain'=>$ectrain
+            'ectrain'=>$ectrain,
+            'peo'=>$peo,
         ]);
     }
 
@@ -243,10 +230,10 @@ class EctrainController extends Controller{
             $isThumb = Yii::$app->request->get('isThumb');
             $views = 'upload';
             if(is_null($isThumb)){
-                $fileArg = Common::upload($_FILES,true,false);
+                $fileArg = Common::upload($_FILES,true,false,'index_ectrain',2*1024000);
             }else{
-                $fileArg = Common::upload($_FILES,true,true);
-                $views = 'uploads';
+                $fileArg = Common::upload($_FILES,true,true,'index_ectrain',2*1024000);
+                $views = 'upload';
             }
 
             return $this->render($views,[
@@ -264,44 +251,7 @@ class EctrainController extends Controller{
                 ],
             ]);
         }else{
-            return $this->render('uploads',[
-                "tag" => "empty",
-                "fileArg" =>[
-                    "fileSaveUrl" =>"",//上传文件保存的路径
-                    "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
-                ],
-            ]);
-        }
-    }
-
-    public function actionUploadss(){
-        //实现上传
-        if (Yii::$app->request->isPost) {
-            $isThumb = Yii::$app->request->get('isThumb');
-            $views = 'upload';
-            if(is_null($isThumb)){
-                $fileArg = Common::upload($_FILES,true,false,'ectrain_notice',2048000);
-            }else{
-                $fileArg = Common::upload($_FILES,true,true);
-                $views = 'uploads';
-            }
-
-            return $this->render($views,[
-                "fileArg" => $fileArg,
-                "tag" => $fileArg['tag'],
-            ]);
-        }
-        $detail = Yii::$app->request->get('detail');
-        if(is_null($detail)){
             return $this->render('upload',[
-                "tag" => "empty",
-                "fileArg" =>[
-                    "fileSaveUrl" =>"",//上传文件保存的路径
-                    "tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
-                ],
-            ]);
-        }else{
-            return $this->render('uploads',[
                 "tag" => "empty",
                 "fileArg" =>[
                     "fileSaveUrl" =>"",//上传文件保存的路径

@@ -1,4 +1,6 @@
-
+<?
+$this->title = '电商资讯';
+?>
 	<link href="css/css/ecinformation.css" rel="stylesheet">
 	<script>
 		var articleUrl = "<?=Yii::$app->urlManager->createUrl('article/article')?>";
@@ -6,10 +8,11 @@
 		var hotCompanyUrl = "<?=Yii::$app->urlManager->createUrl('company/hot-company')?>";
 		var hotNewsUrl = "<?=Yii::$app->urlManager->createUrl('article/hot-news')?>";
 		var companyDetailUrl = "<?=Yii::$app->urlManager->createUrl('front/enterprise-detail')?>";
+		var articleDictUrl = "<?=Yii::$app->urlManager->createUrl('article/index-dict')?>";
 	</script>
     <script src="js/front/ecinformatiom.js"></script>
 
-	<img class="img-responsive center-block hidden-xs" alt="新闻图片" src="images/images_ecinformation/banner.jpg" />
+	<img class="img-responsive center-block hidden-xs" alt="新闻图片" src="<?=$pic?>" />
 
 	
 	<!-- content -->
@@ -19,11 +22,11 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<ul class="nav nav-tabs information_list">
-						    <li role="presentation" class="active"><a>最新</a></li>
+						    <!-- <li role="presentation" class="active"><a>最新</a></li>
 						    <li role="presentation"><a>政策指引</a></li>
 						    <li role="presentation"><a>行业资讯</a></li>
 						    <li role="presentation"><a>供求信息</a></li>
-						    <li role="presentation"><a>企业资讯</a></li>
+						    <li role="presentation"><a>企业资讯</a></li> -->
 						</ul>
 					</div>
 				</div>

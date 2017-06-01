@@ -31,11 +31,11 @@ $this->title = '信息管理';
                     <div class="explain-col">
                         <div>
                             标题：
-                            <input id="title" name="title" type="text" value="" class="input-text" />
+                            <input id="title" name="title" type="text" style='width:175px' value="" class="input-text" />
                             作者：
-                            <input id="author" name="author" type="text" value="" class="input-text" /></br>
+                            <input id="author" name="author" type="text" style='width:175px' value="" class="input-text" />
                             信息类别：
-                            <select id="category" style='width:135px' name="category"></select>
+                            <select id="category" style='width:175px' name="category"></select>
                             &nbsp;<input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
                             <div class = "checkTip" style="float:right;margin-right:40%;color:red;">
                             </div>

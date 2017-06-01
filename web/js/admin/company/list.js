@@ -5,7 +5,7 @@ function openadd(){
 	$.dialog.open(addUrl, {
 		title: '添加企业',
 		width: 800,
-		height:600,
+		height:500,
 		lock: true,
 		border: false,
 		id: 'company_add',

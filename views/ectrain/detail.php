@@ -8,61 +8,56 @@ $this->title = '培训详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100px">培训名：</th>
+                        <th width="100px" align="right">培训名：</th>
                         <td id="name"><?=$ectrain->name?></td>
                     </tr>
                     <tr>
-                        <th>培训类别：</th>
+                        <th align="right">培训类别：</th>
                         <td id="category"><?=$ectrain->category?></td>
                     </tr>
                     <tr>
-                        <th>内容：</th>
+                        <th align="right">内容：</th>
                         <td id="content"><?=$ectrain->content?></td>
                     </tr>
                     <tr>
-                        <th>天数：</th>
+                        <th align="right">天数：</th>
                         <td id="dayNum"><?=$ectrain->dayNum?></td>
                     </tr>
                     <tr>
-                        <th>期数：</th>
+                        <th align="right">期数：</th>
                         <td id="period"><?=$ectrain->period?></td>
                     </tr>
                     <tr>
-                        <th>人数：</th>
+                        <th align="right">人数：</th>
                         <td id="peopleNum"><?=$ectrain->peopleNum?></td>
                     </tr>
                     <tr>
-                        <th>报名时间：</th>
+                        <th align="right">已报名人数：</th>
+                        <td id="peopleNum"><?=$peo?></td>
+                    </tr>
+                    <tr>
+                        <th align="right">报名时间：</th>
                         <td><?=$ectrain->beginTime?>至<?=$ectrain->endTime?></td>
                     </tr>
                     <tr>
-                        <th>针对人群：</th>
+                        <th align="right">针对人群：</th>
                         <td id="target"><?=$ectrain->target?></td>
                     </tr>
                     <tr>
-                        <th>发布人：</th>
+                        <th align="right">发布人：</th>
                         <td id="publisher"><?=$ectrain->publisher?></td>
                     </tr>
                     <tr>
-                        <th>发布时间：</th>
+                        <th align="right">发布时间：</th>
                         <td id="published"><?=$ectrain->published?></td>
                     </tr>
                     <tr>
-                        <th>培训开始时间：</th>
+                        <th align="right">培训开始时间：</th>
                         <td id="time"><?=$ectrain->time?></td>
                     </tr>
                     <tr>
-                        <th>大图：</th>
+                        <th align="right">大图：</th>
                         <td id="thumbnailUrl"> <img src="<?=$ectrain->thumbnailUrl?>" width="60%"></td>
-                    </tr>
-                    <tr>
-                        <th>缩略图：</th>
-                        <td id="picUrl">
-                            <?$picUrl_array = explode(';',$ectrain->picUrl);
-                            foreach($picUrl_array as $key=>$data){?>
-                                <img src="<?=$data?>"  width="60%">
-                            <?} ?>
-                        </td>
                     </tr>
                 </table>
             </div>

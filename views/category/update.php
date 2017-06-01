@@ -17,7 +17,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th width="100">商品大类名称</th>
+                        <th width="100"><sub class="redstar">*</sub>商品大类名称</th>
                         <td>
 	                        <input type="text" style="width:250px;height: 30px;" name="categoryName" id="categoryName" value="<?=$category->categoryName?>" class="input-text"/></td>
                     </tr>
@@ -26,7 +26,7 @@
                         <td><textarea style="width:350px;height:80px;" id="intro" name="intro"><?=$category->intro?></textarea></td>
                     </tr>
                     <tr>
-                        <th>是否可用</th>
+                        <th><sub class="redstar">*</sub>是否可用</th>
                         <td>
                             <select id="state" name="state" style="width:100px"></select>
                         </td>

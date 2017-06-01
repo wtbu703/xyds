@@ -1,10 +1,11 @@
-//打开修改页面
+//打开修改页面z
+var Twidth = $(window).width();
 function update(siteId,siteName) {
 	$.dialog({id:'site_update'}).close();
 	var url = findOneUrl + '&id='+siteId +'&action=update';
 	$.dialog.open(url,{
 		title: '修改'+siteName+'信息',
-		width: 800,
+		width: Twidth,
 		height:600,
 		lock: true,
 		border: false,

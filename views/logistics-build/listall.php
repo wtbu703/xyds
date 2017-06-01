@@ -12,7 +12,7 @@
 	                <th width="80px" align="left"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th>
 		            <th width="30px">序号</th>
 		            <th width="160px">时间</th>
-		            <th>操作</th>
+		            <th width="100px">操作</th>
 	            </tr>
             </thead>
             <tbody>

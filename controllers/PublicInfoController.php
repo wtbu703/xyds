@@ -59,7 +59,10 @@ class PublicInfoController extends Controller
         $infoState->state = $publicInfo->state;
         $infoState->time = Yii::$app->request->post('datetime');
 
-        if ($publicInfo->save()&&$infoState->save()) {
+        if($infoState->state != ''){
+            $infoState->save();
+        }
+        if ($publicInfo->save()) {
             return "success";
         } else {
             return "fail";
@@ -116,7 +119,11 @@ class PublicInfoController extends Controller
         $infoState->state = $publicInfo->state;
         $infoState->time = Yii::$app->request->post('datetime');
 
-        if($publicInfo->save()&&$infoState->save()) {
+        if($infoState->state != ''){
+            $infoState->save();
+        }
+
+        if($publicInfo->save()) {
             return "success";
         }else{
             return "fail";
@@ -171,7 +178,11 @@ class PublicInfoController extends Controller
         $id = Yii::$app->request->get('id');
         $publicInfo = PublicInfo::findOne($id);
         $infoState = InfoState::find()->where('infoId = :id and state = :state',[':id'=>$publicInfo->id,':state'=>$publicInfo->state])->one();
-        $time = $infoState->time;
+        if($infoState == ''){
+            $time = '';
+        }else{
+            $time = $infoState->time;
+        }
         //字典反转
         $cateGory = Dictitem::find()->where(['dictCode'=>'DICT_CATEGORY'])->all();
         $state = Dictitem::find()->where(['dictCode'=>'DICT_PUBLICINFO_STATE'])->all();
@@ -218,7 +229,7 @@ class PublicInfoController extends Controller
 
         $publicInfo = PublicInfo::find()->where($whereStr);
         $page = new Pagination(['totalCount' => $publicInfo->count(), 'pageSize' => Common::PAGESIZE]);
-        $models = $publicInfo->offset($page->offset)->limit($page->limit)->all();
+        $models = $publicInfo->offset($page->offset)->limit($page->limit)->orderBy(['published'=>SORT_DESC])->all();
 
         //字典反转
         $cateGory = Dictitem::find()->where(['dictCode'=>'DICT_CATEGORY'])->all();
@@ -244,7 +255,7 @@ class PublicInfoController extends Controller
 
         if (Yii::$app->request->isPost) {
 
-            $fileArg = Common::upload($_FILES,false,false);
+            $fileArg = Common::upload($_FILES,false,false,false,50*1024000);
             return $this->render('upload',[
                 "fileArg" => $fileArg,
                 "tag" => $fileArg['tag'],
@@ -361,7 +372,6 @@ class PublicInfoController extends Controller
     public function actionInfoOne(){
         $info = PublicInfo::find()
             ->select('title,published,picUrl,content,id')
-            ->where('picUrl != ""')
             ->orderBy(['published' => SORT_DESC])
             ->limit(1)
             ->all();

@@ -10,11 +10,11 @@
             <thead>
 	            <tr align="center">
 	                <th width="80px" align="left"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th>
-		            <th width="30px">序号</th>
-		            <th width="160px">企业名</th>
-                    <th width="160px">企业类别</th>
-		            <th width="160px">简介</th>
-		            <th>操作</th>
+		            <th width="30px" align="left">序号</th>
+		            <th width="130px" align="left">企业名</th>
+                    <th width="100px" align="left">企业类别</th>
+		            <th width="130px" align="left">简介</th>
+		            <th width="150px" align="center">操作</th>
 	            </tr>
             </thead>
             <tbody>
@@ -22,10 +22,18 @@
 	            <?php foreach ($thirdPartyServices as $index => $val){?>
 	                <tr align="center">
 	                    <td align="left"><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
-	                    <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-	                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->companyName?>')"><?=$val->companyName?></a></td>
-                        <td><?=$val->category?></td>
-		                <td><?=$val->introduction?></td>
+	                    <td align="left"><?=$index+$pages->page*$pages->pageSize+1?></td>
+	                    <td align="left"><a href="javascript:detail('<?=$val->id?>','<?=$val->companyName?>')"><?php if(strlen($val->companyName)>24) {
+                                    echo mb_substr($val->companyName, 0, 8,"utf-8") . '...';
+                                }else{
+                                    echo $val->companyName;
+                                }?></a></td>
+                        <td align="left"><?=$val->category?></td>
+		                <td align="left"><?php if(strlen($val->introduction)>24) {
+                                echo mb_substr($val->introduction, 0, 8,"utf-8") . '...';
+                            }else{
+                                echo $val->introduction;
+                            }?></td>
 	                    <td align="center">
 	                        <?/*if($edit){*/?><a href="javascript:update('<?=$val->id?>','<?=$val->companyName?>')">修改</a>&nbsp;&nbsp;|<?/*}*/?>
 		                    <?/*if($delete){*/?>&nbsp;&nbsp;<a href="javascript:deleteOne('<?=$val->id?>')">删除</a><?/*}*/?>

@@ -1,7 +1,106 @@
 <?php
 $this->title = "首页";
 ?>
+<style>
+	.anchorBL{
+        display: none;
+    }
+	.foWindow{
+		height:40px;
+	}
+	.qw{
+		text-align: center;
+		font-size: 16px;
+		font-family: '微软雅黑';
+		color: #d52c40;
+	}
+	.zhanzhang{
+		list-style: none;
+		font-size: 14px;
+		font-family: '宋体';
+		color: #363636;
+	}
+	
+	.detail{
+		border:0px solid #fff;
+		margin:0 auto;
+		color:#fff;
+		font-size: 12px;
+		font-family: '宋体';
+		background-color: #eb304d;
+		width: 70px;
+		height: 23px;
+		border-radius: 3px;
+		margin-left: 85px;
+	}
+	
+	/* //左侧大盒子 */
 
+	#back{
+		position: absolute;
+		bottom:590px;
+		/* left:75%; */ 
+		z-index: 99999;
+		border:2px solid #fff;
+		color:#fff;
+		font-size: 12px;
+		font-family: '宋体';
+		background-color: #eb304d;
+		border-radius: 3px;		
+	}
+	.boxC{
+		position:relative;
+	}
+	.detailBox{
+		position: absolute;
+		bottom:260px;
+		/* left:21%;   */
+		width: 265px;
+		height: 355px;
+		background: #fff;
+		-webkit-box-shadow:0 0 20px rgba(192, 184, 186, .5);  
+  		-moz-box-shadow:0 0 20px rgba(192, 184, 186, .5);  
+ 		box-shadow:0 0 20px rgba(192, 184, 186, .5); 
+ 		display: none; 
+	}
+	.detailBox h2{
+		text-align: left;
+		font-size: 16px;
+		font-family: '微软雅黑';
+		color: #d52c40;
+		padding-left:12px; 
+		margin-top: 10px;
+	}
+	.pointList{
+		padding-left:12px; 
+		list-style: none;
+	}
+	.pointList li{
+		margin: 3px auto;
+	}
+	.detailBox h1{
+		font-size: 16px;
+		font-weight: 700;
+		text-align: center;
+		padding-top: 13px;
+		padding-bottom: 12px;
+		margin:0px;
+	}
+	.serviceLine{
+		margin:0px 12px;
+		margin-bottom: 3px;
+	}
+	.detailBox .address{
+		padding-left:12px; 
+	}
+	.detailBox .address img{
+		padding-right:5px; 
+	}
+	.detailBox .serviceMap{
+		width:265px;
+		height:137px;
+	}
+</style>
 <link rel="stylesheet" type="text/css" href="css/css/common.css">
 <link rel="stylesheet" type="text/css" href="css/css/index.css">
 <script type="text/javascript">
@@ -19,8 +118,11 @@ var trainDetailUrl = "<?=yii::$app->urlManager->createUrl('front/train-detail')?
 var ecCategoryUrl = "<?=yii::$app->urlManager->createUrl('ectrain/ec-category')?>";
 var serviceSiteUrl = "<?=Yii::$app->urlManager->createUrl('service-site/service-site')?>";
 var trainUrl = "<?=Yii::$app->urlManager->createUrl('front/train-notice')?>";
+var articleDictUrl = "<?=Yii::$app->urlManager->createUrl('article/index-dict')?>";
+var ecinfoUrl = "<?=Yii::$app->urlManager->createUrl('front/ec-info')?>";
 </script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=4cXNyMR23iSxTmEEzcyNcjdd6GuBvaef"></script>
+<script src="js/front/InfoBox_min.js"></script>
 <script type="text/javascript" src="js/front/index.js"></script>
 <script type="text/javascript" src="js/front/service_site.js"></script>
 
@@ -34,16 +136,16 @@ var trainUrl = "<?=Yii::$app->urlManager->createUrl('front/train-notice')?>";
 	</ol>
 	<div class="carousel-inner">
 		<div class="item active">
-			<a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>"><img class="center-block" alt="轮播图" src="images/images_index/banner1.jpg" /></a>
+			<a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>"><img class="center-block" alt="轮播图" src="<?=$pic1->url?>" /></a>
 		</div>
 		<div class="item">
-			<a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>"><img class="center-block" alt="轮播图" src="images/images_index/banner2.jpg" /></a>
+			<a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>"><img class="center-block" alt="轮播图" src="<?=$pic2->url?>" /></a>
 		</div>
 		<div class="item">
-			<a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>"><img class="center-block" alt="轮播图" src="images/images_index/banner3.jpg" /></a>
+			<a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>"><img class="center-block" alt="轮播图" src="<?=$pic3->url?>" /></a>
 		</div>
 		<div class="item">
-			<a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>"><img class="center-block" alt="轮播图" src="images/images_index/banner4.jpg" /></a>
+			<a href="<?=Yii::$app->urlManager->createUrl('front/ec-info')?>"><img class="center-block" alt="轮播图" src="<?=$pic4->url?>" /></a>
 		</div>
 	</div>
 </div>
@@ -53,22 +155,7 @@ var trainUrl = "<?=Yii::$app->urlManager->createUrl('front/train-notice')?>";
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 column column_mt">
-				<div class="redbar">
-				</div>
-				<span class="f_clearCss">电商资讯</span>
-				<a class="btn btn-default col-xs-12 col-sm-2 col-md-1 tabH tab_btn1 hover" role="button">
-					政策指引
-				</a>
-				<a class="btn btn-default col-xs-12 col-sm-2 col-md-1 tabH tab_btn2" role="button">
-					行业资讯
-				</a>
-				<a class="btn btn-default col-xs-12 col-sm-2 col-md-1 tabH tab_btn3" role="button">
-					企业资讯
-				</a>
-				<a class="btn btn-default col-xs-12 col-sm-2 col-md-1 tabH tab_btn4" role="button">
-					供求信息
-				</a>
-				
+				<!-- 接口 -->
 			</div>
 		</div>
 	</div>
@@ -97,7 +184,7 @@ var trainUrl = "<?=Yii::$app->urlManager->createUrl('front/train-notice')?>";
 <hr />
 <div class="container">
 	<div class="row ">
-		<div class="col-xs-12 col-sm-12 col-md-4 distance_b">
+		<div class="col-xs-12 col-sm-12 col-md-5  col-lg-4  distance_b">
 			<div id="slidershow3" class="carousel slide " data-ride="carousel" data-wrap="true" data-pause="hover" data-interval="5000"  >
 				<ol class="carousel-indicators point point_train">
 					<li class="active" data-target="#slidershow3" data-slide-to="0"></li>
@@ -111,17 +198,10 @@ var trainUrl = "<?=Yii::$app->urlManager->createUrl('front/train-notice')?>";
 				</div>
 			</div>
 		</div>
-		<ul class="col-xs-2 col-sm-2 col-md-2 train_img hidden-xs hidden-sm">
-			<!-- <li class="artist_hover"><a href="">美工培训</a></li>
-			<li class="service_hover"><a href="">前端培训</a></li>
-			<li class="sales_hover"><a href="">文案培训</a></li>
-			<li class="more_hover"><a href="">运营培训</a></li> -->
-			<!-- <a class="trainde" href="<?=Yii::$app->urlManager->createUrl('front/train-notice')?>"><img src="images/images_index/artist.png" alt="美工培训" class="img-responsive center-block artist_hover"></a>
-			<a href="<?=Yii::$app->urlManager->createUrl('front/train-notice')?>"><img src="images/images_index/service.png" alt="销售培训" class="img-responsive center-block service_hover"></a>
-			<a href="<?=Yii::$app->urlManager->createUrl('front/train-notice')?>"><img src="images/images_index/sales.png" alt="客服培训" class="img-responsive center-block sales_hover"></a>
-			<a href="<?=Yii::$app->urlManager->createUrl('front/train-notice')?>"><img src="images/images_index/more.png" alt="其它培训" class="img-responsive center-block more_hover"></a> -->
+		<ul class="col-xs-2 col-sm-2 col-md-1 col-lg-2 train_img hidden-xs hidden-sm">
+			
 		</ul>
-		<div class="col-xs-10 col-sm-10 col-md-6 ">
+		<div class="col-xs-10 col-sm-10 col-md-6 col-lg-6 ">
 			<div class="train_media">
 				<!-- 视频接口 -->
 
@@ -205,27 +285,33 @@ var trainUrl = "<?=Yii::$app->urlManager->createUrl('front/train-notice')?>";
 </div>
 <!-- 数据统计 -->
 <div class="zixun">
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12 column column_train">
-			<div class="redbar">
-			</div>
-			<span class="f_clearCss"><a  href="<?=Yii::$app->urlManager->createUrl('front/service-site')?>">服务站点</a></span>
-		</div>
-	</div>
-</div>
-<div class="header_c borderbottom">
 	<div class="container">
-		<div class="row" style="margin-left: 0px; margin-right: 0px;">
-			<div id="allmap" style="width:100%;height:500px;border: #ccc 1px solid;overflow: hidden;"></div>
+		<div class="row">
+			<div class="col-xs-12 column column_train">
+				<div class="redbar">
+				</div>
+				<span class="f_clearCss"><a  href="<?=Yii::$app->urlManager->createUrl('front/service-site')?>">服务站点</a></span>
+			</div>
 		</div>
 	</div>
-</div>
+	<div class="header_c borderbottom">
+		<div class="container">
+			<div class="row mapShadow">
+				<div id="allmap" ></div>
+			</div>
+		</div>
+	</div>
+	<div class="boxC">
+		<button id="back" class="clearfixed">回到中心点</button>
+		<div class="detailBox">
+			<!--接口-->
+		</div>  
+	</div>
 </div>
 
 <!-- 返回顶部 -->
 
-	<div class="return hidden-xs">
+	<div class="return hidden-xs hidden-sm  ">
 	</div>
 
 <!-- END返回顶部 -->

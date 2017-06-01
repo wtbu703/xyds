@@ -15,19 +15,29 @@ $this->title = '新闻列表';
         <table width="100%" cellspacing="0" id="user_list">
             <thead id="dict_list_head">
             <tr align="left">
-                <th width="80px"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th><th width="30px">序号</th><th width="360px">标题</th><th width="160px">作者</th><th width="160px">发布时间</th><th width="160px">信息类别</th><th align="center">操作</th>
+                <th width="50px" align="left"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th>
+                <th width="30px" align="left">序号</th>
+                <th width="200px" align="left">标题</th>
+                <th width="80px" align="left">作者</th>
+                <th width="100px" align="left">发布时间</th>
+                <th width="80px" align="left">信息类别</th>
+                <th width="100px" align="center">操作</th>
             </tr>
             </thead>
             <tbody id="user_list_body">
             <?if(!is_null($publicInfo)){?>
             <?php foreach ($publicInfo as $index => $val){?>
                 <tr align="left">
-                    <td><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
-                    <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->title?>')"><?=$val->title?></a></td>
-                    <td><?=$val->author?></td>
-                    <td><?=$val->published?></td>
-                    <td><?=$val->category?></td>
+                    <td align="left"><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
+                    <td align="left"><?=$index+$pages->page*$pages->pageSize+1?></td>
+                    <td align="left"><a href="javascript:detail('<?=$val->id?>','<?=$val->title?>')"><?php if(strlen($val->title)>45) {
+                                echo mb_substr($val->title, 0, 15,"utf-8") . '...';
+                            }else{
+                                echo $val->title;
+                            }?></a></td>
+                    <td align="left"><?=$val->author?></td>
+                    <td align="left"><?=substr($val->published,0,10)?></td>
+                    <td align="left"><?=$val->category?></td>
                     <td align="center">
                         <a href="javascript:openedit('<?=$val->id?>','<?=$val->title?>')">修改</a>&nbsp;&nbsp;
                         |&nbsp;&nbsp;<a href="javascript:deletePublicInfo('<?=$val->id?>')">删除</a>

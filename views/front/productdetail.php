@@ -1,4 +1,6 @@
-
+<?
+$this->title = '产品详情';
+?>
     <link rel="stylesheet" type="text/css" href="css/css/product_detials.css">
     <link rel="stylesheet" type="text/css" href="css/css/company.css">
     <script src="js/front/product_detials.js"></script>
@@ -12,7 +14,7 @@
 		var productAllUrl = "<?=Yii::$app->urlManager->createUrl('company-product/product-display')?>";
 	</script>
 
-    <img src="images/images_qy_cpxq/2banner.jpg" class="img-responsive"/>
+    <img src="<?=$pic?>" class="img-responsive"/>
 
 		<div class="container">
 		    	<div class="row">
@@ -46,7 +48,7 @@
 						 <img src="<?=$product['thumbnailUrl']?>" class="pro_pic img-responsive"/>
 						<p class="detials_p"><?=$product['name']?></p>
 						 <p class="detials_p">原价：<?=$product['price']?></p>
-						 <p class="detials_p">折后价：<?=($product['price'])*($product['discount'])?></p>
+						 <p class="detials_p">折后价：<?=($product['price'])*($product['discount']/10)?></p>
 						<p class="detials_p">简介</p>
 						<p class="detials_p"><?=$product['introduction']?></p>
 				     <?}?>

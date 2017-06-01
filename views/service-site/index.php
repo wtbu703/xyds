@@ -21,6 +21,7 @@ $this->title = '服务站点管理';
 	var addUrl = "<?=Yii::$app->urlManager->createUrl('service-site/add')?>";
 	var listallUrl  = "<?=Yii::$app->urlManager->createUrl('service-site/find-by-attri')?>";
 </script>
+
 <script type="text/javascript" src="js/admin/service-site/index.js"></script>
 
 <div class="subnav" id="display" >

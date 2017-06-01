@@ -5,7 +5,7 @@ function openedit(id,name) {
 	$.dialog.open(url,{
 		title: '修改企业--'+name,
 		width: 800,
-		height:600,
+		height:500,
 		lock: true,
 		border: false,
 		id: 'company_update',
@@ -38,25 +38,26 @@ function delopt(){
 			data:paraStr,
 			async: "false",
 			success: function (data) {
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除成功！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
-					$('#pageForm').submit();
 				});
 			},
 			error:function(data){
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除失败！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
 				});
 			}
@@ -78,25 +79,26 @@ function deleteCompany(id){
 			data:paraStr ,
 			async: "false",
 			success: function (data) {
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除成功！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
-					$('#pageForm').submit();
 				});
 			},
 			error:function(data){
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除失败！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
 				});
 			}
@@ -115,7 +117,7 @@ function detail(id,name){
 	$.dialog.open(url,{
 		title: '企业信息--'+name,
 		width: 800,
-		height:600,
+		height:500,
 		lock: true,
 		border: false,
 		id: 'company_detail',

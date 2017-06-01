@@ -13,6 +13,16 @@
 .header_r {
   float: right;
 }
+.shadow {
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#7a7475', Direction=135, Strength=10);
+  /*for ie6,7,8*/
+  -moz-box-shadow: -2px 2px 5px #7a7475;
+  /*firefox*/
+  -webkit-box-shadow: -2px 2px 5px #7a7475;
+  /*webkit*/
+  box-shadow: -2px 2px 5px #7a7475;
+  /*opera或ie9*/
+}
 .top_two {
   margin-top: 35px;
 }
@@ -126,9 +136,6 @@
   background: #ffffff;
   border-color: #00ccff;
 }
-.row_one {
-  margin-top: 20px;
-}
 .pagination > li > a {
   border: 1px solid #b5b5b5;
 }
@@ -142,47 +149,59 @@
 }
 /* 正文背景 */
 /* 页码颜色 */
-.content {
-  border: 1px #cfcdcd solid;
-  background-color: #f9f6f6;
+hr {
+  margin-top: 10px;
+  border: 0;
+  border-top: 1px solid #e4e4e4;
+  width: 90%;
+  margin-left: 15px;
 }
-.content h1 {
+.boxS {
+  border: 2px #dddad1 solid;
+  background-color: #ffffff;
+  border-radius: 4px;
+  height: 320px;
+  margin-top: 28px;
+}
+.content .boxS h1 {
   font-size: 20px;
   font-family: "微软雅黑";
   margin: 20px 15px;
 }
-.content .text {
+.content .boxS .text {
   float: left;
 }
-.content .text .time {
-  margin-top: 50px;
+.content .boxS .text .time {
   margin-left: 18px;
 }
-.content .text p {
+.content .boxS .text p {
   font-family: "微软雅黑";
   font-size: 14px;
   margin-left: 18px;
   margin-top: 5px;
 }
-.content .down {
+.content .boxS .down {
   position: absolute;
   bottom: 10px;
   right: 30px;
 }
-.content .btn_common1 {
+.content .boxS .btn_common1 {
   position: absolute;
   bottom: 10px;
   right: 30px;
-  border-color: #646464;
-  background-color: #FFF;
-  color: #000;
+  background-color: #40b5d3;
+  color: #fff;
 }
-.content .btn_common1:hover {
+.content .boxS .btn_common1:hover {
   color: #fff;
   background-color: #40b5d3;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  -moz-opacity: 0.8;
+  -khtml-opacity: 0.8;
   border-color: #40b5d3;
 }
-.content .btn_common2 {
+.content .boxS .btn_common2 {
   position: absolute;
   bottom: 10px;
   right: 30px;
@@ -192,14 +211,13 @@
   cursor: default;
 }
 /* 详情颜色 */
-.content .text p.detail {
-  margin-left: 20%;
-  margin-top: 25px;
+.content .boxS .text p.detail {
+  margin-left: 5%;
 }
-.content .text a {
+.content .boxS .text a {
   font-family: "微软雅黑";
   font-size: 16px;
-  color: #ff0000;
+  color: #d73455;
 }
 .row_page {
   margin-top: 20px;

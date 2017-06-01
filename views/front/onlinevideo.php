@@ -1,11 +1,15 @@
-
+<?
+$this->title = '在线视频';
+?>
 	<link href="css/css/online_video.css" rel="stylesheet">
 	<script src="js/front/online_video.js"></script>
 	<script type="text/javascript">
 		var videoUrl = "<?=Yii::$app->urlManager->createUrl('video/video-all')?>";
 		var videoDetailUrl = "<?=Yii::$app->urlManager->createUrl('front/video-detail')?>";
+		var videoDictUrl = "<?=Yii::$app->urlManager->createUrl('video/video-dict')?>";
 	</script>
-	<img class="img-responsive center-block hidden-xs" src="images/images_onlinevideo/banner.jpg" />
+<a href="<?=Yii::$app->urlManager->createUrl('front/online-video')?>"><img class="img-responsive center-block hidden-xs" src="<?=$pic?>" /></a>
+
 	<!-- content -->
 	<div class="container">
 	    <div class="row">
@@ -13,12 +17,12 @@
 				<div class="redbar">
 				</div>
 				<span class="">在线视频</span>
-				<a  class="btn btn-default col-xs-12 col-sm-2 col-md-1 tabH tab_btn1 hover" role="button">
+				<!-- <a  class="btn btn-default col-xs-12 col-sm-2 col-md-1 tabH tab_btn1 hover" role="button">
 					前端
 				</a>
 				<a class="btn btn-default col-xs-12 col-sm-2 col-md-1 tabH tab_btn2" role="button">
 					后台
-				</a>
+				</a> -->
 			</div>
 		</div>
 	</div>

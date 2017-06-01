@@ -1,100 +1,110 @@
 //页面校验
 $(function() {
-    $.formValidator.initConfig({
-        formid: "myform",
-        autotip: true,			//是否显示提示信息
-        onerror: function (msg, obj) {
-            window.top.art.dialog({content: msg, lock: true, width: '200', height: '50'}, function () {
-                this.close();
-                $(obj).focus();
-            })
-        }
-    });
+    $.formValidator.initConfig({ formID: "myform",autotip:true, onError: function () { alert("校验没有通过，具体错误请看错误提示") } });
+
     // 校验模型名称
     $("#name").formValidator({
-        onshow: "（必填）",
-        onfocus: "（必填）",
-        oncorrect: "（正确）"
+        onshow: "请填写项目名称",
+        onfocus: "项目名称1-18个字",
+        oncorrect: "输入正确"
     }).inputValidator({               //校验不能为空
         min:1,
         onerror:"请输入项目建设名称！"
+    }).regexValidator({
+        regexp:"^[\\u4E00-\\u9FA5A-Za-z0-9]{1,18}$",
+        onerror:"项目名称1-18个字！"
     });
     $("#address").formValidator({
-        onshow: "（必填）",
-        onfocus: "（必填）",
-        oncorrect: "（正确）"
+        onshow: "请输入详细的地址",
+        onfocus: "详细地址6-64个字",
+        oncorrect: "输入正确"
     }).inputValidator({               //校验不能为空
         min:1,
         onerror:"请输入详细地址！"
+    }).regexValidator({
+        regexp:"^.{6,64}$",
+        onerror:"详细地址6-64个字！"
     });
     $("#function").formValidator({
-        onshow: "（必填）",
-        onfocus: "（必填）",
-        oncorrect: "（正确）"
+        onshow: "请输入主要功能",
+        onfocus: "主要功能不超过18个字",
+        oncorrect: "输入正确"
     }).inputValidator({               //校验不能为空
         min:1,
         onerror:"请输入主要功能！"
+    }).regexValidator({
+        regexp:"^[\\u4E00-\\u9FA5A-Za-z0-9]{2,18}$",
+        onerror:"主要功能不超过18个字！"
     });
     $("#chargeName").formValidator({
-        onshow: "（必填）",
-        onfocus: "（必填）",
-        oncorrect: "（正确）"
+        onshow: "请输入负责人",
+        onfocus: "负责人不超过8个字",
+        oncorrect: "输入正确"
     }).inputValidator({               //校验不能为空
         min:1,
         onerror:"请输入负责人姓名！"
+    }).regexValidator({
+        regexp:"^[\\u4E00-\\u9FA5A-Za-z0-9]{1,8}$",
+        onerror:"负责人不超过8个字！"
     });
     $("#chargeMobile").formValidator({
-            onshow: "（必填）",
-            onfocus: "（必填）",
-            oncorrect: "（正确）"})
+            onshow: "请输入联系电话",
+            onfocus: "例如：13345126510",
+            oncorrect: "输入正确"})
         .inputValidator({               //校验不能为空
             min:1,
             onerror:"请输入联系电话！"})
         .regexValidator({
-            regexp:"mobile",
+            regexp:"^1(3|4|5|7|8)\\d{9}$mobile",
             datatype:"enum",
             param:'i',
             onerror:"联系电话填写不对！"
         });
     $("#code").formValidator({
-        onshow: "（必填）",
-        onfocus: "（必填）",
-        oncorrect: "（正确）"
+        onshow: "请输入服务站点ID",
+        onfocus: "只能输入数字",
+        oncorrect: "输入正确"
     }).inputValidator({               //校验不能为空
         min: 1,
         onerror: "请输入服务站ID！"
     });
     $("#isCountyLogistics").formValidator({
-        onshow: "（必填）",
+        onshow: "选择不能为空",
         onfocus: "（必填）请选择选项",
         oncorrect: "（正确）"
     }).inputValidator({
-        min: 0,  //开始索引
-        onerror: "请选择!"
+        min: 1,  //开始索引
+        onerror: "你是不是忘记选择了!"
     });
     $("#isTownLogistics").formValidator({
-        onshow: "（必填）",
+        onshow: "选择不能为空",
         onfocus: "（必填）请选择选项",
         oncorrect: "（正确）"
     }).inputValidator({
-        min: 0,  //开始索引
-        onerror: "请选择!"
+        min: 1,  //开始索引
+        onerror: "你是不是忘记选择了!"
     });
     $("#config").formValidator({
-        onshow: "（必填）",
-        onfocus: "（必填）",
-        oncorrect: "（正确）"
+        onshow: "请输入设施配置",
+        onfocus: "设施配置不超过18个字",
+        oncorrect: "输入正确"
     }).inputValidator({               //校验不能为空
         min:1,
         onerror:"请输入设施配置！"
+    }).regexValidator({
+        regexp:"^.{2,18}$",
+        onerror:"设施配置不超过18个字！"
     });
     $("#centralSupportContent").formValidator({
-        onshow: "（必填）",
-        onfocus: "（必填）",
-        oncorrect: "（正确）"
+        onshow: "请输入建设内容",
+        onfocus: "建设内容不超过18个字",
+        oncorrect: "输入正确"
     }).inputValidator({               //校验不能为空
         min:1,
-        onerror:"请输入！"
+        onerror:"请输入建设内容！"
+    }).regexValidator({
+        regexp:"^[\\u4E00-\\u9FA5A-Za-z0-9]{1,18}$",
+        onerror:"建设内容不超过18个字！"
     });
     $("#buildProgress").formValidator({
         onshow: "（必填）",
@@ -110,7 +120,7 @@ $(function() {
         oncorrect: "（正确）"
     }).inputValidator({               //校验不能为空
         min:1,
-        onerror:"请输入！"
+        onerror:"请输入数字！"
     });
     $("#centralPaid").formValidator({
         onshow: "（必填）",
@@ -118,7 +128,7 @@ $(function() {
         oncorrect: "（正确）"
     }).inputValidator({               //校验不能为空
         min:1,
-        onerror:"请输入！"
+        onerror:"请输入数字！"
     });
     $("#localSupport").formValidator({
         onshow: "（必填）",
@@ -126,7 +136,7 @@ $(function() {
         oncorrect: "（正确）"
     }).inputValidator({               //校验不能为空
         min:1,
-        onerror:"请输入！"
+        onerror:"请输入数字！"
     });
     $("#companyPaid").formValidator({
         onshow: "（必填）",
@@ -134,27 +144,33 @@ $(function() {
         oncorrect: "（正确）"
     }).inputValidator({               //校验不能为空
         min:1,
-        onerror:"请输入！"
+        onerror:"请输入数字！"
     });
     $("#organizer").formValidator({
-        onshow: "（必填）",
-        onfocus: "（必填）",
-        oncorrect: "（正确）"
+        onshow: "请输入承办单位",
+        onfocus: "承办单位不能超过18个字",
+        oncorrect: "输入正确"
     }).inputValidator({               //校验不能为空
         min:1,
         onerror:"请输入项目承办单位！"
+    }).regexValidator({
+        regexp:"^.{2,18}$",
+        onerror:"承办单位不能超过18个字！"
     });
     $("#chargeName1").formValidator({
-        onshow: "（必填）",
-        onfocus: "（必填）",
-        oncorrect: "（正确）"
+        onshow: "请输入负责人",
+        onfocus: "负责人不超过8个字",
+        oncorrect: "输入正确"
     }).inputValidator({               //校验不能为空
         min:1,
         onerror:"请输入承办单位负责人！"
+    }).regexValidator({
+        regexp:"^[\\u4E00-\\u9FA5A-Za-z0-9]{1,8}$",
+        onerror:"负责人不超过8个字！"
     });
     $("#chargeMobile1").formValidator({
             onshow: "（必填）",
-            onfocus: "（必填）",
+            onfocus: "例如：13345126510",
             oncorrect: "（正确）"})
         .inputValidator({               //校验不能为空
             min:1,
@@ -174,12 +190,15 @@ $(function() {
         onerror:"请输入！"
     });
     $("#publicInfoUrl").formValidator({
-        onshow: "（必填）",
-        onfocus: "（必填）",
-        oncorrect: "（正确）"
+        onshow: "请输入网址",
+        onfocus: "例如：https://www.baidu.com/",
+        oncorrect: "输入正确"
     }).inputValidator({               //校验不能为空
         min:1,
         onerror:"请输入！"
+    }).regexValidator({
+        regexp:"[a-zA-z]+://[^\\s]*",
+        onerror:"网址格式错误"
     });
 });
 

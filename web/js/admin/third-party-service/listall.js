@@ -5,7 +5,7 @@ function update(siteId,siteName) {
 	$.dialog.open(url,{
 		title: '修改'+siteName+'信息',
 		width: 800,
-		height:600,
+		height:500,
 		lock: true,
 		border: false,
 		id: 'site_update',
@@ -20,7 +20,7 @@ function detail(siteId,siteName){
     $.dialog.open(url,{
         title: siteName+'信息',
         width: 800,
-        height:600,
+        height:500,
         lock: true,
         border: false,
         id: 'site_detail',
@@ -49,7 +49,6 @@ function deleteOne(siteId) {
                         width: 250,
                         height: 80,
                         border: false,
-                        time: 2
                     }, function () {
                         $('#pageForm').submit();
                     });
@@ -60,7 +59,6 @@ function deleteOne(siteId) {
                         width: 250,
                         height: 80,
                         border: false,
-                        time: 2
                     }, function () {
                     });
                 }
@@ -72,7 +70,6 @@ function deleteOne(siteId) {
                     width: 250,
                     height: 80,
                     border: false,
-                    time: 2
                 }, function () {
                 });
             }
@@ -112,15 +109,15 @@ function deleteMore() {
 			async: "false",
 			success: function (data) {
                 if(data=='success'){
+                    $('#pageForm').submit();
                     window.top.art.dialog({
                         content: '删除成功！',
                         lock: true,
                         width: 250,
                         height: 80,
                         border: false,
-                        time: 2
+                        time:2
                     }, function () {
-                        $('#pageForm').submit();
                     });
                 }else{
                     window.top.art.dialog({
@@ -129,19 +126,20 @@ function deleteMore() {
                         width: 250,
                         height: 80,
                         border: false,
-                        time: 2
+                        time:2
                     }, function () {
                     });
                 }
 			},
 			error:function(){
+                $('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除失败！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+                    time:2
 				}, function () {
 				});
 			}

@@ -188,14 +188,17 @@ class PicController extends Controller{
 		$pic = Pic::findOne($id);
 		$picUrl = $pic->url;
 		$pic->category = Yii::$app->request->post('category');
-		$pic->url = Yii::$app->request->post('url');
+		$url = Yii::$app->request->post('url');
+		if($url != ''){
+			$pic->url = $url;
+		}
 		if($pic->save()){
 			if(is_file($picUrl)){
 				unlink($picUrl);
 			}
 			return "success";
 		}else{
-			return false;
+			return "false";
 		}
 	}
 
@@ -209,5 +212,34 @@ class PicController extends Controller{
 			->where('category = :category',[':category'=>$category])
 			->all();
 		return Json::encode($pics);
+	}
+	/**
+	 * 上传照片
+	 * @return string
+	 */
+	public function actionUpload(){
+
+		$category = Yii::$app->request->post('category');
+		if($category == 0||$category == 1||$category == 2||$category == 3){
+			$cate = "index_banner";
+		}else{
+			$cate = "other_banner";
+		}
+		if (Yii::$app->request->isPost) {
+
+			$fileArg = Common::upload($_FILES,true,false, $cate,2048000);
+			return $this->render('upload',[
+					"fileArg" => $fileArg,
+					"tag" => $fileArg['tag'],
+			]);
+		}
+		return $this->render('upload',[
+				"tag" => "empty",
+				"fileArg" =>[
+						"fileName" => "",     //保存到数据库的文件名称
+						"fileSaveUrl" =>"",//上传文件保存的路径
+						"tag" => "",//当为success表示上传成功，当为error时表示文件过大或是文件类型不对
+				],
+		]);
 	}
 }

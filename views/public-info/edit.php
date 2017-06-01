@@ -14,7 +14,7 @@ $this->title = "修改信息";
             a = "<?=$val->dictItemName?>";
         }
         <?}?>
-        a = a+'时间';
+        a = a+'时间：';
         timeText.html(a);
     }
 </script>
@@ -29,23 +29,25 @@ $this->title = "修改信息";
             </ul>
             <div id="div_setting_1" class="contentList pad-10">
                 <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
-                    <table width="90%" cellspacing="0" class="table_form contentWrap">
+                    <table width="100%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-                            <th width="100px">标题：</th>
+                            <th width="100px"  align="right"><sub class="redstar">*</sub>标题：</th>
                             <td><input type="text" id="title"  class="input-text" style="width:270px;" value="<?=$publicInfo->title?>"/></td>
                             <input type="hidden" id="id" value="<?=$publicInfo->id?>" />
+                            <td class="one"><div id="titleTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">作者：</th>
+                            <th  align="right"><sub class="redstar">*</sub>作者：</th>
                             <td><input type="text" id="author"  class="input-text" style="width:270px;" value="<?=$publicInfo->author?>" /></td>
+                            <td class="one"><div id="authorTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">内容：</th>
-                            <td><textarea style="width:550px;height:150px;" name="content" id="content" ><?=$publicInfo->content?></textarea></td>
+                            <th  align="right">内容：</th>
+                            <td colspan="2"><textarea style="width:550px;height:150px;" name="content" id="content" ><?=$publicInfo->content?></textarea></td>
                         </tr>
                         <tr>
-                            <th width="100">类别：</th>
+                            <th align="right"><sub class="redstar">*</sub>类别：</th>
                             <td><select style="width:270px;" id="category">
                                     <?foreach($cateGory as $key => $val){?>
                                         <?if(intval($val->dictItemCode) == $publicInfo->category){?>
@@ -55,9 +57,10 @@ $this->title = "修改信息";
                                         <?}?>
                                     <?}?>
                                 </select></td>
+                            <td class="one"><div id="categoryTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">状态：</th>
+                            <th  align="right">状态：</th>
                             <td><select style="width:270px;" id="state" onmouseout="get_status()">
                                     <?foreach($state as $key => $val){?>
                                         <?if(intval($val->dictItemCode) == $publicInfo->state){?>
@@ -67,10 +70,11 @@ $this->title = "修改信息";
                                         <?}?>
                                     <?}?>
                                 </select></td>
+                            <td class="one"><div id="stateTip"></div></td>
                         </tr>
                         <tr>
-                            <th class="time_text"></th>
-                            <td><input id="datetime" name="datetime" type="text" <?php if(!is_null($info)){?> value="<?=$info->time?>" <?}?> class="date">
+                            <th class="time_text" align="right"></th>
+                            <td colspan="2"><input id="datetime" name="datetime" type="text" <?php if(!is_null($info)){?> value="<?=$info->time?>" <?}?> class="date">
                                 <script type="text/javascript">
                                     Calendar.setup({
                                         weekNumbers: true,
@@ -84,12 +88,12 @@ $this->title = "修改信息";
                                 </script></td>
                         </tr>
                         <tr>
-                            <th width="100">附件名称：</th>
-                            <td><?=$publicInfo->attachName?></td>
+                            <th align="right">附件名称：</th>
+                            <td colspan="2"><?=$publicInfo->attachName?></td>
                         </tr>
                         <tr>
-                            <th width="100">修改附件：</th>
-                            <td>
+                            <th  align="right">修改附件：</th>
+                            <td colspan="2">
                                 <input type="text" style="display:none;" name="attachUrls" id="attachUrls" class="input-text"/>
                                 <input type="text" style="display:none;" name="attachNames" id="attachNames" class="input-text"/>
                                 <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('public-info/upload')?>"></iframe>

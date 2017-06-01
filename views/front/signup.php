@@ -6,10 +6,12 @@ $this->title = "电商培训报名";
 
 <script type="text/javascript">
 	var addUrl = "<?=Yii::$app->urlManager->createUrl('front/sign')?>";
+	var trainDetailUrl = "<?=Yii::$app->urlManager->createUrl('front/train-detail')?>";
+	var trainId = "<?=$trainId?>";
 </script>
 
 <script type="text/javascript" src="js/front/signup.js"></script>
-<img class="img-responsive hidden-xs" src="images/images_contactus/banner.jpg" alt="banner">
+<a href="<?=Yii::$app->urlManager->createUrl('front/online-video');?>"><img class="img-responsive hidden-xs" src="<?=$pic?>" alt="banner"></a>
 <!-- 主体 -->
 <div class="fluid-container BG">
 	<div class="content">

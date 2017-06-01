@@ -7,7 +7,7 @@ $this->title = '关于我们';
 
 	
 <!-- banner -->
-<img class="img-responsive hidden-xs" src="images/usercenter/banner_yhzx.jpg" alt="banner">
+<img class="img-responsive hidden-xs" src="<?=$pic?>" alt="banner">
 <!-- End banner -->
 
 <!-- 主体 -->
@@ -24,10 +24,11 @@ $this->title = '关于我们';
 	<div class="row row_top">
 		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
 			<ul class="list-group content_left public_shadow " id="content_left">
-				<li class="list_first"><img src="images/third_details/xinxi_icon1.png"><span>&nbsp;联系我们</span></li>
+
 				<li class="list_item1 list_on"><a href="<?=Yii::$app->urlManager->createUrl('front/about')?>">关于我们</a></li>
 				<li class="list_item1 "><a href="<?=Yii::$app->urlManager->createUrl('front/contactus')?>">个人资料上传</a></li>
 			</ul>
+			<div class="gongao">联系我们</div>
 		</div>
 		<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
 			<div class="box clearfix">

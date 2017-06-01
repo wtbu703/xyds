@@ -43,9 +43,9 @@ class Company extends \yii\db\ActiveRecord
             [['id'], 'string', 'max' => 40],
             [['name'], 'string', 'max' => 48],
             [['logoUrl', 'webSite'], 'string', 'max' => 64],
-            [['tel'], 'string', 'max' => 16],
-            [['address'], 'string', 'max' => 32],
-            [['corporate', 'sources'], 'string', 'max' => 8],
+            [['tel', 'sources'], 'string', 'max' => 32],
+            [['address'], 'string', 'max' => 128],
+            [['corporate'], 'string', 'max' => 16],
         ];
     }
 

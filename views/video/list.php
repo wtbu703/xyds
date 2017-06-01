@@ -30,13 +30,11 @@ $this->title =  '视频列表';
                     <div class="explain-col">
                         <div>
                             名字：
-                            <input id="name" name="name" type="text" value="" class="input-text" />
+                            <input id="name" name="name" style="width: 175px;" type="text" value="" class="input-text" />
                             来源：
-                            <input id="source" type="text" name="source" value="" class="input-text" />
-                            来源种类：
-                            <select id="sign" style='width:135px' name="sign"></select>
-                            状态：
-                            <select id="state" style='width:135px' name="state"></select>
+                            <input id="source" type="text" style="width: 175px;" name="source" value="" class="input-text" />
+                            视频种类：
+                            <select id="sign" style='width:175px' name="sign"></select>
                             &nbsp;<input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
                             <div class = "checkTip" style="float:right;margin-right:40%;color:red;">
                             </div>

@@ -15,12 +15,13 @@ function ziXun(newsType){
             $.each(data,function(i,n){
                 var taday = time(n.datetime);
                 var html_text = rhtml(n.content);
+                var picTp = imgTp(n.picUrl,'newsImages');
                 if(i == 0){
                     zixun_html.push('<div class="col-xs-12 col-sm-12 col-md-4 distance_b">');
                     zixun_html.push('<div class="carousel-inner zixun_banner" >');
                     zixun_html.push('<div class="item active">');
                     zixun_html.push('<a target="_blank" href="'+ecInfoDetailUrl+'&articleId='+n.id+'">');
-                    zixun_html.push('<img class="center-block" src="'+ n.picUrl +'" alt="年货大战" />');
+                    zixun_html.push('<img class="center-block" src="'+ picTp +'" alt="年货大战" />');
                     zixun_html.push('</a>');
                     zixun_html.push('<div class="zixun_text">');
                     zixun_html.push('<h5><a target="_blank" href="'+ecInfoDetailUrl+'&articleId='+n.id+'">'+ n.title +'</a></h5>');
@@ -35,7 +36,7 @@ function ziXun(newsType){
                     if (i == 1 || i == 7) {
                         zixun_html.push('<div class="col-xs-12 col-sm-12 col-md-4 zixun_camera">');
                         zixun_html.push('<a target="_blank" href="'+ecInfoDetailUrl+'&articleId='+n.id+'">');
-                        zixun_html.push('<img class="img-responsive " src="' + n.picUrl + '" alt="新闻图片">');
+                        zixun_html.push('<img class="img-responsive " src="' + picTp + '" alt="新闻图片">');
                         zixun_html.push('</a>');
                         zixun_html.push('<ul >');
                     } else {
@@ -112,27 +113,27 @@ function row_public(id){
         dataType: "json",
         success:function(data){
             rowpublic_html.push('<div class="row">');
-            rowpublic_html.push('<div class="col-xs-12 tender"><span class="col-xs-3 tender_process testq">招标公示</span><img class="col-xs-1 img-responsive" src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">招标报名</span><img class="col-xs-1 " class="col-xs-1 img-responsive " src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">资格审查</span></div>');
+            rowpublic_html.push('<div class="col-xs-12 tender"><span class="col-xs-3 tender_process testq">招标公示</span><img class="col-xs-1 img-responsive  center-block" src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">招标报名</span><img class="col-xs-1 " class="col-xs-1 img-responsive center-block" src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">资格审查</span></div>');
             rowpublic_html.push('</div>');
             rowpublic_html.push('<div class="row">');
             rowpublic_html.push('<div class="col-xs-12 tender tender_time"><span class="col-xs-3 tender_times"></span><div class="col-xs-1"></div><span class="col-xs-3 tender_times"> </span><div class="col-xs-1"></div><span class="col-xs-3 tender_times"> </span></div>');
             rowpublic_html.push('</div>');
             rowpublic_html.push('<div class="row">');
-            rowpublic_html.push('<div class="col-xs-12 tender_img "><div class="col-xs-3"></div><div class="col-xs-1"></div><div class="col-xs-3"></div><div class="col-xs-1"></div><div class="col-xs-3"><img class=" " src="images/images_index/xinxi_arrow2.png" alt=""></div></div>');
+            rowpublic_html.push('<div class="col-xs-12 tender_img "><div class="col-xs-3"></div><div class="col-xs-1"></div><div class="col-xs-3"></div><div class="col-xs-1"></div><div class="col-xs-3"><img class=" img-responsive center-block" src="images/images_index/xinxi_arrow2.png" alt=""></div></div>');
             rowpublic_html.push('</div>');
 
             rowpublic_html.push('<div class="row">');
-            rowpublic_html.push('<div class="col-xs-12 tender"><span class="col-xs-3 tender_process">缴保证金</span><img class="col-xs-1 img-responsive" src="images/images_index/xinxi_arrow1.png" alt=""><span class="col-xs-3 tender_process">编制文件</span><img class="col-xs-1 " class="col-xs-1 img-responsive " src="images/images_index/xinxi_arrow1.png" alt=""><span class="col-xs-3 tender_process">招标答疑</span></div>');
+            rowpublic_html.push('<div class="col-xs-12 tender"><span class="col-xs-3 tender_process">缴保证金</span><img class="col-xs-1 img-responsive center-block" src="images/images_index/xinxi_arrow1.png" alt=""><span class="col-xs-3 tender_process">编制文件</span><img  class="col-xs-1 img-responsive center-block" src="images/images_index/xinxi_arrow1.png" alt=""><span class="col-xs-3 tender_process">招标答疑</span></div>');
             rowpublic_html.push('</div>');
             rowpublic_html.push('<div class="row">');
             rowpublic_html.push('<div class="col-xs-12 tender tender_time"><span class="col-xs-3 tender_times"> </span><div class="col-xs-1"></div><span class="col-xs-3 tender_times"> </span><div class="col-xs-1"></div><span class="col-xs-3 tender_times"> </span></div>');
             rowpublic_html.push('</div>');
             rowpublic_html.push('<div class="row">');
-            rowpublic_html.push('<div class="col-xs-12 tender_img "><div class="col-xs-3"><img class=" " src="images/images_index/xinxi_arrow2.png" alt=""></div><div class="col-xs-1"></div><div class="col-xs-3"></div><div class="col-xs-1"></div><div class="col-xs-3"></div></div>');
+            rowpublic_html.push('<div class="col-xs-12 tender_img "><div class="col-xs-3"><img class="img-responsive center-block" src="images/images_index/xinxi_arrow2.png" alt=""></div><div class="col-xs-1"></div><div class="col-xs-3"></div><div class="col-xs-1"></div><div class="col-xs-3"></div></div>');
             rowpublic_html.push('</div>');
 
             rowpublic_html.push('<div class="row">');
-            rowpublic_html.push('<div class="col-xs-12 tender"><span class="col-xs-3 tender_process">开标定标</span><img class="col-xs-1 img-responsive" src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">中标公示</span><img class="col-xs-1 " class="col-xs-1 img-responsive " src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">发招标书</span></div>');
+            rowpublic_html.push('<div class="col-xs-12 tender"><span class="col-xs-3 tender_process">开标定标</span><img class="col-xs-1 img-responsive center-block" src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">中标公示</span><img  class="col-xs-1 img-responsive center-block" src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">发招标书</span></div>');
             rowpublic_html.push('</div>');
             rowpublic_html.push('<div class="row">');
             rowpublic_html.push('<div class="col-xs-12 tender tender_time"><span class="col-xs-3 tender_times"> </span><div class="col-xs-1"></div><span class="col-xs-3 tender_times"> </span><div class="col-xs-1"></div><span class="col-xs-3 tender_times"> </span></div>');
@@ -165,7 +166,32 @@ function scroll(){
 
 $(document).ready(function(){
     //电商资讯
-    ziXun(0);
+    
+    //首页选项卡标题
+    var column_mt = $('.column_mt');
+    var column_mt_html = [];
+    $.ajax({
+        url: articleDictUrl,
+        type: "post",
+        dataType: "json",
+        async: false,
+        success:function(data){
+            column_mt_html.push('<div class="redbar"></div><span class="f_clearCss"><a>电商资讯</a></span>');
+            $.each(data,function(i,n){
+                if(i == 0){
+                    column_mt_html.push('<a class="btn btn-default col-xs-12 col-sm-2 col-md-2 col-lg-1 tabH tab_btn1 hover" role="button">'+ n.dictItemName +'</a>');
+                }else {
+                    column_mt_html.push('<a class="btn btn-default col-xs-12 col-sm-2 col-md-2 col-lg-1 tabH tab_btn1" role="button">' + n.dictItemName + '</a>');
+                }
+            })
+            column_mt.append(column_mt_html.join(''));
+        },
+        error:function(){
+            
+        }
+    });
+
+    ziXun(1);
 
     //电商培训
     var train = $('.row_train');
@@ -176,9 +202,9 @@ $(document).ready(function(){
         dataType:"json",
         async: false,
         success:function(data){
-                var content = rhtml(data[0].name);
-                var content1 = rhtml(data[1].name);
-                var content2 = rhtml(data[2].name);
+                var content = rhtml(data[0].content);
+                var content1 = rhtml(data[1].content);
+                var content2 = rhtml(data[2].content);
                 train_html.push('<div class="item active">');
                 train_html.push('<a target="_blank" href="'+trainDetailUrl+'&id='+data[0].id+'"><img class="center-block" src="'+ data[0].thumbnailUrl +'" alt="新闻图片" /></a>');
                 train_html.push('<div class="zixun_text">');
@@ -221,17 +247,16 @@ $(document).ready(function(){
         dataType: "json",
         async: false,
         success:function(data){
-            train_img_html.push('<li class="artist_hover"><a target="_blank" href="'+trainUrl+'&type='+ data[0] +'">'+ data[0] +'</a></li>');
-            train_img_html.push('<li class="service_hover"><a target="_blank" href="'+trainUrl+'&type='+ data[1] +'">'+ data[1] +'</a></li>');
-            train_img_html.push('<li class="sales_hover"><a target="_blank" href="'+trainUrl+'&type='+ data[2] +'">'+ data[2] +'</a></li>');
-            train_img_html.push('<li class="more_hover"><a target="_blank" href="'+trainUrl+'&type='+ data[3] +'">'+ data[3] +'</a></li>');
+            train_img_html.push('<li class="artist_hover"><img class="img-responsive center-block" src="images/images_index/artist0.png" alt="" /><div><a target="_blank" href="'+trainUrl+'&type='+ data[0] +'">'+ data[0] +'</a></div></li>');
+            train_img_html.push('<li class="service_hover"><img class="img-responsive center-block" src="images/images_index/artist1.png" alt="" /><div><a target="_blank" href="'+trainUrl+'&type='+ data[1] +'">'+ data[1] +'</a></div></li>');
+            train_img_html.push('<li class="sales_hover"><img class="img-responsive center-block" src="images/images_index/artist2.png" alt="" /><div><a target="_blank" href="'+trainUrl+'&type='+ data[2] +'">'+ data[2] +'</a></div></li>');
+            train_img_html.push('<li class="more_hover"><img class="img-responsive center-block" src="images/images_index/artist3.png" alt="" /><div><a target="_blank" href="'+trainUrl+'&type='+ data[3] +'">'+ data[3] +'</a></div></li>');
             train_img.append(train_img_html.join(''));
         },
         error:function(){
             
         }
     });
-
 
     //在线视频
     var onlineVideo = $('.train_media');
@@ -252,7 +277,7 @@ $(document).ready(function(){
                     onlineVideo_html.push('<source src="' + n.url + '" type="video/mp4" />');
                     onlineVideo_html.push('<source src="' + n.url + '" type="video/ogg" />');
                     onlineVideo_html.push('<source src="' + n.url + '" type="video/webm" />');
-                    onlineVideo_html.push('<object data="' + n.url + '" ><embed src="' + n.url + '"  /></object>');
+                    onlineVideo_html.push('<object ><embed src="' + n.url + '"  /></object>');
                     onlineVideo_html.push('</video>');
                 }else{
                     onlineVideo_html.push('<embed class="urlVdieo" src="http://player.youku.com/player.php/sid/'+n.url+'/v.swf"allowFullScreen="true" quality="high" controls="controls"allowScriptAccess="always" type="application/x-shockwave-flash"></embed>');
@@ -347,28 +372,36 @@ $(document).ready(function(){
 
     //图片替换  
     $(".artist_hover").mouseover(function(){
-        $(".artist_hover").css("background","url(images/images_index/meigong0.png)").children().css('display','block');
+        $(".artist_hover img").attr('src','images/images_index/meigong0.png');
+        $(".artist_hover a").css('display','block');
      });        
     $(".service_hover").mouseover(function(){
-        $(".service_hover").css("background","url(images/images_index/meigong1.png)").children().css('display','block');
+        $(".service_hover img").attr('src','images/images_index/meigong1.png');
+        $(".service_hover a").css('display','block');
     });
     $(".sales_hover").mouseover(function(){
-        $(".sales_hover").css("background","url(images/images_index/meigong2.png)").children().css('display','block');
+        $(".sales_hover img").attr('src','images/images_index/meigong2.png');
+        $(".sales_hover a").css('display','block');
     });
     $(".more_hover").mouseover(function(){
-        $(".more_hover").css("background","url(images/images_index/meigong3.png)").children().css('display','block');
+        $(".more_hover img").attr('src','images/images_index/meigong3.png');
+        $(".more_hover a").css('display','block');
     });
     $(".artist_hover").mouseout(function(){
-        $(".artist_hover").css("background","url(images/images_index/artist0.png)").children().css('display','none');    
+        $(".artist_hover img").attr('src','images/images_index/artist0.png'); 
+        $(".artist_hover a").css('display','none');
     });
     $(".service_hover").mouseout(function(){
-        $(".service_hover").css("background","url(images/images_index/artist1.png)").children().css('display','none');
+        $(".service_hover img").attr('src','images/images_index/artist1.png'); 
+        $(".service_hover a").css('display','none');
     });
     $(".sales_hover").mouseout(function(){
-        $(".sales_hover").css("background","url(images/images_index/artist2.png)").children().css('display','none');
+        $(".sales_hover img").attr('src','images/images_index/artist2.png'); 
+        $(".sales_hover a").css('display','none');
     });
     $(".more_hover").mouseout(function(){
-        $(".more_hover").css("background","url(images/images_index/artist3.png)").children().css('display','none');
+        $(".more_hover img").attr('src','images/images_index/artist3.png'); 
+        $(".more_hover a").css('display','none');
     });
     
 
@@ -385,31 +418,41 @@ $(document).ready(function(){
     //鼠标移动事件
     var $tab_redbar = $('.zixun');
     var $redbar = $('.zixun .container .row .column .redbar');
+    var $f_clearCss = $('.f_clearCss a');
     
     $tab_redbar.mouseover(function(){
         var index1 = $tab_redbar.index(this);
         $($redbar).eq(index1).css('background-color','#d73455');
+        $($f_clearCss).eq(index1).css('color','#d73455');
     });
     $tab_redbar.mouseout(function(){
         var index1 = $tab_redbar.index(this);
         $($redbar).eq(index1).css('background-color','#3bb8db');
+        $($f_clearCss).eq(index1).css('color','#000000');
     });
 
     //跳转链接
     $('.f_clearCss').click(function(){
-        window.location="/xyds1/web/index.php?r=front%2Fec-info";
+        window.location=ecinfoUrl;
     });
 
     //返回顶部
+    var rwidth = ($(window).width()-$('.container').width())/2-44;
+    $('.return').css('right',rwidth);
+    
     $('.return').click(function(){
          $(window).scrollTop(0,0);
          $('.return').hide();
     })
-   
     scroll();
-
     $(window).scroll( function() { 
         scroll();
     })
+
+    //回到中心点位置调整
+    $('#back').css("right",rwidth+64);
+
+    //详情位置调整
+    $('.detailBox').css("left",rwidth+64);
     
 })

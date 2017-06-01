@@ -18,8 +18,8 @@ $this->title = "修改培训信息";
         var a;
         var timeText = $('.pic_text4');
         a = document.myform.thumbnailUrl.value;
-        a = "<img src='"+a+"'  width='60%'>";
-        timeText.html(a);
+        var ar = "<img src='"+a+"'  width='60%'>";
+        timeText.html(ar);
     }
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/ectrain/edit.js" charset="utf-8"></script>
@@ -36,13 +36,14 @@ $this->title = "修改培训信息";
                     <table width="100%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-                            <th width="100px">培训名：</th>
-                            <td><input type="text" style="width:250px;" name="name" id="name" value="<?=$ectrain->name?>" /></td>
+                            <th width="100px" align="right"><sub class="redstar">*</sub>培训名称：</th>
+                            <td><input type="text" style="width:268px;height: 30px;" name="name" id="name" value="<?=$ectrain->name?>" /></td>
+                            <td class="one"><div id="nameTip"></div></td>
                             <input type="hidden" id="id" value="<?=$ectrain->id?>"
                         </tr>
                         <tr>
-                            <th>培训类别：</th>
-                            <td><select style="width:270px;" id="category">
+                            <th align="right"><sub class="redstar">*</sub>培训类别：</th>
+                            <td><select style="width:268px;height: 40px;"  id="category">
                                     <?foreach($categorydict as $key => $val){?>
                                         <?if(intval($val->dictItemCode) == $ectrain->category){?>
                                             <option name="category" value="<?=$val->dictItemCode?>" selected><?=$val->dictItemName?></option>
@@ -51,18 +52,20 @@ $this->title = "修改培训信息";
                                         <?}?>
                                     <?}?>
                                 </select></td>
+                            <td class="one"><div id="categoryTip"></div></td>
                         </tr>
                         <tr>
-                            <th>内容：</th>
-                            <td><textarea style="width:500px;height:100px;" name="content" id="content" ><?=$ectrain->content?></textarea></td>
+                            <th align="right">内容：</th>
+                            <td colspan="2"><textarea style="width:500px;height:100px;" name="content" id="content" ><?=$ectrain->content?></textarea></td>
                         </tr>
                         <tr>
-                            <th>天数：</th>
-                            <td><input type="text" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" style="width:250px;" name="dayNum" id="dayNum" value="<?=$ectrain->dayNum?>" /></td>
+                            <th align="right"><sub class="redstar">*</sub>天数：</th>
+                            <td><input type="text"  onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" style="width:268px;height: 30px;" name="dayNum" id="dayNum" value="<?=$ectrain->dayNum?>" /></td>
+                            <td class="one"><div id="dayNumTip"></div></td>
                         </tr>
                         <tr>
-                            <th>期数：</th>
-                            <td><select style="width:270px;" id="period">
+                            <th align="right"><sub class="redstar">*</sub>期数：</th>
+                            <td><select style="width:268px;height: 40px;"  id="period">
                                     <?foreach($perioddict as $key => $val){?>
                                         <?if(intval($val->dictItemCode) == $ectrain->category){?>
                                             <option name="period" value="<?=$val->dictItemCode?>" selected><?=$val->dictItemName?></option>
@@ -72,14 +75,16 @@ $this->title = "修改培训信息";
                                     <?}?>
                                 </select>
                             </td>
+                            <td class="one"><div id="periodTip"></div></td>
                         </tr>
                         <tr>
-                            <th>人数：</th>
-                            <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="peopleNum" id="peopleNum" value="<?=$ectrain->peopleNum?>" ></td>
+                            <th align="right"><sub class="redstar">*</sub>人数：</th>
+                            <td><input type="text" style="width:268px;height: 30px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="peopleNum" id="peopleNum" value="<?=$ectrain->peopleNum?>" ></td>
+                            <td class="one"><div id="peopleNumTip"></div></td>
                         </tr>
                         <tr>
-                            <th>报名时间：</th>
-                            <td><input id="beginTime" name="beginTime" type="text" value="<?=$ectrain->beginTime?>" class="date">
+                            <th align="right">报名时间：</th>
+                            <td colspan="2"><input id="beginTime" name="beginTime" style="width:250px;height: 30px;"  type="text" value="<?=$ectrain->beginTime?>" class="date">
                                 <script type="text/javascript">
                                     Calendar.setup({
                                         weekNumbers: true,
@@ -92,7 +97,7 @@ $this->title = "修改培训信息";
                                     });
                                 </script>
                                 &nbsp;至&nbsp;&nbsp;
-                                <input id="endTime" name="endTime" type="text" value="<?=$ectrain->endTime?>" class="date">
+                                <input id="endTime" name="endTime" type="text" style="width:250px;height: 30px;"  value="<?=$ectrain->endTime?>" class="date">
                                 <script type="text/javascript">
                                     Calendar.setup({
                                         weekNumbers: true,
@@ -107,16 +112,17 @@ $this->title = "修改培训信息";
                             </td>
                         </tr>
                         <tr>
-                            <th>针对人群：</th>
-                            <td><input type="text" style="width:250px;"  name="target" id="target" value="<?=$ectrain->target?>" ></td>
+                            <th align="right">针对人群：</th>
+                            <td colspan="2"><input type="text"style="width:268px;height: 30px;"  name="target" id="target" value="<?=$ectrain->target?>" ></td>
                         </tr>
                         <tr>
-                            <th>发布人：</th>
-                            <td><input type="text" style="width:250px;"  name="publisher" id="publisher" value="<?=$ectrain->publisher?>" ></td>
+                            <th align="right"><sub class="redstar">*</sub>发布人：</th>
+                            <td><input type="text"style="width:268px;height: 30px;"  name="publisher" id="publisher" value="<?=$ectrain->publisher?>" ></td>
+                            <td class="one"><div id="publisherTip"></div></td>
                         </tr>
                         <tr>
-                            <th>培训开始时间：</th>
-                            <td><input id="time" name="time" type="text" value="<?=$ectrain->time?>" class="date">
+                            <th align="right">培训开始时间：</th>
+                            <td colspan="2"><input id="time" name="time" type="text" style="width:250px;height: 30px;"  value="<?=$ectrain->time?>" class="date">
                                 <script type="text/javascript">
                                     Calendar.setup({
                                         weekNumbers: true,
@@ -131,47 +137,19 @@ $this->title = "修改培训信息";
                             </td>
                         </tr>
                         <tr>
-                            <th>原始缩略图：</th>
-                            <td id="picUrl">
-                                <?$picUrl_array = explode(';',$ectrain->picUrl);
-                                foreach($picUrl_array as $key=>$data){?>
-                                    <img src="<?=$data?>"  width="60%">
-                                <?} ?>
-                            </td>
-                        </tr>
-                        <tr onmouseout="pic()">
-                            <th>修改缩略图：</th>
-                            <td>
-                                <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
-                                <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('ectrain/upload')?>"></iframe>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>图片预览：</th>
-                            <td class="pic_text0"></td>
-                        </tr>
-                        <tr>
-                            <th>图片预览：</th>
-                            <td class="pic_text1"></td>
-                        </tr>
-                        <tr>
-                            <th>图片预览：</th>
-                            <td class="pic_text2"></td>
-                        </tr>
-                        <tr>
-                            <th>原始大图：</th>
-                            <td id="thumbnailUrl"> <img src="<?=$ectrain->thumbnailUrl?>" width="60%"></td>
+                            <th align="right">原始大图：</th>
+                            <td id="thumbnailUrl" colspan="2"> <img src="<?=$ectrain->thumbnailUrl?>" width="60%"></td>
                         </tr>
                         <tr onmouseout="bigPic()">
-                            <th>修改大图：</th>
-                            <td>
+                            <th align="right">修改图片：</th>
+                            <td colspan="2">
                                 <input type="text" style="display:none;" name="thumbnailUrl" id="thumbnailUrl" class="input-text"/>
-                                <iframe frameborder=0 width="100%" height=40px scrolling=no src="<?=yii::$app->urlManager->createUrl(['ectrain/upload','detail'=>'detail'])?>"></iframe>
+                                <iframe frameborder=0 width="100%" height=40px scrolling=no src="<?=yii::$app->urlManager->createUrl('ectrain/upload')?>"></iframe>
                             </td>
                         </tr>
                         <tr>
-                            <th>大图预览：</th>
-                            <td class="pic_text4"></td>
+                            <th align="right">大图预览：</th>
+                            <td class="pic_text4" colspan="2"></td>
                         </tr>
                         </tbody>
                     </table>

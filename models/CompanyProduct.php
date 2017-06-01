@@ -16,6 +16,7 @@ use Yii;
  * @property double $discount
  * @property integer $state
  * @property string $thumbnailUrl
+ * @property string $datetime
  */
 class CompanyProduct extends \yii\db\ActiveRecord
 {
@@ -37,8 +38,10 @@ class CompanyProduct extends \yii\db\ActiveRecord
             [['introduction'], 'string'],
             [['price', 'discount'], 'number'],
             [['stock', 'state'], 'integer'],
+            [['datetime'], 'safe'],
             [['id', 'companyId'], 'string', 'max' => 40],
-            [['name', 'thumbnailUrl'], 'string', 'max' => 64],
+            [['name'], 'string', 'max' => 64],
+            [['thumbnailUrl'], 'string', 'max' => 128],
         ];
     }
 
@@ -57,6 +60,7 @@ class CompanyProduct extends \yii\db\ActiveRecord
             'discount' => '折扣',
             'state' => '状态，字典',
             'thumbnailUrl' => 'Thumbnail Url',
+            'datetime' => 'Datetime',
         ];
     }
 }

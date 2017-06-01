@@ -41,8 +41,8 @@ $this->title = '第三方服务';
 					<div class="explain-col">
 						<div>
 							公司名：
-							<input id="companyName" name="companyName" type="text" value="" class="input-text" />
-							&nbsp;<input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
+							<input id="companyName" name="companyName" type="text" value="" style='width:175px;height:25px; ' class="input-text" />
+							&nbsp;<select id="category"  style='width:175px;height:25px; ' class="input-text"/></select><input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
 							<div class = "checkTip" style="float:right;margin-right:50%;color:red;">
 							</div>
 						</div>

@@ -17,9 +17,11 @@ $this->title = '新闻管理';
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/company-news/list.js" charset="utf-8"></script>
 <div class="subnav" id="display" >
+    <?php if($companyId != 'admin'&&$companyId != 'all'){?>
     <div class="content-menu ib-a blue line-x">
         <a class="add fb" href="javascript:openadd();"><em>添加新闻</em></a>
     </div>
+    <?}?>
 </div>
 
 <div class="pad-lr-10">

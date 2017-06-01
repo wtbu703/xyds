@@ -182,7 +182,7 @@ class AdminManageController extends Controller{
      * 重置密码
      * @return string
      */
-    /*public function actionReset(){
+    public function actionReset(){
 
         $id = Yii::$app->request->post('id');
         $user = Admin::findOne($id);
@@ -192,7 +192,7 @@ class AdminManageController extends Controller{
         }else{
             return "fail";
         }
-    }*/
+    }
 
     /**
      * 根据ID删除一条记录

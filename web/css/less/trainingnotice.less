@@ -14,6 +14,13 @@
 .header_r{
         float:right;
     }
+.shadow{
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#7a7475', Direction=135, Strength=10);/*for ie6,7,8*/
+  -moz-box-shadow:-2px 2px 5px #7a7475;/*firefox*/
+  -webkit-box-shadow:-2px 2px 5px #7a7475;/*webkit*/
+  box-shadow:-2px 2px 5px #7a7475;/*opera或ie9*/
+
+}
 .top_two{margin-top: 35px;}
 
 @border:#c62f2f;/* 培训通知左边框颜色 */
@@ -90,30 +97,34 @@
     }
    .btn-default{ background:@bg; border-color:@border_c;}
 }
-.row_one{margin-top: 20px;}
+
 .pagination > li > a{border:1px solid @pageco;}
 .pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus {
     color: @change;
     background-color: #fff;
     border-color: @change;
 }
-@contentbg:#f9f6f6;/* 正文背景 */
+@contentbg:#fff;/* 正文背景 */
 @pagination:black;/* 页码颜色 */
 
-.content{border:1px #cfcdcd solid;background-color:@contentbg;}
-.content h1{font-size:20px;font-family:"微软雅黑";margin:20px 15px;}
-.content .text{float:left;}
-.content .text .time{margin-top: 50px;margin-left:18px;}
-.content .text p{font-family:"微软雅黑";font-size:14px;margin-left:18px;margin-top:5px;}
-.content .down{position: absolute;bottom:10px;right: 30px;}
-.content .btn_common1{position: absolute;bottom:10px;right: 30px;border-color: #646464;
-  background-color: #FFF;color:#000;}
-.content .btn_common1:hover{ color: #fff;background-color: #40b5d3;border-color: #40b5d3;}
-.content .btn_common2{position: absolute;bottom:10px;right: 30px;border-color: #b5b5b5;
+hr{    margin-top: 10px;
+  border: 0;
+  border-top: 1px solid #e4e4e4;width:90%;
+  margin-left:15px;}
+.boxS{border:2px #dddad1 solid;background-color:@contentbg;border-radius: 4px;height:320px;margin-top: 28px;}
+.content .boxS h1{font-size:20px;font-family:"微软雅黑";margin:20px 15px;}
+.content .boxS .text{float:left;}
+.content .boxS .text .time{margin-left:18px;}
+.content .boxS .text p{font-family:"微软雅黑";font-size:14px;margin-left:18px;margin-top:5px;}
+.content .boxS .down{position: absolute;bottom:10px;right: 30px;}
+.content .boxS .btn_common1{position: absolute;bottom:10px;right: 30px;
+  background-color: #40b5d3;color:#fff;}
+.content .boxS .btn_common1:hover{ color: #fff;background-color: #40b5d3;opacity:0.8;filter:alpha(opacity=80);  -moz-opacity:0.8;  -khtml-opacity: 0.8;  border-color: #40b5d3;}
+.content .boxS .btn_common2{position: absolute;bottom:10px;right: 30px;border-color: #b5b5b5;
   background-color: #b5b5b5;color:#fff;cursor: default;}
-@text_span:#ff0000;/* 详情颜色 */
-.content .text p.detail{margin-left: 20%;margin-top: 25px;}
-.content .text a{font-family:"微软雅黑";font-size:16px;color:@text_span;}
+@text_span:#d73455;/* 详情颜色 */
+.content .boxS .text p.detail{margin-left: 5%;}
+.content .boxS .text a{font-family:"微软雅黑";font-size:16px;color:@text_span;}
 .row_page{margin-top:20px;}
 .pagination li a{margin-left:10px;border-radius: 6px;color:@pagination;}
 .pagination li a.fen {border-style:none;}

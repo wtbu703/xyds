@@ -48,25 +48,26 @@ function delopt(cat){
 			data:paraStr,
 			async: "false",
 			success: function (data) {
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: a+'成功！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
-					$('#pageForm').submit();
 				});
 			},
 			error:function(data){
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: a+'失败！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
 				});
 			}
@@ -88,15 +89,15 @@ function deleteCompanyProduct(id){
 			data:paraStr ,
 			async: "false",
 			success: function (data) {
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除成功！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
-					$('#pageForm').submit();
 				});
 			},
 			error:function(data){
@@ -106,7 +107,7 @@ function deleteCompanyProduct(id){
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
 				});
 			}
@@ -125,7 +126,7 @@ function detail(id,name){
 	$.dialog.open(url,{
 		title: '产品详情--'+name,
 		width: 800,
-		height:600,
+		height:500,
 		lock: true,
 		border: false,
 		id: 'product_detail',

@@ -1,4 +1,6 @@
-
+<?
+$this->title = '企业详情';
+?>
 	<link rel="stylesheet" type="text/css" href="css/css/enterprisedetail.css">
 	<link rel="stylesheet" type="text/css" href="css/css/company.css">
 	<script src="js/front/enterprise_detail.js"></script>
@@ -17,10 +19,10 @@
 		var productDetailUrl = "<?=Yii::$app->urlManager->createUrl('front/product-detail')?>";
 		var onlineUrl = "<?=Yii::$app->urlManager->createUrl('front/detail')?>";
 		var newsallUrl = "<?=Yii::$app->urlManager->createUrl('front/company-news')?>";
-		var lineUrl = "<?=yii::$app->urlManager->createUrl('front/line')?>";
+		var lineUrl = "<?=yii::$app->urlManager->createUrl('front/company-recruit')?>";
 	</script>
 
-	<img class="img-responsive hidden-xs" src="images/images_enterprise/2banner.jpg" alt="banner">
+	<img class="img-responsive hidden-xs" src="<?=$pic?>" alt="banner">
 	
 	<div class="container">
 	    <!-- 二级导航 -->
@@ -60,7 +62,7 @@
 						<div class="message col-md-6 col-sm-10 col-xs-12">
 							<h5>公司名称：&nbsp;<?=$company->name?></h5>
 							<h5>公司法人：&nbsp;<?=$company->corporate?></h5>
-							<h5>公司网址：&nbsp;<?=$company->webSite?></h5>
+							<h5>公司网址：&nbsp;<a href="<?=$company->webSite?>" class="webSite" target="_blank"><?=$company->webSite?></a></h5>
 							<h5>联系电话：&nbsp;<?=$company->tel?></h5>
 							<h5>联系地址：&nbsp;<?=$company->address?></h5>
 						</div>
@@ -71,6 +73,10 @@
 					</div>
 				</div>
 				<?}?>
+				<div class="col-md-12 col-sm-12 col-xs-12 product_display">
+
+
+				</div>
 			</div>
 			<!-- end 企业具体信息 -->
 			<!-- 右侧链接 -->
@@ -81,23 +87,11 @@
 				<div class="company_news col-md-12 col-sm-12 col-xs-12">
 
 				</div>
-			</div>
-			<!-- end 右侧链接 -->
-		</div>
-		<!-- 企业展示下半部分 -->
-		<div class="row">
-			<div class="col-md-9 col-sm-9 col-xs-12 product_display">
-
-
-			</div>
-			<!-- 公司招聘 -->
-			<div class="col-md-3 col-sm-3 col-xs-12">
 				<div class="company_recruit col-md-12 col-sm-12 col-xs-12">
 
 				</div>
 			</div>
-			<!-- end 公司招聘 -->
+			<!-- end 右侧链接 -->
 		</div>
-		<!-- end 企业展示下半部分 -->
 	</div>
 

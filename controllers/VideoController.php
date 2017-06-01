@@ -39,13 +39,11 @@ class VideoController extends Controller
         $name = Yii::$app->request->get('name');
         $source = Yii::$app->request->get('source');
         $sign = Yii::$app->request->get('sign');
-        $state = Yii::$app->request->get('state');
 
         $para = [];
         $para['name'] = $name;
         $para['source'] = $source;
         $para['sign'] = $sign;
-        $para['state'] = $state;
 
         $whereStr = '1=1';
         if ($name != '') {
@@ -57,13 +55,19 @@ class VideoController extends Controller
         if($sign !=''){
             $whereStr = $whereStr . " and sign=" . $sign;
         }
-        if($state !=''){
-            $whereStr = $whereStr . " and state=" . $state;
-        }
 
         $videos = Video::find()->where($whereStr);
         $pages = new Pagination(['totalCount' => $videos->count(), 'pageSize' => Common::PAGESIZE]);
-        $models = $videos->offset($pages->offset)->limit($pages->limit)->all();
+        $models = $videos->offset($pages->offset)->limit($pages->limit)->orderBy(['datetime'=>SORT_DESC])->all();
+
+        $sign = Dictitem::find()->where(['dictCode'=>'DICT_SIGN'])->all();
+        foreach($models as $key=>$data) {
+            foreach ($sign as $index => $value) {
+                if ($data->sign == $value->dictItemCode) {
+                    $models[$key]->sign = $value->dictItemName;
+                }
+            }
+        }
 
         return $this->render('listall', [
             'videos' => $models,
@@ -95,7 +99,6 @@ class VideoController extends Controller
             $video->name = Yii::$app->request->post('name');
             $video->content = Yii::$app->request->post('content');
             $video->picUrl = Yii::$app->request->post('picUrl');
-            $video->duration = Common::getTime(Yii::$app->request->post('attachUrls'));
         if($video->save()){
             return "success";
         }else{
@@ -112,7 +115,7 @@ class VideoController extends Controller
 
         if (Yii::$app->request->isPost) {
 
-            $fileArg = Common::upload($_FILES,false,false);
+            $fileArg = Common::upload($_FILES,false,false,false,2000*1048000);
             return $this->render('upload',[
                 "fileArg" => $fileArg,
                 "tag" => $fileArg['tag'],
@@ -241,9 +244,9 @@ class VideoController extends Controller
             $isThumb = Yii::$app->request->get('isThumb');
             $views = 'uploads';
             if(is_null($isThumb)){
-                $fileArg = Common::upload($_FILES,true,false,'ectrain_video',2048000);
+                $fileArg = Common::upload($_FILES,true,false,'ectrain_video',5*2048000);
             }else{
-                $fileArg = Common::upload($_FILES,true,true);
+                $fileArg = Common::upload($_FILES,true,false,'ectrain_video',5*1048000);
                 $views = 'uploads';
             }
 
@@ -339,5 +342,10 @@ class VideoController extends Controller
         $para['totalCount'] = $pagination->totalCount;
         return Json::encode($para);
 	}
+
+    public function actionVideoDict(){
+        $sign = Dictitem::find()->where(['dictCode'=>'DICT_SIGN'])->all();
+        return Json::encode($sign);
+    }
 }
 

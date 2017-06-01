@@ -26,10 +26,10 @@ $this->title =  '修改文章';
             </ul>
             <div id="div_setting_1" class="contentList pad-10">
                 <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
-                    <table width="90%" cellspacing="0" class="table_form contentWrap">
+                    <table width="100%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-                            <th width="60px">文章分类：</th>
+                            <th width="100px" align="right"><sub class="redstar">*</sub>文章分类：</th>
                             <td><select style="width:270px;" id="category">
                                     <?foreach($cateGory as $key => $val){?>
                                         <?if(intval($val->dictItemCode) == $article->category){?>
@@ -39,46 +39,55 @@ $this->title =  '修改文章';
                                         <?}?>
                                     <?}?>
                                 </select></td>
+                            <td class="one"><div id="categoryTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">标题</th>
+                            <th width="100" align="right"><sub class="redstar">*</sub>标题：</th>
                             <td><input type="text" id="title" value="<?=$article->title?>"/></td>
                             <input type="hidden" id="id" value="<?=$article->id?>" />
+                            <td class="one"><div id="titleTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">作者</th>
+                            <th width="100" align="right"><sub class="redstar">*</sub>作者：</th>
                             <td><input type="text" id="author"  class="input-text" style="width:270px;" value="<?=$article->author?>" /></td>
+                            <td class="one"><div id="authorTip"></div></td>
                         </tr>
                         <tr>
-                            <th>关键词：</th>
+                            <th align="right"><sub class="redstar">*</sub>来源：</th>
+                            <td><input type="text" style="width:250px;" name="sourceUrl" id="sourceUrl" value="<?=$article->sourceUrl?>" class="input-text"/></td>
+                            <td class="one"><div id="sourceUrlTip"></div></td>
+                        </tr>
+                        <tr>
+                            <th align="right"><sub class="redstar">*</sub>关键词：</th>
                             <td><input type="text" style="width:250px;" name="keyword" id="keyword" value="<?=$article->keyword?>" class="input-text"/></td>
+                            <td class="one"><div id="keywordTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">文章内容</th>
-                            <td><textarea style="width:500px;height:200px;" name="content" id="content"><?=$article->content?></textarea></td>
+                            <th  align="right">文章内容：</th>
+                            <td colspan="2"><textarea style="width:500px;height:200px;" name="content" id="content"><?=$article->content?></textarea></td>
                         </tr>
                         <tr>
-                            <th>附&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;件：</th>
-                            <td>
+                            <th align="right">附件：</th>
+                            <td colspan="2">
                                 <input type="text" style="display:none;" name="attachUrls" id="attachUrls" class="input-text"/>
                                 <input type="text" style="display:none;" name="attachNames" id="attachNames" class="input-text"/>
                                 <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('article/upload')?>"></iframe>
                             </td>
                         </tr>
                         <tr>
-                            <th width="100">原始图片：</th>
+                            <th align="right">原始图片：</th>
                             <td><img src="<?=$article->picUrl?>" width="60%" /></td>
                         </tr>
                         <tr onmouseout="pic()">
-                            <th>上传图片：</th>
-                            <td>
+                            <th align="right">上传图片：</th>
+                            <td colspan="2">
                                 <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
                                 <iframe frameborder=0 width="100%" height=60px scrolling=no src="<?=yii::$app->urlManager->createUrl('article/uploads')?>"></iframe>
                             </td>
                         </tr>
                         <tr>
-                            <th>图片预览：</th>
-                            <td class="pic_text"></td>
+                            <th align="right">图片预览：</th>
+                            <td class="pic_text" colspan="2"></td>
                         </tr>
                         </tbody>
                     </table>

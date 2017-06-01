@@ -13,27 +13,27 @@ $this->title = '添加联系信息';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100px">姓名：</th>
+                        <th width="50px" align="right">姓名：</th>
                         <td><input type="text" style="width:250px;" name="truename" id="truename"  class="input-text"/></td>
                     </tr>
                     <tr>
-                        <th width="100px">性别：</th>
+                        <th  align="right">性别：</th>
                         <td><input type="text" style="width:250px;" name="gender" id="gender"  class="input-text"/></td>
                     </tr>
                     <tr>
-                        <th>手机：</th>
+                        <th align="right">手机：</th>
                         <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="mobile" id="mobile"  class="input-text"/></td>
                     </tr>
                     <tr>
-                        <th>邮箱：</th>
+                        <th align="right">邮箱：</th>
                         <td><input type="text" style="width:250px;" name="email" id="email"  class="input-text"/></td>
                     </tr>
                     <tr>
-                        <th>QQ：</th>
+                        <th align="right">QQ：</th>
                         <td><input type="text" style="width:250px;" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  name="QQ" id="QQ"  class="input-text"/></td>
                     </tr>
                     <tr>
-                        <th>内容：</th>
+                        <th align="right">内容：</th>
                         <td><textarea style="width:500px;height:100px;" name="content" id="content" ></textarea></td>
                     </tr>
                 </table>

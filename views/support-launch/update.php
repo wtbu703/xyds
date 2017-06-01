@@ -8,48 +8,48 @@
         <div class="col-tab">
             <div id="div_setting_1" class="contentList pad-10">
                 <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
-                    <table width="90%" cellspacing="0" class="table_form contentWrap">
+                    <table width="100%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-	                        <th>项目建设名称：</th>
+	                        <th><sub class="redstar">*</sub>项目建设名称：</th>
 	                        <td><input type="text" style="width:250px;height: 30px;" name="name" id="name"  class="input-text" value="<?=$supportLaunch['name']?>"/></td>
 	                        <input type="hidden" id="id" value="<?=$supportLaunch['id']?>" />
                         </tr>
                         <tr>
-	                        <th>中央财政资金支持建设内容：</th>
+	                        <th><sub class="redstar">*</sub>中央财政资金支持建设内容：</th>
 	                        <td><input type="text" style="width:400px;height: 30px;" name="centralSupportContent" id="centralSupportContent" class="input-text"  value="<?=$supportLaunch['centralSupportContent']?>"/></td>
                         </tr>
 
                         <tr>
-	                        <th>中央财政资金支持总金额（万元）：</th>
+	                        <th><sub class="redstar">*</sub>中央财政资金支持总金额（万元）：</th>
 	                        <td><input type="text" style="width:250px;height: 30px;" name="centralSupport" id="centralSupport" class="input-text"  value="<?=$supportLaunch['centralSupport']?>" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-.-]+/,'');}).call(this)" onblur="this.v();" /></td>
                         </tr>
                         <tr>
-	                        <th>中央财政资金已拨付金额（截止上月底）（万元）：</th>
+	                        <th><sub class="redstar">*</sub>中央财政资金已拨付金额（截止上月底）（万元）：</th>
 	                        <td><input type="text" style="width:250px;height: 30px;" name="centralPaid" id="centralPaid" class="input-text" value="<?=$supportLaunch['centralPaid']?>" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-.-]+/,'');}).call(this)" onblur="this.v();" /></td>
                         </tr>
                         <tr>
-	                        <th>地方财政配套资金总金额（万元）：</th>
+	                        <th><sub class="redstar">*</sub>地方财政配套资金总金额（万元）：</th>
 	                        <td><input type="text" style="width:250px;height: 30px;" name="localSupport" id="localSupport" class="input-text" value="<?=$supportLaunch['localSupport']?>" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-.-]+/,'');}).call(this)" onblur="this.v();" /></td>
                         </tr>
                         <tr>
-	                        <th>企业投入资金总金额（万元）：</th>
+	                        <th><sub class="redstar">*</sub>企业投入资金总金额（万元）：</th>
 	                        <td><input type="text" style="width:250px;height: 30px;" name="companyPaid" id="companyPaid" class="input-text" value="<?=$supportLaunch['companyPaid']?>" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-.-]+/,'');}).call(this)" onblur="this.v();" /></td>
                         </tr>
                         <tr>
-	                        <th>项目承办单位：</th>
+	                        <th><sub class="redstar">*</sub>项目承办单位：</th>
 	                        <td><input type="text" style="width:250px;height: 30px;" name="organizer" id="organizer" class="input-text" value="<?=$supportLaunch['organizer']?>"/></td>
                         </tr>
                         <tr>
-	                        <th>承办单位负责人：</th>
+	                        <th><sub class="redstar">*</sub>承办单位负责人：</th>
 	                        <td><input type="text" style="width:250px;height: 30px;" name="chargeName1" id="chargeName1" class="input-text" value="<?=$supportLaunch['chargeName']?>"/></td>
                         </tr>
                         <tr>
-	                        <th>联系电话：</th>
+	                        <th><sub class="redstar">*</sub>联系电话：</th>
 	                        <td><input type="text" style="width:250px;height: 30px;" name="chargeMobile1" id="chargeMobile1" class="input-text" value="<?=$supportLaunch['chargeMobile']?>"/></td>
                         </tr>
                         <tr>
-	                        <th>信息公开网址：</th>
+	                        <th><sub class="redstar">*</sub>信息公开网址：</th>
 	                        <td><input type="text" style="width:250px;height: 30px;" name="publicInfoUrl" id="publicInfoUrl" class="input-text" value="<?=$supportLaunch['publicInfoUrl']?>"/></td>
                         </tr>
                         </tbody>

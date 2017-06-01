@@ -79,7 +79,7 @@ class EctrainEnterController extends Controller{
         }
         $ectrainEnter = EctrainEnter::find()->where($whereStr);
         $page = new Pagination(['totalCount' => $ectrainEnter->count(), 'pageSize' => Common::PAGESIZE]);
-        $models = $ectrainEnter->offset($page->offset)->limit($page->limit)->all();
+        $models = $ectrainEnter->offset($page->offset)->limit($page->limit)->orderBy(['created'=>SORT_DESC])->all();
 
         //字典反转
         $state = Dictitem::find()->where(['dictCode'=>'DICT_ENTER_STATE'])->all();

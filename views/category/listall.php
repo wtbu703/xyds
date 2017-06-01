@@ -14,7 +14,7 @@
 		            <th width="220px">商品大类标识</th>
 		            <th width="160px">商品大类名称</th>
 		            <th width="80px">商品大类状态</th>
-		            <th>操作</th>
+		            <th width="100px">操作</th>
 	            </tr>
             </thead>
             <tbody>

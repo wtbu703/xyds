@@ -33,11 +33,11 @@ $this->title =  '文章管理';
                     <div class="explain-col">
                         <div>
                             标题：
-                            <input id="title" name="title" type="text" value="" class="input-text" />
+                            <input id="title" name="title" type="text" style="width: 175px;" value="" class="input-text" />
                             作者：
-                            <input id="author" type="text" name="author" value="" class="input-text" />
+                            <input id="author" type="text" name="author" style="width: 175px;" value="" class="input-text" />
                             类别：
-                            <select id="category" style='width:135px' name="category"></select></br>
+                            <select id="category" style='width:175px' name="category"></select></br>
                             时间：
                             <input id="articledateTime_1" name="articledateTime_1" type="text" value="" class="date">
                             <script type="text/javascript">
@@ -51,7 +51,7 @@ $this->title =  '文章管理';
                                     onSelect   : function() {this.hide();}
                                 });
                             </script>
-                            &nbsp;至&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;
                             <input id="articledateTime_2" name="articledateTime_2" type="text" value="" class="date">
                             <script type="text/javascript">
                                 Calendar.setup({

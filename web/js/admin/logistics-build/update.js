@@ -1,71 +1,64 @@
 //页面校验
 $(function() {
-    $.formValidator.initConfig({
-        formid: "myform",
-        autotip: true,			//是否显示提示信息
-        onerror: function (msg, obj) {
-            window.top.art.dialog({content: msg, lock: true, width: '200', height: '50'}, function () {
-                this.close();
-                $(obj).focus();
-            })
-        }
-    });
+    $.formValidator.initConfig({ formID: "myform",autotip:true, onError: function () { alert("校验没有通过，具体错误请看错误提示") } });
+
     // 校验模型名称
     $("#townCover").formValidator({
         onshow: "（必填）",
-        onfocus: "（必填）",
+        onfocus: "例如:20",
         oncorrect: "（正确）"
     }).inputValidator({               //校验不能为空
         min:1,
-        onerror:"请输入！"
+        onerror:"请输入数字！"
     });
     $("#countyToVillage").formValidator({
         onshow: "（必填）",
-        onfocus: "（必填）",
+        onfocus: "例如:20",
         oncorrect: "（正确）"
     }).inputValidator({               //校验不能为空
         min:1,
-        onerror:"请输入！"
+        onerror:"请输入数字！"
     });
     $("#villageCover").formValidator({
         onshow: "（必填）",
-        onfocus: "（必填）",
+        onfocus: "例如:20",
         oncorrect: "（正确）"
     }).inputValidator({               //校验不能为空
         min:1,
-        onerror:"请输入！"
+        onerror:"请输入数字！"
     });
     $("#villageToHamlet").formValidator({
         onshow: "（必填）",
-        onfocus: "（必填）",
+        onfocus: "例如:20",
         oncorrect: "（正确）"
     }).inputValidator({               //校验不能为空
         min:1,
-        onerror:"请输入！"
+        onerror:"请输入数字！"
     });
     $("#receiveNum").formValidator({
         onshow: "（必填）",
-        onfocus: "（必填）",
+        onfocus: "例如:20",
         oncorrect: "（正确）"
     }).inputValidator({               //校验不能为空
         min:1,
-        onerror:"请输入！"
+        onerror:"请输入数字！"
     });
     $("#sendNum").formValidator({
         onshow: "（必填）",
-        onfocus: "（必填）",
+        onfocus: "例如:20",
         oncorrect: "（正确）"
     }).inputValidator({               //校验不能为空
         min:1,
-        onerror:"请输入！"
+        onerror:"请输入数字！"
     });
     $("#orderBy").formValidator({
         onshow: "（必填）",
-        onfocus: "（必填）",
+        onfocus: "例如:20",
         oncorrect: "（正确）"
     }).inputValidator({               //校验不能为空
         min:1,
-        onerror:"请输入！"
+        max:3,
+        onerror:"请输入数字，长度都不能超过3！"
     });
 });
 

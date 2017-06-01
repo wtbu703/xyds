@@ -34,7 +34,7 @@ hr {
   margin-top: 10px;
   margin-bottom: 20px;
   border: 0;
-  border-top: 2px solid #1c8cdb;
+  border-top: 1px solid #1c8cdb;
 }
 /* 数据统计 */
 .column {
@@ -58,6 +58,16 @@ hr {
   font-family: "微软雅黑";
 }
 /* 左侧子菜单 */
+.serviceTitle {
+  font-size: 20px;
+  width: 200px;
+  line-height: 46px;
+  margin-left: 15px;
+  font-family: "微软雅黑";
+  border-bottom: 1px solid #e4e4e4;
+  position: relative;
+  bottom: 5px;
+}
 .nav_top {
   filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
   /*for ie6,7,8*/
@@ -68,13 +78,35 @@ hr {
   /*webkit*/
   box-shadow: -2px 2px 5px #d2d2d2;
   /*opera或ie9*/
-  padding-bottom: 110px;
+  height: 450px;
 }
 .nav_top a {
   color: #000000;
 }
 .nav_top a:hover,
 .nav_top a:focus {
+  color: #1c8bd9;
+  background-color: #e5edf2;
+  border-left: 3px solid #1c8bd9;
+  margin-left: -3px;
+}
+.nav_bottom {
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
+  /*for ie6,7,8*/
+  background-color: #fff;
+  -moz-box-shadow: -2px 2px 5px #d2d2d2;
+  /*firefox*/
+  -webkit-box-shadow: -2px 2px 5px #d2d2d2;
+  /*webkit*/
+  box-shadow: -2px 2px 5px #d2d2d2;
+  /*opera或ie9*/
+  height: 405px;
+}
+.nav_bottom a {
+  color: #000000;
+}
+.nav_bottom a:hover,
+.nav_bottom a:focus {
   color: #1c8bd9;
   background-color: #e5edf2;
   border-left: 3px solid #1c8bd9;
@@ -93,8 +125,7 @@ hr {
   border-radius: 0;
 }
 .nav_right > li > a {
-  position: relative;
-  display: block;
+  position: relative;  display: block;
   padding: 10px 35px;
 }
 .nav-tabs > li.active > a,
@@ -130,6 +161,23 @@ ul.nav_right li:hover a {
 .row_two {
   margin-top: 40px;
 }
+.mapTitle {
+  height: 35px;
+  line-height: 35px;
+  font-size: 16px;
+  font-family: "微软雅黑";
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
+  /*for ie6,7,8*/
+  background-color: #fff;
+  -moz-box-shadow: 0px 0px 5px #d2d2d2;
+  /*firefox*/
+  -webkit-box-shadow: 0px 0px 5px #d2d2d2;
+  /*webkit*/
+  box-shadow: 0px 0px 5px #d2d2d2;
+  /*opera或ie9*/
+  font-weight: 600;
+  text-align: center;
+}
 .box_shadow1 {
   filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
   /*for ie6,7,8*/
@@ -160,7 +208,7 @@ ul.nav_right li:hover a {
 }
 #allmap {
   width: 100%;
-  height: 400px;
+  height: 600px;
   filter: progid:DXImageTransform.Microsoft.Shadow(color='#d2d2d2', Direction=135, Strength=10);
   /*for ie6,7,8*/
   background-color: #fff;
@@ -199,4 +247,9 @@ ul.nav li a {
 .ecBussiness {
   width: 100%;
   max-width: 400px;
+}
+.scrollspy-example {
+  height: 480px;
+  overflow: auto;
+  position: relative;
 }

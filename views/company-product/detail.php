@@ -7,31 +7,27 @@ $this->title = '产品详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100">产品名称</th>
+                        <th width="100px"  align="right">产品名称</th>
                         <td id="name"><?=$companyProduct->name?></td>
                     </tr>
                     <tr>
-                        <th width="100">产品介绍</th>
+                        <th  align="right">产品介绍</th>
                         <td id="introduction"><?=$companyProduct->introduction?></td>
                     </tr>
                     <tr>
-                        <th width="100">产品价格</th>
+                        <th align="right">产品价格</th>
                         <td id="price"><?=$companyProduct->price?></td>
                     </tr>
                     <tr>
-                        <th width="100">产品折扣</th>
+                        <th align="right">产品折扣</th>
                         <td id="discount"><?=$companyProduct->discount?></td>
                     </tr>
                     <tr>
-                        <th width="100">产品库存</th>
-                        <td id="stock"><?=$companyProduct->stock?></td>
-                    </tr>
-                    <tr>
-                        <th width="100">产品状态</th>
+                        <th align="right">产品状态</th>
                         <td id="state"><?=$companyProduct->state?></td>
                     </tr>
                     <tr>
-                        <th>产品大图：</th>
+                        <th align="right">产品大图</th>
                         <td id="thumbnailUrl"> <img src="<?=$companyProduct->thumbnailUrl?>"></td>
                     </tr>
                 </table>

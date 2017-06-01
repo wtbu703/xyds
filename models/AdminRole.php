@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use yii\db\ActiveRecord;
+use Yii;
 
 /**
  * This is the model class for table "admin_role".
@@ -11,7 +11,7 @@ use yii\db\ActiveRecord;
  * @property string $userId
  * @property string $roleId
  */
-class AdminRole extends ActiveRecord
+class AdminRole extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -28,7 +28,7 @@ class AdminRole extends ActiveRecord
     {
         return [
             [['id'], 'required'],
-            [['id', 'userId', 'roleId'], 'string', 'max' => 32]
+            [['id', 'userId', 'roleId'], 'string', 'max' => 40],
         ];
     }
 

@@ -51,13 +51,14 @@ class ArticleController extends Controller{
         $article->id = Common::generateID();
         $article->title = Yii::$app->request->post('title');
         $article->author = Yii::$app->request->post('author');
+        $article->sourceUrl = Yii::$app->request->post('sourceUrl');
         $article->keyword = Yii::$app->request->post('keyword');
         $article->content = Yii::$app->request->post('content');
         $article->category = Yii::$app->request->post('category');
         $article->attachUrls = Yii::$app->request->post('attachUrls');
         $article->attachNames = Yii::$app->request->post('attachNames');
         $article->picUrl = YIi::$app->request->post('picUrl');
-        $article->sourceUrl = '本站';
+        $article->sourceUrl = YIi::$app->request->post('sourceUrl');
         $article->datetime = date("Y-m-d H:i:s");
 
         if($article->save()){
@@ -105,8 +106,10 @@ class ArticleController extends Controller{
 
         $articles = Article::find()->where($whereStr);
         $page = new Pagination(['totalCount' => $articles->count(), 'pageSize' => Common::PAGESIZE]);
-        $models = $articles->offset($page->offset)->limit($page->limit)->all();
-//字典反转
+        $models = $articles->offset($page->offset)->limit($page->limit)->orderBy(['datetime'=>SORT_DESC])->all();
+
+
+        //字典反转
         $category = Dictitem::find()->where(['dictCode'=>'DICT_ARTICLE_CATEGORY'])->all();
         foreach($models as $key=>$data) {
             foreach ($category as $index => $value) {
@@ -115,14 +118,14 @@ class ArticleController extends Controller{
                 }
             }
         }
-        $edit = Common::resource('ARTICLE','EDIT');
-        $delete = Common::resource('ARTICLE','DELETE');
+/*        $edit = Common::resource('ARTICLE','UPDATE');
+        $delete = Common::resource('ARTICLE','DELETEONE');*/
         return $this->render('listall',[
             'articles' => $models,
             'pages' => $page,
             'para' => $para,
-            'edit' => $edit,
-            'delete' => $delete
+      /*      'edit' => $edit,
+            'delete' => $delete*/
         ]);
     }
 
@@ -159,7 +162,7 @@ class ArticleController extends Controller{
             $article->attachNames = Yii::$app->request->post('attachNames');
         }
         if($article->picUrl !=''&&$article->picUrl != $picUrl&&$picUrl !=''&&file_exists($article->picUrl)){
-            unlink($article->attachUrls);
+            unlink($article->picUrl);
         }
         if($picUrl !=''){
             $article->picUrl = $picUrl;
@@ -168,6 +171,8 @@ class ArticleController extends Controller{
         $article->category = Yii::$app->request->post('category');
         $article->title = Yii::$app->request->post('title');
         $article->author = Yii::$app->request->post('author');
+        $article->keyword = Yii::$app->request->post('keyword');
+        $article->sourceUrl = Yii::$app->request->post('sourceUrl');
         $article->content = Yii::$app->request->post('content');
 
         if ($article->save()){
@@ -247,7 +252,7 @@ class ArticleController extends Controller{
 
         if (Yii::$app->request->isPost) {
 
-            $fileArg = Common::upload($_FILES,false,false);
+            $fileArg = Common::upload($_FILES,false,false,false,50*1024000);
             return $this->render('upload',[
                 "fileArg" => $fileArg,
                 "tag" => $fileArg['tag'],
@@ -316,86 +321,115 @@ class ArticleController extends Controller{
      * 抓取指定网站的数据
      */
     public function actionFindWebResource(){
-	    /** @noinspection PhpMethodOrClassCallIsNotCaseSensitiveInspection */
 	    $find_url = yii::$app->request->get('web');
 
-        $title_array = [];
-        $url_array = [];
-        $datetime_array = [];
-        $author_array = [];
-        $content_array = [];
+        if($find_url != '') {
+            $title_array = [];
+            $datetime_array = [];
+            $keyword_array = [];
+            $author_array = [];
+            $sourceUrl_array = [];
+            $content_array = [];
+            $picUrl_array = [];
+
+            $i = 0;
+            $data = file_get_contents("compress.zlib://" . $find_url);
+
+            $p = '/<div class="indexList-left">
+			    <div class="indexList-hover">
+			    			    <a href="(.*?)" title=".*?" target="_blank">/';
+
+            preg_match_all($p, $data, $matches);
+            //将获取到的文章url数组赋给$url_array;
+            $url_array = $matches[1];
+            $len = count($url_array);
+            do {
+
+                $text = file_get_contents($url_array[$i]);
+                $text = file_get_contents("compress.zlib://" . $url_array[$i]);
+
+                $m = '/<h2>(.*?)<\/h2>/';
+                preg_match($m, $text, $title);
+                //print_r($title);
+                $title1 = $title[1];
+                //echo $title1.'</br></br></br></br>';
+                $title_array[$i] = $title1;//标题
+
+                $z = '/<i class="sprite i-times"><\/i><span>(.*?)<\/span><\/li>/';
+                preg_match_all($z, $text, $time);
+                //print_r($time);
+                $time1 = $time[1];
+                //echo $time1[0].'</br></br></br></br>';
+                $datetime_array[$i] = $time1[0];//时间
+
+                $x = '/ <a href=".*?" class="details-timeInfo">(.*?)<\/a>/';
+                preg_match_all($x, $text, $keyword);
+                //print_r($keyword);
+                $keyword1 = $keyword[1];
+                //echo $keyword1[0].'</br></br></br></br>';  //关键词
+                $keyword_array[$i] = $keyword1[0];
 
 
-        $i = 0;
+                $n = '/<i class="sprite i-logos"><\/i><span>(.*?)<\/span><\/li>/';
+                preg_match_all($n, $text, $author);
+                //print_r($author);
+                $author1 = $author[1];
+                //echo $author1[0].'</br></br></br></br>'; //来源，作者
+                $sourceUrl_array[$i] = $author1[0];
 
-        if($find_url=='http://www.ceces.cn/'){
-            $html = HtmlDom::file_get_html($find_url);
-            do{
-                $ret = $html->find('div[class=wrap mt20 clearfix] div[class=widget-bd clearfix] div[class=pt15 pb8 fYaHei clearfix] div[class=fl pro-ask] div[class=pl15 pr15 pb15] ul[class=pt30 ask-list] li a',$i);
-                /*echo $ret->nodes[0]->_[4];
-                echo "<br />";*/
-                $title_array[$i] = $ret->nodes[0]->_[4];//文章标题
-                $url = $ret->attr['href'];
-                $url_array[$i] = $url;//链接地址
-                $html2 = HtmlDom::file_get_html($find_url.$url);
-                $ret2 = $html2->find('div[class=art-intro tc f14] span[class=gray]');
-                $datetime_array[$i] = $ret2[0]->nodes[0]->_[4];//发布时间
-                $ret3 = $html2->find('div[class=art-intro tc f14] span[class=ml15 gray]');
-                $author_array[$i] = $ret3[0]->nodes[0]->_[4];//作者
-	            /** @noinspection PhpUndefinedFieldInspection */
-	            $content_start = mb_strpos($html2->plaintext,'上一篇') + mb_strlen('上一篇');
-	            /** @noinspection PhpUndefinedFieldInspection */
-	            $content_end = mb_strpos($html2->plaintext,'推荐新闻') - $content_start;
-	            /** @noinspection PhpUndefinedFieldInspection */
-	            $content_array[$i] = mb_substr($html2->plaintext,$content_start,$content_end);//文章内容
+                $n = '/<div class="details-p">(.*?)<\/div>/ism';
+                preg_match_all($n, $text, $content);
+                //print_r($author);
+                $content = $content[1];
+                //echo $content[0].'</br></br></br></br>'; //内容
+                $content_array[$i] = $content[0];
 
-                $i++;
-            }while(!is_null($html->find('div[class=wrap mt20 clearfix] div[class=widget-bd clearfix] div[class=pt15 pb8 fYaHei clearfix] div[class=fl pro-ask] div[class=pl15 pr15 pb15] ul[class=pt30 ask-list] li a',$i)));
+                $y = '/<p style="text-align:center"><img alt="" src="(.*?)"><\/p>/';
+                preg_match_all($y, $text, $im);
+                $img= $im[1];
+                //print_r($im);
+                //echo $img[0]."</br></br></br></br>";
+                if(!empty($im[1])){
+                    $imgs = file_get_contents($img[0]);
+                    $img_array = explode('.',$img[0]);
+                    $img_url = 'upload/articlePic/'. date("YmdHis") . mt_rand(10,99).'.'.$img_array[3];
+                    file_put_contents($img_url,$imgs);
+                    $imgurl = Common::resizes($img_url,750,510);
+                    $picUrl_array[$i] = $imgurl;
+                }
 
-        }elseif($find_url=='http://www.100ec.cn/'){
-            $html = HtmlDom::file_get_html($find_url);
-            do{
-                $ret = $html->find('div[class=left] div[class=left01] div[class=mart1] div[class=cnews entry-content] ul li a',$i);
-                $url = $ret->attr['href'];
-                $url_array[$i] = $url;//链接地址
-                $html2 = HtmlDom::file_get_html('http://www.100ec.cn'.$url);
+                $i = $i + 1;
+            } while ($i < $len);
 
-	            /** @noinspection PhpUndefinedFieldInspection */
-                $title_end = mb_strpos($html2->plaintext,'_中国电子商务研究中心');
-	            /** @noinspection PhpUndefinedFieldInspection */
-                $title_array[$i] = mb_substr($html2->plaintext,0,$title_end);
-	            /** @noinspection PhpUndefinedFieldInspection */
-                $datetime_start = mb_strpos($html2->plaintext,'http://www.100ec.cn&nbsp;&nbsp;') + mb_strlen('http://www.100ec.cn&nbsp;&nbsp;');
-	            /** @noinspection PhpUndefinedFieldInspection */
-                $datetime_end = mb_strpos($html2->plaintext,'&nbsp;&nbsp;中国电子商务研究中心')-$datetime_start;
-	            /** @noinspection PhpUndefinedFieldInspection */
-                $datetime_array[$i] = mb_substr($html2->plaintext,$datetime_start,$datetime_end);//时间
-                $author_array[$i] = 'http://www.100ec.cn';//作者
-	            /** @noinspection PhpUndefinedFieldInspection */
-                $content_start = mb_strpos($html2->plaintext,'产品服务') + mb_strlen('产品服务');
-	            /** @noinspection PhpUndefinedFieldInspection */
-                $content_end = mb_strpos($html2->plaintext,'【独家专题】') - $content_start;
-	            /** @noinspection PhpUndefinedFieldInspection */
-                $content_array[$i] = mb_substr($html2->plaintext,$content_start,$content_end);//文章内容
-                $i++;
-            }while(!is_null($html->find('div[class=left] div[class=left01] div[class=mart1] div[class=cnews entry-content] ul li a',$i)) && $i<=10);
+            $cou = Dictitem::find()->where(['dictCode' => 'DICT_ARTICLE_CATEGORY'])->count();
+            $cou = $cou-1;
+            $num = 0;
+            foreach ($title_array as $key => $value) {
+                $article = new Article();
+                $article->id = Common::generateID();
+                $article->title = $value;
+                $article->datetime = date('Y-m-d H:m:s');
+                //$article->catchtime = date('Y-m-d H:m:s');
+                //$article->author = $author_array[$key];
+                $article->sourceUrl = $sourceUrl_array[$key];
+                $article->keyword = $keyword_array[$key];
+                $article->content = $content_array[$key];
+                if(!empty($picUrl_array[$key])) {
+                    $article->picUrl = $picUrl_array[$key];
+                }
+                $article->category = rand(0, $cou);
+                $article->catchState = 0;
+                $article->save();
+                $num++;
+            }
 
         }
-        $num = 0;
-        foreach($title_array as $key => $value){
-            $article = new Article();
-            $article->id = Common::generateID();
-            $article->title = $value;
-            $article->datetime = date("Y-m-d H:i:s");
-            $article->author = $author_array[$key];
-            $article->catchtime = $datetime_array[$key];
-            $article->attachUrls = $url_array[$key];
-            $article->content = strip_tags($content_array[$key]);
-            $article->save();
-            $num++;
+        $models = Article::find()->orderBy('datetime DESC')->where('catchState = 0')->all();
+        foreach($models as $key=>$data){
+            if($data->catchState == '0'){
+                $models[$key]->catchState = '未添加';
+            }
         }
-        $models = Article::find()->orderBy('datetime DESC')->limit($num)->all();
-
         return $this->render('result',[
             'articles' => $models
         ]);
@@ -422,9 +456,18 @@ class ArticleController extends Controller{
     public function actionAddMore(){
 	    /** @noinspection PhpMethodOrClassCallIsNotCaseSensitiveInspection */
         $ids = yii::$app->request->post('ids');
+        $sid = yii::$app->request->post('sid');
         $ids_array = explode('-',$ids);
         foreach($ids_array as $key => $value){
             Article::deleteAll('id = :id',[":id"=>$value]);
+        }
+        if($sid != ''){
+            $sid_array = explode('-',$sid);
+            foreach($sid_array as $key => $value){
+                $article = Article::findOne($value);
+                $article->catchState = 1;
+                $article->save();
+            }
         }
         return "success";
     }
@@ -452,9 +495,11 @@ class ArticleController extends Controller{
      */
     public function actionIndexArticle(){
         $type = Yii::$app->request->post('newsType');
+        $type = $type-1;
         $article = Article::find()
             ->select('id,title,content,datetime,picUrl')
             ->where('category = :category',[':category'=>$type])
+            ->orderBy(['datetime' => SORT_DESC])
             ->limit(13)
             ->all();
         return Json::encode($article);
@@ -518,4 +563,12 @@ class ArticleController extends Controller{
 		return Json::encode($article);
 	}
 
+    /**
+     * @return string
+     * 资讯类别字典接口
+     */
+    public function actionIndexDict(){
+        $category = Dictitem::find()->where(['dictCode'=>'DICT_ARTICLE_CATEGORY'])->all();
+        return Json::encode($category);
+    }
 }
