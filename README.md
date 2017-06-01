@@ -10,7 +10,7 @@
 
       assets/             用于存放前端资源包PHP类
       commands/           命令行
-	  common/       	  公共目录
+	common/       	  公共目录
       config/             配置
       controllers/        控制器
       mail/               与邮件相关的布局文件
@@ -67,6 +67,7 @@ http://119.23.225.62/
 李罗奥
 
 QQ911430818
+WeChat 13407155419
 
 [https://github.com/liluoao](https://github.com/liluoao "Github")
 
