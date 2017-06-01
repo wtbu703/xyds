@@ -17,7 +17,12 @@ $this->title = '培训报名列表';
         <table width="100%" cellspacing="0" id="user_list">
             <thead id="dict_list_head">
             <tr align="left">
-                <th width="80px"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th><th width="30px">序号</th><th width="60px">真实姓名</th><th width="160px">报名状态</th><th width="160px">联系电话</th><th width="160px">身份证号</th><!--<th align="center">操作</th>-->
+                <th width="50px" align="left"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th>
+                <th width="30px" align="left">序号</th>
+                <th width="60px" align="left">真实姓名</th>
+                <th width="160px" align="left">报名状态</th>
+                <th width="160px" align="left">联系电话</th>
+                <th width="160px" align="left">身份证号</th><!--<th align="center">操作</th>-->
             </tr>
             </thead>
             <tbody id="user_list_body">
@@ -25,11 +30,11 @@ $this->title = '培训报名列表';
             <?php foreach ($ectrainEnter as $index => $val){?>
                 <tr align="left">
                     <td><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
-                    <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->truename?>')"><?=$val->truename?></a></td>
-                    <td><?=$val->state?></td>
-                    <td><?=$val->mobile?></td>
-                    <td><?=$val->idCardNo?></td>
+                    <td align="left"><?=$index+$pages->page*$pages->pageSize+1?></td>
+                    <td align="left"><a href="javascript:detail('<?=$val->id?>','<?=$val->truename?>')"><?=$val->truename?></a></td>
+                    <td align="left"><?=$val->state?></td>
+                    <td align="left"><?=$val->mobile?></td>
+                    <td align="left"><?=$val->idCardNo?></td>
                     <!--<td align="center">
                         <a href="javascript:openedit('<?/*=$val->id*/?>','<?/*=$val->truename*/?>')">修改</a>&nbsp;&nbsp;
                         |&nbsp;&nbsp;<a href="javascript:deleteEnter('<?/*=$val->id*/?>')">删除</a>

@@ -1,17 +1,20 @@
-
+<?
+$this->title = '企业新闻';
+?>
 	<link href="css/css/enterprisedisplay_news.css" rel="stylesheet">
 	<link href="css/css/company.css" rel="stylesheet">
 	<script src="js/front/enterprisedisplay_news.js"></script>
 	<script>
 		var shoplinkUrl = "<?=Yii::$app->urlManager->createUrl('company-shoplink/company-shoplink')?>";
-		var lineUrl = "<?=Yii::$app->urlManager->createUrl('front/line')?>";
+		var lineUrl = "<?=yii::$app->urlManager->createUrl('front/company-recruit')?>";
 		var recruitUrl = "<?=Yii::$app->urlManager->createUrl('company-recruit/company-recruit')?>";
 		var companyNewsUrl = "<?=Yii::$app->urlManager->createUrl('company-news/all-news')?>";
 		var newsDetailUrl = "<?=Yii::$app->urlManager->createUrl('front/news-detail')?>";
 		var onlineUrl = "<?=Yii::$app->urlManager->createUrl('front/detail')?>";
 		var companyId = "<?=$companyId?>";
+		var newDictUrl = "<?=Yii::$app->urlManager->createUrl('company-news/index-dict')?>";
 	</script>
-	<img class="img-responsive center-block hidden-xs" src="images/images_enterprisedisplay_news/2banner.jpg" />
+	<img class="img-responsive center-block hidden-xs" src="<?=$pic?>" />
 
 	<!-- content -->
 	<div class="container">
@@ -22,10 +25,6 @@
 				</div>
 				<span class="">企业展示</span>
 			</div>
-			<!-- <div class="col-xs-12 col-md-4 col-md-offset-1 enterprise_search">
-				<input type="text" name="search" class="search_input col-md-9">
-				<button class="btn btn-default btn-sm btn_search" type="submit"><img src="images/images_enterprisedisplay_news/search.png" alt="搜索图标"></button>
-			</div> -->
 		</div>
 		<!-- end 二级导航 -->
 	</div>
@@ -41,7 +40,7 @@
 						<span>></span>
 						<span><a href="<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>">企业展示</a></span>
 						<span>></span>
-						<span><a href="<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>&id=<?=$companyId?>"><?=$companyName?></a></span>
+						<span><a href="<?=Yii::$app->urlManager->createUrl('front/enterprise-detail')?>&id=<?=$companyId?>"><?=$companyName?></a></span>
 						<span>></span>
 						<span>公司新闻</span>
 					</div>
@@ -49,7 +48,7 @@
 				<div class="ec_news row_news">
 					<div class="row">
 						<div class="col-xs-12 column column_list">	
-							<a class="btn btn-default col-xs-12 col-sm-2 col-md-2 tab_btn1 hover tabH" role="button">
+							<!-- <a class="btn btn-default col-xs-12 col-sm-2 col-md-2 tab_btn1 hover tabH" role="button">
 								最新文章
 							</a>
 							<a class="btn btn-default col-xs-12 col-sm-2 col-md-2 tab_btn2 tabH" role="button">
@@ -63,7 +62,7 @@
 							</a>
 							<a class="btn btn-default col-xs-12 col-sm-2 col-md-2 tab_btn4 tabH" role="button">
 								最新动态
-							</a>
+							</a> -->
 						</div>
 					</div>
 					

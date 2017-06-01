@@ -31,7 +31,7 @@ class ServiceSite extends \yii\db\ActiveRecord
             [['id', 'code', 'name', 'countyType'], 'required'],
             [['countyType'], 'integer'],
             [['id'], 'string', 'max' => 40],
-            [['code', 'name'], 'string', 'max' => 16],
+            [['code', 'name'], 'string', 'max' => 32],
         ];
     }
 

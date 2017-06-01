@@ -7,27 +7,31 @@ $this->title =  '文章详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100">文章类别</th>
+                        <th width="100px" align="right">文章类别</th>
                         <td id="category"><?=$article->category?></td>
                     </tr>
                     <tr>
-                        <th width="100">标题</th>
+                        <th align="right">标题</th>
                         <td id="title"><?=$article->title?></td>
                     </tr>
                     <tr>
-                        <th width="100">作者</th>
+                        <th align="right">作者</th>
                         <td id="author"><?=$article->author?></td>
                     </tr>
                     <tr>
-                        <th width="100">关键词</th>
+                        <th align="right">来源</th>
+                        <td id="sourceUrl"><?=$article->sourceUrl?></td>
+                    </tr>
+                    <tr>
+                        <th align="right">关键词</th>
                         <td id="keyword"><?=$article->keyword?></td>
                     </tr>
                     <tr>
-                        <th width="100">内容</th>
+                        <th align="right">内容</th>
                         <td id="content"><?=$article->content?></td>
                     </tr>
                     <tr>
-                        <th width="100">图片</th>
+                        <th align="right">图片</th>
                         <td id="picUrl"><img src="<?=$article->picUrl?>" width="60%"></td>
                     </tr>
                 </table>

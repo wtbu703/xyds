@@ -1,14 +1,13 @@
 @charset "utf-8";
 
 .shadow {
-  filter: progid:DXImageTransform.Microsoft.Shadow(color='@enterprisec', Direction=135, Strength=10);
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#7a7475', Direction=135, Strength=10);
   /*for ie6,7,8*/
-  background-color: #fff;
-  -moz-box-shadow: -2px 2px 10px #000000;
+  -moz-box-shadow: -2px 2px 5px #7a7475;
   /*firefox*/
-  -webkit-box-shadow: -2px 2px 10px #000000;
+  -webkit-box-shadow: -2px 2px 5px #7a7475;
   /*webkit*/
-  box-shadow: -2px 2px 10px #000000;
+  box-shadow: -2px 2px 5px #7a7475;
   /*opera或ie9*/
 }
 .enterprise {
@@ -17,6 +16,7 @@
   margin-bottom: 20px;
 }
 .enterprise .img-responsive {
+  border-radius:10px 10px 0 0;
   width: 100%;
   height:250px;
 }
@@ -33,16 +33,17 @@
   color: #000000;
 }
 .enterprise .box_shadow {
-  filter: progid:DXImageTransform.Microsoft.Shadow(color='@enterprisec', Direction=135, Strength=10);
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#7a7475', Direction=135, Strength=10);
   /*for ie6,7,8*/
-  background-color: #fff;
-  -moz-box-shadow: -2px 2px 10px #000000;
+  -moz-box-shadow: -2px 2px 5px #7a7475;
   /*firefox*/
-  -webkit-box-shadow: -2px 2px 10px #000000;
+  -webkit-box-shadow: -2px 2px 5px #7a7475;
   /*webkit*/
-  box-shadow: -2px 2px 10px #000000;
+  box-shadow: -2px 2px 5px #7a7475;
   /*opera或ie9*/
+  position: relative;
 }
+
 .enterprise #large {
   position: relative;
   top: 0;
@@ -57,11 +58,11 @@
   filter: progid:DXImageTransform.Microsoft.Shadow(color='@enterprisec', Direction=135, Strength=10);
   /*for ie6,7,8*/
   background-color: #fff;
-  -moz-box-shadow: -2px 2px 10px #000000;
+  -moz-box-shadow: -2px 2px 5px #7a7475;
   /*firefox*/
-  -webkit-box-shadow: -2px 2px 10px #000000;
+  -webkit-box-shadow: -2px 2px 5px #7a7475;
   /*webkit*/
-  box-shadow: -2px 2px 10px #000000;
+  box-shadow: -2px 2px 5px #7a7475;
   /*opera或ie9*/
 }
 .enterprise .redline .solid1 {
@@ -91,3 +92,69 @@
   top:150px;
   left:80px;
 }
+/* 企业展示导航 */
+.column {
+  zoom: 1;
+}
+.column:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.column .redbar,
+.column span,
+.column a {
+  float: left;
+}
+.column .redbar {
+  width: 6px;
+  height: 46px;
+  background-color: #d73455;
+  margin-right: 5px;
+}
+.column span {
+  font-size: 20px;
+  line-height: 46px;
+  margin-right: 20px;
+}
+.column a {
+  font-size: 18px;
+  border-color: #00ccff;
+  margin-top: 3.5px;
+  margin-right: 15px;
+  color: black;
+}
+.column .active {
+  border-color: #d73455;
+}
+.wrapper {
+  background: #fff;
+}
+.enterprise_search {
+  height: 40px;
+  margin-top: 18px;
+}
+.enterprise_search .search_input {
+  height: 40px;
+  border: 1px solid #2eb4a9;
+  background: #e2e2e2;
+}
+.enterprise_search .btn_search {
+  height: 40px;
+  width: 40px;
+  background: #2eb4a9;
+  border: 1px solid #2eb4a9;
+  padding: 0 0;
+  border-radius: 0;
+}
+.enterprise_search .btn_search:hover {
+  background: #109085;
+}
+.btn:active,
+.btn.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+

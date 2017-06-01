@@ -211,6 +211,9 @@ hr {
   height: 100%;
   cursor: pointer;
 }
+.enterprise .name {
+  height: 30px;
+}
 .enterprise .enterprise_detail {
   background: #ffffff;
   margin-left: 0px;

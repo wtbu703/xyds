@@ -13,7 +13,7 @@
 		            <th width="30px">序号</th>
 		            <th width="160px">项目建设名称</th>
 		            <th width="160px">时间</th>
-		            <th>操作</th>
+		            <th width="100px">操作</th>
 	            </tr>
             </thead>
             <tbody>

@@ -20,7 +20,10 @@ class CompanyNewsController extends Controller
      */
     public function actionList()
     {
-        return $this->render('list');
+        $companyId = Yii::$app->session['companyId'];
+        return $this->render('list',[
+            'companyId'=>$companyId,
+        ]);
     }
 
     /**
@@ -183,23 +186,27 @@ class CompanyNewsController extends Controller
         $para['newsdateTime_1'] = $newsdateTime_1;
         $para['newsdateTime_2'] = $newsdateTime_2;
 
-        $whereStr = 'companyId = "' . $companyId . '"';
+        if($companyId == 'admin'||$companyId == 'all'){
+            $whereStr = '1=1';
+        }else{
+            $whereStr = 'companyId = "' . $companyId . '"';
+        }
         if($title != ''){
             $whereStr = $whereStr . " and title like '%" . $title . "%'" ;
         }
         if ($keyword != '') {
-            $whereStr = $whereStr . " and keyword '%" . $keyword ."%'";
+            $whereStr = $whereStr . " and keyword like '%" . $keyword ."%'";
         }
         if($newsdateTime_1 != ''){
-            $whereStr = $whereStr." and datetime >= '".$newsdateTime_1."%'";
+            $whereStr = $whereStr." and published >= '".$newsdateTime_1."'";
         }
         if($newsdateTime_2 != ''){
-            $whereStr = $whereStr." and datetime <= '".$newsdateTime_2."%'";
+            $whereStr = $whereStr." and published <= '".$newsdateTime_2."'";
         }
 
         $companyNews = CompanyNews::find()->where($whereStr);
         $page = new Pagination(['totalCount' => $companyNews->count(), 'pageSize' => Common::PAGESIZE]);
-        $models = $companyNews->offset($page->offset)->limit($page->limit)->all();
+        $models = $companyNews->offset($page->offset)->limit($page->limit)->orderBy(['published'=>SORT_DESC])->all();
 
         return $this->render('listall',[
             'companyNews' => $models,
@@ -216,7 +223,7 @@ class CompanyNewsController extends Controller
 
         if (Yii::$app->request->isPost) {
 
-            $fileArg = Common::upload($_FILES,false,false);
+            $fileArg = Common::upload($_FILES,false,false,false,50*1024000);
             return $this->render('upload',[
                 "fileArg" => $fileArg,
                 "tag" => $fileArg['tag'],
@@ -293,10 +300,14 @@ class CompanyNewsController extends Controller
         $page = Yii::$app->request->post('page');
         if($newsType == -1){
             $query = CompanyNews::find()
+                ->where('companyId = :id',[':id'=>$companyId])
                 ->count();
         }else{
             $query = CompanyNews::find()
-                ->where('category=:category', [':category' => $newsType])
+                ->where('category=:category and companyId = :id', [
+                    ':category' => $newsType,
+                    ':id'=>$companyId,
+                ])
                 ->count();
         }
         $pagination = new Pagination([
@@ -307,6 +318,7 @@ class CompanyNewsController extends Controller
         ]);
         if($newsType == -1) {
             $articles = CompanyNews::find()
+                ->where('companyId = :id',[':id'=>$companyId])
                 ->orderBy(['published' => SORT_DESC])
                 ->offset($pagination->offset)
                 ->limit($pagination->limit)
@@ -327,4 +339,15 @@ class CompanyNewsController extends Controller
         $para['totalCount'] = $pagination->totalCount;
 		return Json::encode($para);
 	}
+
+
+    /**
+     * @return string
+     * 新闻类别字典接口
+     */
+    public function actionIndexDict(){
+        $category = Dictitem::find()->where(['dictCode'=>'DICT_NEW_CATEGORY'])->all();
+        return Json::encode($category);
+    }
+
 }

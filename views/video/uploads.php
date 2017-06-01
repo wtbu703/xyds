@@ -3,13 +3,13 @@ $this->title =  '上传图片';
 ?>
 <script type="text/javascript">
     var insertUrl = "<?=yii::$app->urlManager->createUrl('user/insert')?>";
-    var tag = "<?=$tag?>"
+    var tag = "<?=$tag?>";
 
     if(tag == 'success'){
 
         var picUrl = window.parent.$('#picUrl').val();
         if(picUrl != ''){
-            window.parent.$('#picUrl').val(picUrl + ";<?=$fileArg['fileSaveUrl']?>");
+            window.parent.$('#picUrl').val("<?=$fileArg['fileSaveUrl']?>");
         }else{
             window.parent.$('#picUrl').val("<?=$fileArg['fileSaveUrl']?>");
 

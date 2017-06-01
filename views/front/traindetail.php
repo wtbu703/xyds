@@ -1,3 +1,6 @@
+<?
+$this->title = '培训详情页';
+?>
 <link rel="stylesheet" type="text/css" href="css/css/traindetail.css">
 
 <!-- 文章正文部分 -->
@@ -15,9 +18,15 @@
                         <span class="lh_index">详情</span>
                     </div>
                 </div>
+				<div class="row row_top">
+					<div class="col-xs-12 col-md-12 col-lg-12 signup">
+						<img class="img-responsive" src="images/images_contactus/signup.png" alt="baomonglogo">
+						<h2>培训通知</h2>
+					</div>
+				</div>
                 <!-- end 正文头部导航 -->
                 <!-- 正文文章 -->
-				<div class="row row_text col-md-12">
+				<div class="row row_text1">
 					<div class="col-md-1 col-sm-0 col-xs-0 col-lg-1"></div>
 					<div class="col-md-10 col-sm-12 col-xs-12">
 						<?if(!is_null($ectrain)){?>
@@ -34,7 +43,9 @@
 							<?php if($time>$ectrain->beginTime&&$time<$ectrain->endTime){ ?>
 						<div class="down col-md-3 col-sm-3 col-md-offset-10 col-xs-offset-6"><a href="<?=Yii::$app->urlManager->createUrl('front/signup')?>&id=<?=$ectrain->id?>" class="btn btn_common1" role="button">报名入口</a>
 						</div>
-								<? }?>
+								<? }else{?>
+								<div class="down col-md-3 col-sm-3 col-md-offset-10 col-xs-offset-6"><a class="btn btn_common2" role="button">报名入口</a></div>
+									<?}?>
 						<?}?>
 					</div>
 					<div class="col-md-1 col-sm-0 col-xs-0 col-lg-1"></div>

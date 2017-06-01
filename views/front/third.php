@@ -9,16 +9,19 @@ $this->title = "第三方服务";
     var thirdDetailUrl = "<?=yii::$app->urlManager->createUrl('front/third-detail')?>";
     var dictUrl = "<?=yii::$app->urlManager->createUrl('dict/dict')?>";
 </script>
-<img src="images/thirdserve/banner_3disanfang.jpg" class="img-responsive"/>
+<img src="<?=$pic?>" class="img-responsive"/>
 
 <div class="content_body">
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-md-12 content_box">
-            <div class="content_header">&nbsp; 第三方服务</div>
-            <div class="content_search">
-                <input type="text" class="form_2" id="thirdName" placeholder="请输入企业名称" />
-               <button class="search_bg" onclick="searchByNameCat()"><center><img src="images/third_details/search.png" alt="搜索图标"></center></button>
+            <div class=" content_header">&nbsp; 第三方服务</div>
+            <div class="column row_enterprise nav_classify">
+
+                <div class="content_search">
+                    <input type="text" class="form_2" id="thirdName" placeholder="请输入企业名称" />
+                   <button class="search_bg" onclick="searchByNameCat()"><center><img src="images/third_details/search.png" alt="搜索图标"></center></button>
+                </div>
             </div>
         </div>
     </div>
@@ -27,13 +30,13 @@ $this->title = "第三方服务";
 <!-- 主要内容 -->
    <div class="container box">
     <div class="row">
-        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 ">
+       <!-- <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 ">
             <ul class="list-group content_left public_shadow" id="content_left">
 
             </ul>
-        </div>
+        </div>-->
       <!--右边-->
-       <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 right" id="content_right">
+       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 right" id="content_right">
             <div>
                 <div class="row_one"></div>
 

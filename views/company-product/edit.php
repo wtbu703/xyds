@@ -1,7 +1,6 @@
 <?php
 $this->title = "修改产品";
 ?>
-
 <script>
     var updateUrl = "<?=yii::$app->urlManager->createUrl('company-product/update-one')?>";
     function pic(){
@@ -12,6 +11,7 @@ $this->title = "修改产品";
         timeText.html(a);
     }
 </script>
+
 <script language="javascript" type="text/javascript" src="js/admin/company-product/edit.js" charset="utf-8"></script>
 <div class="pad-lr-10">
 <form name="myform" action="" method="post" id="myform" target="center_frame">
@@ -22,31 +22,30 @@ $this->title = "修改产品";
             </ul>
             <div id="div_setting_1" class="contentList pad-10">
                 <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
-                    <table width="90%" cellspacing="0" class="table_form contentWrap">
+                    <table width="100%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-                            <th width="100">名称</th>
-                            <td><input type="text" id="name"  class="input-text" style="width:270px;" value="<?=$companyProduct->name?>"/></td>
+                            <th width="100px" align="right"><sub class="redstar">*</sub>产品名称：</th>
+                            <td class="one"><input type="text" id="name"  class="inputxt" style="width:270px;" value="<?=$companyProduct->name?>"/></td>
+                            <td class="one"><div id="nameTip"></div></td>
                             <input type="hidden" id="id" value="<?=$companyProduct->id?>" />
                         </tr>
                         <tr>
-                            <th width="100">介绍</th>
-                            <td><textarea style="width:500px;height:100px;" name="introduction" id="introduction" ><?=$companyProduct->introduction?></textarea></td>
+                            <th align="right">产品介绍：</th>
+                            <td colspan="2"><textarea style="width:500px;height:100px;" name="introduction" id="introduction" ><?=$companyProduct->introduction?></textarea></td>
                         </tr>
                         <tr>
-                            <th width="100">价格</th>
-                            <td><input type="text" id="price"  class="input-text" style="width:270px;" value="<?=$companyProduct->price?>" /></td>
+                            <th align="right"><sub class="redstar">*</sub>产品价格：</th>
+                            <td class="one"><input type="text" id="price" style="width:270px;" value="<?=$companyProduct->price?>" /></td>
+                            <td class="one"><div id="priceTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">折扣</th>
-                            <td><input type="text" id="discount"  class="input-text" style="width:270px;" value="<?=$companyProduct->discount?>" /></td>
+                            <th align="right"><sub class="redstar">*</sub>产品折扣：</th>
+                            <td class="one"><input type="text" id="discount" style="width:270px;" value="<?=$companyProduct->discount?>" /></td>
+                            <td class="one"><div id="discountTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">库存</th>
-                            <td><input type="text" id="stock"  class="input-text" style="width:270px;" value="<?=$companyProduct->stock?>" /></td>
-                        </tr>
-                        <tr>
-                            <th width="100">状态</th>
+                            <th align="right"><sub class="redstar">*</sub>产品状态：</th>
                             <td><select style="width:270px;" id="state">
                                     <?foreach($productState as $key => $val){?>
                                         <?if(intval($val->dictItemCode) == $companyProduct->state){?>
@@ -56,20 +55,21 @@ $this->title = "修改产品";
                                         <?}?>
                                     <?}?>
                                 </select></td>
+                            <td class="one"><div id="stateTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">原始图片：</th>
+                            <th align="right">原始图片：</th>
                             <td><img src="<?=$companyProduct->thumbnailUrl?>" width="60%" /></td>
                         </tr>
                         <tr onmouseout="pic()">
-                            <th>修改图片：</th>
-                            <td>
+                            <th align="right">修改图片：</th>
+                            <td colspan="2">
                                 <input type="text" style="display:none;" name="picUrl" id="picUrl" value="" class="input-text" "/>
                                 <iframe frameborder=0 width="100%" height=40px scrolling=no src="<?=yii::$app->urlManager->createUrl('company-product/upload')?>"></iframe>
                             </td>
                         </tr>
                         <tr>
-                            <th>图片预览：</th>
+                            <th align="right">图片预览：</th>
                             <td class="pic_text"></td>
                         </tr>
                         </tbody>

@@ -1,4 +1,6 @@
-
+<?
+$this->title = '电商培训';
+?>
 	<link href="css/css/ectrain.css" rel="stylesheet">
 	<script src="js/front/ectrain.js"></script>
 	<script type="text/javascript">
@@ -7,7 +9,7 @@
 		var detailUrl = "<?=Yii::$app->urlManager->createUrl('front/train-detail')?>";
 		var videoDetailUrl = "<?=Yii::$app->urlManager->createUrl('front/video-detail')?>";
 	</script>
-    <img class="img-responsive center-block hidden-xs" src="images/images_onlinevideo/banner.jpg" />
+	<a href="<?=Yii::$app->urlManager->createUrl('front/online-video')?>"><img class="img-responsive center-block hidden-xs" src="<?=$pic?>" /></a>
 
 	<!-- content -->
 	<div class="container">

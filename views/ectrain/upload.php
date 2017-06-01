@@ -1,19 +1,17 @@
 
 <script type="text/javascript">
     var insertUrl = "<?=yii::$app->urlManager->createUrl('user/insert')?>";
-    var tag = "<?=$tag?>"
+    var tag = "<?=$tag?>";
 
     if(tag == 'success'){
 
-        var picUrl = window.parent.$('#picUrl').val();
+        var picUrl = window.parent.$('#thumbnailUrl').val();
         if(picUrl != ''){
-            window.parent.$('#picUrl').val(picUrl + ";<?=$fileArg['fileSaveUrl']?>");
+            window.parent.$('#thumbnailUrl').val("<?=$fileArg['fileSaveUrl']?>");
         }else{
-            window.parent.$('#picUrl').val("<?=$fileArg['fileSaveUrl']?>");
+            window.parent.$('#thumbnailUrl').val("<?=$fileArg['fileSaveUrl']?>");
 
         }
-
-
     }
 </script>
 <script type="text/javascript" src="js/admin/ectrain/upload.js"></script>

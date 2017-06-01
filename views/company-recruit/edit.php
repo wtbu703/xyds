@@ -1,9 +1,17 @@
 <?php
 $this->title = "修改招聘信息";
 ?>
+<link href="css/tabpanel/cityList.css" rel="stylesheet" type="text/css">
+<!--表单验证-->
+<link href="css/admin/validator.css" rel="stylesheet">
+<script language="javascript" type="text/javascript" src="js/admin/formvalidatorregex.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript" src="js/admin/formvalidator.js" charset="utf-8"></script>
+<link href="css/common_css/edit.css" rel="stylesheet">
+<!--表单验证 end-->
 <script>
     var updateUrl = "<?=yii::$app->urlManager->createUrl('company-recruit/update-one')?>";
 </script>
+
 <script language="javascript" type="text/javascript" src="js/admin/company-recruit/edit.js" charset="utf-8"></script>
 <div class="pad-lr-10">
 <form name="myform" action="" method="post" id="myform" target="center_frame">
@@ -14,52 +22,69 @@ $this->title = "修改招聘信息";
             </ul>
             <div id="div_setting_1" class="contentList pad-10">
                 <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
-                    <table width="90%" cellspacing="0" class="table_form contentWrap">
+                    <table width="100%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-                            <th width="100px">企业ID</th>
-                            <td><input type="text" id="companyId"  class="input-text" style="width:270px;" value="<?=$companyRecruit->companyId?>"/></td>
-                            <input type="hidden" id="id" value="<?=$companyRecruit->id?>" />
+                            <th width="100px" align="right"><sub class="redstar">*</sub>职位</th>
+                            <td><input type="text" id="position" style="width:270px;" value="<?=$companyRecruit->position?>" /></td>
+                            <td class="one"><div id="positionTip"></div></td>
+                            <input type="hidden" id="id"  class="input-text" value="<?=$companyRecruit->id?>" />
                         </tr>
                         <tr>
-                            <th width="100">职位</th>
-                            <td><input type="text" id="position"  class="input-text" style="width:270px;" value="<?=$companyRecruit->position?>" /></td>
+                            <th align="right"><sub class="redstar">*</sub>工作地区：</th>
+                            <td><input type="text" style="width:250px;" name="place" id="city"  value="<?=$companyRecruit->place?>"  class="input-text"/></td>
                         </tr>
                         <tr>
-                            <th>工作地点：</th>
-                            <td><input type="text" style="width:250px;" name="workPlace" id="workPlace"  value="<?=$companyRecruit->workPlace?>"  class="input-text"/></td>
+                            <th align="right"><sub class="redstar">*</sub>详细地址：</th>
+                            <td><input type="text" style="width:250px;" name="workPlace" id="workPlace"  value="<?=$companyRecruit->workPlace?>" /></td>
+                            <td class="one"><div id="workPlaceTip"></div></td>
                         </tr>
                         <tr>
-                            <th>学历要求：</th>
-                            <td><input type="text" style="width:250px;" name="record" id="record"  value="<?=$companyRecruit->record?>"  class="input-text"/></td>
+                            <th width="100px" align="right"><sub class="redstar">*</sub>学历要求:</th>
+                            <td><select style="width:270px;" id="record">
+                                    <?foreach($record as $key => $val){?>
+                                        <?if(intval($val->dictItemCode) == $companyRecruit->record){?>
+                                            <option name="record" value="<?=$val->dictItemCode?>" selected><?=$val->dictItemName?></option>
+                                        <?}else{?>
+                                            <option name="record" value="<?=$val->dictItemCode?>"><?=$val->dictItemName?></option>
+                                        <?}?>
+                                    <?}?>
+                                </select></td>
+                            <td><div id="recordTip"></div></td>
                         </tr>
                         <tr>
-                            <th>薪资：</th>
-                            <td><input type="text" style="width:250px;" name="salary" id="salary"  value="<?=$companyRecruit->salary?>"  class="input-text"/></td>
+                            <th align="right"><sub class="redstar">*</sub>薪资：</th>
+                            <td><input type="text" style="width:250px;" name="salary" id="salary"  value="<?=$companyRecruit->salary?>"/></td>
+                            <td class="one"><div id="salaryTip"></div></td>
                         </tr>
                         <tr>
-                            <th>经验要求：</th>
-                            <td><input type="text" style="width:250px;" name="exp" id="exp"  value="<?=$companyRecruit->exp?>"  class="input-text"/></td>
+                            <th align="right"><sub class="redstar">*</sub>经验要求：</th>
+                            <td><input type="text" style="width:250px;" name="exp" id="exp"  value="<?=$companyRecruit->exp?>" /></td>
+                            <td class="one"><div id="expTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">要求</th>
-                            <td><textarea style="width:500px;height:100px;" name="demand" id="demand" ><?=$companyRecruit->demand?></textarea></td>
+                            <th  align="right">要求</th>
+                            <td colspan="2"><textarea style="width:500px;height:100px;" name="demand" id="demand" ><?=$companyRecruit->demand?></textarea></td>
                         </tr>
                         <tr>
-                            <th width="100">手机</th>
-                            <td><input type="text" id="mobile" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  class="input-text" style="width:270px;" value="<?=$companyRecruit->mobile?>" /></td>
+                            <th align="right"><sub class="redstar">*</sub>手机</th>
+                            <td><input type="text" id="mobile" style="width:270px;" value="<?=$companyRecruit->mobile?>" /></td>
+                            <td class="one"><div id="mobileTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">座机</th>
-                            <td><input type="text" id="tel"  class="input-text" style="width:270px;" value="<?=$companyRecruit->tel?>" /></td>
+                            <th  align="right"><sub class="redstar">*</sub>座机</th>
+                            <td><input type="text" id="tel" style="width:270px;"  value="<?=$companyRecruit->tel?>" /></td>
+                            <td class="one"><div id="telTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">邮箱</th>
-                            <td><input type="text" id="email"  class="input-text" style="width:270px;" value="<?=$companyRecruit->email?>" /></td>
+                            <th align="right"><sub class="redstar">*</sub>邮箱</th>
+                            <td><input type="text" id="email"  style="width:270px;" value="<?=$companyRecruit->email?>" /></td>
+                            <td class="one"><div id="emailTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">联系人</th>
-                            <td><input type="text" id="contacts"  class="input-text" style="width:270px;" value="<?=$companyRecruit->contacts?>" /></td>
+                            <th  align="right"><sub class="redstar">*</sub>联系人</th>
+                            <td><input type="text" id="contacts"  style="width:270px;" value="<?=$companyRecruit->contacts?>" /></td>
+                            <td class="one"><div id="contactsTip"></div></td>
                         </tr>
                         </tbody>
                     </table>
@@ -76,6 +101,15 @@ $this->title = "修改招聘信息";
     </div>
 </form>
 </div>
+
+<script type="text/javascript" src="js/admin/company-recruit/cityJson.js"></script>
+<script type="text/javascript" src="js/admin/company-recruit/Popt.js"></script>
+<script type="text/javascript" src="js/admin/company-recruit/citySet.js"></script>
 <script type="text/javascript">
     var contentEditor=genEditor('','demand','');
+
+    $("#city").click(function (e) {
+        SelCity(this,e);
+
+    });
 </script>

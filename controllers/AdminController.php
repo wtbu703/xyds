@@ -10,6 +10,7 @@ use app\models\Menu;
 use app\common\Common;
 use yii\helpers\Json;
 use app\models\AdminRole;
+use yii\db\Query;
 
 /**
  * @property array|\yii\db\ActiveRecord[] backendMenus
@@ -79,16 +80,24 @@ class AdminController extends Controller{
 	            }
 
                 $admin_role = AdminRole::find()->where('userId = :userId',[":userId"=>$admin->id])->one();
-	            if (!empty($admin_role->roleId)) {
-		            Yii::$app->session['roleId'] = $admin_role->roleId;
+	            $roleId = $admin_role->roleId;
+	            if (!empty($roleId)) {
+		            Yii::$app->session['roleId'] = $roleId;
+		            if($roleId == '2'){//如果是超管
+			            Yii::$app->session['companyId'] = 'admin';
+		            }elseif($roleId == 'zsyj5919949a95ad87zsyj58750313'){//如果是平台管理员
+			            Yii::$app->session['companyId'] = 'all';
+		            }else{
+			            if(!empty($admin->companyId)){//企业ID存入session
+				            Yii::$app->session['companyId'] = $admin->companyId;
+			            }
+		            }
 	            }
 
 	            if(!empty($admin->siteId)){//服务站点Id存入session
 		            Yii::$app->session['siteId'] = $admin->siteId;
 	            }
-	            if(!empty($admin->companyId)){//企业ID存入session
-		            Yii::$app->session['companyId'] = $admin->companyId;
-	            }
+
                 Yii::$app->session->remove('checkCode');
                 return 'success';
 
@@ -105,10 +114,13 @@ class AdminController extends Controller{
 	 */
 	public function actionBackend(){
 
-        $models = Menu::find()
-            ->where(['state' => '1', 'menuLevel' => '1'])
-            ->orderBy('orderBy')
-            ->all();
+		$query = new Query();
+		$models = $query->select('a.id as id,a.menuName as menuName,a.menuUrl as menuUrl,a.upLevelMenu as upLevelMenu,a.menuLevel as menuLevel')
+			->from('menu a')
+			->where(['a.state' => '1', 'a.menuLevel' => '1','b.roleId'=>Yii::$app->session['roleId']])
+			->orderBy('a.orderBy')
+			->leftJoin('menu_role b','a.id = b.menuId')
+			->all();
 
         return $this->render('backend',[
             'models' => $models
@@ -131,11 +143,19 @@ class AdminController extends Controller{
 	public function actionMenu(){
 
         if(Yii::$app->request->isAjax){//是否ajax请求
-            //$menuId = Yii::$app->request->post('id');
-            $menus = Menu::find()
+            $menuId = Yii::$app->request->post('id');
+            /*$menus = Menu::find()
                 ->where("menuLevel>'1'")
                 ->where("state='1'")
                 ->orderBy('orderBy')
+                ->all();*/
+            $query = new Query();
+            $menus = $query->select('a.id as id,a.menuName as menuName,a.menuUrl as menuUrl,a.upLevelMenu as upLevelMenu,a.menuLevel as menuLevel')
+                ->from('menu a')
+                ->where("a.menuLevel>'1'")
+                ->where(['a.state' => '1', 'b.roleId'=>Yii::$app->session['roleId']])
+                ->orderBy('a.orderBy')
+                ->leftJoin('menu_role b','a.id = b.menuId')
                 ->all();
             return Json::encode($menus);//Yii 的方法将数组处理成json数据
         }

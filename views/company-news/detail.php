@@ -8,31 +8,31 @@ $this->title = '新闻详情';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100">新闻标题</th>
+                        <th width="100px" align="right">新闻标题</th>
                         <td id="title"><?=$companyNews->title?></td>
                     </tr>
                     <tr>
-                        <th width="100">新闻类别</th>
+                        <th align="right">新闻类别</th>
                         <td id="category"><?=$companyNews->category?></td>
                     </tr>
                     <tr>
-                        <th width="100">新闻来源</th>
+                        <th align="right">新闻来源</th>
                         <td id="author"><?=$companyNews->author?></td>
                     </tr>
                     <tr>
-                        <th width="100">新闻内容</th>
+                        <th align="right">新闻内容</th>
                         <td id="content"><?=$companyNews->content?></td>
                     </tr>
                     <tr>
-                        <th width="100">关键词</th>
+                        <th align="right">关键词</th>
                         <td id="keyword"><?=$companyNews->keyword?></td>
                     </tr>
                     <tr>
-                        <th width="100">附件名称</th>
+                        <th align="right">附件名称</th>
                         <td id="picUrl"><?=$companyNews->attachName?></td>
                     </tr>
                     <tr>
-                        <th width="100">图片</th>
+                        <th align="right">图片</th>
                         <td id="picUrl"><img src="<?=$companyNews->picUrl?>" width="60%" /></td>
                     </tr>
                 </table>

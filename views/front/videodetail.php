@@ -1,4 +1,6 @@
-
+<?
+$this->title = '在线视频详情页';
+?>
 	<link href="css/css/ecinformationDetail.css" rel="stylesheet">
 	<script src="js/front/online_videoDetail.js"></script>
 	<script>
@@ -7,7 +9,8 @@
 		var hotNewsUrl = "<?=Yii::$app->urlManager->createUrl('article/hot-news')?>";
 		var companyDetailUrl = "<?=Yii::$app->urlManager->createUrl('front/enterprise-detail')?>";
 	</script>
-	<img class="img-responsive center-block hidden-xs" src="images/images_onlinevideo/banner.jpg" />
+<a href="<?=Yii::$app->urlManager->createUrl('front/online-video')?>"><img class="img-responsive center-block hidden-xs" src="<?=$pic?>" /></a>
+
 
 	<!-- content -->
 	<div class="container">

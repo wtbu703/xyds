@@ -11,7 +11,7 @@ $this->title = "第三方服务详情页";
     </script>
 
     <!--banner图-->
-    <img src="images/third_details/banner_dafxq.jpg" class="img-responsive"/>
+    <img src="<?=$pic?>" class="img-responsive"/>
 
   <div class="content_body">    
 	<div class="container">
@@ -43,13 +43,13 @@ $this->title = "第三方服务详情页";
                         </div>
                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                <img class="third_art" src="<?=$thirdDetail->logoUrl?>" >
+                                <img class="third_art img-responsive" src="<?=$thirdDetail->logoUrl?>" >
                              </div>
                              <div class="art_box col-xs-12 col-sm-12 col-md-8 col-lg-8">
                                 <ul class="art_info">
                                     <li>公司名称：<?=$thirdDetail->companyName?></li>
                                     <li>服务名称：<?=$thirdDetail->introduction?></li>
-                                    <li>发布日期：<span class="pubtime"></span></li>
+                                    <li>发布日期：<span class="pubtime"><?=$thirdDetail->publicTime?></span></li>
                                     <li>联系人：<?=$thirdDetail->contact?></li>
                                     <li>联系电话：<?=$thirdDetail->tel?></li>
                                     <li>电子邮箱：<?=$thirdDetail->email?></li>

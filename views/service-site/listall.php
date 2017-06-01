@@ -14,7 +14,7 @@
 		            <th width="160px">站点编码</th>
 		            <th width="160px">站点名称</th>
 		            <th width="160px">站点类型</th>
-		            <th>操作</th>
+		            <th width="100px">操作</th>
 	            </tr>
             </thead>
             <tbody>

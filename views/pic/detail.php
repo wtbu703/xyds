@@ -4,12 +4,12 @@
         <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
             <table width="100%" cellspacing="0" class="table_form contentWrap">
                 <tr>
-                    <th width="200">前台栏目：</th>
+                    <th align="right" width="100px">前台栏目：</th>
                     <td><?=$pic->category?></td>
                 </tr>
                 <tr>
-                    <th width="200">图片：</th>
-                    <td><img src="<?=$pic->url?>" /></td>
+                    <th align="right">图片：</th>
+                    <td><img src="<?=$pic->url?>" width="80%"/></td>
                 </tr>
             </table>
         </div>

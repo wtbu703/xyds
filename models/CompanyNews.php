@@ -35,13 +35,13 @@ class CompanyNews extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'companyId', 'title', 'attachUrl'], 'required'],
+            [['id', 'companyId', 'title'], 'required'],
             [['published'], 'safe'],
             [['content'], 'string'],
             [['category'], 'integer'],
             [['id', 'companyId'], 'string', 'max' => 40],
-            [['title', 'attachUrl', 'attachName', 'picUrl'], 'string', 'max' => 64],
-            [['author', 'keyword'], 'string', 'max' => 16],
+            [['title', 'keyword', 'attachUrl', 'attachName', 'picUrl'], 'string', 'max' => 64],
+            [['author'], 'string', 'max' => 32],
         ];
     }
 

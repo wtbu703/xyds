@@ -7,7 +7,7 @@
 
         var thumbnailUrl = window.parent.$('#thumbnailUrl').val();
         if(thumbnailUrl != ''){
-            window.parent.$('#thumbnailUrl').val(thumbnailUrl + ";<?=$fileArg['fileSaveUrl']?>");
+            window.parent.$('#thumbnailUrl').val("<?=$fileArg['fileSaveUrl']?>");
         }else{
             window.parent.$('#thumbnailUrl').val("<?=$fileArg['fileSaveUrl']?>");
 
@@ -19,6 +19,6 @@
 
 <form id="uploadForm" name="form1" method="post" action="<?=yii::$app->urlManager->createUrl(['ectrain/upload','isThumb'=>'isThumb'])?>" enctype="multipart/form-data">
     <input type="file" id="fileName" name="file" style="height:18px;border:1px #ff9900;width:250px;"/>
-    <input type="button" class="buttonsave" onClick="uploadPic();"  value="上传大图"/><div id="productPWDAgainTip">限制分辨率为400*250（宽*高），大小不超过2M！</div>
+    <input type="button" class="buttonsave" onClick="uploadPic();"  value="上传大图"/><div id="productPWDAgainTip">限制分辨率为540*300（宽*高），大小不超过2M！</div>
 </form>
 

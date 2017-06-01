@@ -79,7 +79,6 @@ class ThirdPartyServiceController extends Controller{
 		$serviceSystemBuild->fax = Yii::$app->request->post('fax');
 		$serviceSystemBuild->postcode = Yii::$app->request->post('postcode');
 		$serviceSystemBuild->content = Yii::$app->request->post('content');
-		$serviceSystemBuild->publicTime = Yii::$app->request->post('publicTime');
 		$serviceSystemBuild->contact = Yii::$app->request->post('contact');
 		$serviceSystemBuild->sources = Yii::$app->request->post('sources');
 		$serviceSystemBuild->category = Yii::$app->request->post('category');
@@ -98,6 +97,7 @@ class ThirdPartyServiceController extends Controller{
 	public function actionFindByAttri(){
 		//收查询条件如果存在
 		$name = Yii::$app->request->get('companyName');
+		$category = Yii::$app->request->get('category');
 
 		//换页时保存查询条件
 		$para= [];
@@ -108,6 +108,9 @@ class ThirdPartyServiceController extends Controller{
 		if($name != ''){
 			$whereStr = $whereStr." and companyName like '%".$name."%'";
 		}
+		if($category != ''){
+			$whereStr = $whereStr." and category like '%".$category."%'";
+		}
 
 		$serviceSystemBuilds = ThirdPartyService::find()
 			->where($whereStr);
@@ -117,6 +120,7 @@ class ThirdPartyServiceController extends Controller{
 			'pageSize' => Common::PAGESIZE
 		]);
 		$models = $serviceSystemBuilds
+			->orderBy(['publicTime'=>SORT_DESC])
 			->offset($pages->offset)
 			->limit($pages->limit)
 			->all();
@@ -189,17 +193,16 @@ class ThirdPartyServiceController extends Controller{
 		$fax = Yii::$app->request->post("fax");
 		$postcode = Yii::$app->request->post("postcode");
 		$content = Yii::$app->request->post('content');
-		$publicTime = Yii::$app->request->post('publicTime');
 		$contact = Yii::$app->request->post('contact');
 		$sources = Yii::$app->request->post('sources');
 		$category = Yii::$app->request->post('category');
-
+		$publicTime = date('Y-m-d H:m:s');
 		$serviceSite = ThirdPartyService::findOne($id);
 		if($companyName != ''){
 			$serviceSite->companyName = $companyName;
 		}
 		if($logoUrl != ''){
-			if(!is_null($serviceSite->logoUrl)){//如果有图片链接
+			if(!is_null($serviceSite->logoUrl)&&file_exists($serviceSite->logoUrl)){//如果有图片链接
 				unlink($serviceSite->logoUrl);//就删除图片文件
 			}
 			$serviceSite->logoUrl = $logoUrl;
@@ -254,7 +257,7 @@ class ThirdPartyServiceController extends Controller{
 		$serviceSystemBuild = ThirdPartyService::findOne($id);
 		$picUrl = $serviceSystemBuild['logoUrl'];//获取表中图片路径字段
 
-		if(!is_null($picUrl)){//如果有图片文件
+		if(!is_null($picUrl)&&file_exists($picUrl)){//如果有图片文件
 			//根据路径删除图片文件
 			unlink($picUrl);
 		}
@@ -278,7 +281,7 @@ class ThirdPartyServiceController extends Controller{
 
 		foreach($id_array as $key => $data){
 			$serviceSystemBuild = ThirdPartyService::findOne($data);
-			if(!is_null($serviceSystemBuild['logoUrl'])){//如果有图片文件
+			if(!is_null($serviceSystemBuild['logoUrl'])&&file_exists($serviceSystemBuild['logoUrl'])){//如果有图片文件
 				unlink($serviceSystemBuild['logoUrl']);//根据路径删除文件
 			}
 			$serviceSystemBuild->delete();//根据ID删除
@@ -317,6 +320,7 @@ class ThirdPartyServiceController extends Controller{
 				return Json::encode($para);
 			}else{
 				$query = ThirdPartyService::find()
+						->where("companyName like '%" . $tag . "%'")
 						->count();
 				$pagination = new Pagination([
 						'page' => $page,
@@ -339,6 +343,7 @@ class ThirdPartyServiceController extends Controller{
 			}
 		}else{
 			$query = ThirdPartyService::find()
+					->where('category = :cat',[":cat"=>$cat])
 					->count();
 			$pagination = new Pagination([
 					'page' => $page,

@@ -57,25 +57,26 @@ function examine(state){
 			data:paraStr,
 			async: "false",
 			success: function (data) {
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '提交成功！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
-					$('#pageForm').submit();
 				});
 			},
 			error:function(data){
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '提交失败！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
 				});
 			}
@@ -102,7 +103,6 @@ function examine(state){
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
 				}, function () {
 					$('#pageForm').submit();
 				});
@@ -114,7 +114,6 @@ function examine(state){
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
 				}, function () {
 				});
 			}

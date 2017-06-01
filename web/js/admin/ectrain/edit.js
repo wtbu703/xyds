@@ -1,20 +1,59 @@
 
 $(function(){
-	$.formValidator.initConfig({
-		formid:"myform",
-		autotip:true,			//是否显示提示信息
-		onerror:function(msg,obj){
-		window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})
-		}});
-	// 校验模型名称
+	$.formValidator.initConfig({ formID: "myform",autotip:true, onError: function () { alert("校验没有通过，具体错误请看错误提示") } });
 
-	//验证培训名是否为空
+	// 校验模型名称
 	$("#name").formValidator({
-				onshow:"请输入培训名！",
-				onfocus:"请输入培训名！"})
-			.inputValidator({               //校验不能为空
-				min:1,
-				onerror:"请输入培训名！"})
+				onshow: "请输入培训名称",
+				onfocus: "标题内容不超过32个字",
+				oncorrect: "输入正确"
+			})
+			.regexValidator({
+				regexp: "^.{1,32}$",
+				onerror: "标题内容不超过32个字!"
+			});
+	$("#category").formValidator({
+		onshow: "选择不能为空",
+		onfocus: "（必填）请选择选项",
+		oncorrect: "输入正确"
+	}).inputValidator({
+		min: 0,  //开始索引
+		onerror: "你是不是忘记选择培训类别了!"
+	});
+
+	$("#dayNum").formValidator({
+		onshow: "请输入培训天数",
+		onfocus: "不超过3位数",
+		oncorrect: "输入正确"
+	}).regexValidator({
+		regexp:"^.{1,3}$",
+		onerror: "不超过3位数!"
+	});
+
+	$("#peopleNum").formValidator({
+		onshow: "请输入培训人数",
+		onfocus: "不超过3位数 ",
+		oncorrect: "输入正确"
+	}).regexValidator({
+		regexp:"^.{1,3}$",
+		onerror: "不超过3位数!"
+	});
+	$("#period").formValidator({
+		onshow: "选择不能为空",
+		onfocus: "（必填）请选择选项",
+		oncorrect: "输入正确"
+	}).inputValidator({
+		min: 0,  //开始索引
+		onerror: "你是不是忘记选择第多少期了!"
+	});
+	$("#publisher").formValidator({
+		onshow: "请输入发布人",
+		onfocus: "不超过16个字",
+		oncorrect: "输入正确"
+	}).regexValidator({
+		regexp:"^.{1,16}$",
+		onerror: "不超过16个字!"
+	});
 
 })
 
@@ -31,7 +70,6 @@ function edit(){
 		paraStr += "&peopleNum=" + $("#peopleNum").val();
 		paraStr += "&target=" + $("#target").val();
 		paraStr += "&publisher=" + $("#publisher").val();
-		paraStr += "&picUrl=" + $("#picUrl").val();
 		paraStr += "&thumbnailUrl=" + $("#thumbnailUrl").val();
 		paraStr += "&beginTime=" + $('#beginTime').val();
 		paraStr += "&endTime=" + $('#endTime').val();

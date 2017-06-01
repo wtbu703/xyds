@@ -1,3 +1,6 @@
+<?
+$this->title = '培训通知';
+?>
 <link rel="stylesheet" type="text/css" href="css/css/trainingnotice.css">
 <script src='js/front/train_notice.js'></script>
 <script type="text/javascript">
@@ -6,9 +9,11 @@
 	var detailUrl = "<?=yii::$app->urlManager->createUrl('front/train-detail')?>";
 	var singupUrl = "<?=Yii::$app->urlManager->createUrl('front/signup')?>";
 	var ecUrl = "<?=Yii::$app->urlManager->createUrl('front/ectrain')?>";
+	var indexUrl = "<?=Yii::$app->urlManager->createUrl('front/index')?>";
 	var type = "<?=$type?>";
 </script>
-<img class="img-responsive hidden-xs" src="images/images_trainingnotice/banner.jpg" alt="banner">
+<a href="<?=Yii::$app->urlManager->createUrl('front/online-video')?>"><img class="img-responsive center-block hidden-xs" src="<?=$pic?>" /></a>
+
 
 <!-- 二级标题 -->
 

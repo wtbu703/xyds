@@ -36,7 +36,7 @@ $this->title = '培训报名管理';
                             &nbsp;
                             状态：
                             <select id="state" name="state" style="height: 25px;" class="input-text"></select>
-                            &nbsp;<input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="查询"/>
+                            &nbsp;<input type="button" onclick="search('<?=$id?>');" name="dosubmit" class="buttonsearch" value="查询"/>
                         </div>
                     </div>
                 </td>

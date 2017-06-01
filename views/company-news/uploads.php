@@ -9,7 +9,7 @@ $this->title =  '上传图片';
 
         var picUrl = window.parent.$('#picUrl').val();
         if(picUrl != ''){
-            window.parent.$('#picUrl').val(picUrl + ";<?=$fileArg['fileSaveUrl']?>");
+            window.parent.$('#picUrl').val("<?=$fileArg['fileSaveUrl']?>");
         }else{
             window.parent.$('#picUrl').val("<?=$fileArg['fileSaveUrl']?>");
 

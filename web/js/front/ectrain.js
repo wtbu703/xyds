@@ -9,10 +9,8 @@ function train_Inform(){
         async: false,
         success:function(data){
             $.each(data,function(i,n){   
-                var d = n.beginTime;
-                var date = new Date(d);
                 var content = rhtml(n.content);
-                var out = date.getFullYear() + "-" + (parseInt(date.getMonth()) + 1) + "-" + ((date.getDate() > 9) ? date.getDate() : "0" + date.getDate());                   
+                var out = daytime(n.beginTime);//时间格式          
                 if(i == 0)
                 {
                     trainInform_html.push('<div class="col-xs-12 col-sm-12 col-md-6">');

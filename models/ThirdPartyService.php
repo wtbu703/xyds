@@ -45,9 +45,9 @@ class ThirdPartyService extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['datetime', 'publicTime'], 'safe'],
             [['id'], 'string', 'max' => 40],
-            [['companyName', 'introduction', 'tel', 'email', 'fax', 'contact'], 'string', 'max' => 16],
-            [['logoUrl'], 'string', 'max' => 64],
-            [['address', 'sources'], 'string', 'max' => 32],
+            [['companyName', 'logoUrl', 'introduction', 'address'], 'string', 'max' => 64],
+            [['tel', 'fax'], 'string', 'max' => 16],
+            [['email', 'sources', 'contact'], 'string', 'max' => 32],
             [['postcode'], 'string', 'max' => 6],
         ];
     }

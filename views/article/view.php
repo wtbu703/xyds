@@ -8,7 +8,7 @@ $this->title =  '文章预览';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100">标题</th>
+                        <th width="100px">标题</th>
                         <td id="title"><?=$article['title']?></td>
                     </tr>
                     <tr>
@@ -16,12 +16,12 @@ $this->title =  '文章预览';
                         <td id="author"><?=$article['author']?></td>
                     </tr>
                     <tr>
-                        <th width="100">原时间</th>
-                        <td id="author"><?=$article['catchtime']?></td>
+                        <th width="100">时间</th>
+                        <td id="author"><?=$article['datetime']?></td>
                     </tr>
                     <tr>
                         <th width="100">内容</th>
-                        <td id="content"><?=$article['content']?></td>
+                        <td id="content" width="500px"><?=$article['content']?></td>
                     </tr>
                 </table>
             </div>

@@ -15,19 +15,25 @@ $this->title = '年表列表';
         <table width="100%" cellspacing="0" id="user_list">
             <thead id="dict_list_head">
             <tr align="left">
-                <th width="80px"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th><th width="30px">序号</th><th width="160px">年份</th><th width="160px">地区生产总额（亿元）</th><th width="160px">常住人口（万人）</th><th width="160px">电子商务交易额（万元）</th><th align="center">操作</th>
+                <th width="50px"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th>
+                <th width="30px" align="left">序号</th>
+                <th width="40px" align="left">年份</th>
+                <th width="160px" align="left">地区生产总额（亿元）</th>
+                <th width="100px" align="left">常住人口（万人）</th>
+                <th width="160px" align="left">电子商务交易额（万元）</th>
+                <th width="100px" align="center">操作</th>
             </tr>
             </thead>
             <tbody id="user_list_body">
             <?if(!is_null($countyEconomic)){?>
             <?php foreach ($countyEconomic as $index => $val){?>
                 <tr align="left">
-                    <td><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
-                    <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->year?>')"><?=$val->year?></a></td>
-                    <td><?=$val->GRP?></td>
-                    <td><?=$val->permanentPopulation?></td>
-                    <td><?=$val->ecTurnover?></td>
+                    <td align="left"><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
+                    <td align="left"><?=$index+$pages->page*$pages->pageSize+1?></td>
+                    <td align="left"><a href="javascript:detail('<?=$val->id?>','<?=$val->year?>')"><?=$val->year?></a></td>
+                    <td align="left"><?=$val->GRP?></td>
+                    <td align="left"><?=$val->permanentPopulation?></td>
+                    <td align="left"><?=$val->ecTurnover?></td>
                     <td align="center">
                         <a href="javascript:openedit('<?=$val->id?>','<?=$val->year?>')">修改</a>&nbsp;&nbsp;
                         |&nbsp;&nbsp;<a href="javascript:deleteCountyEconomic('<?=$val->id?>')">删除</a>

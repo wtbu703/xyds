@@ -253,6 +253,7 @@ class ResourceController extends Controller{
         'company-recruit/search',
         'company-recruit/positions',
         'company-recruit/company-recruit',
+        'company-recruit/position',
 
         'company-news/company-news',
         'company-news/all-news',

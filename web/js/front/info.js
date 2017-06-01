@@ -3,7 +3,7 @@ $(document).ready(function() {
     //左边栏
     getDict();
     //中间
-    getInfo();
+    getInfo(-1,0);
 
     //右边上
     getOne();
@@ -31,10 +31,9 @@ $(document).ready(function() {
             async: false,
             success: function (data) {//如果成功即执行  共5条
                 left.html('');
-                lefthtml.push('<li class="list_first"><img src="images/third_details/xinxi_icon1.png"><span>&nbsp;公告类型</span></li>');
-                lefthtml.push("<a href='javascript:getInfo("+(-1)+")'><li class='list_item1 list_on'>全部</li></a>");
+                lefthtml.push("<a href='javascript:getInfo("+(-1)+",0)'><li class='list_item1 list_on '>全部</li></a>");
                 $.each(data, function (i, n) {//遍历返回的数据
-                    lefthtml.push("<a href='javascript:getInfo("+n.dictItemCode+")'><li class='list_item1 '>" + n.dictItemName + "</li></a>");//未选中样式
+                    lefthtml.push("<a href='javascript:getInfo("+n.dictItemCode+",0)'><li class='list_item1 '>" + n.dictItemName + "</li></a>");//未选中样式
                     //以原格式组装好数组
                 });
                 left.append(lefthtml.join(''));//把数组插入到已定位的DIV
@@ -46,8 +45,6 @@ $(document).ready(function() {
     }
     //中间列表
 function getInfo(cat,page){
-    cat = cat||-1;
-    page = page||0;
     var textdiv = $('.publicity');//定位到需要插入的DIV
     var html = [];//新建一个数组变量
     var paraStr = 'cat='+cat+'&page='+page;
@@ -214,25 +211,27 @@ function row_public(id){
         dataType: "json",
         success:function(data){
             rowpublic_html.push('<div class="row">');
-            rowpublic_html.push('<div class="col-xs-12 tender"><span class="col-xs-3 tender_process testq">招标公示</span><img class="col-xs-1 img-responsive" src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">招标报名</span><img class="col-xs-1 " class="col-xs-1 img-responsive " src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">资格审查</span></div>');
+            rowpublic_html.push('<div class="col-xs-12 tender"><span class="col-xs-3 tender_process testq">招标公示</span><img class="col-xs-1 img-responsive  center-block" src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">招标报名</span><img class="col-xs-1 " class="col-xs-1 img-responsive center-block" src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">资格审查</span></div>');
             rowpublic_html.push('</div>');
             rowpublic_html.push('<div class="row">');
             rowpublic_html.push('<div class="col-xs-12 tender tender_time"><span class="col-xs-3 tender_times"></span><div class="col-xs-1"></div><span class="col-xs-3 tender_times"> </span><div class="col-xs-1"></div><span class="col-xs-3 tender_times"> </span></div>');
             rowpublic_html.push('</div>');
             rowpublic_html.push('<div class="row">');
-            rowpublic_html.push('<div class="col-xs-12 tender_img "><div class="col-xs-3"></div><div class="col-xs-1"></div><div class="col-xs-3"></div><div class="col-xs-1"></div><div class="col-xs-3"><img class=" " src="images/images_index/xinxi_arrow2.png" alt=""></div></div>');
+            rowpublic_html.push('<div class="col-xs-12 tender_img "><div class="col-xs-3"></div><div class="col-xs-1"></div><div class="col-xs-3"></div><div class="col-xs-1"></div><div class="col-xs-3"><img class=" img-responsive center-block" src="images/images_index/xinxi_arrow2.png" alt=""></div></div>');
             rowpublic_html.push('</div>');
+
             rowpublic_html.push('<div class="row">');
-            rowpublic_html.push('<div class="col-xs-12 tender"><span class="col-xs-3 tender_process">缴保证金</span><img class="col-xs-1 img-responsive" src="images/images_index/xinxi_arrow1.png" alt=""><span class="col-xs-3 tender_process">编制文件</span><img class="col-xs-1 " class="col-xs-1 img-responsive " src="images/images_index/xinxi_arrow1.png" alt=""><span class="col-xs-3 tender_process">招标答疑</span></div>');
+            rowpublic_html.push('<div class="col-xs-12 tender"><span class="col-xs-3 tender_process">缴保证金</span><img class="col-xs-1 img-responsive center-block" src="images/images_index/xinxi_arrow1.png" alt=""><span class="col-xs-3 tender_process">编制文件</span><img  class="col-xs-1 img-responsive center-block" src="images/images_index/xinxi_arrow1.png" alt=""><span class="col-xs-3 tender_process">招标答疑</span></div>');
             rowpublic_html.push('</div>');
             rowpublic_html.push('<div class="row">');
             rowpublic_html.push('<div class="col-xs-12 tender tender_time"><span class="col-xs-3 tender_times"> </span><div class="col-xs-1"></div><span class="col-xs-3 tender_times"> </span><div class="col-xs-1"></div><span class="col-xs-3 tender_times"> </span></div>');
             rowpublic_html.push('</div>');
             rowpublic_html.push('<div class="row">');
-            rowpublic_html.push('<div class="col-xs-12 tender_img "><div class="col-xs-3"><img class=" " src="images/images_index/xinxi_arrow2.png" alt=""></div><div class="col-xs-1"></div><div class="col-xs-3"></div><div class="col-xs-1"></div><div class="col-xs-3"></div></div>');
+            rowpublic_html.push('<div class="col-xs-12 tender_img "><div class="col-xs-3"><img class="img-responsive center-block" src="images/images_index/xinxi_arrow2.png" alt=""></div><div class="col-xs-1"></div><div class="col-xs-3"></div><div class="col-xs-1"></div><div class="col-xs-3"></div></div>');
             rowpublic_html.push('</div>');
+
             rowpublic_html.push('<div class="row">');
-            rowpublic_html.push('<div class="col-xs-12 tender"><span class="col-xs-3 tender_process">招标公示</span><img class="col-xs-1 img-responsive" src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">招标保名</span><img class="col-xs-1 " class="col-xs-1 img-responsive " src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">资格审查</span></div>');
+            rowpublic_html.push('<div class="col-xs-12 tender"><span class="col-xs-3 tender_process">开标定标</span><img class="col-xs-1 img-responsive center-block" src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">中标公示</span><img  class="col-xs-1 img-responsive center-block" src="images/images_index/xinxi_arrow3.png" alt=""><span class="col-xs-3 tender_process">发招标书</span></div>');
             rowpublic_html.push('</div>');
             rowpublic_html.push('<div class="row">');
             rowpublic_html.push('<div class="col-xs-12 tender tender_time"><span class="col-xs-3 tender_times"> </span><div class="col-xs-1"></div><span class="col-xs-3 tender_times"> </span><div class="col-xs-1"></div><span class="col-xs-3 tender_times"> </span></div>');

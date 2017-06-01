@@ -38,9 +38,9 @@
 			                </td>
 		                </tr>
 		                <tr>
-			                <th>代买商品类别：</th>
+			                <th><sub class="redstar">*</sub>代买商品类别：</th>
 			                <td>
-				                <select name="categoryBuy">
+				                <select name="categoryBuy" id="categoryBuy">
 					                <option value="0">请选择商品大类</option>
 					                <?if(!is_null($categorys)){?>
 						                <?foreach($categorys as $key => $value){?>
@@ -48,14 +48,14 @@
 						                <?}?>
 					                <?}?>
 				                </select>
-				                <select name="categoryFullBuy">
+				                <select name="categoryFullBuy" id="categoryFullBuy">
 
 				                </select>
 			                </td>
 		                </tr>
 		                <tr>
-			                <th>代买金额：</th>
-			                <td><input type="text" style="width:250px;height: 30px;" name="buySum" id="buySum"  class="input-text"/></td>
+			                <th><sub class="redstar">*</sub>代买金额：</th>
+			                <td><input type="text" style="width:250px;height: 30px;" onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" name="buySum" id="buySum"  class="input-text"/></td>
 		                </tr>
 
 		                <tr>
@@ -63,13 +63,13 @@
 			                <td><input type="button" style="width:100px;height: 30px;color: blue;" value="增加商品类别" onclick="addRow()"/></td>
 		                </tr>
 		                <tr>
-			                <th>代买总订单数：</th>
-			                <td><input type="text" style="width:250px;height: 30px;" name="buyTotal" id="buyTotal"  class="input-text"/></td>
+			                <th><sub class="redstar">*</sub>代买总订单数：</th>
+			                <td><input type="text" style="width:250px;height: 30px;" name="buyTotal" id="buyTotal"  onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/></td>
 		                </tr>
 		                <tr>
-			                <th>销售商品类别：</th>
+			                <th><sub class="redstar">*</sub>销售商品类别：</th>
 			                <td>
-				                <select name="categorySell">
+				                <select name="categorySell" id="categorySell">
 					                <option value="0">请选择商品大类</option>
 					                <?if(!is_null($categorys)){?>
 						                <?foreach($categorys as $key => $value){?>
@@ -77,22 +77,22 @@
 						                <?}?>
 					                <?}?>
 				                </select>
-				                <select name="categoryFullSell">
+				                <select name="categoryFullSell" id="categoryFullSell">
 
 				                </select>
 			                </td>
 		                </tr>
 		                <tr>
-			                <th>销售金额：</th>
-			                <td><input type="text" style="width:250px;height: 30px;" name="sellSum" id="sellSum"  class="input-text"/></td>
+			                <th><sub class="redstar">*</sub>销售金额：</th>
+			                <td><input type="text" style="width:250px;height: 30px;" name="sellSum" id="sellSum"  onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/></td>
 		                </tr>
 		                <tr>
 			                <th></th>
 			                <td><input type="button" style="width:100px;height: 30px;color: blue;" value="增加商品类别" onclick="addRow2()"/></td>
 		                </tr>
 		                <tr>
-			                <th>销售总订单数：</th>
-			                <td><input type="text" style="width:250px;height: 30px;" name="sellTotal" id="sellTotal"  class="input-text"/></td>
+			                <th><sub class="redstar">*</sub>销售总订单数：</th>
+			                <td><input type="text" style="width:250px;height: 30px;" name="sellTotal" id="sellTotal"  onkeyup="this.value=this.value.replace(/[^0-9-.-]+/,'');" class="input-text"/></td>
 		                </tr>
 	                </tbody>
                 </table>

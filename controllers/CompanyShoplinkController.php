@@ -21,7 +21,10 @@ class CompanyShoplinkController extends Controller{
      */
     public function actionList()
     {
-        return $this->render('list');
+        $companyId = Yii::$app->session['companyId'];
+        return $this->render('list',[
+            'companyId'=>$companyId,
+        ]);
     }
 
     /**
@@ -73,7 +76,13 @@ class CompanyShoplinkController extends Controller{
         $para['shopName'] = $shopName;
         $para['platform'] = $platform;
 
-        $whereStr = 'companyId = "' . $companyId . '"';
+
+        if($companyId == 'admin'||$companyId == 'all'){
+            $whereStr = '1=1';
+        }else{
+            $whereStr = 'companyId = "' . $companyId . '"';
+        }
+
         if ($shopName != '') {
             $whereStr = $whereStr . " and shopName like '%" . $shopName . "%'";
         }

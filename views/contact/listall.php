@@ -15,22 +15,27 @@ $this->title = '联系信息列表';
         <table width="100%" cellspacing="0" id="user_list">
             <thead id="dict_list_head">
             <tr align="left">
-                <th width="80px"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th><th width="30px">序号</th><th width="360px">姓名</th><th width="160px">手机</th><th width="160px">邮箱</th><th width="160px">QQ</th><th align="center">操作</th>
+                <th width="50px" align="left"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th>
+                <th width="30px" align="left">序号</th>
+                <th width="60px" align="left">姓名</th>
+                <th width="160px" align="left">手机</th>
+                <th width="160px" align="left">邮箱</th>
+                <th width="100px" align="left">QQ</th>
+                <th width="150px" align="center">操作</th>
             </tr>
             </thead>
             <tbody id="user_list_body">
             <?if(!is_null($contact)){?>
             <?php foreach ($contact as $index => $val){?>
                 <tr align="left">
-                    <td><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
-                    <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->truename?>')"><?=$val->truename?></a></td>
-                    <td><?=$val->mobile?></td>
-                    <td><?=$val->email?></td>
-                    <td><?=$val->QQ?></td>
+                    <td align="left"><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
+                    <td align="left"><?=$index+$pages->page*$pages->pageSize+1?></td>
+                    <td align="left"><a href="javascript:detail('<?=$val->id?>','<?=$val->truename?>')"><?=$val->truename?></a></td>
+                    <td align="left"><?=$val->mobile?></td>
+                    <td align="left"><?=$val->email?></td>
+                    <td align="left"><?=$val->QQ?></td>
                     <td align="center">
-                        <a href="javascript:openedit('<?=$val->id?>','<?=$val->truename?>')">修改</a>&nbsp;&nbsp;
-                        |&nbsp;&nbsp;<a href="javascript:deleteContact('<?=$val->id?>')">删除</a>
+                        <a href="javascript:deleteContact('<?=$val->id?>')">删除</a>
                     </td>
                </tr>
                 <?}?>

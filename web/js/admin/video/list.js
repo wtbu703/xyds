@@ -32,6 +32,6 @@ function search(){
 		});
 		return ;
 	}
-	var paraStr = "&name="+$('#name').val()+"&source="+$('#source').val()+"&sign="+$('#sign').val()+"&state="+$('#state').val();
+	var paraStr = "&name="+$('#name').val()+"&source="+$('#source').val()+"&sign="+$('#sign').val();
 	$('#iframeId').attr('src',listallUrl+paraStr);
 }

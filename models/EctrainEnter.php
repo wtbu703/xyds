@@ -16,6 +16,7 @@ use Yii;
  * @property integer $gender
  * @property integer $age
  * @property string $created
+ * @property integer $state
  */
 class EctrainEnter extends \yii\db\ActiveRecord
 {
@@ -34,13 +35,12 @@ class EctrainEnter extends \yii\db\ActiveRecord
     {
         return [
             [['id', 'truename', 'idCardNo', 'mobile', 'gender', 'age'], 'required'],
-            [['gender', 'age'], 'integer'],
+            [['gender', 'age', 'state'], 'integer'],
             [['created'], 'safe'],
             [['id', 'trainId'], 'string', 'max' => 40],
-            [['truename'], 'string', 'max' => 8],
-            [['idCardNo'], 'string', 'max' => 18],
-            [['mobile'], 'string', 'max' => 11],
-            [['address'], 'string', 'max' => 32],
+            [['truename', 'mobile'], 'string', 'max' => 16],
+            [['idCardNo'], 'string', 'max' => 32],
+            [['address'], 'string', 'max' => 64],
         ];
     }
 
@@ -59,6 +59,7 @@ class EctrainEnter extends \yii\db\ActiveRecord
             'gender' => '性别，字典',
             'age' => '年龄',
             'created' => 'Created',
+            'state' => '报名状态',
         ];
     }
 }

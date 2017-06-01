@@ -16,25 +16,30 @@ $this->title =  '添加文章';
         <table width="100%" cellspacing="0" id="user_list">
             <thead id="dict_list_head">
             <tr align="left">
-                <th width="80px"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th><th width="30px">序号</th><th width="360px">标题</th><th width="160px">作者</th><th width="160px">类别</th><th align="center">操作</th>
+                <td width="50px" align="left"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</td>
+                <td width="30px" align="left">序号</td>
+                <td width="160px" align="left">标题</td>
+                <td width="100px" align="left">作者</td>
+                <td width="100px" align="left">类别</td>
+                <td width="100px" align="center">操作</td>
             </tr>
             </thead>
             <tbody id="user_list_body">
             <?if(!is_null($articles)){?>
             <?php foreach ($articles as $index => $val){?>
                 <tr align="left">
-                    <td><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
-                    <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->title?>')"><?php if(strlen($val->title)>24) {
-                                echo substr($val->title, 0, 24) . '...';
+                    <td align="left"><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
+                    <td align="left"><?=$index+$pages->page*$pages->pageSize+1?></td>
+                    <td align="left"><a href="javascript:detail('<?=$val->id?>','<?=$val->title?>')"><?php if(strlen($val->title)>24) {
+                                echo mb_substr($val->title, 0, 16,'utf-8') . '...';
                             }else{
                                 echo $val->title;
                             }?></a></td>
 
-                    <td><?=$val->author?></td>
-                    <td><?=$val->category?></td>
+                    <td align="left"><?=$val->author?></td>
+                    <td align="left"><?=$val->category?></td>
                     <td align="center">
-                        <?if($edit){?><a href="javascript:openedit('<?=$val->id?>','<?=$val->title?>')">修改</a>&nbsp;&nbsp;<?}?>|<?if($delete){?>&nbsp;&nbsp;<a href="javascript:deleteArticle('<?=$val->id?>')">删除</a><?}?>
+                       <a href="javascript:openedit('<?=$val->id?>','<?=$val->title?>')">修改</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:deleteArticle('<?=$val->id?>')">删除</a>
                     </td>
                </tr>
             <?}?>
@@ -43,9 +48,9 @@ $this->title =  '添加文章';
         </table>
         <div class="btn">
             <label for="check_box"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</label>
-            <?if($delete){?>
+
             <input type="button" class="buttondel" name="dosubmit" value="删除" onclick="if (confirm('您确定要删除吗？')) delopt();"/>
-            <?}?>
+
         </div>
         <div id="pages">
             <a><?=$pages->totalCount?>条/<?=$pages->pageCount?>页</a>

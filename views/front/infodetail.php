@@ -11,7 +11,7 @@ $this->title = '信息公开详情页';
 </script>
 <script src="js/front/info_detials.js"></script>
 
-<img src="images/info_details/banner_xxgkxq.jpg" class="img-responsive"/>
+<img src="<?=$pic?>" class="img-responsive"/>
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-md-12 content_box">
@@ -49,7 +49,7 @@ $this->title = '信息公开详情页';
                           <div class="col-xs-0 col-md-3 col-lg-3"></div>
                           <div class="col-xs-12 col-md-6 col-lg-6 row_public">
 
-                              <div class="img_title">招标最新进展</div>
+                             <!-- <div class="img_title">招标最新进展</div>-->
                           </div>
                           <div class="col-xs-0 col-md-3 col-lg-3"></div>
                       </div>

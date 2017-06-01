@@ -16,23 +16,30 @@ $this->title = '培训信息列表';
         <table width="100%" cellspacing="0" id="user_list">
             <thead id="dict_list_head">
             <tr align="left">
-                <th width="80px"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th><th width="30px">序号</th><th width="220px">培训名</th><th width="120px">培训类别</th><th width="60px">天数</th><th width="60px">人数</th><th align="center">操作</th>
+                <th align="left" width="50px"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th><th width="30px">序号</th>
+                <th align="left" width="130px">培训名</th>
+                <th align="left" width="80px">培训类别</th>
+                <th align="left" width="50px">天数</th>
+                <th align="left" width="90px">招收人数</th>
+                <th align="left" width="110px">已报名人数</th>
+                <th align="center" width="150px" align="center">操作</th>
             </tr>
             </thead>
             <tbody id="user_list_body">
             <?if(!is_null($ectrain)){?>
             <?php foreach ($ectrain as $index => $val){?>
                 <tr align="left">
-                    <td><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
-                    <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->name?>')"><?php if(strlen($val->name)>24) {
+                    <td align="left"><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
+                    <td align="left"><?=$index+$pages->page*$pages->pageSize+1?></td>
+                    <td align="left"><a href="javascript:detail('<?=$val->id?>','<?=$val->name?>')"><?php if(strlen($val->name)>24) {
                                 echo substr($val->name, 0, 24) . '...';
                             }else{
                                 echo $val->name;
                             }?></a></td>
-                    <td><?=$val->category?></td>
-                    <td><?=$val->dayNum?></td>
-                    <td><?=$val->peopleNum?></td>
+                    <td align="left" ><?=$val->category?></td>
+                    <td align="left"><?=$val->dayNum?></td>
+                    <td align="left"><?=$val->peopleNum?></td>
+                    <td align="left"><?=$people[$index]?></td>
                     <td align="center">
                         <a href="javascript:manage('<?=$val->id?>','<?=$val->name?>')">管理</a>&nbsp;&nbsp;
                         |&nbsp;&nbsp;

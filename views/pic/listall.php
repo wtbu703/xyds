@@ -13,7 +13,7 @@
 		            <th width="30px">序号</th>
 		            <th width="220px">前台栏目</th>
 		            <th width="160px">图片地址</th>
-		            <th>操作</th>
+		            <th width="160px" align="center">操作</th>
 	            </tr>
             </thead>
             <tbody>
@@ -22,11 +22,11 @@
 	                <tr align="center">
 		                <td align="left"><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
 	                    <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-		                <td><?=$val->category?></td>
-	                    <td><a href="javascript:detail('<?=$val->id?>')"><?=$val->url?></a></td>
-	                    <td>
-	                        <a href="javascript:update('<?=$val->id?>')">修改</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-		                    <a href="javascript:deleteOne('<?=$val->id?>')">删除</a>
+		                <td><a href="javascript:detail('<?=$val->id?>')"><?=$val->category?></a></td>
+	                    <td><?=$val->url?></td>
+	                    <td align="center">
+	                        <a href="javascript:update('<?=$val->id?>')">修改</a>
+		                    <!--|&nbsp;&nbsp;<a href="javascript:deleteOne('<?/*=$val->id*/?>')">删除</a>-->
 	                    </td>
 	                </tr>
 	            <?}?>

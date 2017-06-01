@@ -188,10 +188,10 @@
 /*logo*/
 @font-face {
   font-family: '微软雅黑';
-  src: url(../fonts/msyh.ttf);
 }
 .art {
   margin-top: 20px;
+  padding:0 10px;
 }
 .pub_info {
   text-align: center;
@@ -230,6 +230,7 @@
   text-align: center;
 }
 .content_list {
+  padding:0 10px;
   margin-top: -25px;
   margin-bottom: 20px;
   float: left;
@@ -260,6 +261,7 @@
 .art_down {
   float: left;
   margin-top: 20px;
+  padding:0 10px;
 }
 .art_box1 {
   float: left;
@@ -329,4 +331,6 @@
 }
 .tender_img {
   text-align: center;
+  margin-top:10px;
+  margin-bottom:10px;
 }

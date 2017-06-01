@@ -33,8 +33,8 @@ class CompanyShoplink extends \yii\db\ActiveRecord
             [['id', 'companyId', 'shopName', 'platform'], 'required'],
             [['platform'], 'integer'],
             [['id', 'companyId'], 'string', 'max' => 40],
-            [['shopName'], 'string', 'max' => 16],
-            [['shopLink'], 'string', 'max' => 64],
+            [['shopName'], 'string', 'max' => 64],
+            [['shopLink'], 'string', 'max' => 128],
             [['companyName'], 'string', 'max' => 32],
         ];
     }

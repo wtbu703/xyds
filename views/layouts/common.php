@@ -51,9 +51,9 @@ use yii\helpers\Html;
 					<div class="header_left header_r">
 						<div class="loginbar header_r">
 							<div class="header_f ">
-								<a target="_Blank" href="<?=yii::$app->urlManager->createUrl('admin/index')?>" >登录</a>
+								<a target="_blank" href="<?=yii::$app->urlManager->createUrl('admin/index')?>" >登录</a>
 								<span>|</span>
-								<a target="_Blank" href="<?=yii::$app->urlManager->createUrl('front/contactus')?>">加入我们</a>
+								<a target="_blank" href="<?=yii::$app->urlManager->createUrl('front/contactus')?>">加入我们</a>
 							</div>		
 						</div>
 						<!--<form class="navbar-form header_r" role="search" action="">-->
@@ -136,26 +136,26 @@ use yii\helpers\Html;
 				<div class="col-xs-6 col-sm-3 col-md-2">	
 					<ul>
 						<li><span>网站导航</span></li>
-						<li <?if($this->context->layout_data == '1'){?> class="actived"<?}?>><a target="_Blank" href="<?=yii::$app->urlManager->createUrl('front/ec-info')?>">电商资讯</a></li>
-						<li <?if($this->context->layout_data == '2'){?> class="actived"<?}?>><a target="_Blank" href="<?=Yii::$app->urlManager->createUrl('front/ectrain')?>">电商培训</a></li>
-						<li <?if($this->context->layout_data == '3'){?> class="actived"<?}?>><a target="_Blank" href="<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>">企业展示</a></li>
-						<li <?if($this->context->layout_data == '4'){?> class="actived"<?}?>><a target="_Blank" href="<?=yii::$app->urlManager->createUrl('front/third')?>">第三方服务</a></li>
-						<li <?if($this->context->layout_data == '5'){?> class="actived"<?}?>><a target="_Blank" href="<?=yii::$app->urlManager->createUrl('front/public-info')?>">信息公开</a></li>
-						<li <?if($this->context->layout_data == '6'){?> class="actived"<?}?>><a target="_Blank" href="<?=Yii::$app->urlManager->createUrl('front/data-statistic')?>">数据统计</a></li>
-						<li <?if($this->context->layout_data == '7'){?> class="actived"<?}?>><a target="_Blank" href="<?=yii::$app->urlManager->createUrl('front/line')?>">在线招聘</a></li>
-						<li <?if($this->context->layout_data == '8'){?> class="actived"<?}?>><a target="_Blank" href="<?=yii::$app->urlManager->createUrl('front/service-site')?>">服务站点</a></li>
+						<li <?if($this->context->layout_data == '1'){?> class="actived"<?}?>><a target="_blank" href="<?=yii::$app->urlManager->createUrl('front/ec-info')?>">电商资讯</a></li>
+						<li <?if($this->context->layout_data == '2'){?> class="actived"<?}?>><a target="_blank" href="<?=Yii::$app->urlManager->createUrl('front/ectrain')?>">电商培训</a></li>
+						<li <?if($this->context->layout_data == '3'){?> class="actived"<?}?>><a target="_blank" href="<?=Yii::$app->urlManager->createUrl('front/enterprise-display')?>">企业展示</a></li>
+						<li <?if($this->context->layout_data == '4'){?> class="actived"<?}?>><a target="_blank" href="<?=yii::$app->urlManager->createUrl('front/third')?>">第三方服务</a></li>
+						<li <?if($this->context->layout_data == '5'){?> class="actived"<?}?>><a target="_blank" href="<?=yii::$app->urlManager->createUrl('front/public-info')?>">信息公开</a></li>
+						<li <?if($this->context->layout_data == '6'){?> class="actived"<?}?>><a target="_blank" href="<?=Yii::$app->urlManager->createUrl('front/data-statistic')?>">数据统计</a></li>
+						<li <?if($this->context->layout_data == '7'){?> class="actived"<?}?>><a target="_blank" href="<?=yii::$app->urlManager->createUrl('front/line')?>">在线招聘</a></li>
+						<li <?if($this->context->layout_data == '8'){?> class="actived"<?}?>><a target="_blank" href="<?=yii::$app->urlManager->createUrl('front/service-site')?>">服务站点</a></li>
 					</ul>
 				</div>
 				<div class="col-xs-6 col-sm-3 col-md-2">	
 					<ul>
 						<li><span>友情链接</span></li>
-						<li><a target="_Blank" href="">武汉市政府</a></li>
-						<li><a target="_Blank" href="">电商在线</a></li>
-						<li><a target="_Blank" href="">703工作室</a></li>
-						<li><a target="_Blank" href="">湖北省政府</a></li>
-						<li><a target="_Blank" href="">武汉工商局</a></li>
-						<li><a target="_Blank" href="">武汉电商网</a></li>
-						<li><a target="_Blank" href="">中国电商企业</a></li>
+						<li><a target="_blank" href="">武汉市政府</a></li>
+						<li><a target="_blank" href="">电商在线</a></li>
+						<li><a target="_blank" href="">703工作室</a></li>
+						<li><a target="_blank" href="">湖北省政府</a></li>
+						<li><a target="_blank" href="">武汉工商局</a></li>
+						<li><a target="_blank" href="">武汉电商网</a></li>
+						<li><a target="_blank" href="">中国电商企业</a></li>
 					</ul>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4">	
@@ -164,7 +164,7 @@ use yii\helpers\Html;
 							<span>联系我们</span>
 						</div>
 						<div class="col-xs-8 contect">	
-							<a target="_Blank" class="btn btn-default" href="<?=Yii::$app->urlManager->createUrl('front/contactus')?>" role="button">点击填写个人信息</a>
+							<a target="_blank" class="btn btn-default" href="<?=Yii::$app->urlManager->createUrl('front/contactus')?>" role="button">点击填写个人信息</a>
 						</div>
 					</div>
 					<div class="row address">

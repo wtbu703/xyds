@@ -4,7 +4,7 @@ function uploadExcel(){
 	$.dialog.open(uploadExcelUrl, {
 		title: '上传EXCEL文件',
 		width: 600,
-		height:400,
+		height:300,
 		lock: true,
 		border: false,
 		id: 'upload_excel',

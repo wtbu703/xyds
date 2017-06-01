@@ -66,11 +66,21 @@ function hotCompany(){
         }
     });
 }
+//图片不缩进
+function imgK(){
+    var imgB = $('.article>.col-xs-12>p>img');
+    imgB.parent().css('text-indent','0em');
+}
+    
 $(document).ready(function(){
 
     //热点新闻
     hotNews();
     //热们企业
     hotCompany();
+
+    //图片不缩进
+    imgK();
+
     
 });

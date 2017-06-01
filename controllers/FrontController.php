@@ -20,6 +20,7 @@ use app\models\Dictitem;
 use app\models\EctrainEnter;
 use app\models\PublicInfo;
 use app\models\Video;
+use app\models\Pic;
 use yii;
 use yii\web\Controller;
 use app\common\Common;
@@ -37,7 +38,17 @@ class FrontController extends Controller{
 	 */
 	public function actionIndex(){
 		$this->layout_data = '0';
-		return $this->render('index');
+		$pic1 = Pic::find()->where('category=0')->one();
+		$pic2 = Pic::find()->where('category=1')->one();
+		$pic3 = Pic::find()->where('category=2')->one();
+		$pic4 = Pic::find()->where('category=3')->one();
+		return $this->render('index',[
+			'pic1'=>$pic1,
+			'pic2'=>$pic2,
+			'pic3'=>$pic3,
+			'pic4'=>$pic4,
+
+		]);
 	}
 
 	/**
@@ -45,14 +56,20 @@ class FrontController extends Controller{
 	 * 加入我们
 	 */
 	public function actionContactus(){
-		return $this->render('contactus');
+		$pic = Pic::find()->where('category=11')->one();
+		return $this->render('contactus',[
+			'pic'=>$pic->url,
+		]);
 	}
 	/**
 	 * 联系我们页
 	 * @return string
 	 */
 	public function actionAbout(){
-		return $this->render('aboutus');
+		$pic = Pic::find()->where('category=11')->one();
+		return $this->render('aboutus',[
+				'pic'=>$pic->url,
+		]);
 	}
 
 	/**
@@ -82,7 +99,10 @@ class FrontController extends Controller{
 	 */
 	public function actionEnterpriseDisplay(){
 		$this->layout_data = '3';
-		return $this->render('enterprisedisplay');
+		$pic = Pic::find()->where('category=10')->one();
+		return $this->render('enterprisedisplay',[
+				'pic'=>$pic->url,
+		]);
 	}
 
 	/**
@@ -95,9 +115,11 @@ class FrontController extends Controller{
 		$company = Company::findOne($companyId);
 		$company->count = $company->count+1;
 		$company->save();
+		$pic = Pic::find()->where('category=10')->one();
 		return $this->render('enterprisedetail',[
 			'company' => $company,
-			'companyId' => $companyId
+			'companyId' => $companyId,
+			'pic'=>$pic->url,
 		]);
 	}
 
@@ -107,7 +129,10 @@ class FrontController extends Controller{
 	 */
 	public function actionThird(){
 		$this->layout_data = '4';
-		return $this->render('third');
+		$pic = Pic::find()->where('category=4')->one();
+		return $this->render('third',[
+				'pic'=>$pic->url,
+		]);
 	}
 
 	/**
@@ -126,8 +151,10 @@ class FrontController extends Controller{
 				$thirdDetail->category = $value->dictItemName;
 			}
 		}
+		$pic = Pic::find()->where('category=4')->one();
 		return $this->render('thirddetail',[
 			'thirdDetail'=>$thirdDetail,
+			'pic'=>$pic->url,
 		]);
 	}
 
@@ -137,7 +164,10 @@ class FrontController extends Controller{
 	 */
 	public function actionLine(){
 		$this->layout_data = '7';
-		return $this->render('online');
+		$pic = Pic::find()->where('category=7')->one();
+		return $this->render('online',[
+			'pic'=>$pic->url,
+		]);
 	}
 
 	/**
@@ -150,9 +180,19 @@ class FrontController extends Controller{
 		$companyId = Yii::$app->request->get('companyId');
 		$company = Company::findOne($companyId);
 		$companyRecruit = CompanyRecruit::findOne($id);
+
+		$record = Dictitem::find()->where(['dictCode' => 'DICT_RECORD'])->all();
+		foreach ($record as $index => $value) {
+			if ($companyRecruit->record == $value->dictItemCode) {
+				$companyRecruit->record = $value->dictItemName;
+			}
+		}
+
+		$pic = Pic::find()->where('category=4')->one();
 		return $this->render('onDetail',[
 			'companyRecruit'=>$companyRecruit,
 			'company'=>$company,
+			'pic'=>$pic->url,
 		]);
 	}
 
@@ -162,7 +202,10 @@ class FrontController extends Controller{
 	 */
 	public function actionPublicInfo(){
 		$this->layout_data = '5';
-		return $this->render('info');
+		$pic = Pic::find()->where('category=5')->one();
+		return $this->render('info',[
+			'pic'=>$pic->url,
+		]);
 	}
 
 	/**
@@ -204,6 +247,7 @@ class FrontController extends Controller{
 			$titles = '';
 			$publisheds = '';
 		}
+		$pic = Pic::find()->where('category=5')->one();
 		return $this->render('infodetail',[
 				'info'=>$info,
 				'sid'=>$sid,
@@ -212,6 +256,7 @@ class FrontController extends Controller{
 				'titles'=>$titles,
 				'spublished'=>$spublished,
 				'publisheds'=>$publisheds,
+				'pic'=>$pic->url,
 		]);
 	}
 
@@ -221,7 +266,10 @@ class FrontController extends Controller{
 	 */
 	public function actionEctrain(){
 		$this->layout_data = '2';
-		return $this->render('ectrain');
+		$pic = Pic::find()->where('category=9')->one();
+		return $this->render('ectrain',[
+			'pic'=>$pic->url,
+		]);
 	}
 
 	/**
@@ -231,9 +279,11 @@ class FrontController extends Controller{
 	public function actionTrainNotice(){
 		$this->layout_data = '2';
 		$type = Yii::$app->request->get('type');
+		$pic = Pic::find()->where('category=9')->one();
 		if(is_null($type)) {
 			return $this->render('trainnotice',[
 				'type'=> '',
+				'pic'=>$pic->url,
 			]);
 		}else{
 			$category = Dictitem::find()->where(['dictCode'=>'DICT_ECTRAIN_CATEGORY'])->all();
@@ -244,6 +294,7 @@ class FrontController extends Controller{
 			}
 			return $this->render('trainnotice',[
 					'type'=>$type,
+					'pic'=>$pic->url,
 			]);
 		}
 	}
@@ -269,7 +320,10 @@ class FrontController extends Controller{
 	 */
 	public function actionOnlineVideo(){
 		$this->layout_data = '2';
-		return $this->render('onlinevideo');
+		$pic = Pic::find()->where('category=9')->one();
+		return $this->render('onlinevideo',[
+			'pic'=>$pic->url,
+		]);
 	}
 
 	/**
@@ -310,6 +364,7 @@ class FrontController extends Controller{
 			$datetimes = '';
 		}
 
+		$pic = Pic::find()->where('category=9')->one();
 		return $this->render('videodetail',[
 			'video' => $video,
 			'sid'=>$sid,
@@ -318,6 +373,7 @@ class FrontController extends Controller{
 			'names'=>$names,
 			'sdatetime'=>$sdatetime,
 			'datetimes'=>$datetimes,
+			'pic'=>$pic->url,
 		]);
 	}
 
@@ -328,8 +384,10 @@ class FrontController extends Controller{
 	public function actionProductDisplay(){
 		$this->layout_data = '3';
 		$companyId = Yii::$app->request->get('id');
+		$pic = Pic::find()->where('category=10')->one();
 		return $this->render('productdisplay',[
-			'companyId' => $companyId
+			'companyId' => $companyId,
+			'pic'=>$pic->url,
 		]);
 	}
 
@@ -347,9 +405,11 @@ class FrontController extends Controller{
 				->where('a.id=:id',[':id'=>$productId])
 				->leftJoin('company b', 'a.companyId = b.id')
 				->one();
+		$pic = Pic::find()->where('category=10')->one();
 		return $this->render('productdetail',[
 			'product' => $product,
 			'companyId'=>$companyId,
+			'pic'=>$pic->url,
 		]);
 	}
 
@@ -359,7 +419,10 @@ class FrontController extends Controller{
 	 */
 	public function actionEcInfo(){
 		$this->layout_data = '1';
-		return $this->render('ecinformation');
+		$pic = Pic::find()->where('category=8')->one();
+		return $this->render('ecinformation',[
+			'pic'=>$pic->url,
+		]);
 	}
 
 	/**
@@ -400,6 +463,7 @@ class FrontController extends Controller{
 			$titles = '';
 			$datetimes = '';
 		}
+		$pic = Pic::find()->where('category=8')->one();
 		return $this->render('ecinformationdetail',[
 			'article' => $article,
 			'sid'=>$sid,
@@ -408,6 +472,7 @@ class FrontController extends Controller{
 			'titles'=>$titles,
 			'sdatetime'=>$sdatetime,
 			'datetimes'=>$datetimes,
+			'pic'=>$pic->url,
 		]);
 	}
 
@@ -475,9 +540,11 @@ class FrontController extends Controller{
 		$companyId = Yii::$app->request->get('companyId');
 		$company = Company::findOne($companyId);
 		$companyName = $company->name;
+		$pic = Pic::find()->where('category=10')->one();
 		return $this->render('companynews',[
-				'companyId' => $companyId,
-				'companyName'=>$companyName,
+			'companyId' => $companyId,
+			'companyName'=>$companyName,
+			'pic'=>$pic->url,
 		]);
 	}
 
@@ -519,6 +586,7 @@ class FrontController extends Controller{
 			$titles = '';
 			$publisheds = '';
 		}
+		$pic = Pic::find()->where('category=10')->one();
 		return $this->render('newsdetail',[
 				'companyNews' => $companyNews,
 				'sid'=>$sid,
@@ -529,6 +597,7 @@ class FrontController extends Controller{
 				'publisheds'=>$publisheds,
 				'companyId'=>$companyId,
 				'companyName'=>$company->name,
+				'pic'=>$pic->url,
 		]);
 	}
 
@@ -539,8 +608,10 @@ class FrontController extends Controller{
 	public function actionSignup(){
 		$this->layout_data = '2';
 		$trainId = Yii::$app->request->get('id');
+		$pic = Pic::find()->where('category=9')->one();
 		return $this->render('signup',[
 			'trainId'=>$trainId,
+			'pic'=>$pic->url,
 		]);
 	}
 	/**
@@ -572,7 +643,10 @@ class FrontController extends Controller{
 	 */
 	public function actionDataStatistic(){
 		$this->layout_data = '6';
-		return $this->render('statistic');
+		$pic = Pic::find()->where('category=6')->one();
+		return $this->render('statistic',[
+			'pic'=>$pic->url,
+		]);
 	}
 
 	/**
@@ -582,5 +656,20 @@ class FrontController extends Controller{
 	public function actionServiceSite(){
 		$this->layout_data = '8';
 		return $this->render('servicesite');
+	}
+
+	/**
+	 * @return string
+	 * 公司招聘列表页
+	 */
+	public function actionCompanyRecruit(){
+		$companyId = Yii::$app->request->get('companyId');
+		$recruit = Company::findOne($companyId);
+		$pic = Pic::find()->where('category=10')->one();
+		return $this->render('companyrecruit',[
+			'companyId'=>$companyId,
+			'companyName'=>$recruit->name,
+			'pic'=>$pic->url,
+		]);
 	}
 }

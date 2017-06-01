@@ -26,13 +26,14 @@ $this->title =  '文章抓取';
             <tr>
                 <td>
                     <div class="explain-col">
-                        <div>
+                        <span>
                             选择网站：
                             <select name="web" id="web" style="width:140px;"></select>
                             &nbsp;
                             <input type="button" onclick="search();" name="dosubmit" class="buttonsearch" value="抓取"/>
-                            <div class = "checkTip" style="float:right;margin-right:80%;color:red;">
-                            </div>
+                            <span>
+                                &nbsp; &nbsp; &nbsp; 抓取成功后，请选择要添加的文章，点“导入到网站”完成添加
+                            </span>
                         </div>
                     </div>
                 </td>

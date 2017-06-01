@@ -192,7 +192,7 @@ class EctrainInfoController extends Controller
 
         $ectrainInfo = EctrainInfo::find()->where($whereStr);
         $page = new Pagination(['totalCount' => $ectrainInfo->count(), 'pageSize' => Common::PAGESIZE]);
-        $models = $ectrainInfo->offset($page->offset)->limit($page->limit)->all();
+        $models = $ectrainInfo->offset($page->offset)->limit($page->limit)->orderBy(['published'=>SORT_DESC])->all();
 
         return $this->render('listall',[
             'ectrainInfo' => $models,
@@ -209,7 +209,7 @@ class EctrainInfoController extends Controller
 
         if (Yii::$app->request->isPost) {
 
-            $fileArg = Common::upload($_FILES,false,false);
+            $fileArg = Common::upload($_FILES,false,false,false,50*1024000);
             return $this->render('upload',[
                 "fileArg" => $fileArg,
                 "tag" => $fileArg['tag'],
@@ -234,7 +234,7 @@ class EctrainInfoController extends Controller
 
         if (Yii::$app->request->isPost) {
 
-            $fileArg = Common::upload($_FILES,false,false);
+            $fileArg = Common::upload($_FILES,false,false,false,50*1024000);
             return $this->render('uploads',[
                 "fileArg" => $fileArg,
                 "tag" => $fileArg['tag'],

@@ -18,9 +18,11 @@ use Yii;
  * @property integer $count
  * @property string $datetime
  * @property string $workPlace
- * @property string $record
+ * @property integer $record
  * @property string $salary
  * @property string $exp
+ * @property integer $state
+ * @property string $place
  */
 class CompanyRecruit extends \yii\db\ActiveRecord
 {
@@ -38,16 +40,14 @@ class CompanyRecruit extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'companyId'], 'required'],
+            [['id'], 'required'],
             [['demand'], 'string'],
-            [['count'], 'integer'],
+            [['count', 'record', 'state'], 'integer'],
             [['datetime'], 'safe'],
             [['id', 'companyId'], 'string', 'max' => 40],
-            [['position', 'tel', 'email'], 'string', 'max' => 16],
-            [['mobile'], 'string', 'max' => 11],
-            [['contacts'], 'string', 'max' => 8],
-            [['workPlace', 'exp'], 'string', 'max' => 64],
-            [['record', 'salary'], 'string', 'max' => 32],
+            [['position', 'mobile', 'tel'], 'string', 'max' => 32],
+            [['email', 'contacts', 'salary'], 'string', 'max' => 64],
+            [['workPlace', 'exp', 'place'], 'string', 'max' => 128],
         ];
     }
 
@@ -67,10 +67,12 @@ class CompanyRecruit extends \yii\db\ActiveRecord
             'contacts' => '联系人',
             'count' => '点击次数',
             'datetime' => '时间',
-            'workPlace' => '工作地点',
+            'workPlace' => '工作地点，详细地址',
             'record' => '学历要求',
             'salary' => '薪资，待遇',
             'exp' => '经验要求',
+            'state' => '区分平台招聘和公司招聘的字段',
+            'place' => '工作地点',
         ];
     }
 }

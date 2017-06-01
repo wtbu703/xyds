@@ -20,29 +20,33 @@ function height_change(){
 
 //时间格式转换为 [12-02]
 function time(d){
-    var dateday = new Date(d);
-    var out =  "[" + ((parseInt(dateday.getMonth()) + 1) > 10 ? dateday.getMonth() : "0" + dateday.getMonth()) +"-"+ ((dateday.getDate() > 9) ? dateday.getDate() : "0" + dateday.getDate())+"]";
+    var de = d.replace(/-/g, '/');
+    var dateday = new Date(de);
+    var out =  "[" + ((parseInt(dateday.getMonth()) + 1) > 9 ? (dateday.getMonth() + 1): "0" + (dateday.getMonth() + 1)) +"-"+ ((dateday.getDate() > 9) ? dateday.getDate() : "0" + dateday.getDate())+"]";
     return out;
 }
 
 //返回时间格式为 2011-11-23
 function daytime(d){
-    var date = new Date(d);
-    var during = date.getFullYear() + "-" + (parseInt(date.getMonth()) + 1) + "-" + ((date.getDate() > 9) ? date.getDate() : "0" + date.getDate());
+    var de = d.replace(/-/g, '/');
+    var date = new Date(de);
+    var during = date.getFullYear() + "-" + ((parseInt(date.getMonth()) + 1) > 9 ? (date.getMonth() + 1): "0" + (date.getMonth() + 1)) + "-" + ((date.getDate() > 9) ? date.getDate() : "0" + date.getDate());
     return during;
 }
 
 //返回时间格式为 2011.11.23
-function timepoint(ds){
-    var date = new Date(ds);
-    var durings = date.getFullYear() + "." + (parseInt(date.getMonth()) + 1) + "." + ((date.getDate() > 9) ? date.getDate() : "0" + date.getDate());
+function timepoint(d){
+     var de = d.replace(/-/g, '/');
+    var date = new Date(de);
+    var durings = date.getFullYear() + "." + ((parseInt(date.getMonth()) + 1) > 9 ? (date.getMonth() + 1): "0" + (date.getMonth() + 1)) + "." + ((date.getDate() > 9) ? date.getDate() : "0" + date.getDate());
     return durings;
 }
 
 //返回时间格式 2011年11月23日
 function yeartime(d){
-    var date = new Date(d);
-    var outyear = date.getFullYear() + "年" + (parseInt(date.getMonth()) + 1) + "月" + ((date.getDate() > 9) ? date.getDate() : "0" + date.getDate())+'日';
+     var de = d.replace(/-/g, '/');
+    var date = new Date(de);
+    var outyear = date.getFullYear() + "年" + ((parseInt(date.getMonth()) + 1) > 9 ? (date.getMonth() + 1): "0" + (date.getMonth() + 1)) + "月" + ((date.getDate() > 9) ? date.getDate() : "0" + date.getDate())+'日';
     return outyear;
 }
 
@@ -71,4 +75,13 @@ function split(x){
     return arr;
 }
 
+//上传默认图片
+function imgTp(p,imgName){
+    if(p == ''|| p == null){
+        p = 'upload/pic/'+ imgName +'.jpg';
+        return p;
+    }else{
+        return p;
+    };  
+}
    

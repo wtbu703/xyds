@@ -82,7 +82,7 @@ class CountyEconomicController extends Controller{
         }
         $countyEconomic = CountyEconomic::find()->where($whereStr);
         $page = new Pagination(['totalCount' => $countyEconomic->count(), 'pageSize' => Common::PAGESIZE]);
-        $models = $countyEconomic->offset($page->offset)->limit($page->limit)->all();
+        $models = $countyEconomic->offset($page->offset)->limit($page->limit)->orderBy(['year'=>SORT_DESC])->all();
 
         return $this->render('listall',[
             'countyEconomic'=>$models,
@@ -197,7 +197,7 @@ class CountyEconomicController extends Controller{
 
         if (Yii::$app->request->isPost) {
 
-            $fileArg = Common::upload($_FILES,false,false);
+            $fileArg = Common::upload($_FILES,false,false,false,50*1024000);
             return $this->render('upload',[
                 "fileArg" => $fileArg,
                 "tag" => $fileArg['tag'],

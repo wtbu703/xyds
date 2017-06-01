@@ -4,7 +4,7 @@ function openadd(){
 	$.dialog.open(addUrl, {
 		title: '添加公共服务体系建设情况',
 		width: 1000,
-		height:700,
+		height:600,
 		lock: true,
 		border: false,
 		id: 'build_add',

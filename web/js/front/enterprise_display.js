@@ -57,17 +57,17 @@ function getPage(pageSize,page,totalCount,cat){
     if(totalPage >1) {
         pagehtml.push('<li><a>' + totalCount + '条/' + totalPage + '页</a></li>');
         if (page > 0) {
-            pagehtml.push('<li><a href="javascript:enterprise(' + cat + ',\'0\')">首页</a></li>');
-            pagehtml.push('<li><a href="javascript:enterprise(' + cat + ',' + prev + ')" aria-label="Previous">上一页</a></li>');
+            pagehtml.push('<li><a href="javascript:enterprise(' + cat + ',\'0\')"  class="maodian">首页</a></li>');
+            pagehtml.push('<li><a href="javascript:enterprise(' + cat + ',' + prev + ')" aria-label="Previous" class="maodian">上一页</a></li>');
         }
         pagehtml.push('<li><a href="javascript:enterprise(' + cat + ',' + page + ')">' + next + '</a></li>');
         if (page < last && totalPage > 1) {
-            pagehtml.push('<li><a href="javascript:enterprise(' + cat + ',' + next + ')" aria-label="Next">下一页</a></li>');
-            pagehtml.push('<li><a href="javascript:enterprise(' + cat + ',' + last + ')">尾页</a></li>');//跳转到信息公开详情页
+            pagehtml.push('<li><a href="javascript:enterprise(' + cat + ',' + next + ')" aria-label="Next" class="maodian">下一页</a></li>');
+            pagehtml.push('<li><a href="javascript:enterprise(' + cat + ',' + last + ')" class="maodian">尾页</a></li>');//跳转到信息公开详情页
         }
         if (totalPage > 1) {
             pagehtml.push('<input class="numInput" type="text" name="page"  id="pagevalue" value="' + next + '"/>');
-            pagehtml.push('<a class="pagego" >GO</a>');
+            pagehtml.push('<a class="pagego maodian">GO</a>');
         }
     }
     //以原格式组装好数组

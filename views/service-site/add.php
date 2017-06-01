@@ -12,51 +12,68 @@
     }
 </script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=4cXNyMR23iSxTmEEzcyNcjdd6GuBvaef"></script>
+<style>
+    .anchorBL{
+        display: none;
+    }
+    body{-moz-user-select:none;/*火狐*/
 
-<div id="allmap" style="height:600px;width:900px;margin: 0 auto;"></div>
+        -webkit-user-select:none;/*webkit浏览器*/
+
+        -ms-user-select:none;/*IE10*/
+
+        -khtml-user-select:none;/*早期浏览器*/
+
+        user-select:none;
+    }
+</style>
+
 <div class="pad-lr-10">
     <form name="myform" action="" method="post" id="myform" target="iframeId">
         <div class="pad_10">
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th></th>
-                        <th style="font-weight: 900;">点击地图标注，右键可删除</th>
-                    </tr>
-                    <tr>
-                        <th>站点编码：</th>
+                        <th width="120px"><sub class="redstar">*</sub>站点编码：</th>
                         <td><input type="text" style="width:250px;height: 30px;" name="code" id="code"  class="input-text"/></td>
+                        <td class="one"><div id="codeTip"></div></td>
                     </tr>
                     <tr>
-                        <th>站点名称：</th>
+                        <th><sub class="redstar">*</sub>站点名称：</th>
                         <td><input type="text" style="width:250px;height: 30px;" name="name" id="name"  class="input-text"/></td>
+                        <td class="one"><div id="nameTip"></div></td>
                     </tr>
                     <tr>
-                        <th>站点类型：</th>
+                        <th><sub class="redstar">*</sub>站点类型：</th>
                         <td><select id="type" name="type" style="width:200px;height: 30px;"></select></td>
+                        <td class="one"><div id="typeTip"></div></td>
                     </tr>
                     <tr>
-                        <th>负责人：</th>
+                        <th><sub class="redstar">*</sub>负责人：</th>
                         <td><input type="text" style="width:250px;height: 30px;" name="chargeName" id="chargeName" class="input-text"/></td>
+                        <td class="one"><div id="chargeNameTip"></div></td>
                     </tr>
 	                <tr>
-		                <th>联系电话：</th>
+		                <th><sub class="redstar">*</sub>联系电话：</th>
 		                <td><input type="text" style="width:250px;height: 30px;" name="chargeMobile" id="chargeMobile" class="input-text"/></td>
-	                </tr>
+                        <td class="one"><div id="chargeMobileTip"></div></td>
+
+                    </tr>
 	                <tr>
-		                <th>地址：</th>
+		                <th><sub class="redstar">*</sub>地址：</th>
 		                <td><input type="text" style="width:400px;height: 30px;" name="address" id="address" class="input-text"/></td>
-	                </tr>
+                        <td class="one"><div id="addressTip"></div></td>
+                    </tr>
 	                <tr onmouseout="pic()">
-		                <th>站点照片：</th>
-		                <td><input type="text" style="display:none;" name="attachUrls" id="attachUrls" class="input-text"/>
+		                <th><sub class="redstar">*</sub>站点照片：</th>
+		                <td colspan="2"><input type="text" style="display:none;" name="attachUrls" id="attachUrls" class="input-text"/>
 			                <input type="text" style="display:none;" name="attachNames" id="attachNames" class="input-text"/>
 			                <iframe frameborder="0" width="100%" height="20px" scrolling="no" src="<?=Yii::$app->urlManager->createUrl('service-site/upload')?>"></iframe>
 		                </td>
 	                </tr>
 	                <tr>
 		                <th>图片预览：</th>
-		                <td class="pic_text"></td>
+		                <td class="pic_text" colspan="2"></td>
 	                </tr>
                 </table>
             </div>
@@ -69,7 +86,15 @@
             <input type="button" class="buttonclose" value="关闭" name="dosubmit"  onclick="window.top.$.dialog.get('site_add').close();"/>
         </div>
     </div>
-</div>
+    <div style="text-align: center;"> 
+        <input id='addBiaozhu' type="button" value="添加标注" /> 
+        <input id="back" type="button" value="返回中心点" />
+    </div>
 
+</div>
+<div id="allmap" style="height:500px;width:90%;margin:5px auto;margin-bottom: 15px;"></div>
+<div id="divFly" style="position:absolute;display: none;">
+    <img src="upload/pic/bold.png" />
+</div>
 <script type="text/javascript" src="js/admin/service-site/add.js"></script>
 

@@ -234,6 +234,12 @@
   color: #313131;
   text-decoration: none;
   padding-left: 10px;
+  display: block;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .company_recruit .recruit h5 {
   font-family: "微软雅黑";
@@ -254,6 +260,7 @@
   background-size: 324px 348px;
   background-repeat: no-repeat;
   background-position: center;
+  position: relative;
 }
 span.empty1 {
   position: absolute;

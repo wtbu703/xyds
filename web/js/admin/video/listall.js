@@ -38,25 +38,26 @@ function delopt(){
 			data:paraStr,
 			async: "false",
 			success: function (data) {
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除成功！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
-					$('#pageForm').submit();
 				});
 			},
 			error:function(data){
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除失败！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
 				});
 			}
@@ -78,25 +79,26 @@ function deleteVideo(id) {
 			data:paraStr ,
 			async: "false",
 			success: function (data) {
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除成功！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
-					$('#pageForm').submit();
 				});
 			},
 			error:function(data){
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除失败！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
 				});
 			}

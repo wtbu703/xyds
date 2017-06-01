@@ -63,7 +63,7 @@ class ContactController extends Controller{
         }
         $contact = Contact::find()->where($whereStr);
         $page = new Pagination(['totalCount' => $contact->count(), 'pageSize' => Common::PAGESIZE]);
-        $models = $contact->offset($page->offset)->limit($page->limit)->all();
+        $models = $contact->offset($page->offset)->limit($page->limit)->orderBy(['datetime'=>SORT_DESC])->all();
 
         return $this->render('listall',[
             'contact'=>$models,

@@ -37,51 +37,54 @@ $this->title =  '添加视频';
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100px">来源类型：</th>
+                        <th width="120px" align="right"><sub class="redstar">*</sub>来源类型：</th>
                         <td><select style='width:250px;height:25px; ' id="category"  name="category" class="input-text" onChange="getpush(this.value)">
                                 <option name="category" value="本站" selected>本站</option>
                                 <option name="category"  value="外网" >外网</option>
                             </select></td>
+                        <td class="one"><div id="categoryTip"></div></td>
                     </tr>
                     <tr>
-                        <th width="100">类&nbsp;别&nbsp;：</th>
+                        <th width="100" align="right"><sub class="redstar">*</sub>类&nbsp;别&nbsp;：</th>
                         <td><select style='width:250px;height:25px; ' id="sign"  name="sign" class="input-text"></select></td>
+                        <td class="one"><div id="signTip"></div></td>
                     </tr>
                     <tr>
-                        <th width="100">名&nbsp;字&nbsp;：</th>
-                        <td><input type="text" style="width:250px;" name="name" id="name"  class="input-text"/></td>
+                        <th width="100" align="right"><sub class="redstar">*</sub>名&nbsp;字&nbsp;：</th>
+                        <td colspan="2"><input type="text" style="width:250px;" name="name" id="name"  class="input-text"/></td>
                     </tr>
                     <tr>
-                        <th width="100">介&nbsp;绍&nbsp;：</th>
-                        <td><textarea type="text" style="width:500px;height:200px;" name="content" id="content" ></textarea></td>
+                        <th width="100" align="right">介&nbsp;绍&nbsp;：</th>
+                        <td  colspan="2"><textarea type="text" style="width:400px;height:200px;" name="content" id="content" ></textarea></td>
                     </tr>
                     <tr>
-                        <th>来&nbsp;源&nbsp;：</th>
+                        <th align="right"><sub class="redstar">*</sub>来&nbsp;源&nbsp;：</th>
                         <td><input type="text" style="width:250px;" name="source" id="source"  class="input-text"/></td>
+                        <td class="one"><div id="sourceTip"></div></td>
                     </tr>
                     <tr id="videoUrl">
-                        <th>视频链接：</th>
-                        <td><input type="text" style="width:250px;" name="attachUrls" id="attachUrls"  class="input-text"/></td>
+                        <th align="right"><sub class="redstar">*</sub>视频链接：</th>
+                        <td colspan="2"><input type="text" style="width:250px;" name="attachUrls" id="attachUrls"  class="input-text"/></td>
                     </tr>
 
                     <tr id="uploadVideo">
-                        <th>上传视频：</th>
-                        <td>
+                        <th align="right"><sub class="redstar">*</sub>上传视频：</th>
+                        <td colspan="2">
                             <input type="text" style="display:none;" name="attachUrls" id="attachUrls" class="input-text"/>
                             <input type="text" style="display:none;" name="attachNames" id="attachNames" class="input-text"/>
                             <iframe frameborder=0 width="100%" height=20px scrolling=no src="<?=yii::$app->urlManager->createUrl('video/upload')?>"></iframe>
                         </td>
                     </tr>
                     <tr onmouseout="pic()">
-                        <th>上传图片：</th>
-                        <td>
+                        <th align="right">上传图片：</th>
+                        <td colspan="2">
                             <input type="text" style="display:none;" name="picUrl" id="picUrl" class="input-text"/>
                             <iframe frameborder=0 width="100%" height=40px scrolling=no src="<?=yii::$app->urlManager->createUrl('video/uploads')?>"></iframe>
                         </td>
                     </tr>
                     <tr>
-                        <th>图片预览：</th>
-                        <td class="pic_text"></td>
+                        <th align="right">图片预览：</th>
+                        <td class="pic_text" colspan="2"></td>
                     </tr>
                 </table>
             </div>

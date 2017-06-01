@@ -51,25 +51,26 @@ function delopt(){
 			data:paraStr,
 			async: "false",
 			success: function (data) {
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除成功！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
-					$('#pageForm').submit();
 				});
 			},
 			error:function(data){
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除失败！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
 				});
 			}
@@ -91,25 +92,26 @@ function deleteEctrain(id){
 			data:paraStr ,
 			async: "false",
 			success: function (data) {
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除成功！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
-					$('#pageForm').submit();
 				});
 			},
 			error:function(data){
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除失败！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
 				});
 			}
@@ -128,7 +130,7 @@ function detail(id,name){
 	$.dialog.open(url,{
 		title: '培训信息--'+name,
 		width: 800,
-		height:600,
+		height:500,
 		lock: true,
 		border: false,
 		id: 'ectrain_detail',

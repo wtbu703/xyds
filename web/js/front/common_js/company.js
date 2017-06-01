@@ -18,19 +18,19 @@ function companyStore(){
             store_html.push('<ul>');
             $.each(data,function(i,n){//遍历返回的数据
                 {
-                    if(i==0){
+                    if(n.platform==0){
                         store_html.push('<li class="link_name clearfix"><img class="img-responsive" src="images/images_enterprisedetail/JD.png" alt="京东"><a href="'+n.shopLink+'"><span>京东</span></a></li>');
                     }
-                    else if(i==1){
-                        store_html.push('<li class="link_name clearfix"><img class="img-responsive" src="images/images_enterprisedetail/tmall.png" alt="天猫"><a href="'+n.shopLink+'"><span>天猫</span></a></li>');
-                    }
-                    else if(i==2){
+                    else if(n.platform==1){
                         store_html.push('<li class="link_name clearfix"><img class="img-responsive" src="images/images_enterprisedetail/taobao.png" alt="淘宝"><a href="'+n.shopLink+'"><span>淘宝</span></a></li>');
                     }
-                    else if(i==3){
+                    else if(n.platform==2){
                         store_html.push('<li class="link_name clearfix"><img class="img-responsive" src="images/images_enterprisedetail/1hd.png" alt="一号店"><a href="'+n.shopLink+'"><span>一号店</span></a></li>');
                     }
-                    else if(i==4){
+                    else if(n.platform==3){
+                        store_html.push('<li class="link_name clearfix"><img class="img-responsive" src="images/images_enterprisedetail/tmall.png" alt="天猫"><a href="'+n.shopLink+'"><span>天猫</span></a></li>');
+                    }
+                    else if(n.platform==4){
                         store_html.push('<li class="link_name clearfix"><img class="img-responsive" src="images/images_enterprisedetail/suning.png" alt="苏宁"><a href="'+n.shopLink+'"><span>苏宁</span></a></li>');
                     }
                 }
@@ -65,7 +65,7 @@ function companyNews(){
             }
             $.each(data,function(i,n){//遍历返回的数据
                 {
-                    news_html.push('<div class="news clearfix"><div></div><a href="'+newsDetailUrl+'&newsId='+n.id+'&companyId='+n.companyId+'">'+n.content+'</a></div>');
+                    news_html.push('<div class="news clearfix"><div></div><a href="'+newsDetailUrl+'&newsId='+n.id+'&companyId='+n.companyId+'">'+n.title+'</a></div>');
                 }
                 //以原格式组装好数组
             });
@@ -93,12 +93,14 @@ function companyRecruit(){
                 recruit_html.push('<div class="empty"><span class="empty1">主人太懒，<br>暂无相关消息</span></div>');
             }
             else{
-                recruit_html.push('<div class="link_title clearfix"><img class="img-responsive " src="images/images_enterprisedetail/icon1.png" alt="图标"><h4>公司招聘</h4><a href="'+lineUrl+'">>>更多</a></div>');
+                recruit_html.push('<div class="link_title clearfix"><img class="img-responsive " src="images/images_enterprisedetail/icon1.png" alt="图标"><h4>公司招聘</h4><a href="'+lineUrl+'&companyId='+companyId+'">>>更多</a></div>');
             }
             $.each(data,function(i,n){//遍历返回的数据
                 {
+                    var place = n.place;
+                    var ace = place.split("-");
                     recruit_html.push('<div class="recruit clearfix"><div></div><a href="'+onlineUrl+'&id='+n.id+'&companyId='+companyId+'">'+n.position+'</a>');
-                    recruit_html.push('<h5>'+n.workPlace+'<span>|</span>'+n.record+'<span>|</span>'+n.salary+'<span>|</span>'+n.exp+'</h5>');
+                    recruit_html.push('<h5>'+ace[1]+'<span>|</span>'+n.record+'<span>|</span>'+n.salary+'<span>|</span>'+n.exp+'</h5>');
                     recruit_html.push('</div>');
 
                 }

@@ -9,7 +9,7 @@ function openadd(){
 	$.dialog.open(addUrl, {
 		title: '添加培训信息',
 		width: 800,
-		height:550,
+		height:500,
 		lock: true,
 		border: false,
 		id: 'ectrain_add',
@@ -19,7 +19,7 @@ function openadd(){
 
 //查询功能
 function search(){
-	if(str_is_null($('#name').val())&&str_is_null($('#category').val())&&str_is_null($('#period').val())&&str_is_null($('#ectraindateTime_1').val())&&str_is_null($('#ectraindateTime_2').val())) {
+	if(str_is_null($('#name').val())&&str_is_null($('#category').val())&&str_is_null($('#ectraindateTime_1').val())&&str_is_null($('#ectraindateTime_2').val())) {
 
 		window.top.art.dialog({
 			content: '至少有一个查询条件不为空！',
@@ -31,6 +31,6 @@ function search(){
 		});
 		return ;
 	}
-	var paraStr = "&name="+$('#name').val()+"&category="+$('#category').val()+"&period="+$('#period').val()+"&ectraindateTime_1="+$('#ectraindateTime_1').val()+"&ectraindateTime_2="+$('#ectraindateTime_2').val();
+	var paraStr = "&name="+$('#name').val()+"&category="+$('#category').val()+"&ectraindateTime_1="+$('#ectraindateTime_1').val()+"&ectraindateTime_2="+$('#ectraindateTime_2').val();
 	$('#iframeId').attr('src',listallUrl+paraStr);
 }

@@ -17,6 +17,7 @@ function add(){
             success: function (data) {
                 if (data == "success") {
                    alert('报名成功');
+                    window.location.href=trainDetailUrl+'&id='+trainId;
                 } else {
                     alert('报名失败');
                 }

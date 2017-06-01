@@ -15,32 +15,36 @@ $this->title = "修改联系信息";
             </ul>
             <div id="div_setting_1" class="contentList pad-10">
                 <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
-                    <table width="90%" cellspacing="0" class="table_form contentWrap">
+                    <table width="100%" cellspacing="0" class="table_form contentWrap">
                         <tbody>
                         <tr>
-                            <th width="100px">姓名</th>
+                            <th width="50px" align="right"><sub class="redstar">*</sub>姓名:</th>
                             <td><input type="text" id="truename"  class="input-text" style="width:270px;" value="<?=$contact->truename?>"/></td>
                             <input type="hidden" id="id" value="<?=$contact->id?>" />
+                            <td class="one"><div id="truenameTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">性别</th>
+                            <th align="right"><sub class="redstar">*</sub>性别:</th>
                             <td><input type="text" id="gender" class="input-text" style="width:270px;" value="<?=$contact->gender?>" /></td>
+                            <td class="one"><div id="genderTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">手机</th>
+                            <th align="right"><sub class="redstar">*</sub>手机:</th>
                             <td><input type="text" id="mobile" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"   class="input-text" style="width:270px;" value="<?=$contact->mobile?>" /></td>
+                            <td class="one"><div id="mobileTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">邮箱</th>
+                            <th align="right"><sub class="redstar">*</sub>邮箱:</th>
                             <td><input type="text" id="email"  class="input-text" style="width:270px;" value="<?=$contact->email?>" /></td>
+                            <td class="one"><div id="emailTip"></div></td>
                         </tr>
                         <tr>
-                            <th width="100">QQ</th>
-                            <td><input type="text" id="QQ" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  class="input-text" style="width:270px;" value="<?=$contact->QQ?>" /></td>
+                            <th align="right">QQ:</th>
+                            <td colspan="2"><input type="text" id="QQ" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"  class="input-text" style="width:270px;" value="<?=$contact->QQ?>" /></td>
                         </tr>
                         <tr>
-                            <th width="100">内容</th>
-                            <td><textarea id="content"  style="width:500px;height:100px;" > <?=$contact->content?>" </textarea></td>
+                            <th align="right"><sub class="redstar">*</sub>内容:</th>
+                            <td colspan="2"><textarea id="content"  style="width:500px;height:100px;" > <?=$contact->content?></textarea></td>
                         </tr>
                         </tbody>
                     </table>

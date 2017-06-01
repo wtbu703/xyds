@@ -40,8 +40,7 @@ class PublicInfo extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['category', 'state', 'conunt'], 'integer'],
             [['id'], 'string', 'max' => 40],
-            [['title', 'attachName', 'attachUrl', 'picUrl'], 'string', 'max' => 64],
-            [['author'], 'string', 'max' => 8],
+            [['title', 'author', 'attachName', 'attachUrl', 'picUrl'], 'string', 'max' => 64],
         ];
     }
 

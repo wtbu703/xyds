@@ -8,7 +8,7 @@ function openadd(){
 	$.dialog.open(addUrl, {
 		title: '添加文章',
 		width: 800,
-		height:600,
+		height:500,
 		lock: true,
 		border: false,
 		id: 'article_add',

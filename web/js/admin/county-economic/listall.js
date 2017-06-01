@@ -5,7 +5,7 @@ function openedit(id,year) {
 	$.dialog.open(url,{
 		title: '修改年表--'+year,
 		width: 750,
-		height:600,
+		height:500,
 		lock: true,
 		border: false,
 		id: 'economic_update',
@@ -38,25 +38,26 @@ function delopt(){
 			data:paraStr,
 			async: "false",
 			success: function (data) {
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除成功！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
-					$('#pageForm').submit();
 				});
 			},
 			error:function(data){
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除失败！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
 				});
 			}
@@ -78,25 +79,25 @@ function deleteCountyEconomic(id){
 			data:paraStr ,
 			async: "false",
 			success: function (data) {
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除成功！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
 				}, function () {
-					$('#pageForm').submit();
 				});
 			},
 			error:function(data){
+				$('#pageForm').submit();
 				window.top.art.dialog({
 					content: '删除失败！',
 					lock: true,
 					width: 250,
 					height: 80,
 					border: false,
-					time: 2
+					time:2
 				}, function () {
 				});
 			}
@@ -115,7 +116,7 @@ function detail(id,year){
 	$.dialog.open(url,{
 		title: '年表详情--'+year,
 		width: 750,
-		height:600,
+		height:500,
 		lock: true,
 		border: false,
 		id: 'countyEconomic_detail',

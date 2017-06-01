@@ -38,8 +38,8 @@ class Video extends \yii\db\ActiveRecord
             [['datetime'], 'safe'],
             [['sign', 'state'], 'integer'],
             [['content'], 'string'],
-            [['id', 'name'], 'string', 'max' => 32],
-            [['source', 'picUrl'], 'string', 'max' => 64],
+            [['id'], 'string', 'max' => 32],
+            [['name', 'source', 'picUrl'], 'string', 'max' => 64],
             [['url'], 'string', 'max' => 128],
             [['duration'], 'string', 'max' => 255],
         ];
@@ -56,11 +56,11 @@ class Video extends \yii\db\ActiveRecord
             'source' => 'Source',
             'url' => 'Url',
             'datetime' => 'Datetime',
-            'sign' => 'Sign',
+            'sign' => '分类',
             'state' => 'State',
-            'picUrl' => 'Pic Url',
-            'content' => 'Content',
-            'duration' => 'Duration',
+            'picUrl' => '缩略图',
+            'content' => '简介',
+            'duration' => '时长',
         ];
     }
 }

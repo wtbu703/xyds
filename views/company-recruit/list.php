@@ -18,9 +18,11 @@ $this->title = '招聘管理';
 </script>
 <script language="javascript" type="text/javascript" src="js/admin/company-recruit/list.js" charset="utf-8"></script>
 <div class="subnav" id="display" >
-    <div class="content-menu ib-a blue line-x">
-        <a class="add fb" href="javascript:openadd();"><em>添加招聘信息</em></a>
-    </div>
+    <?php if($companyId != 'admin'&&$companyId != 'all'){?>
+        <div class="content-menu ib-a blue line-x">
+            <a class="add fb" href="javascript:openadd();"><em>添加招聘信息</em></a>
+        </div>
+    <?}?>
 </div>
 <div class="pad-lr-10">
     <form name="searchform" id="searchform" action="" method="post" target="iframeId">
@@ -43,6 +45,10 @@ $this->title = '招聘管理';
         </table>
     </form>
     <div class="table-list">
-        <iframe id="iframeId" name="iframeId" src="<?=yii::$app->urlManager->createUrl('company-recruit/find-by-attri')?>"  frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()"></iframe>
+        <?php if($type == '0'){?>
+            <iframe id="iframeId" name="iframeId" src="<?=yii::$app->urlManager->createUrl('company-recruit/find-by-attri')?>&type=<?=$type?>"  frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()"></iframe>
+        <?}else{?>
+            <iframe id="iframeId" name="iframeId" src="<?=yii::$app->urlManager->createUrl('company-recruit/find-by-attri')?>&type=1"  frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()"></iframe>
+        <?}?>
     </div>
 </div>

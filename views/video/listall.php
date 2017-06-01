@@ -15,18 +15,22 @@ $this->title =  '管理视频';
         <table width="100%" cellspacing="0" id="user_list">
             <thead id="dict_list_head">
             <tr align="left">
-                <th width="80px"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th><th width="30px">序号</th><th width="160px">视频</th><th width="160px">来源</th><th width="160px">地址</th><th align="center">操作</th>
+                <th width="50px" align="left"><input type="checkbox" id='check_box' onclick="selectall('id')"/>全选/取消</th><th width="30px">序号</th>
+                <th width="160px" align="left">视频</th>
+                <th width="60px" align="left">来源</th>
+                <th width="80px" align="left">视频类别</th>
+                <th width="100px"align="center">操作</th>
             </tr>
             </thead>
             <tbody id="user_list_body">
             <?if(!is_null($videos)){?>
             <?php foreach ($videos as $index => $val){?>
                 <tr align="left">
-                    <td><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
-                    <td><?=$index+$pages->page*$pages->pageSize+1?></td>
-                    <td><a href="javascript:detail('<?=$val->id?>','<?=$val->name?>')"><?=$val->name?></a></td>
-                    <td><?=$val->source?></td>
-                    <td><?=$val->url?></td>
+                    <td align="left"><input type="checkbox" id="id" name="id" value="<?=$val->id?>"/></td>
+                    <td align="left"><?=$index+$pages->page*$pages->pageSize+1?></td>
+                    <td align="left"><a href="javascript:detail('<?=$val->id?>','<?=$val->name?>')"><?=$val->name?></a></td>
+                    <td align="left"><?=$val->source?></td>
+                    <td align="left"><?=$val->sign?></td>
                     <td align="center">
                         <a href="javascript:openedit('<?=$val->id?>','<?=$val->name?>')">修改</a>&nbsp;&nbsp;
                         |&nbsp;&nbsp;<a href="javascript:deleteVideo('<?=$val->id?>')">删除</a>

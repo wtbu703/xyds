@@ -11,11 +11,11 @@
             <div style='overflow-y:auto;overflow-x:hidden' class='scrolltable'>
                 <table width="100%" cellspacing="0" class="table_form contentWrap">
                     <tr>
-                        <th width="100">商品大类标识</th>
+                        <th width="100"><sub class="redstar">*</sub>商品大类标识</th>
                         <td><input type="text" style="width:370px;" name="categoryCode"  id="categoryCode" class="input-text"/></td>
                     </tr>
                     <tr>
-                        <th width="100">商品大类名称</th>
+                        <th width="100"><sub class="redstar">*</sub>商品大类名称</th>
                         <td><input type="text" style="width:370px;" name="categoryName"  id="categoryName" class="input-text"/></td>
                     </tr>
                     <tr>
