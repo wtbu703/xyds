@@ -59,9 +59,7 @@ return [
 
 
 ## 网站入口 ##
-前台：[http://localhost/xyds/web/index.php](http://localhost/xyds/web/index.php "http://localhost/xyds/web/index.php")
-
-后台：[http://localhost/xyds/web/index.php?r=admin](http://localhost/xyds/web/index.php?r=admin "http://localhost/xyds/web/index.php?r=admin")
+http://119.23.225.62/
 
 ## 关于作者 ##
 武汉工商学院703工作室
