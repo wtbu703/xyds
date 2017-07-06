@@ -10,7 +10,7 @@
 
       assets/             用于存放前端资源包PHP类
       commands/           命令行
-	  common/       	  公共目录
+	common/       	  公共目录
       config/             配置
       controllers/        控制器
       mail/               与邮件相关的布局文件
@@ -59,9 +59,7 @@ return [
 
 
 ## 网站入口 ##
-前台：[http://localhost/xyds/web/index.php](http://localhost/xyds/web/index.php "http://localhost/xyds/web/index.php")
-
-后台：[http://localhost/xyds/web/index.php?r=admin](http://localhost/xyds/web/index.php?r=admin "http://localhost/xyds/web/index.php?r=admin")
+http://119.23.225.62/
 
 ## 关于作者 ##
 武汉工商学院703工作室
@@ -69,6 +67,7 @@ return [
 李罗奥
 
 QQ911430818
+WeChat 13407155419
 
 [https://github.com/liluoao](https://github.com/liluoao "Github")
 
