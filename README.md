@@ -10,7 +10,7 @@
 
       assets/             用于存放前端资源包PHP类
       commands/           命令行
-	common/       	  公共目录
+      common/       	  公共目录
       config/             配置
       controllers/        控制器
       mail/               与邮件相关的布局文件
@@ -52,10 +52,7 @@ return [
 ];
 ```
 
-在本地新建名为xyds的数据库，字符集为utf8-unicode，
-还原项目目录里的xyds.psc数据库备份
-
-或者导入xyds.sql文件
+导入xyds.sql文件
 
 
 ## 网站入口 ##
